@@ -9,7 +9,7 @@ environment:
   sdk: '>=3.0.0 <4.0.0'
 
 dependencies:
-  http: ^1.1.0              # HTTPクライアント
+  dio: ^5.4.0               # HTTPクライアント
   json_annotation: ^4.8.1   # JSONシリアライズ用アノテーション
   freezed_annotation: ^2.4.1 # Immutableクラス生成用
   meta: ^1.10.0             # メタデータアノテーション
