@@ -48,8 +48,12 @@ class SearchService {
       };
     }
 
-    if (startCursor != null) body['start_cursor'] = startCursor;
-    if (pageSize != null) body['page_size'] = pageSize;
+    if (startCursor != null) {
+      body['start_cursor'] = startCursor;
+    }
+    if (pageSize != null) {
+      body['page_size'] = pageSize;
+    }
 
     final response = await _httpClient.post('/search', data: body);
     return SearchResults.fromJson(response);
