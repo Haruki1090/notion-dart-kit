@@ -1,4 +1,5 @@
 import '../services/blocks_service.dart';
+import '../services/data_sources_service.dart';
 import '../services/databases_service.dart';
 import '../services/pages_service.dart';
 import '../services/search_service.dart';
@@ -20,6 +21,7 @@ class NotionClient {
     users = UsersService(httpClient);
     pages = PagesService(httpClient);
     databases = DatabasesService(httpClient);
+    dataSources = DataSourcesService(httpClient);
     search = SearchService(httpClient);
     blocks = BlocksService(httpClient);
   }
@@ -35,6 +37,9 @@ class NotionClient {
 
   /// Service for Databases API endpoints.
   late final DatabasesService databases;
+
+  /// Service for Data Sources API endpoints.
+  late final DataSourcesService dataSources;
 
   /// Service for Search API endpoints.
   late final SearchService search;
