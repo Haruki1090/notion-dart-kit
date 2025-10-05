@@ -20,4 +20,4 @@ dev_dependencies:
   json_serializable: ^6.7.1 # JSONシリアライズコード生成
   test: ^1.24.0             # テストフレームワーク
   mockito: ^5.4.2           # モック生成
-  lints: ^3.0.0             # Dartリンター
+  lints: ^4.0.0             # Dartリンター
