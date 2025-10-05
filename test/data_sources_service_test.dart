@@ -223,7 +223,7 @@ void main() {
         'ds_123',
         filter: {
           'property': 'Name',
-          'title': {'is_not_empty': true}
+          'title': {'is_not_empty': true},
         },
       );
 

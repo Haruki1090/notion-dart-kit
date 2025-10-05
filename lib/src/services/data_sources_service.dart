@@ -100,12 +100,10 @@ class DataSourcesService {
     return PaginatedList.fromJson(response, Page.fromJson);
   }
 
-  String _buildQueryString(Map<String, dynamic> params) {
-    return params.entries
-        .map(
-          (e) =>
-              '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value.toString())}',
-        )
-        .join('&');
-  }
+  String _buildQueryString(Map<String, dynamic> params) => params.entries
+      .map(
+        (e) =>
+            '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value.toString())}',
+      )
+      .join('&');
 }

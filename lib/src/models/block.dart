@@ -2,6 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'block_content.dart';
 import 'parent.dart';
+import 'rich_text.dart';
 import 'user.dart';
 
 part 'block.freezed.dart';
@@ -163,6 +164,277 @@ class Block with _$Block {
     required bool archived,
     required bool inTrash,
   }) = _DividerBlock;
+
+  /// Callout block
+  const factory Block.callout({
+    required String id,
+    required Parent parent,
+    required DateTime createdTime,
+    required DateTime lastEditedTime,
+    required User createdBy,
+    required User lastEditedBy,
+    required bool hasChildren,
+    required bool archived,
+    required bool inTrash,
+    required BlockContent content,
+    Map<String, dynamic>? icon,
+  }) = _CalloutBlock;
+
+  /// Image block
+  const factory Block.image({
+    required String id,
+    required Parent parent,
+    required DateTime createdTime,
+    required DateTime lastEditedTime,
+    required User createdBy,
+    required User lastEditedBy,
+    required bool hasChildren,
+    required bool archived,
+    required bool inTrash,
+    required Map<String, dynamic> file,
+  }) = _ImageBlock;
+
+  /// Video block
+  const factory Block.video({
+    required String id,
+    required Parent parent,
+    required DateTime createdTime,
+    required DateTime lastEditedTime,
+    required User createdBy,
+    required User lastEditedBy,
+    required bool hasChildren,
+    required bool archived,
+    required bool inTrash,
+    required Map<String, dynamic> file,
+  }) = _VideoBlock;
+
+  /// File block
+  const factory Block.file({
+    required String id,
+    required Parent parent,
+    required DateTime createdTime,
+    required DateTime lastEditedTime,
+    required User createdBy,
+    required User lastEditedBy,
+    required bool hasChildren,
+    required bool archived,
+    required bool inTrash,
+    required Map<String, dynamic> file,
+    List<RichText>? caption,
+    String? name,
+  }) = _FileBlock;
+
+  /// PDF block
+  const factory Block.pdf({
+    required String id,
+    required Parent parent,
+    required DateTime createdTime,
+    required DateTime lastEditedTime,
+    required User createdBy,
+    required User lastEditedBy,
+    required bool hasChildren,
+    required bool archived,
+    required bool inTrash,
+    required Map<String, dynamic> file,
+    List<RichText>? caption,
+  }) = _PdfBlock;
+
+  /// Bookmark block
+  const factory Block.bookmark({
+    required String id,
+    required Parent parent,
+    required DateTime createdTime,
+    required DateTime lastEditedTime,
+    required User createdBy,
+    required User lastEditedBy,
+    required bool hasChildren,
+    required bool archived,
+    required bool inTrash,
+    required String url,
+    List<RichText>? caption,
+  }) = _BookmarkBlock;
+
+  /// Embed block
+  const factory Block.embed({
+    required String id,
+    required Parent parent,
+    required DateTime createdTime,
+    required DateTime lastEditedTime,
+    required User createdBy,
+    required User lastEditedBy,
+    required bool hasChildren,
+    required bool archived,
+    required bool inTrash,
+    required String url,
+  }) = _EmbedBlock;
+
+  /// Link preview block
+  const factory Block.linkPreview({
+    required String id,
+    required Parent parent,
+    required DateTime createdTime,
+    required DateTime lastEditedTime,
+    required User createdBy,
+    required User lastEditedBy,
+    required bool hasChildren,
+    required bool archived,
+    required bool inTrash,
+    required String url,
+  }) = _LinkPreviewBlock;
+
+  /// Table block
+  const factory Block.table({
+    required String id,
+    required Parent parent,
+    required DateTime createdTime,
+    required DateTime lastEditedTime,
+    required User createdBy,
+    required User lastEditedBy,
+    required bool hasChildren,
+    required bool archived,
+    required bool inTrash,
+    required int tableWidth,
+    required bool hasColumnHeader,
+    required bool hasRowHeader,
+  }) = _TableBlock;
+
+  /// Table row block
+  const factory Block.tableRow({
+    required String id,
+    required Parent parent,
+    required DateTime createdTime,
+    required DateTime lastEditedTime,
+    required User createdBy,
+    required User lastEditedBy,
+    required bool hasChildren,
+    required bool archived,
+    required bool inTrash,
+    required List<List<RichText>> cells,
+  }) = _TableRowBlock;
+
+  /// Table of contents block
+  const factory Block.tableOfContents({
+    required String id,
+    required Parent parent,
+    required DateTime createdTime,
+    required DateTime lastEditedTime,
+    required User createdBy,
+    required User lastEditedBy,
+    required bool hasChildren,
+    required bool archived,
+    required bool inTrash,
+    required String color,
+  }) = _TableOfContentsBlock;
+
+  /// Column list block
+  const factory Block.columnList({
+    required String id,
+    required Parent parent,
+    required DateTime createdTime,
+    required DateTime lastEditedTime,
+    required User createdBy,
+    required User lastEditedBy,
+    required bool hasChildren,
+    required bool archived,
+    required bool inTrash,
+  }) = _ColumnListBlock;
+
+  /// Column block
+  const factory Block.column({
+    required String id,
+    required Parent parent,
+    required DateTime createdTime,
+    required DateTime lastEditedTime,
+    required User createdBy,
+    required User lastEditedBy,
+    required bool hasChildren,
+    required bool archived,
+    required bool inTrash,
+    double? widthRatio,
+  }) = _ColumnBlock;
+
+  /// Breadcrumb block
+  const factory Block.breadcrumb({
+    required String id,
+    required Parent parent,
+    required DateTime createdTime,
+    required DateTime lastEditedTime,
+    required User createdBy,
+    required User lastEditedBy,
+    required bool hasChildren,
+    required bool archived,
+    required bool inTrash,
+  }) = _BreadcrumbBlock;
+
+  /// Equation block
+  const factory Block.equation({
+    required String id,
+    required Parent parent,
+    required DateTime createdTime,
+    required DateTime lastEditedTime,
+    required User createdBy,
+    required User lastEditedBy,
+    required bool hasChildren,
+    required bool archived,
+    required bool inTrash,
+    required String expression,
+  }) = _EquationBlock;
+
+  /// Synced block
+  const factory Block.syncedBlock({
+    required String id,
+    required Parent parent,
+    required DateTime createdTime,
+    required DateTime lastEditedTime,
+    required User createdBy,
+    required User lastEditedBy,
+    required bool hasChildren,
+    required bool archived,
+    required bool inTrash,
+    String? syncedFromBlockId,
+  }) = _SyncedBlock;
+
+  /// Template block
+  const factory Block.template({
+    required String id,
+    required Parent parent,
+    required DateTime createdTime,
+    required DateTime lastEditedTime,
+    required User createdBy,
+    required User lastEditedBy,
+    required bool hasChildren,
+    required bool archived,
+    required bool inTrash,
+    required List<RichText> richText,
+  }) = _TemplateBlock;
+
+  /// Child page block
+  const factory Block.childPage({
+    required String id,
+    required Parent parent,
+    required DateTime createdTime,
+    required DateTime lastEditedTime,
+    required User createdBy,
+    required User lastEditedBy,
+    required bool hasChildren,
+    required bool archived,
+    required bool inTrash,
+    required String title,
+  }) = _ChildPageBlock;
+
+  /// Child database block
+  const factory Block.childDatabase({
+    required String id,
+    required Parent parent,
+    required DateTime createdTime,
+    required DateTime lastEditedTime,
+    required User createdBy,
+    required User lastEditedBy,
+    required bool hasChildren,
+    required bool archived,
+    required bool inTrash,
+    required String title,
+  }) = _ChildDatabaseBlock;
 
   /// Unsupported block type
   const factory Block.unsupported({
@@ -342,6 +614,293 @@ class Block with _$Block {
           hasChildren: hasChildren,
           archived: archived,
           inTrash: inTrash,
+        );
+      case 'callout':
+        return Block.callout(
+          id: id,
+          parent: parent,
+          createdTime: createdTime,
+          lastEditedTime: lastEditedTime,
+          createdBy: createdBy,
+          lastEditedBy: lastEditedBy,
+          hasChildren: hasChildren,
+          archived: archived,
+          inTrash: inTrash,
+          content:
+              BlockContent.fromJson(json['callout'] as Map<String, dynamic>),
+          icon: (json['callout'] as Map<String, dynamic>)['icon']
+              as Map<String, dynamic>?,
+        );
+      case 'image':
+        return Block.image(
+          id: id,
+          parent: parent,
+          createdTime: createdTime,
+          lastEditedTime: lastEditedTime,
+          createdBy: createdBy,
+          lastEditedBy: lastEditedBy,
+          hasChildren: hasChildren,
+          archived: archived,
+          inTrash: inTrash,
+          file: json['image'] as Map<String, dynamic>,
+        );
+      case 'video':
+        return Block.video(
+          id: id,
+          parent: parent,
+          createdTime: createdTime,
+          lastEditedTime: lastEditedTime,
+          createdBy: createdBy,
+          lastEditedBy: lastEditedBy,
+          hasChildren: hasChildren,
+          archived: archived,
+          inTrash: inTrash,
+          file: json['video'] as Map<String, dynamic>,
+        );
+      case 'file':
+        final fileData = json['file'] as Map<String, dynamic>;
+        return Block.file(
+          id: id,
+          parent: parent,
+          createdTime: createdTime,
+          lastEditedTime: lastEditedTime,
+          createdBy: createdBy,
+          lastEditedBy: lastEditedBy,
+          hasChildren: hasChildren,
+          archived: archived,
+          inTrash: inTrash,
+          file: fileData,
+          caption: fileData['caption'] != null
+              ? (fileData['caption'] as List)
+                  .map((e) => RichText.fromJson(e as Map<String, dynamic>))
+                  .toList()
+              : null,
+          name: fileData['name'] as String?,
+        );
+      case 'pdf':
+        final pdfData = json['pdf'] as Map<String, dynamic>;
+        return Block.pdf(
+          id: id,
+          parent: parent,
+          createdTime: createdTime,
+          lastEditedTime: lastEditedTime,
+          createdBy: createdBy,
+          lastEditedBy: lastEditedBy,
+          hasChildren: hasChildren,
+          archived: archived,
+          inTrash: inTrash,
+          file: pdfData,
+          caption: pdfData['caption'] != null
+              ? (pdfData['caption'] as List)
+                  .map((e) => RichText.fromJson(e as Map<String, dynamic>))
+                  .toList()
+              : null,
+        );
+      case 'bookmark':
+        final bookmarkData = json['bookmark'] as Map<String, dynamic>;
+        return Block.bookmark(
+          id: id,
+          parent: parent,
+          createdTime: createdTime,
+          lastEditedTime: lastEditedTime,
+          createdBy: createdBy,
+          lastEditedBy: lastEditedBy,
+          hasChildren: hasChildren,
+          archived: archived,
+          inTrash: inTrash,
+          url: bookmarkData['url'] as String,
+          caption: bookmarkData['caption'] != null
+              ? (bookmarkData['caption'] as List)
+                  .map((e) => RichText.fromJson(e as Map<String, dynamic>))
+                  .toList()
+              : null,
+        );
+      case 'embed':
+        return Block.embed(
+          id: id,
+          parent: parent,
+          createdTime: createdTime,
+          lastEditedTime: lastEditedTime,
+          createdBy: createdBy,
+          lastEditedBy: lastEditedBy,
+          hasChildren: hasChildren,
+          archived: archived,
+          inTrash: inTrash,
+          url: (json['embed'] as Map<String, dynamic>)['url'] as String,
+        );
+      case 'link_preview':
+        return Block.linkPreview(
+          id: id,
+          parent: parent,
+          createdTime: createdTime,
+          lastEditedTime: lastEditedTime,
+          createdBy: createdBy,
+          lastEditedBy: lastEditedBy,
+          hasChildren: hasChildren,
+          archived: archived,
+          inTrash: inTrash,
+          url: (json['link_preview'] as Map<String, dynamic>)['url'] as String,
+        );
+      case 'table':
+        final tableData = json['table'] as Map<String, dynamic>;
+        return Block.table(
+          id: id,
+          parent: parent,
+          createdTime: createdTime,
+          lastEditedTime: lastEditedTime,
+          createdBy: createdBy,
+          lastEditedBy: lastEditedBy,
+          hasChildren: hasChildren,
+          archived: archived,
+          inTrash: inTrash,
+          tableWidth: tableData['table_width'] as int,
+          hasColumnHeader: tableData['has_column_header'] as bool? ?? false,
+          hasRowHeader: tableData['has_row_header'] as bool? ?? false,
+        );
+      case 'table_row':
+        final rowData = json['table_row'] as Map<String, dynamic>;
+        return Block.tableRow(
+          id: id,
+          parent: parent,
+          createdTime: createdTime,
+          lastEditedTime: lastEditedTime,
+          createdBy: createdBy,
+          lastEditedBy: lastEditedBy,
+          hasChildren: hasChildren,
+          archived: archived,
+          inTrash: inTrash,
+          cells: (rowData['cells'] as List)
+              .map((cell) => (cell as List)
+                  .map((e) => RichText.fromJson(e as Map<String, dynamic>))
+                  .toList())
+              .toList(),
+        );
+      case 'table_of_contents':
+        final tocData = json['table_of_contents'] as Map<String, dynamic>;
+        return Block.tableOfContents(
+          id: id,
+          parent: parent,
+          createdTime: createdTime,
+          lastEditedTime: lastEditedTime,
+          createdBy: createdBy,
+          lastEditedBy: lastEditedBy,
+          hasChildren: hasChildren,
+          archived: archived,
+          inTrash: inTrash,
+          color: tocData['color'] as String? ?? 'default',
+        );
+      case 'column_list':
+        return Block.columnList(
+          id: id,
+          parent: parent,
+          createdTime: createdTime,
+          lastEditedTime: lastEditedTime,
+          createdBy: createdBy,
+          lastEditedBy: lastEditedBy,
+          hasChildren: hasChildren,
+          archived: archived,
+          inTrash: inTrash,
+        );
+      case 'column':
+        final columnData = json['column'] as Map<String, dynamic>;
+        return Block.column(
+          id: id,
+          parent: parent,
+          createdTime: createdTime,
+          lastEditedTime: lastEditedTime,
+          createdBy: createdBy,
+          lastEditedBy: lastEditedBy,
+          hasChildren: hasChildren,
+          archived: archived,
+          inTrash: inTrash,
+          widthRatio: columnData['width_ratio'] as double?,
+        );
+      case 'breadcrumb':
+        return Block.breadcrumb(
+          id: id,
+          parent: parent,
+          createdTime: createdTime,
+          lastEditedTime: lastEditedTime,
+          createdBy: createdBy,
+          lastEditedBy: lastEditedBy,
+          hasChildren: hasChildren,
+          archived: archived,
+          inTrash: inTrash,
+        );
+      case 'equation':
+        final equationData = json['equation'] as Map<String, dynamic>;
+        return Block.equation(
+          id: id,
+          parent: parent,
+          createdTime: createdTime,
+          lastEditedTime: lastEditedTime,
+          createdBy: createdBy,
+          lastEditedBy: lastEditedBy,
+          hasChildren: hasChildren,
+          archived: archived,
+          inTrash: inTrash,
+          expression: equationData['expression'] as String,
+        );
+      case 'synced_block':
+        final syncedData = json['synced_block'] as Map<String, dynamic>;
+        return Block.syncedBlock(
+          id: id,
+          parent: parent,
+          createdTime: createdTime,
+          lastEditedTime: lastEditedTime,
+          createdBy: createdBy,
+          lastEditedBy: lastEditedBy,
+          hasChildren: hasChildren,
+          archived: archived,
+          inTrash: inTrash,
+          syncedFromBlockId: syncedData['synced_from'] != null
+              ? (syncedData['synced_from'] as Map<String, dynamic>)['block_id']
+                  as String?
+              : null,
+        );
+      case 'template':
+        final templateData = json['template'] as Map<String, dynamic>;
+        return Block.template(
+          id: id,
+          parent: parent,
+          createdTime: createdTime,
+          lastEditedTime: lastEditedTime,
+          createdBy: createdBy,
+          lastEditedBy: lastEditedBy,
+          hasChildren: hasChildren,
+          archived: archived,
+          inTrash: inTrash,
+          richText: (templateData['rich_text'] as List)
+              .map((e) => RichText.fromJson(e as Map<String, dynamic>))
+              .toList(),
+        );
+      case 'child_page':
+        final childPageData = json['child_page'] as Map<String, dynamic>;
+        return Block.childPage(
+          id: id,
+          parent: parent,
+          createdTime: createdTime,
+          lastEditedTime: lastEditedTime,
+          createdBy: createdBy,
+          lastEditedBy: lastEditedBy,
+          hasChildren: hasChildren,
+          archived: archived,
+          inTrash: inTrash,
+          title: childPageData['title'] as String,
+        );
+      case 'child_database':
+        final childDbData = json['child_database'] as Map<String, dynamic>;
+        return Block.childDatabase(
+          id: id,
+          parent: parent,
+          createdTime: createdTime,
+          lastEditedTime: lastEditedTime,
+          createdBy: createdBy,
+          lastEditedBy: lastEditedBy,
+          hasChildren: hasChildren,
+          archived: archived,
+          inTrash: inTrash,
+          title: childDbData['title'] as String,
         );
       default:
         return Block.unsupported(
@@ -645,6 +1204,538 @@ class Block with _$Block {
           'type': 'divider',
           'divider': {},
         },
+        callout: (
+          id,
+          parent,
+          createdTime,
+          lastEditedTime,
+          createdBy,
+          lastEditedBy,
+          hasChildren,
+          archived,
+          inTrash,
+          content,
+          icon,
+        ) =>
+            {
+          'object': 'block',
+          'id': id,
+          'parent': parent.toJson(),
+          'created_time': createdTime.toIso8601String(),
+          'last_edited_time': lastEditedTime.toIso8601String(),
+          'created_by': createdBy.toJson(),
+          'last_edited_by': lastEditedBy.toJson(),
+          'has_children': hasChildren,
+          'archived': archived,
+          'in_trash': inTrash,
+          'type': 'callout',
+          'callout': {
+            ...content.toJson(),
+            if (icon != null) 'icon': icon,
+          },
+        },
+        image: (
+          id,
+          parent,
+          createdTime,
+          lastEditedTime,
+          createdBy,
+          lastEditedBy,
+          hasChildren,
+          archived,
+          inTrash,
+          file,
+        ) =>
+            {
+          'object': 'block',
+          'id': id,
+          'parent': parent.toJson(),
+          'created_time': createdTime.toIso8601String(),
+          'last_edited_time': lastEditedTime.toIso8601String(),
+          'created_by': createdBy.toJson(),
+          'last_edited_by': lastEditedBy.toJson(),
+          'has_children': hasChildren,
+          'archived': archived,
+          'in_trash': inTrash,
+          'type': 'image',
+          'image': file,
+        },
+        video: (
+          id,
+          parent,
+          createdTime,
+          lastEditedTime,
+          createdBy,
+          lastEditedBy,
+          hasChildren,
+          archived,
+          inTrash,
+          file,
+        ) =>
+            {
+          'object': 'block',
+          'id': id,
+          'parent': parent.toJson(),
+          'created_time': createdTime.toIso8601String(),
+          'last_edited_time': lastEditedTime.toIso8601String(),
+          'created_by': createdBy.toJson(),
+          'last_edited_by': lastEditedBy.toJson(),
+          'has_children': hasChildren,
+          'archived': archived,
+          'in_trash': inTrash,
+          'type': 'video',
+          'video': file,
+        },
+        file: (
+          id,
+          parent,
+          createdTime,
+          lastEditedTime,
+          createdBy,
+          lastEditedBy,
+          hasChildren,
+          archived,
+          inTrash,
+          file,
+          caption,
+          name,
+        ) =>
+            {
+          'object': 'block',
+          'id': id,
+          'parent': parent.toJson(),
+          'created_time': createdTime.toIso8601String(),
+          'last_edited_time': lastEditedTime.toIso8601String(),
+          'created_by': createdBy.toJson(),
+          'last_edited_by': lastEditedBy.toJson(),
+          'has_children': hasChildren,
+          'archived': archived,
+          'in_trash': inTrash,
+          'type': 'file',
+          'file': {
+            ...file,
+            if (caption != null)
+              'caption': caption.map((e) => e.toJson()).toList(),
+            if (name != null) 'name': name,
+          },
+        },
+        pdf: (
+          id,
+          parent,
+          createdTime,
+          lastEditedTime,
+          createdBy,
+          lastEditedBy,
+          hasChildren,
+          archived,
+          inTrash,
+          file,
+          caption,
+        ) =>
+            {
+          'object': 'block',
+          'id': id,
+          'parent': parent.toJson(),
+          'created_time': createdTime.toIso8601String(),
+          'last_edited_time': lastEditedTime.toIso8601String(),
+          'created_by': createdBy.toJson(),
+          'last_edited_by': lastEditedBy.toJson(),
+          'has_children': hasChildren,
+          'archived': archived,
+          'in_trash': inTrash,
+          'type': 'pdf',
+          'pdf': {
+            ...file,
+            if (caption != null)
+              'caption': caption.map((e) => e.toJson()).toList(),
+          },
+        },
+        bookmark: (
+          id,
+          parent,
+          createdTime,
+          lastEditedTime,
+          createdBy,
+          lastEditedBy,
+          hasChildren,
+          archived,
+          inTrash,
+          url,
+          caption,
+        ) =>
+            {
+          'object': 'block',
+          'id': id,
+          'parent': parent.toJson(),
+          'created_time': createdTime.toIso8601String(),
+          'last_edited_time': lastEditedTime.toIso8601String(),
+          'created_by': createdBy.toJson(),
+          'last_edited_by': lastEditedBy.toJson(),
+          'has_children': hasChildren,
+          'archived': archived,
+          'in_trash': inTrash,
+          'type': 'bookmark',
+          'bookmark': {
+            'url': url,
+            if (caption != null)
+              'caption': caption.map((e) => e.toJson()).toList(),
+          },
+        },
+        embed: (
+          id,
+          parent,
+          createdTime,
+          lastEditedTime,
+          createdBy,
+          lastEditedBy,
+          hasChildren,
+          archived,
+          inTrash,
+          url,
+        ) =>
+            {
+          'object': 'block',
+          'id': id,
+          'parent': parent.toJson(),
+          'created_time': createdTime.toIso8601String(),
+          'last_edited_time': lastEditedTime.toIso8601String(),
+          'created_by': createdBy.toJson(),
+          'last_edited_by': lastEditedBy.toJson(),
+          'has_children': hasChildren,
+          'archived': archived,
+          'in_trash': inTrash,
+          'type': 'embed',
+          'embed': {'url': url},
+        },
+        linkPreview: (
+          id,
+          parent,
+          createdTime,
+          lastEditedTime,
+          createdBy,
+          lastEditedBy,
+          hasChildren,
+          archived,
+          inTrash,
+          url,
+        ) =>
+            {
+          'object': 'block',
+          'id': id,
+          'parent': parent.toJson(),
+          'created_time': createdTime.toIso8601String(),
+          'last_edited_time': lastEditedTime.toIso8601String(),
+          'created_by': createdBy.toJson(),
+          'last_edited_by': lastEditedBy.toJson(),
+          'has_children': hasChildren,
+          'archived': archived,
+          'in_trash': inTrash,
+          'type': 'link_preview',
+          'link_preview': {'url': url},
+        },
+        table: (
+          id,
+          parent,
+          createdTime,
+          lastEditedTime,
+          createdBy,
+          lastEditedBy,
+          hasChildren,
+          archived,
+          inTrash,
+          tableWidth,
+          hasColumnHeader,
+          hasRowHeader,
+        ) =>
+            {
+          'object': 'block',
+          'id': id,
+          'parent': parent.toJson(),
+          'created_time': createdTime.toIso8601String(),
+          'last_edited_time': lastEditedTime.toIso8601String(),
+          'created_by': createdBy.toJson(),
+          'last_edited_by': lastEditedBy.toJson(),
+          'has_children': hasChildren,
+          'archived': archived,
+          'in_trash': inTrash,
+          'type': 'table',
+          'table': {
+            'table_width': tableWidth,
+            'has_column_header': hasColumnHeader,
+            'has_row_header': hasRowHeader,
+          },
+        },
+        tableRow: (
+          id,
+          parent,
+          createdTime,
+          lastEditedTime,
+          createdBy,
+          lastEditedBy,
+          hasChildren,
+          archived,
+          inTrash,
+          cells,
+        ) =>
+            {
+          'object': 'block',
+          'id': id,
+          'parent': parent.toJson(),
+          'created_time': createdTime.toIso8601String(),
+          'last_edited_time': lastEditedTime.toIso8601String(),
+          'created_by': createdBy.toJson(),
+          'last_edited_by': lastEditedBy.toJson(),
+          'has_children': hasChildren,
+          'archived': archived,
+          'in_trash': inTrash,
+          'type': 'table_row',
+          'table_row': {
+            'cells': cells
+                .map((cell) => cell.map((e) => e.toJson()).toList())
+                .toList(),
+          },
+        },
+        tableOfContents: (
+          id,
+          parent,
+          createdTime,
+          lastEditedTime,
+          createdBy,
+          lastEditedBy,
+          hasChildren,
+          archived,
+          inTrash,
+          color,
+        ) =>
+            {
+          'object': 'block',
+          'id': id,
+          'parent': parent.toJson(),
+          'created_time': createdTime.toIso8601String(),
+          'last_edited_time': lastEditedTime.toIso8601String(),
+          'created_by': createdBy.toJson(),
+          'last_edited_by': lastEditedBy.toJson(),
+          'has_children': hasChildren,
+          'archived': archived,
+          'in_trash': inTrash,
+          'type': 'table_of_contents',
+          'table_of_contents': {
+            'color': color,
+          },
+        },
+        columnList: (
+          id,
+          parent,
+          createdTime,
+          lastEditedTime,
+          createdBy,
+          lastEditedBy,
+          hasChildren,
+          archived,
+          inTrash,
+        ) =>
+            {
+          'object': 'block',
+          'id': id,
+          'parent': parent.toJson(),
+          'created_time': createdTime.toIso8601String(),
+          'last_edited_time': lastEditedTime.toIso8601String(),
+          'created_by': createdBy.toJson(),
+          'last_edited_by': lastEditedBy.toJson(),
+          'has_children': hasChildren,
+          'archived': archived,
+          'in_trash': inTrash,
+          'type': 'column_list',
+          'column_list': {},
+        },
+        column: (
+          id,
+          parent,
+          createdTime,
+          lastEditedTime,
+          createdBy,
+          lastEditedBy,
+          hasChildren,
+          archived,
+          inTrash,
+          widthRatio,
+        ) =>
+            {
+          'object': 'block',
+          'id': id,
+          'parent': parent.toJson(),
+          'created_time': createdTime.toIso8601String(),
+          'last_edited_time': lastEditedTime.toIso8601String(),
+          'created_by': createdBy.toJson(),
+          'last_edited_by': lastEditedBy.toJson(),
+          'has_children': hasChildren,
+          'archived': archived,
+          'in_trash': inTrash,
+          'type': 'column',
+          'column': {
+            if (widthRatio != null) 'width_ratio': widthRatio,
+          },
+        },
+        breadcrumb: (
+          id,
+          parent,
+          createdTime,
+          lastEditedTime,
+          createdBy,
+          lastEditedBy,
+          hasChildren,
+          archived,
+          inTrash,
+        ) =>
+            {
+          'object': 'block',
+          'id': id,
+          'parent': parent.toJson(),
+          'created_time': createdTime.toIso8601String(),
+          'last_edited_time': lastEditedTime.toIso8601String(),
+          'created_by': createdBy.toJson(),
+          'last_edited_by': lastEditedBy.toJson(),
+          'has_children': hasChildren,
+          'archived': archived,
+          'in_trash': inTrash,
+          'type': 'breadcrumb',
+          'breadcrumb': {},
+        },
+        equation: (
+          id,
+          parent,
+          createdTime,
+          lastEditedTime,
+          createdBy,
+          lastEditedBy,
+          hasChildren,
+          archived,
+          inTrash,
+          expression,
+        ) =>
+            {
+          'object': 'block',
+          'id': id,
+          'parent': parent.toJson(),
+          'created_time': createdTime.toIso8601String(),
+          'last_edited_time': lastEditedTime.toIso8601String(),
+          'created_by': createdBy.toJson(),
+          'last_edited_by': lastEditedBy.toJson(),
+          'has_children': hasChildren,
+          'archived': archived,
+          'in_trash': inTrash,
+          'type': 'equation',
+          'equation': {'expression': expression},
+        },
+        syncedBlock: (
+          id,
+          parent,
+          createdTime,
+          lastEditedTime,
+          createdBy,
+          lastEditedBy,
+          hasChildren,
+          archived,
+          inTrash,
+          syncedFromBlockId,
+        ) =>
+            {
+          'object': 'block',
+          'id': id,
+          'parent': parent.toJson(),
+          'created_time': createdTime.toIso8601String(),
+          'last_edited_time': lastEditedTime.toIso8601String(),
+          'created_by': createdBy.toJson(),
+          'last_edited_by': lastEditedBy.toJson(),
+          'has_children': hasChildren,
+          'archived': archived,
+          'in_trash': inTrash,
+          'type': 'synced_block',
+          'synced_block': {
+            if (syncedFromBlockId != null)
+              'synced_from': {'block_id': syncedFromBlockId},
+          },
+        },
+        template: (
+          id,
+          parent,
+          createdTime,
+          lastEditedTime,
+          createdBy,
+          lastEditedBy,
+          hasChildren,
+          archived,
+          inTrash,
+          richText,
+        ) =>
+            {
+          'object': 'block',
+          'id': id,
+          'parent': parent.toJson(),
+          'created_time': createdTime.toIso8601String(),
+          'last_edited_time': lastEditedTime.toIso8601String(),
+          'created_by': createdBy.toJson(),
+          'last_edited_by': lastEditedBy.toJson(),
+          'has_children': hasChildren,
+          'archived': archived,
+          'in_trash': inTrash,
+          'type': 'template',
+          'template': {
+            'rich_text': richText.map((e) => e.toJson()).toList(),
+          },
+        },
+        childPage: (
+          id,
+          parent,
+          createdTime,
+          lastEditedTime,
+          createdBy,
+          lastEditedBy,
+          hasChildren,
+          archived,
+          inTrash,
+          title,
+        ) =>
+            {
+          'object': 'block',
+          'id': id,
+          'parent': parent.toJson(),
+          'created_time': createdTime.toIso8601String(),
+          'last_edited_time': lastEditedTime.toIso8601String(),
+          'created_by': createdBy.toJson(),
+          'last_edited_by': lastEditedBy.toJson(),
+          'has_children': hasChildren,
+          'archived': archived,
+          'in_trash': inTrash,
+          'type': 'child_page',
+          'child_page': {'title': title},
+        },
+        childDatabase: (
+          id,
+          parent,
+          createdTime,
+          lastEditedTime,
+          createdBy,
+          lastEditedBy,
+          hasChildren,
+          archived,
+          inTrash,
+          title,
+        ) =>
+            {
+          'object': 'block',
+          'id': id,
+          'parent': parent.toJson(),
+          'created_time': createdTime.toIso8601String(),
+          'last_edited_time': lastEditedTime.toIso8601String(),
+          'created_by': createdBy.toJson(),
+          'last_edited_by': lastEditedBy.toJson(),
+          'has_children': hasChildren,
+          'archived': archived,
+          'in_trash': inTrash,
+          'type': 'child_database',
+          'child_database': {'title': title},
+        },
         unsupported: (
           id,
           parent,
@@ -670,4 +1761,48 @@ class Block with _$Block {
           'type': 'unsupported',
         },
       );
+}
+
+/// Helper function to convert BlockColor to string
+String _blockColorToString(BlockColor color) {
+  switch (color) {
+    case BlockColor.defaultColor:
+      return 'default';
+    case BlockColor.gray:
+      return 'gray';
+    case BlockColor.brown:
+      return 'brown';
+    case BlockColor.orange:
+      return 'orange';
+    case BlockColor.yellow:
+      return 'yellow';
+    case BlockColor.green:
+      return 'green';
+    case BlockColor.blue:
+      return 'blue';
+    case BlockColor.purple:
+      return 'purple';
+    case BlockColor.pink:
+      return 'pink';
+    case BlockColor.red:
+      return 'red';
+    case BlockColor.grayBackground:
+      return 'gray_background';
+    case BlockColor.brownBackground:
+      return 'brown_background';
+    case BlockColor.orangeBackground:
+      return 'orange_background';
+    case BlockColor.yellowBackground:
+      return 'yellow_background';
+    case BlockColor.greenBackground:
+      return 'green_background';
+    case BlockColor.blueBackground:
+      return 'blue_background';
+    case BlockColor.purpleBackground:
+      return 'purple_background';
+    case BlockColor.pinkBackground:
+      return 'pink_background';
+    case BlockColor.redBackground:
+      return 'red_background';
+  }
 }
