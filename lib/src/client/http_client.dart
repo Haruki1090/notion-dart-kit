@@ -1,9 +1,10 @@
+import 'dart:math';
 import 'package:dio/dio.dart';
 import '../utils/exceptions.dart';
 
 /// HTTP client wrapper for Notion API requests.
 ///
-/// Handles authentication, error handling, and API versioning.
+/// Handles authentication, error handling, API versioning, rate limiting, and retries.
 class NotionHttpClient {
   static const String _baseUrl = 'https://api.notion.com/v1';
   static const String _notionVersion = '2022-06-28';
@@ -11,12 +12,22 @@ class NotionHttpClient {
   final Dio _dio;
   final String token;
 
+  /// Maximum number of retry attempts for rate-limited requests
+  final int maxRetries;
+
+  /// Initial delay for exponential backoff (in milliseconds)
+  final int initialRetryDelay;
+
   /// Creates a new [NotionHttpClient] with the given [token].
   ///
   /// Optionally accepts a custom [Dio] instance for testing.
+  /// [maxRetries] - Maximum number of retry attempts (default: 3)
+  /// [initialRetryDelay] - Initial delay in milliseconds for exponential backoff (default: 1000)
   NotionHttpClient({
     required this.token,
     Dio? dio,
+    this.maxRetries = 3,
+    this.initialRetryDelay = 1000,
   }) : _dio = dio ?? Dio() {
     _configureDio();
   }
@@ -33,11 +44,78 @@ class NotionHttpClient {
       receiveTimeout: const Duration(seconds: 30),
     );
 
+    // Add retry interceptor first (before error handler)
+    _dio.interceptors.add(
+      QueuedInterceptorsWrapper(
+        onRequest: _onRequest,
+        onError: _onErrorWithRetry,
+      ),
+    );
+
+    // Add error handler interceptor
     _dio.interceptors.add(
       InterceptorsWrapper(
         onError: _handleError,
       ),
     );
+  }
+
+  /// Request interceptor for logging/debugging
+  void _onRequest(
+    RequestOptions options,
+    RequestInterceptorHandler handler,
+  ) {
+    // Future: Add request logging here if needed
+    handler.next(options);
+  }
+
+  /// Error interceptor with retry logic for rate limiting
+  Future<void> _onErrorWithRetry(
+    DioException error,
+    ErrorInterceptorHandler handler,
+  ) async {
+    final statusCode = error.response?.statusCode;
+
+    // Only retry on 429 (rate limit) or network errors
+    if (statusCode == 429 ||
+        error.type == DioExceptionType.connectionTimeout ||
+        error.type == DioExceptionType.receiveTimeout) {
+      final attempt = error.requestOptions.extra['retryAttempt'] as int? ?? 0;
+
+      if (attempt < maxRetries) {
+        // Calculate delay with exponential backoff
+        final delay = _calculateRetryDelay(attempt);
+
+        // Wait before retrying
+        await Future.delayed(Duration(milliseconds: delay));
+
+        // Increment retry attempt
+        error.requestOptions.extra['retryAttempt'] = attempt + 1;
+
+        try {
+          // Retry the request
+          final response = await _dio.fetch(error.requestOptions);
+          handler.resolve(response);
+          return;
+        } catch (e) {
+          // If retry fails, let it fall through to error handler
+        }
+      }
+    }
+
+    // Pass to error handler
+    handler.next(error);
+  }
+
+  /// Calculate retry delay using exponential backoff with jitter
+  int _calculateRetryDelay(int attempt) {
+    // Exponential backoff: delay = initialDelay * (2 ^ attempt)
+    final exponentialDelay = initialRetryDelay * pow(2, attempt).toInt();
+
+    // Add jitter (random 0-25% of delay) to prevent thundering herd
+    final jitter = Random().nextInt((exponentialDelay * 0.25).toInt());
+
+    return exponentialDelay + jitter;
   }
 
   /// Handles HTTP errors and converts them to [NotionException]s.
