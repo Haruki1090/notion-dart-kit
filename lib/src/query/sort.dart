@@ -24,15 +24,15 @@ sealed class Sort with _$Sort {
 
   /// JSONに変換
   Map<String, dynamic> toJson() => when(
-      property: (name, direction) => {
-        'property': name,
-        'direction': direction.value,
-      },
-      timestamp: (type, direction) => {
-        'timestamp': type.value,
-        'direction': direction.value,
-      },
-    );
+        property: (name, direction) => {
+          'property': name,
+          'direction': direction.value,
+        },
+        timestamp: (type, direction) => {
+          'timestamp': type.value,
+          'direction': direction.value,
+        },
+      );
 }
 
 /// ソート方向

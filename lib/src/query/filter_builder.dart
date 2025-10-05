@@ -5,7 +5,6 @@ import 'filter.dart';
 /// プロパティ名から型安全なフィルタを構築するためのビルダー。
 /// 各プロパティ型に対応したフィルタメソッドを提供。
 class PropertyFilterBuilder {
-
   const PropertyFilterBuilder(this.propertyName);
   final String propertyName;
 
@@ -43,7 +42,6 @@ class PropertyFilterBuilder {
 
 /// テキスト系フィルタビルダー
 class TextFilterBuilder {
-
   const TextFilterBuilder(this.propertyName);
   final String propertyName;
 
@@ -90,7 +88,6 @@ class TextFilterBuilder {
 
 /// 数値系フィルタビルダー
 class NumberFilterBuilder {
-
   const NumberFilterBuilder(this.propertyName);
   final String propertyName;
 
@@ -137,7 +134,6 @@ class NumberFilterBuilder {
 
 /// チェックボックスフィルタビルダー
 class CheckboxFilterBuilder {
-
   const CheckboxFilterBuilder(this.propertyName);
   final String propertyName;
 
@@ -149,7 +145,6 @@ class CheckboxFilterBuilder {
 
 /// Selectフィルタビルダー
 class SelectFilterBuilder {
-
   const SelectFilterBuilder(this.propertyName);
   final String propertyName;
 
@@ -176,7 +171,6 @@ class SelectFilterBuilder {
 
 /// MultiSelectフィルタビルダー
 class MultiSelectFilterBuilder {
-
   const MultiSelectFilterBuilder(this.propertyName);
   final String propertyName;
 
@@ -203,7 +197,6 @@ class MultiSelectFilterBuilder {
 
 /// 日付フィルタビルダー
 class DateFilterBuilder {
-
   const DateFilterBuilder(this.propertyName);
   final String propertyName;
 
@@ -275,7 +268,6 @@ class DateFilterBuilder {
 
 /// Peopleフィルタビルダー
 class PeopleFilterBuilder {
-
   const PeopleFilterBuilder(this.propertyName);
   final String propertyName;
 
@@ -302,7 +294,6 @@ class PeopleFilterBuilder {
 
 /// Filesフィルタビルダー
 class FilesFilterBuilder {
-
   const FilesFilterBuilder(this.propertyName);
   final String propertyName;
 
@@ -319,7 +310,6 @@ class FilesFilterBuilder {
 
 /// Relationフィルタビルダー
 class RelationFilterBuilder {
-
   const RelationFilterBuilder(this.propertyName);
   final String propertyName;
 
