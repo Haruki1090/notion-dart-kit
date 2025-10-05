@@ -22,6 +22,10 @@ export 'src/models/property_value.dart';
 export 'src/models/rich_text.dart';
 // Export models
 export 'src/models/user.dart';
+// Export query DSL
+export 'src/query/filter.dart';
+export 'src/query/filter_builder.dart';
+export 'src/query/sort.dart';
 export 'src/services/blocks_service.dart';
 export 'src/services/data_sources_service.dart';
 export 'src/services/databases_service.dart';
@@ -29,11 +33,8 @@ export 'src/services/pages_service.dart';
 export 'src/services/search_service.dart';
 // Export services
 export 'src/services/users_service.dart';
-
-// Export query DSL
-export 'src/query/filter.dart';
-export 'src/query/filter_builder.dart';
-export 'src/query/sort.dart';
-
 // Export exceptions
 export 'src/utils/exceptions.dart';
+// Export utilities
+export 'src/utils/notion_logger.dart';
+export 'src/utils/result.dart';

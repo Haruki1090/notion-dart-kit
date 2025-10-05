@@ -13,7 +13,7 @@ void main() {
     });
 
     test('number filter generates correct JSON', () {
-      final filter = 'Price'.property.number().greaterThan(100.0);
+      final filter = 'Price'.property.number().greaterThan(100);
 
       expect(filter.toJson(), {
         'property': 'Price',

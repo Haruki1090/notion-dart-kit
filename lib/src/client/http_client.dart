@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import '../utils/exceptions.dart';
+import '../utils/notion_logger.dart';
 import 'rate_limiter.dart';
 
 /// HTTP client wrapper for Notion API requests.
@@ -37,6 +38,9 @@ class NotionHttpClient {
       connectTimeout: const Duration(seconds: 30),
       receiveTimeout: const Duration(seconds: 30),
     );
+
+    // Add logging interceptor
+    _dio.interceptors.add(_LoggingInterceptor());
 
     // Add error handler interceptor
     _dio.interceptors.add(
@@ -243,5 +247,58 @@ class NotionHttpClient {
   /// Closes the HTTP client and releases resources.
   void close() {
     _dio.close();
+  }
+}
+
+/// Dio interceptor for logging HTTP requests and responses.
+class _LoggingInterceptor extends Interceptor {
+  final _logger = NotionLogger.instance;
+  final _stopwatch = Stopwatch();
+
+  @override
+  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
+    _stopwatch.reset();
+    _stopwatch.start();
+
+    _logger.logRequest(
+      method: options.method,
+      url: '${options.baseUrl}${options.path}',
+      headers: options.headers,
+      data: options.data,
+    );
+
+    super.onRequest(options, handler);
+  }
+
+  @override
+  void onResponse(Response response, ResponseInterceptorHandler handler) {
+    _stopwatch.stop();
+
+    _logger.logResponse(
+      method: response.requestOptions.method,
+      url:
+          '${response.requestOptions.baseUrl}${response.requestOptions.path}',
+      statusCode: response.statusCode ?? 0,
+      data: response.data,
+      durationMs: _stopwatch.elapsedMilliseconds,
+      notionRequestId: response.headers['x-notion-request-id']?.firstOrNull,
+    );
+
+    super.onResponse(response, handler);
+  }
+
+  @override
+  void onError(DioException err, ErrorInterceptorHandler handler) {
+    _stopwatch.stop();
+
+    _logger.logError(
+      method: err.requestOptions.method,
+      url: '${err.requestOptions.baseUrl}${err.requestOptions.path}',
+      statusCode: err.response?.statusCode,
+      error: err.message ?? 'Unknown error',
+      data: err.response?.data,
+    );
+
+    super.onError(err, handler);
   }
 }
