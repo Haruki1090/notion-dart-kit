@@ -391,6 +391,8 @@ dart test test/integration/
 - [pub.devのパッケージ](https://pub.dev/packages/notion_dart_kit)
 - [Issue Tracker](https://github.com/Haruki1090/notion-dart-kit/issues)
 - [ソースコード](https://github.com/Haruki1090/notion-dart-kit)
+- [コントリビューションガイド](./CONTRIBUTING_ja.md) | [English](./CONTRIBUTING.md)
+- [変更履歴](./CHANGELOG_ja.md) | [English](./CHANGELOG.md)
 
 ## 👤 作者
 
