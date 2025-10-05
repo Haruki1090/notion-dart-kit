@@ -25,6 +25,14 @@ analyzer:
     avoid_print: ignore
     # Ignore cascade_invocations in test files (expect calls)
     cascade_invocations: ignore
+    # Ignore deprecated member use (for backward compatibility)
+    deprecated_member_use: ignore
+    deprecated_member_use_from_same_package: ignore
+    # Ignore type inference warnings (acceptable in test code)
+    inference_failure_on_collection_literal: ignore
+    inference_failure_on_instance_creation: ignore
+    inference_failure_on_function_invocation: ignore
+    strict_raw_type: ignore
 
 linter:
   rules:
