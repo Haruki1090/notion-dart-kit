@@ -21,6 +21,8 @@ analyzer:
     missing_return: error
     # Allow self reference in initializers
     recursive_getters: warning
+    # Allow print in example directory
+    avoid_print: ignore
 
 linter:
   rules:
