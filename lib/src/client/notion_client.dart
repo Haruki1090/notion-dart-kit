@@ -1,6 +1,7 @@
 import 'http_client.dart';
 import '../services/users_service.dart';
 import '../services/pages_service.dart';
+import '../services/databases_service.dart';
 
 /// Main client for interacting with the Notion API.
 ///
@@ -20,6 +21,9 @@ class NotionClient {
   /// Service for Pages API endpoints.
   late final PagesService pages;
 
+  /// Service for Databases API endpoints.
+  late final DatabasesService databases;
+
   /// The Notion API integration token.
   String get token => httpClient.token;
 
@@ -28,6 +32,7 @@ class NotionClient {
       : httpClient = NotionHttpClient(token: token) {
     users = UsersService(httpClient);
     pages = PagesService(httpClient);
+    databases = DatabasesService(httpClient);
   }
 
   /// Closes the client and releases resources.
@@ -35,7 +40,6 @@ class NotionClient {
     httpClient.close();
   }
 
-// TODO: Add databases service
-// TODO: Add blocks service
-// TODO: Add search service
+  // TODO: Add blocks service
+  // TODO: Add search service
 }
