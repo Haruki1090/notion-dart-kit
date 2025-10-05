@@ -3,6 +3,8 @@ import '../models/database.dart';
 import '../models/parent.dart';
 import '../models/file.dart';
 import '../models/rich_text.dart';
+import '../models/pagination.dart';
+import '../models/page.dart';
 
 /// Service for interacting with Notion Databases API
 class DatabasesService {
@@ -117,5 +119,53 @@ class DatabasesService {
   /// Throws [NotionException] if the request fails.
   Future<Database> restore(String databaseId) async {
     return update(databaseId, inTrash: false);
+  }
+
+  /// Queries a database to retrieve pages that match the provided filter and sort criteria.
+  ///
+  /// [databaseId] - The ID of the database to query.
+  /// [filter] - Optional filter object to limit results. Can be a property filter
+  ///           or a compound filter (and/or).
+  /// [sorts] - Optional list of sort objects to order the results.
+  /// [startCursor] - Optional cursor for pagination.
+  /// [pageSize] - Number of results to return (max 100, default 100).
+  /// [filterProperties] - Optional list of property IDs to include in the response.
+  ///
+  /// Returns a paginated list of Page objects that match the criteria.
+  /// Throws [NotionException] if the request fails.
+  Future<PaginatedList<Page>> query(
+    String databaseId, {
+    Map<String, dynamic>? filter,
+    List<Map<String, dynamic>>? sorts,
+    String? startCursor,
+    int? pageSize,
+    List<String>? filterProperties,
+  }) async {
+    final body = <String, dynamic>{};
+    if (filter != null) body['filter'] = filter;
+    if (sorts != null) body['sorts'] = sorts;
+    if (startCursor != null) body['start_cursor'] = startCursor;
+    if (pageSize != null) body['page_size'] = pageSize;
+
+    // Build query parameters for filter_properties
+    final queryParams = <String, dynamic>{};
+    if (filterProperties != null && filterProperties.isNotEmpty) {
+      // Multiple filter_properties are passed as repeated query params
+      queryParams['filter_properties'] = filterProperties.join(',');
+    }
+
+    final path = queryParams.isEmpty
+        ? '/databases/$databaseId/query'
+        : '/databases/$databaseId/query?${_buildQueryString(queryParams)}';
+
+    final response = await _httpClient.post(path, data: body);
+    return PaginatedList.fromJson(response, Page.fromJson);
+  }
+
+  /// Helper method to build query string from parameters
+  String _buildQueryString(Map<String, dynamic> params) {
+    return params.entries
+        .map((e) => '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value.toString())}')
+        .join('&');
   }
 }

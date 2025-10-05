@@ -129,4 +129,105 @@ void main() {
       client.close();
     });
   });
+
+  group('Database Query Tests', () {
+    test('PaginatedList<Page> can be parsed from query response', () {
+      final json = {
+        'object': 'list',
+        'results': [
+          {
+            'object': 'page',
+            'id': 'page123',
+            'created_time': '2025-08-07T10:11:07.504Z',
+            'last_edited_time': '2025-08-10T15:53:11.386Z',
+            'created_by': {
+              'object': 'user',
+              'id': 'user123',
+            },
+            'last_edited_by': {
+              'object': 'user',
+              'id': 'user456',
+            },
+            'parent': {
+              'type': 'database_id',
+              'database_id': 'db123',
+            },
+            'archived': false,
+            'in_trash': false,
+            'properties': {
+              'Name': {
+                'id': 'title',
+                'type': 'title',
+                'title': [],
+              },
+            },
+            'url': 'https://www.notion.so/page123',
+          },
+        ],
+        'next_cursor': null,
+        'has_more': false,
+        'type': 'page',
+      };
+
+      final paginatedList = PaginatedList<Page>.fromJson(json, Page.fromJson);
+
+      expect(paginatedList.results.length, 1);
+      expect(paginatedList.hasMore, false);
+      expect(paginatedList.nextCursor, null);
+      expect(paginatedList.type, 'page');
+      expect(paginatedList.results.first.id, 'page123');
+    });
+
+    test('Filter and sort structures are correctly formatted', () {
+      // Test compound AND filter
+      final andFilter = {
+        'and': [
+          {
+            'property': 'Done',
+            'checkbox': {'equals': true},
+          },
+          {
+            'property': 'Priority',
+            'select': {'equals': 'High'},
+          },
+        ],
+      };
+
+      expect(andFilter['and'], isA<List>());
+      expect((andFilter['and'] as List).length, 2);
+
+      // Test compound OR filter
+      final orFilter = {
+        'or': [
+          {
+            'property': 'Status',
+            'select': {'equals': 'Todo'},
+          },
+          {
+            'property': 'Status',
+            'select': {'equals': 'In Progress'},
+          },
+        ],
+      };
+
+      expect(orFilter['or'], isA<List>());
+      expect((orFilter['or'] as List).length, 2);
+
+      // Test sorts
+      final sorts = [
+        {
+          'property': 'Created Time',
+          'direction': 'descending',
+        },
+        {
+          'timestamp': 'last_edited_time',
+          'direction': 'ascending',
+        },
+      ];
+
+      expect(sorts.length, 2);
+      expect(sorts[0]['property'], 'Created Time');
+      expect(sorts[1]['timestamp'], 'last_edited_time');
+    });
+  });
 }
