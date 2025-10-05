@@ -167,13 +167,13 @@ class PropertySchema with _$PropertySchema {
         final options = (statusData['options'] as List<dynamic>? ?? [])
             .map((e) => StatusOption.fromJson(e as Map<String, dynamic>))
             .toList();
-        final groups = (statusData['groups'] as Map<String, dynamic>? ?? {})
-            .map(
-              (key, value) => MapEntry(
-                key,
-                (value as List<dynamic>).cast<String>(),
-              ),
-            );
+        final groups =
+            (statusData['groups'] as Map<String, dynamic>? ?? {}).map(
+          (key, value) => MapEntry(
+            key,
+            (value as List<dynamic>).cast<String>(),
+          ),
+        );
         return PropertySchema.status(
           id: id,
           name: name,
@@ -201,8 +201,7 @@ class PropertySchema with _$PropertySchema {
       case 'last_edited_by':
         return PropertySchema.lastEditedBy(id: id, name: name);
       case 'formula':
-        final expression =
-            json['formula']?['expression'] as String? ?? '';
+        final expression = json['formula']?['expression'] as String? ?? '';
         return PropertySchema.formula(
           id: id,
           name: name,
@@ -358,7 +357,8 @@ class PropertySchema with _$PropertySchema {
         'type': 'formula',
         'formula': {'expression': expression},
       },
-      relation: (id, name, databaseId, syncedPropertyName, syncedPropertyId) => {
+      relation: (id, name, databaseId, syncedPropertyName, syncedPropertyId) =>
+          {
         'id': id,
         'name': name,
         'type': 'relation',
@@ -379,17 +379,17 @@ class PropertySchema with _$PropertySchema {
         function,
       ) =>
           {
-            'id': id,
-            'name': name,
-            'type': 'rollup',
-            'rollup': {
-              'rollup_property_name': rollupPropertyName,
-              'relation_property_name': relationPropertyName,
-              'rollup_property_id': rollupPropertyId,
-              'relation_property_id': relationPropertyId,
-              'function': function,
-            },
-          },
+        'id': id,
+        'name': name,
+        'type': 'rollup',
+        'rollup': {
+          'rollup_property_name': rollupPropertyName,
+          'relation_property_name': relationPropertyName,
+          'rollup_property_id': rollupPropertyId,
+          'relation_property_id': relationPropertyId,
+          'function': function,
+        },
+      },
       uniqueId: (id, name, prefix) => {
         'id': id,
         'name': name,

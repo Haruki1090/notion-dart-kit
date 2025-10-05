@@ -221,7 +221,10 @@ void main() {
 
       final result = await service.query(
         'ds_123',
-        filter: {'property': 'Name', 'title': {'is_not_empty': true}},
+        filter: {
+          'property': 'Name',
+          'title': {'is_not_empty': true}
+        },
       );
 
       expect(result.results.length, 1);
