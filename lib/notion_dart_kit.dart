@@ -23,8 +23,8 @@ export 'src/models/database.dart';
 export 'src/services/users_service.dart';
 export 'src/services/pages_service.dart';
 export 'src/services/databases_service.dart';
+export 'src/services/search_service.dart';
 // export 'src/services/blocks_service.dart';
-// export 'src/services/search_service.dart';
 
 // Export query builders
 // export 'src/query/filter_builder.dart';
