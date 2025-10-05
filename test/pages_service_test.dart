@@ -37,7 +37,7 @@ void main() {
           'Title': {
             'id': 'title',
             'type': 'title',
-          }
+          },
         },
         'url': 'https://notion.so/test-page',
       };

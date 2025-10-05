@@ -9,7 +9,7 @@ void main() async {
   print('=== notion_dart_kit 高度な使用例 ===\n');
 
   // セキュリティのため、環境変数からトークンを取得（推奨）
-  final token = const String.fromEnvironment(
+  const token = String.fromEnvironment(
     'NOTION_TOKEN',
     defaultValue: 'YOUR_INTEGRATION_TOKEN',
   );
@@ -70,7 +70,7 @@ Future<void> _demoErrorHandling(NotionClient client) async {
 
   // 例1b: バリデーションを使った防御的プログラミング
   print('\n   例1b: 入力バリデーション');
-  final pageId = 'test-page-id';
+  const pageId = 'test-page-id';
 
   if (_isValidNotionId(pageId)) {
     try {
@@ -308,18 +308,18 @@ Future<void> _demoBatchOperations(NotionClient client) async {
   print('           properties: pagesData[i],');
   print('         );');
   print('         created.add(page);');
-  print('         print("ページ \${i + 1}/\${pagesData.length} を作成");');
+  print(r'         print("ページ ${i + 1}/${pagesData.length} を作成");');
   print('         ');
   print('         // レート制限を避けるため遅延を追加');
   print('         await Future.delayed(Duration(milliseconds: 300));');
   print('       } on NotionException catch (e) {');
-  print('         errors.add("ページ \${i + 1}: \${e.message}");');
-  print('         print("ページ \${i + 1} の作成に失敗: \${e.message}");');
+  print(r'         errors.add("ページ ${i + 1}: ${e.message}");');
+  print(r'         print("ページ ${i + 1} の作成に失敗: ${e.message}");');
   print('       }');
   print('     }');
   print('     ');
-  print('     print("作成成功: \${created.length}件");');
-  print('     print("失敗: \${errors.length}件");');
+  print(r'     print("作成成功: ${created.length}件");');
+  print(r'     print("失敗: ${errors.length}件");');
   print('     ');
   print('     return created;');
   print('   }');
@@ -369,11 +369,11 @@ Future<void> _demoSearchFeatures(NotionClient client) async {
   print('     result.when(');
   print('       page: (page) {');
   print('         pages.add(page);');
-  print('         print("ページ: \${page.id}");');
+  print(r'         print("ページ: ${page.id}");');
   print('       },');
   print('       database: (database) {');
   print('         databases.add(database);');
-  print('         print("データベース: \${database.id}");');
+  print(r'         print("データベース: ${database.id}");');
   print('       },');
   print('     );');
   print('   }');

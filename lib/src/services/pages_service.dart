@@ -1,13 +1,15 @@
+import '../../notion_dart_kit.dart' show NotionException;
 import '../client/http_client.dart';
+import '../models/file.dart';
 import '../models/page.dart';
 import '../models/parent.dart';
-import '../models/file.dart';
+import '../utils/exceptions.dart' show NotionException;
 
 /// Service for interacting with Notion Pages API
 class PagesService {
-  final NotionHttpClient _httpClient;
 
   PagesService(this._httpClient);
+  final NotionHttpClient _httpClient;
 
   /// Creates a new page.
   ///
@@ -95,9 +97,7 @@ class PagesService {
   ///
   /// Returns the archived Page object.
   /// Throws [NotionException] if the request fails.
-  Future<Page> archive(String pageId) async {
-    return update(pageId, inTrash: true);
-  }
+  Future<Page> archive(String pageId) async => update(pageId, inTrash: true);
 
   /// Restores a page from trash.
   ///
@@ -105,7 +105,5 @@ class PagesService {
   ///
   /// Returns the restored Page object.
   /// Throws [NotionException] if the request fails.
-  Future<Page> restore(String pageId) async {
-    return update(pageId, inTrash: false);
-  }
+  Future<Page> restore(String pageId) async => update(pageId, inTrash: false);
 }

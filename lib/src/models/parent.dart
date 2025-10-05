@@ -48,8 +48,7 @@ class Parent with _$Parent {
     }
   }
 
-  Map<String, dynamic> toJson() {
-    return when(
+  Map<String, dynamic> toJson() => when(
       database: (databaseId) => {
         'type': 'database_id',
         'database_id': databaseId,
@@ -72,5 +71,4 @@ class Parent with _$Parent {
         'block_id': blockId,
       },
     );
-  }
 }

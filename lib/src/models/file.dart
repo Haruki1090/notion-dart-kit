@@ -39,8 +39,7 @@ class NotionFile with _$NotionFile {
     }
   }
 
-  Map<String, dynamic> toJson() {
-    return map(
+  Map<String, dynamic> toJson() => map(
       external: (file) => {
         'type': 'external',
         'external': {'url': file.url},
@@ -53,7 +52,6 @@ class NotionFile with _$NotionFile {
         },
       },
     );
-  }
 }
 
 /// Represents an emoji icon
@@ -94,13 +92,11 @@ class PageIcon with _$PageIcon {
     }
   }
 
-  Map<String, dynamic> toJson() {
-    return map(
+  Map<String, dynamic> toJson() => map(
       emoji: (icon) => {
         'type': 'emoji',
         'emoji': icon.emoji,
       },
       file: (icon) => icon.file.toJson(),
     );
-  }
 }

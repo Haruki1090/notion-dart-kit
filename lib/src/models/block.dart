@@ -1,7 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:notion_dart_kit/src/models/parent.dart';
-import 'package:notion_dart_kit/src/models/user.dart';
-import 'package:notion_dart_kit/src/models/block_content.dart';
+
+import 'block_content.dart';
+import 'parent.dart';
+import 'user.dart';
 
 part 'block.freezed.dart';
 
@@ -259,7 +260,7 @@ class Block with _$Block {
           archived: archived,
           inTrash: inTrash,
           content: BlockContent.fromJson(
-              json['bulleted_list_item'] as Map<String, dynamic>),
+              json['bulleted_list_item'] as Map<String, dynamic>,),
         );
       case 'numbered_list_item':
         return Block.numberedListItem(
@@ -273,7 +274,7 @@ class Block with _$Block {
           archived: archived,
           inTrash: inTrash,
           content: BlockContent.fromJson(
-              json['numbered_list_item'] as Map<String, dynamic>),
+              json['numbered_list_item'] as Map<String, dynamic>,),
         );
       case 'to_do':
         return Block.toDo(
@@ -356,10 +357,9 @@ class Block with _$Block {
   }
 
   /// Custom JSON serialization
-  Map<String, dynamic> toJson() {
-    return when(
+  Map<String, dynamic> toJson() => when(
       paragraph: (id, parent, createdTime, lastEditedTime, createdBy,
-              lastEditedBy, hasChildren, archived, inTrash, content) =>
+              lastEditedBy, hasChildren, archived, inTrash, content,) =>
           {
         'object': 'block',
         'id': id,
@@ -375,7 +375,7 @@ class Block with _$Block {
         'paragraph': content.toJson(),
       },
       heading1: (id, parent, createdTime, lastEditedTime, createdBy,
-              lastEditedBy, hasChildren, archived, inTrash, content) =>
+              lastEditedBy, hasChildren, archived, inTrash, content,) =>
           {
         'object': 'block',
         'id': id,
@@ -391,7 +391,7 @@ class Block with _$Block {
         'heading_1': content.toJson(),
       },
       heading2: (id, parent, createdTime, lastEditedTime, createdBy,
-              lastEditedBy, hasChildren, archived, inTrash, content) =>
+              lastEditedBy, hasChildren, archived, inTrash, content,) =>
           {
         'object': 'block',
         'id': id,
@@ -407,7 +407,7 @@ class Block with _$Block {
         'heading_2': content.toJson(),
       },
       heading3: (id, parent, createdTime, lastEditedTime, createdBy,
-              lastEditedBy, hasChildren, archived, inTrash, content) =>
+              lastEditedBy, hasChildren, archived, inTrash, content,) =>
           {
         'object': 'block',
         'id': id,
@@ -423,7 +423,7 @@ class Block with _$Block {
         'heading_3': content.toJson(),
       },
       bulletedListItem: (id, parent, createdTime, lastEditedTime, createdBy,
-              lastEditedBy, hasChildren, archived, inTrash, content) =>
+              lastEditedBy, hasChildren, archived, inTrash, content,) =>
           {
         'object': 'block',
         'id': id,
@@ -439,7 +439,7 @@ class Block with _$Block {
         'bulleted_list_item': content.toJson(),
       },
       numberedListItem: (id, parent, createdTime, lastEditedTime, createdBy,
-              lastEditedBy, hasChildren, archived, inTrash, content) =>
+              lastEditedBy, hasChildren, archived, inTrash, content,) =>
           {
         'object': 'block',
         'id': id,
@@ -455,7 +455,7 @@ class Block with _$Block {
         'numbered_list_item': content.toJson(),
       },
       toDo: (id, parent, createdTime, lastEditedTime, createdBy, lastEditedBy,
-              hasChildren, archived, inTrash, content) =>
+              hasChildren, archived, inTrash, content,) =>
           {
         'object': 'block',
         'id': id,
@@ -471,7 +471,7 @@ class Block with _$Block {
         'to_do': content.toJson(),
       },
       toggle: (id, parent, createdTime, lastEditedTime, createdBy, lastEditedBy,
-              hasChildren, archived, inTrash, content) =>
+              hasChildren, archived, inTrash, content,) =>
           {
         'object': 'block',
         'id': id,
@@ -487,7 +487,7 @@ class Block with _$Block {
         'toggle': content.toJson(),
       },
       code: (id, parent, createdTime, lastEditedTime, createdBy, lastEditedBy,
-              hasChildren, archived, inTrash, content) =>
+              hasChildren, archived, inTrash, content,) =>
           {
         'object': 'block',
         'id': id,
@@ -503,7 +503,7 @@ class Block with _$Block {
         'code': content.toJson(),
       },
       quote: (id, parent, createdTime, lastEditedTime, createdBy, lastEditedBy,
-              hasChildren, archived, inTrash, content) =>
+              hasChildren, archived, inTrash, content,) =>
           {
         'object': 'block',
         'id': id,
@@ -519,7 +519,7 @@ class Block with _$Block {
         'quote': content.toJson(),
       },
       divider: (id, parent, createdTime, lastEditedTime, createdBy,
-              lastEditedBy, hasChildren, archived, inTrash) =>
+              lastEditedBy, hasChildren, archived, inTrash,) =>
           {
         'object': 'block',
         'id': id,
@@ -535,7 +535,7 @@ class Block with _$Block {
         'divider': {},
       },
       unsupported: (id, parent, createdTime, lastEditedTime, createdBy,
-              lastEditedBy, hasChildren, archived, inTrash) =>
+              lastEditedBy, hasChildren, archived, inTrash,) =>
           {
         'object': 'block',
         'id': id,
@@ -550,5 +550,4 @@ class Block with _$Block {
         'type': 'unsupported',
       },
     );
-  }
 }

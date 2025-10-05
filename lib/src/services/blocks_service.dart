@@ -1,11 +1,13 @@
-import 'package:notion_dart_kit/src/client/http_client.dart';
-import 'package:notion_dart_kit/src/models/block.dart';
+import '../../notion_dart_kit.dart' show NotFoundException, AuthenticationException;
+import '../client/http_client.dart';
+import '../models/block.dart';
+import '../utils/exceptions.dart' show NotFoundException, AuthenticationException;
 
 /// Service for interacting with Notion Blocks API
 class BlocksService {
-  final NotionHttpClient _httpClient;
 
   BlocksService(this._httpClient);
+  final NotionHttpClient _httpClient;
 
   /// Retrieves a block by ID
   ///
@@ -103,20 +105,14 @@ class BlocksService {
 
 /// Block children response with pagination
 class BlockChildren {
-  final String object;
-  final List<Block> results;
-  final String? nextCursor;
-  final bool hasMore;
 
   const BlockChildren({
     required this.object,
     required this.results,
-    this.nextCursor,
-    required this.hasMore,
+    required this.hasMore, this.nextCursor,
   });
 
-  factory BlockChildren.fromJson(Map<String, dynamic> json) {
-    return BlockChildren(
+  factory BlockChildren.fromJson(Map<String, dynamic> json) => BlockChildren(
       object: json['object'] as String,
       results: (json['results'] as List)
           .map((e) => Block.fromJson(e as Map<String, dynamic>))
@@ -124,14 +120,15 @@ class BlockChildren {
       nextCursor: json['next_cursor'] as String?,
       hasMore: json['has_more'] as bool,
     );
-  }
+  final String object;
+  final List<Block> results;
+  final String? nextCursor;
+  final bool hasMore;
 
-  Map<String, dynamic> toJson() {
-    return {
+  Map<String, dynamic> toJson() => {
       'object': object,
       'results': results.map((e) => e.toJson()).toList(),
       if (nextCursor != null) 'next_cursor': nextCursor,
       'has_more': hasMore,
     };
-  }
 }

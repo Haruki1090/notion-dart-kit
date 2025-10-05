@@ -1,13 +1,13 @@
 /// Base exception for all Notion API errors.
 class NotionException implements Exception {
+
+  /// Creates a new [NotionException].
+  NotionException(this.message, {this.statusCode});
   /// The error message.
   final String message;
 
   /// The HTTP status code, if available.
   final int? statusCode;
-
-  /// Creates a new [NotionException].
-  NotionException(this.message, {this.statusCode});
 
   @override
   String toString() => 'NotionException: $message';

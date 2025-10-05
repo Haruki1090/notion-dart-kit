@@ -51,16 +51,16 @@ void main() {
     });
 
     test('toJson converts PaginatedList correctly', () {
-      final user1 = User.person(
+      const user1 = User.person(
         id: 'id-1',
-        person: const PersonInfo(),
+        person: PersonInfo(),
       );
-      final user2 = User.person(
+      const user2 = User.person(
         id: 'id-2',
-        person: const PersonInfo(),
+        person: PersonInfo(),
       );
 
-      final paginated = PaginatedList<User>(
+      const paginated = PaginatedList<User>(
         type: 'user',
         results: [user1, user2],
         hasMore: true,

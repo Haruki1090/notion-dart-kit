@@ -1,7 +1,5 @@
-import 'package:test/test.dart';
-import 'package:dio/dio.dart';
 import 'package:notion_dart_kit/src/client/http_client.dart';
-import 'package:notion_dart_kit/src/utils/exceptions.dart';
+import 'package:test/test.dart';
 
 void main() {
   group('Rate Limiting and Retry Tests', () {
@@ -44,7 +42,6 @@ void main() {
     test('Retry delay calculation increases exponentially', () {
       final client = NotionHttpClient(
         token: 'test_token',
-        initialRetryDelay: 1000,
       );
 
       // Test exponential backoff calculation

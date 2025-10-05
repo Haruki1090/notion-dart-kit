@@ -1,16 +1,18 @@
+import '../../notion_dart_kit.dart' show NotionException;
 import '../client/http_client.dart';
 import '../models/database.dart';
-import '../models/parent.dart';
 import '../models/file.dart';
-import '../models/rich_text.dart';
-import '../models/pagination.dart';
 import '../models/page.dart';
+import '../models/pagination.dart';
+import '../models/parent.dart';
+import '../models/rich_text.dart';
+import '../utils/exceptions.dart' show NotionException;
 
 /// Service for interacting with Notion Databases API
 class DatabasesService {
-  final NotionHttpClient _httpClient;
 
   DatabasesService(this._httpClient);
+  final NotionHttpClient _httpClient;
 
   /// Creates a new database.
   ///
@@ -107,9 +109,7 @@ class DatabasesService {
   ///
   /// Returns the archived Database object.
   /// Throws [NotionException] if the request fails.
-  Future<Database> archive(String databaseId) async {
-    return update(databaseId, inTrash: true);
-  }
+  Future<Database> archive(String databaseId) async => update(databaseId, inTrash: true);
 
   /// Restores a database from trash.
   ///
@@ -117,9 +117,7 @@ class DatabasesService {
   ///
   /// Returns the restored Database object.
   /// Throws [NotionException] if the request fails.
-  Future<Database> restore(String databaseId) async {
-    return update(databaseId, inTrash: false);
-  }
+  Future<Database> restore(String databaseId) async => update(databaseId, inTrash: false);
 
   /// Queries a database to retrieve pages that match the provided filter and sort criteria.
   ///
@@ -163,10 +161,8 @@ class DatabasesService {
   }
 
   /// Helper method to build query string from parameters
-  String _buildQueryString(Map<String, dynamic> params) {
-    return params.entries
+  String _buildQueryString(Map<String, dynamic> params) => params.entries
         .map((e) =>
-            '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value.toString())}')
+            '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value.toString())}',)
         .join('&');
-  }
 }

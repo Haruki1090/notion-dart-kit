@@ -31,37 +31,31 @@ class BotOwner with _$BotOwner {
     }
   }
 
-  Map<String, dynamic> toJson() {
-    return when(
+  Map<String, dynamic> toJson() => when(
       workspace: () => {'type': 'workspace', 'workspace': true},
       user: () => {'type': 'user'},
     );
-  }
 }
 
 /// Bot-specific properties
 @Freezed(toJson: false, fromJson: false)
 class BotInfo with _$BotInfo {
-  const BotInfo._();
 
   const factory BotInfo({
     required BotOwner owner,
     String? workspaceName,
   }) = _BotInfo;
+  const BotInfo._();
 
-  factory BotInfo.fromJson(Map<String, dynamic> json) {
-    return BotInfo(
+  factory BotInfo.fromJson(Map<String, dynamic> json) => BotInfo(
       owner: BotOwner.fromJson(json['owner'] as Map<String, dynamic>),
       workspaceName: json['workspace_name'] as String?,
     );
-  }
 
-  Map<String, dynamic> toJson() {
-    return {
+  Map<String, dynamic> toJson() => {
       'owner': owner.toJson(),
       if (workspaceName != null) 'workspace_name': workspaceName,
     };
-  }
 }
 
 /// User object representing a user in a Notion workspace
@@ -71,16 +65,14 @@ class User with _$User {
 
   const factory User.person({
     required String id,
-    String? name,
+    required PersonInfo person, String? name,
     String? avatarUrl,
-    required PersonInfo person,
   }) = PersonUser;
 
   const factory User.bot({
     required String id,
-    String? name,
+    required BotInfo bot, String? name,
     String? avatarUrl,
-    required BotInfo bot,
   }) = BotUser;
 
   factory User.fromJson(Map<String, dynamic> json) {
@@ -114,8 +106,7 @@ class User with _$User {
     }
   }
 
-  Map<String, dynamic> toJson() {
-    return when(
+  Map<String, dynamic> toJson() => when(
       person: (id, name, avatarUrl, person) => {
         'object': 'user',
         'id': id,
@@ -133,5 +124,4 @@ class User with _$User {
         'bot': bot.toJson(),
       },
     );
-  }
 }

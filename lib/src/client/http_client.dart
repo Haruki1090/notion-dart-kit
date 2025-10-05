@@ -6,17 +6,6 @@ import '../utils/exceptions.dart';
 ///
 /// Handles authentication, error handling, API versioning, rate limiting, and retries.
 class NotionHttpClient {
-  static const String _baseUrl = 'https://api.notion.com/v1';
-  static const String _notionVersion = '2022-06-28';
-
-  final Dio _dio;
-  final String token;
-
-  /// Maximum number of retry attempts for rate-limited requests
-  final int maxRetries;
-
-  /// Initial delay for exponential backoff (in milliseconds)
-  final int initialRetryDelay;
 
   /// Creates a new [NotionHttpClient] with the given [token].
   ///
@@ -31,6 +20,17 @@ class NotionHttpClient {
   }) : _dio = dio ?? Dio() {
     _configureDio();
   }
+  static const String _baseUrl = 'https://api.notion.com/v1';
+  static const String _notionVersion = '2022-06-28';
+
+  final Dio _dio;
+  final String token;
+
+  /// Maximum number of retry attempts for rate-limited requests
+  final int maxRetries;
+
+  /// Initial delay for exponential backoff (in milliseconds)
+  final int initialRetryDelay;
 
   void _configureDio() {
     _dio.options = BaseOptions(
@@ -189,7 +189,7 @@ class NotionHttpClient {
       return response.data!;
     } on DioException catch (e) {
       if (e.error is NotionException) {
-        throw e.error as NotionException;
+        throw e.error! as NotionException;
       }
       rethrow;
     }
@@ -208,7 +208,7 @@ class NotionHttpClient {
       return response.data!;
     } on DioException catch (e) {
       if (e.error is NotionException) {
-        throw e.error as NotionException;
+        throw e.error! as NotionException;
       }
       rethrow;
     }
@@ -227,7 +227,7 @@ class NotionHttpClient {
       return response.data!;
     } on DioException catch (e) {
       if (e.error is NotionException) {
-        throw e.error as NotionException;
+        throw e.error! as NotionException;
       }
       rethrow;
     }
@@ -240,7 +240,7 @@ class NotionHttpClient {
       return response.data!;
     } on DioException catch (e) {
       if (e.error is NotionException) {
-        throw e.error as NotionException;
+        throw e.error! as NotionException;
       }
       rethrow;
     }

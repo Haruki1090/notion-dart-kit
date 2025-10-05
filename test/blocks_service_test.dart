@@ -1,5 +1,5 @@
-import 'package:test/test.dart';
 import 'package:notion_dart_kit/notion_dart_kit.dart';
+import 'package:test/test.dart';
 
 void main() {
   group('Block Model Tests', () {
@@ -53,38 +53,38 @@ void main() {
 
       block.when(
         paragraph: (id, parent, createdTime, lastEditedTime, createdBy,
-            lastEditedBy, hasChildren, archived, inTrash, content) {
+            lastEditedBy, hasChildren, archived, inTrash, content,) {
           expect(id, 'block123');
           expect(hasChildren, false);
           expect(archived, false);
           expect(inTrash, false);
         },
         heading1: (_, __, ___, ____, _____, ______, _______, ________,
-                _________, __________) =>
+                _________, __________,) =>
             fail('Should be paragraph'),
         heading2: (_, __, ___, ____, _____, ______, _______, ________,
-                _________, __________) =>
+                _________, __________,) =>
             fail('Should be paragraph'),
         heading3: (_, __, ___, ____, _____, ______, _______, ________,
-                _________, __________) =>
+                _________, __________,) =>
             fail('Should be paragraph'),
         bulletedListItem: (_, __, ___, ____, _____, ______, _______, ________,
-                _________, __________) =>
+                _________, __________,) =>
             fail('Should be paragraph'),
         numberedListItem: (_, __, ___, ____, _____, ______, _______, ________,
-                _________, __________) =>
+                _________, __________,) =>
             fail('Should be paragraph'),
         toDo: (_, __, ___, ____, _____, ______, _______, ________, _________,
-                __________) =>
+                __________,) =>
             fail('Should be paragraph'),
         toggle: (_, __, ___, ____, _____, ______, _______, ________, _________,
-                __________) =>
+                __________,) =>
             fail('Should be paragraph'),
         code: (_, __, ___, ____, _____, ______, _______, ________, _________,
-                __________) =>
+                __________,) =>
             fail('Should be paragraph'),
         quote: (_, __, ___, ____, _____, ______, _______, ________, _________,
-                __________) =>
+                __________,) =>
             fail('Should be paragraph'),
         divider:
             (_, __, ___, ____, _____, ______, _______, ________, _________) =>
@@ -101,20 +101,19 @@ void main() {
         parent: const Parent.page(pageId: 'page123'),
         createdTime: DateTime.parse('2025-10-05T10:00:00.000Z'),
         lastEditedTime: DateTime.parse('2025-10-05T11:00:00.000Z'),
-        createdBy: User.person(
+        createdBy: const User.person(
           id: 'user123',
-          person: const PersonInfo(email: 'test@example.com'),
+          person: PersonInfo(email: 'test@example.com'),
         ),
-        lastEditedBy: User.person(
+        lastEditedBy: const User.person(
           id: 'user456',
-          person: const PersonInfo(email: 'test2@example.com'),
+          person: PersonInfo(email: 'test2@example.com'),
         ),
         hasChildren: false,
         archived: false,
         inTrash: false,
         content: const BlockContent(
-          richText: [],
-          color: BlockColor.defaultColor,
+          
         ),
       );
 
@@ -219,34 +218,34 @@ void main() {
       expect(
         block.when(
           paragraph: (_, __, ___, ____, _____, ______, _______, ________,
-                  _________, __________) =>
+                  _________, __________,) =>
               false,
           heading1: (_, __, ___, ____, _____, ______, _______, ________,
-                  _________, __________) =>
+                  _________, __________,) =>
               true,
           heading2: (_, __, ___, ____, _____, ______, _______, ________,
-                  _________, __________) =>
+                  _________, __________,) =>
               false,
           heading3: (_, __, ___, ____, _____, ______, _______, ________,
-                  _________, __________) =>
+                  _________, __________,) =>
               false,
           bulletedListItem: (_, __, ___, ____, _____, ______, _______, ________,
-                  _________, __________) =>
+                  _________, __________,) =>
               false,
           numberedListItem: (_, __, ___, ____, _____, ______, _______, ________,
-                  _________, __________) =>
+                  _________, __________,) =>
               false,
           toDo: (_, __, ___, ____, _____, ______, _______, ________, _________,
-                  __________) =>
+                  __________,) =>
               false,
           toggle: (_, __, ___, ____, _____, ______, _______, ________,
-                  _________, __________) =>
+                  _________, __________,) =>
               false,
           code: (_, __, ___, ____, _____, ______, _______, ________, _________,
-                  __________) =>
+                  __________,) =>
               false,
           quote: (_, __, ___, ____, _____, ______, _______, ________, _________,
-                  __________) =>
+                  __________,) =>
               false,
           divider:
               (_, __, ___, ____, _____, ______, _______, ________, _________) =>
@@ -283,38 +282,38 @@ void main() {
 
       block.when(
         paragraph: (_, __, ___, ____, _____, ______, _______, ________,
-                _________, __________) =>
+                _________, __________,) =>
             fail('Should be todo'),
         heading1: (_, __, ___, ____, _____, ______, _______, ________,
-                _________, __________) =>
+                _________, __________,) =>
             fail('Should be todo'),
         heading2: (_, __, ___, ____, _____, ______, _______, ________,
-                _________, __________) =>
+                _________, __________,) =>
             fail('Should be todo'),
         heading3: (_, __, ___, ____, _____, ______, _______, ________,
-                _________, __________) =>
+                _________, __________,) =>
             fail('Should be todo'),
         bulletedListItem: (_, __, ___, ____, _____, ______, _______, ________,
-                _________, __________) =>
+                _________, __________,) =>
             fail('Should be todo'),
         numberedListItem: (_, __, ___, ____, _____, ______, _______, ________,
-                _________, __________) =>
+                _________, __________,) =>
             fail('Should be todo'),
         toDo: (id, parent, createdTime, lastEditedTime, createdBy, lastEditedBy,
-            hasChildren, archived, inTrash, content) {
+            hasChildren, archived, inTrash, content,) {
           expect(id, 'todo1');
           expect(content, isA<ToDoContent>());
-          final todoContent = content as ToDoContent;
+          final todoContent = content;
           expect(todoContent.checked, true);
         },
         toggle: (_, __, ___, ____, _____, ______, _______, ________, _________,
-                __________) =>
+                __________,) =>
             fail('Should be todo'),
         code: (_, __, ___, ____, _____, ______, _______, ________, _________,
-                __________) =>
+                __________,) =>
             fail('Should be todo'),
         quote: (_, __, ___, ____, _____, ______, _______, ________, _________,
-                __________) =>
+                __________,) =>
             fail('Should be todo'),
         divider:
             (_, __, ___, ____, _____, ______, _______, ________, _________) =>

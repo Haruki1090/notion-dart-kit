@@ -9,7 +9,7 @@ void main() async {
   print('=== notion_dart_kit Advanced Usage Examples ===\n');
 
   // Get token from environment variable (recommended for security)
-  final token = const String.fromEnvironment(
+  const token = String.fromEnvironment(
     'NOTION_TOKEN',
     defaultValue: 'YOUR_INTEGRATION_TOKEN',
   );
@@ -70,7 +70,7 @@ Future<void> _demonstrateErrorHandling(NotionClient client) async {
 
   // Example 2: Defensive programming with validation
   print('\n   Example 1b: Input validation');
-  final pageId = 'test-page-id';
+  const pageId = 'test-page-id';
 
   if (_isValidNotionId(pageId)) {
     try {
@@ -308,18 +308,18 @@ Future<void> _demonstrateBatchOperations(NotionClient client) async {
   print('           properties: pagesData[i],');
   print('         );');
   print('         created.add(page);');
-  print('         print("Created page \${i + 1}/\${pagesData.length}");');
+  print(r'         print("Created page ${i + 1}/${pagesData.length}");');
   print('         ');
   print('         // Add delay to avoid rate limiting');
   print('         await Future.delayed(Duration(milliseconds: 300));');
   print('       } on NotionException catch (e) {');
-  print('         errors.add("Page \${i + 1}: \${e.message}");');
-  print('         print("Failed to create page \${i + 1}: \${e.message}");');
+  print(r'         errors.add("Page ${i + 1}: ${e.message}");');
+  print(r'         print("Failed to create page ${i + 1}: ${e.message}");');
   print('       }');
   print('     }');
   print('     ');
-  print('     print("Successfully created: \${created.length}");');
-  print('     print("Failed: \${errors.length}");');
+  print(r'     print("Successfully created: ${created.length}");');
+  print(r'     print("Failed: ${errors.length}");');
   print('     ');
   print('     return created;');
   print('   }');
@@ -369,11 +369,11 @@ Future<void> _demonstrateSearchFeatures(NotionClient client) async {
   print('     result.when(');
   print('       page: (page) {');
   print('         pages.add(page);');
-  print('         print("Page: \${page.id}");');
+  print(r'         print("Page: ${page.id}");');
   print('       },');
   print('       database: (database) {');
   print('         databases.add(database);');
-  print('         print("Database: \${database.id}");');
+  print(r'         print("Database: ${database.id}");');
   print('       },');
   print('     );');
   print('   }');

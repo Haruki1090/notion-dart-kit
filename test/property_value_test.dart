@@ -1,11 +1,11 @@
-import 'package:test/test.dart';
 import 'package:notion_dart_kit/notion_dart_kit.dart';
+import 'package:test/test.dart';
 
 void main() {
   group('Property Value Tests', () {
     group('Basic Property Types', () {
       test('Checkbox property', () {
-        final prop = PropertyValue.checkbox(
+        const prop = PropertyValue.checkbox(
           id: 'test_id',
           checkbox: true,
         );
@@ -40,7 +40,7 @@ void main() {
       });
 
       test('Number property', () {
-        final prop = PropertyValue.number(
+        const prop = PropertyValue.number(
           id: 'num_id',
           number: 42.5,
         );
@@ -75,7 +75,7 @@ void main() {
       });
 
       test('Email property', () {
-        final prop = PropertyValue.email(
+        const prop = PropertyValue.email(
           id: 'email_id',
           email: 'test@example.com',
         );
@@ -112,13 +112,13 @@ void main() {
 
     group('Select and Status Properties', () {
       test('Select property with option', () {
-        final option = SelectOption(
+        const option = SelectOption(
           id: 'opt1',
           name: 'High Priority',
           color: 'red',
         );
 
-        final prop = PropertyValue.select(
+        const prop = PropertyValue.select(
           id: 'select_id',
           select: option,
         );
@@ -155,8 +155,8 @@ void main() {
 
       test('Multi-select property', () {
         final options = [
-          SelectOption(id: '1', name: 'Tag1', color: 'blue'),
-          SelectOption(id: '2', name: 'Tag2', color: 'green'),
+          const SelectOption(id: '1', name: 'Tag1', color: 'blue'),
+          const SelectOption(id: '2', name: 'Tag2', color: 'green'),
         ];
 
         final prop = PropertyValue.multiSelect(
@@ -198,13 +198,13 @@ void main() {
 
     group('Date and Time Properties', () {
       test('Date property with range', () {
-        final dateValue = DateValue(
+        const dateValue = DateValue(
           start: '2025-10-05',
           end: '2025-10-10',
           timeZone: 'America/New_York',
         );
 
-        final prop = PropertyValue.date(
+        const prop = PropertyValue.date(
           id: 'date_id',
           date: dateValue,
         );
@@ -279,8 +279,8 @@ void main() {
 
     group('Formula Properties', () {
       test('Formula with number result', () {
-        final formula = FormulaValue.number(number: 42.0);
-        final prop = PropertyValue.formula(
+        const formula = FormulaValue.number(number: 42);
+        const prop = PropertyValue.formula(
           id: 'formula_id',
           formula: formula,
         );
@@ -320,8 +320,8 @@ void main() {
       });
 
       test('Formula with boolean result', () {
-        final formula = FormulaValue.boolean(boolean: true);
-        final prop = PropertyValue.formula(
+        const formula = FormulaValue.boolean(boolean: true);
+        const prop = PropertyValue.formula(
           id: 'formula_id',
           formula: formula,
         );
@@ -363,8 +363,8 @@ void main() {
     group('Relation and Rollup Properties', () {
       test('Relation property', () {
         final relations = [
-          RelationItem(id: 'page1'),
-          RelationItem(id: 'page2'),
+          const RelationItem(id: 'page1'),
+          const RelationItem(id: 'page2'),
         ];
 
         final prop = PropertyValue.relation(
@@ -404,8 +404,8 @@ void main() {
       });
 
       test('Rollup with number result', () {
-        final rollup = RollupValue.number(number: 100.0);
-        final prop = PropertyValue.rollup(
+        const rollup = RollupValue.number(number: 100);
+        const prop = PropertyValue.rollup(
           id: 'rollup_id',
           rollup: rollup,
         );
@@ -447,8 +447,8 @@ void main() {
 
     group('Unique ID and Verification Properties', () {
       test('Unique ID property', () {
-        final uniqueId = UniqueId(number: 42, prefix: 'TASK');
-        final prop = PropertyValue.uniqueId(
+        const uniqueId = UniqueId(number: 42, prefix: 'TASK');
+        const prop = PropertyValue.uniqueId(
           id: 'uid_id',
           uniqueId: uniqueId,
         );

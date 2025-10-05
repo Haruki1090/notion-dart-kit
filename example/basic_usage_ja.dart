@@ -55,7 +55,7 @@ void main() async {
     print('   ページAPIを使用するには、有効なpage_idが必要です:');
     print('   ```dart');
     print("   final page = await client.pages.retrieve('page_id');");
-    print("   print('ページタイトル: \${page.properties}');");
+    print(r"   print('ページタイトル: ${page.properties}');");
     print('');
     print('   // 新しいページを作成');
     print('   final newPage = await client.pages.create(');
@@ -100,7 +100,7 @@ void main() async {
     print('');
     print('   // 結果を処理');
     print('   for (final page in results.results) {');
-    print("     print('ページ: \${page.id}');");
+    print(r"     print('ページ: ${page.id}');");
     print('   }');
     print('');
     print('   // ページネーションを処理');
@@ -119,8 +119,8 @@ void main() async {
     print('   ```dart');
     print('   // ブロックの子要素を取得');
     print(
-        "   final children = await client.blocks.retrieveChildren('block_id');");
-    print("   print('子ブロックが\${children.results.length}件見つかりました');");
+        "   final children = await client.blocks.retrieveChildren('block_id');",);
+    print(r"   print('子ブロックが${children.results.length}件見つかりました');");
     print('');
     print('   // 新しいブロックを追加');
     print("   await client.blocks.appendChildren('block_id', [");
@@ -145,15 +145,15 @@ void main() async {
     print('   try {');
     print("     final page = await client.pages.retrieve('invalid_id');");
     print('   } on NotFoundException catch (e) {');
-    print("     print('ページが見つかりません: \${e.message}');");
+    print(r"     print('ページが見つかりません: ${e.message}');");
     print('   } on AuthenticationException catch (e) {');
-    print("     print('認証失敗: \${e.message}');");
+    print(r"     print('認証失敗: ${e.message}');");
     print('   } on RateLimitException catch (e) {');
-    print("     print('レート制限: \${e.message}');");
+    print(r"     print('レート制限: ${e.message}');");
     print('   } on ValidationException catch (e) {');
-    print("     print('無効なリクエスト: \${e.message}');");
+    print(r"     print('無効なリクエスト: ${e.message}');");
     print('   } on NotionException catch (e) {');
-    print("     print('Notion APIエラー: \${e.message}');");
+    print(r"     print('Notion APIエラー: ${e.message}');");
     print('   }');
     print('   ```\n');
 

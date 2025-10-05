@@ -1,7 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'user.dart';
-import 'parent.dart';
+
 import 'file.dart';
+import 'parent.dart';
+import 'user.dart';
 
 part 'page.freezed.dart';
 
@@ -12,7 +13,6 @@ part 'page.freezed.dart';
 /// For standalone pages, only the title property is available.
 @Freezed(toJson: false, fromJson: false)
 class Page with _$Page {
-  const Page._();
 
   const factory Page({
     required String id,
@@ -29,9 +29,9 @@ class Page with _$Page {
     NotionFile? cover,
     String? publicUrl,
   }) = _Page;
+  const Page._();
 
-  factory Page.fromJson(Map<String, dynamic> json) {
-    return Page(
+  factory Page.fromJson(Map<String, dynamic> json) => Page(
       id: json['id'] as String,
       createdTime: DateTime.parse(json['created_time'] as String),
       lastEditedTime: DateTime.parse(json['last_edited_time'] as String),
@@ -56,10 +56,8 @@ class Page with _$Page {
           : null,
       publicUrl: json['public_url'] as String?,
     );
-  }
 
-  Map<String, dynamic> toJson() {
-    return {
+  Map<String, dynamic> toJson() => {
       'id': id,
       'created_time': createdTime.toIso8601String(),
       'last_edited_time': lastEditedTime.toIso8601String(),
@@ -75,16 +73,12 @@ class Page with _$Page {
       if (cover != null) 'cover': cover!.toJson(),
       if (publicUrl != null) 'public_url': publicUrl,
     };
-  }
 }
 
 /// Legacy property value wrapper - will be replaced by typed PropertyValue
 /// This is a simplified version - properties are stored as raw JSON for now
 @Deprecated('Use PropertyValue from property_value.dart instead')
 class LegacyPropertyValue {
-  final String id;
-  final String type;
-  final Map<String, dynamic> data;
 
   const LegacyPropertyValue({
     required this.id,
@@ -92,13 +86,14 @@ class LegacyPropertyValue {
     required this.data,
   });
 
-  factory LegacyPropertyValue.fromJson(Map<String, dynamic> json) {
-    return LegacyPropertyValue(
+  factory LegacyPropertyValue.fromJson(Map<String, dynamic> json) => LegacyPropertyValue(
       id: json['id'] as String,
       type: json['type'] as String,
       data: Map<String, dynamic>.from(json),
     );
-  }
+  final String id;
+  final String type;
+  final Map<String, dynamic> data;
 
   Map<String, dynamic> toJson() => data;
 }

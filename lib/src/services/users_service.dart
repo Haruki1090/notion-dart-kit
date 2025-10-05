@@ -1,12 +1,14 @@
+import '../../notion_dart_kit.dart' show NotionException;
 import '../client/http_client.dart';
-import '../models/user.dart';
 import '../models/pagination.dart';
+import '../models/user.dart';
+import '../utils/exceptions.dart' show NotionException;
 
 /// Service for interacting with Notion Users API
 class UsersService {
-  final NotionHttpClient _httpClient;
 
   UsersService(this._httpClient);
+  final NotionHttpClient _httpClient;
 
   /// Retrieves the bot User associated with the API token.
   ///

@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:notion_dart_kit/src/models/rich_text.dart';
+import 'rich_text.dart';
 
 part 'block_content.freezed.dart';
 
@@ -54,8 +54,7 @@ class BlockContent with _$BlockContent {
     @Default(false) bool? isToggleable,
   }) = _BlockContent;
 
-  factory BlockContent.fromJson(Map<String, dynamic> json) {
-    return BlockContent(
+  factory BlockContent.fromJson(Map<String, dynamic> json) => BlockContent(
       richText: json['rich_text'] != null
           ? (json['rich_text'] as List)
               .map((e) => RichText.fromJson(e as Map<String, dynamic>))
@@ -69,7 +68,6 @@ class BlockContent with _$BlockContent {
           : BlockColor.defaultColor,
       isToggleable: json['is_toggleable'] as bool?,
     );
-  }
 }
 
 /// To-do block content with checked state
@@ -81,8 +79,7 @@ class ToDoContent with _$ToDoContent {
     @Default(false) bool checked,
   }) = _ToDoContent;
 
-  factory ToDoContent.fromJson(Map<String, dynamic> json) {
-    return ToDoContent(
+  factory ToDoContent.fromJson(Map<String, dynamic> json) => ToDoContent(
       richText: json['rich_text'] != null
           ? (json['rich_text'] as List)
               .map((e) => RichText.fromJson(e as Map<String, dynamic>))
@@ -96,7 +93,6 @@ class ToDoContent with _$ToDoContent {
           : BlockColor.defaultColor,
       checked: json['checked'] as bool? ?? false,
     );
-  }
 }
 
 /// Code block content with language
@@ -108,8 +104,7 @@ class CodeContent with _$CodeContent {
     @Default('plain text') String language,
   }) = _CodeContent;
 
-  factory CodeContent.fromJson(Map<String, dynamic> json) {
-    return CodeContent(
+  factory CodeContent.fromJson(Map<String, dynamic> json) => CodeContent(
       richText: json['rich_text'] != null
           ? (json['rich_text'] as List)
               .map((e) => RichText.fromJson(e as Map<String, dynamic>))
@@ -122,38 +117,31 @@ class CodeContent with _$CodeContent {
           : [],
       language: json['language'] as String? ?? 'plain text',
     );
-  }
 }
 
 /// Extensions for toJson methods
 extension BlockContentExtension on BlockContent {
-  Map<String, dynamic> toJson() {
-    return {
+  Map<String, dynamic> toJson() => {
       'rich_text': richText.map((e) => e.toJson()).toList(),
       'color': _blockColorToString(color),
       if (isToggleable != null) 'is_toggleable': isToggleable,
     };
-  }
 }
 
 extension ToDoContentExtension on ToDoContent {
-  Map<String, dynamic> toJson() {
-    return {
+  Map<String, dynamic> toJson() => {
       'rich_text': richText.map((e) => e.toJson()).toList(),
       'color': _blockColorToString(color),
       'checked': checked,
     };
-  }
 }
 
 extension CodeContentExtension on CodeContent {
-  Map<String, dynamic> toJson() {
-    return {
+  Map<String, dynamic> toJson() => {
       'rich_text': richText.map((e) => e.toJson()).toList(),
       'caption': caption.map((e) => e.toJson()).toList(),
       'language': language,
     };
-  }
 }
 
 String _blockColorToString(BlockColor color) {

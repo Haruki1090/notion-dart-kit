@@ -55,7 +55,7 @@ void main() async {
     print('   To use pages API, you need a valid page_id:');
     print('   ```dart');
     print("   final page = await client.pages.retrieve('page_id');");
-    print("   print('Page title: \${page.properties}');");
+    print(r"   print('Page title: ${page.properties}');");
     print('');
     print('   // Create a new page');
     print('   final newPage = await client.pages.create(');
@@ -100,7 +100,7 @@ void main() async {
     print('');
     print('   // Process results');
     print('   for (final page in results.results) {');
-    print("     print('Page: \${page.id}');");
+    print(r"     print('Page: ${page.id}');");
     print('   }');
     print('');
     print('   // Handle pagination');
@@ -119,8 +119,8 @@ void main() async {
     print('   ```dart');
     print('   // Get block children');
     print(
-        "   final children = await client.blocks.retrieveChildren('block_id');");
-    print("   print('Found \${children.results.length} child blocks');");
+        "   final children = await client.blocks.retrieveChildren('block_id');",);
+    print(r"   print('Found ${children.results.length} child blocks');");
     print('');
     print('   // Append new blocks');
     print("   await client.blocks.appendChildren('block_id', [");
@@ -145,15 +145,15 @@ void main() async {
     print('   try {');
     print("     final page = await client.pages.retrieve('invalid_id');");
     print('   } on NotFoundException catch (e) {');
-    print("     print('Page not found: \${e.message}');");
+    print(r"     print('Page not found: ${e.message}');");
     print('   } on AuthenticationException catch (e) {');
-    print("     print('Authentication failed: \${e.message}');");
+    print(r"     print('Authentication failed: ${e.message}');");
     print('   } on RateLimitException catch (e) {');
-    print("     print('Rate limited: \${e.message}');");
+    print(r"     print('Rate limited: ${e.message}');");
     print('   } on ValidationException catch (e) {');
-    print("     print('Invalid request: \${e.message}');");
+    print(r"     print('Invalid request: ${e.message}');");
     print('   } on NotionException catch (e) {');
-    print("     print('Notion API error: \${e.message}');");
+    print(r"     print('Notion API error: ${e.message}');");
     print('   }');
     print('   ```\n');
 

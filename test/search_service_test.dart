@@ -1,5 +1,5 @@
-import 'package:test/test.dart';
 import 'package:notion_dart_kit/notion_dart_kit.dart';
+import 'package:test/test.dart';
 
 void main() {
   group('SearchService Tests', () {
@@ -19,13 +19,13 @@ void main() {
         id: 'page123',
         createdTime: DateTime.parse('2025-01-01T00:00:00.000Z'),
         lastEditedTime: DateTime.parse('2025-01-01T00:00:00.000Z'),
-        createdBy: User.person(
+        createdBy: const User.person(
           id: 'user1',
-          person: const PersonInfo(email: 'test@example.com'),
+          person: PersonInfo(email: 'test@example.com'),
         ),
-        lastEditedBy: User.person(
+        lastEditedBy: const User.person(
           id: 'user2',
-          person: const PersonInfo(email: 'test2@example.com'),
+          person: PersonInfo(email: 'test2@example.com'),
         ),
         parent: const Parent.page(pageId: 'parent123'),
         archived: false,
@@ -46,19 +46,19 @@ void main() {
         id: 'db123',
         createdTime: DateTime.parse('2025-01-01T00:00:00.000Z'),
         lastEditedTime: DateTime.parse('2025-01-01T00:00:00.000Z'),
-        createdBy: User.person(
+        createdBy: const User.person(
           id: 'user1',
-          person: const PersonInfo(email: 'test@example.com'),
+          person: PersonInfo(email: 'test@example.com'),
         ),
-        lastEditedBy: User.person(
+        lastEditedBy: const User.person(
           id: 'user2',
-          person: const PersonInfo(email: 'test2@example.com'),
+          person: PersonInfo(email: 'test2@example.com'),
         ),
         parent: const Parent.page(pageId: 'parent123'),
         title: [
-          RichText.text(
-            text: const TextContent(content: 'Test DB'),
-            annotations: const Annotations(),
+          const RichText.text(
+            text: TextContent(content: 'Test DB'),
+            annotations: Annotations(),
             plainText: 'Test DB',
           ),
         ],
@@ -83,13 +83,13 @@ void main() {
         id: 'page123',
         createdTime: DateTime.parse('2025-01-01T00:00:00.000Z'),
         lastEditedTime: DateTime.parse('2025-01-01T00:00:00.000Z'),
-        createdBy: User.person(
+        createdBy: const User.person(
           id: 'user1',
-          person: const PersonInfo(email: 'test@example.com'),
+          person: PersonInfo(email: 'test@example.com'),
         ),
-        lastEditedBy: User.person(
+        lastEditedBy: const User.person(
           id: 'user2',
-          person: const PersonInfo(email: 'test2@example.com'),
+          person: PersonInfo(email: 'test2@example.com'),
         ),
         parent: const Parent.page(pageId: 'parent123'),
         archived: false,
@@ -113,13 +113,13 @@ void main() {
         id: 'page123',
         createdTime: DateTime.parse('2025-01-01T00:00:00.000Z'),
         lastEditedTime: DateTime.parse('2025-01-01T00:00:00.000Z'),
-        createdBy: User.person(
+        createdBy: const User.person(
           id: 'user1',
-          person: const PersonInfo(email: 'test@example.com'),
+          person: PersonInfo(email: 'test@example.com'),
         ),
-        lastEditedBy: User.person(
+        lastEditedBy: const User.person(
           id: 'user2',
-          person: const PersonInfo(email: 'test2@example.com'),
+          person: PersonInfo(email: 'test2@example.com'),
         ),
         parent: const Parent.page(pageId: 'parent123'),
         archived: false,
@@ -146,7 +146,7 @@ void main() {
             'created_by': <String, dynamic>{'object': 'user', 'id': 'user1'},
             'last_edited_by': <String, dynamic>{
               'object': 'user',
-              'id': 'user2'
+              'id': 'user2',
             },
             'parent': <String, dynamic>{'type': 'workspace', 'workspace': true},
             'archived': false,

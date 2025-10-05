@@ -171,8 +171,7 @@ class MentionContent with _$MentionContent {
     }
   }
 
-  Map<String, dynamic> toJson() {
-    return when(
+  Map<String, dynamic> toJson() => when(
       database: (id) => {
         'type': 'database',
         'database': {'id': id},
@@ -211,7 +210,6 @@ class MentionContent with _$MentionContent {
         'user': {'id': id},
       },
     );
-  }
 }
 
 /// Rich text object with support for text, mentions, and equations
@@ -266,7 +264,7 @@ class RichText with _$RichText {
       case 'equation':
         return RichText.equation(
           equation: EquationContent.fromJson(
-              json['equation'] as Map<String, dynamic>),
+              json['equation'] as Map<String, dynamic>,),
           annotations: annotations,
           plainText: plainText,
           href: href,
@@ -276,8 +274,7 @@ class RichText with _$RichText {
     }
   }
 
-  Map<String, dynamic> toJson() {
-    return when(
+  Map<String, dynamic> toJson() => when(
       text: (text, annotations, plainText, href) => {
         'type': 'text',
         'text': text.toJson(),
@@ -300,5 +297,4 @@ class RichText with _$RichText {
         if (href != null) 'href': href,
       },
     );
-  }
 }

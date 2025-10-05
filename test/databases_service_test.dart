@@ -1,5 +1,5 @@
-import 'package:test/test.dart';
 import 'package:notion_dart_kit/notion_dart_kit.dart';
+import 'package:test/test.dart';
 
 void main() {
   group('Database Model Tests', () {
@@ -63,7 +63,7 @@ void main() {
       expect(database.title.length, 1);
       expect(database.dataSources.length, 1);
       expect(database.dataSources.first.id,
-          '248104cd-477e-80af-bc30-000bd28de8f9');
+          '248104cd-477e-80af-bc30-000bd28de8f9',);
       expect(database.dataSources.first.name, 'My Task Tracker');
     });
 
@@ -72,19 +72,19 @@ void main() {
         id: 'db123',
         createdTime: DateTime.parse('2025-08-07T10:11:07.504Z'),
         lastEditedTime: DateTime.parse('2025-08-10T15:53:11.386Z'),
-        createdBy: User.person(
+        createdBy: const User.person(
           id: 'user123',
-          person: const PersonInfo(email: 'test@example.com'),
+          person: PersonInfo(email: 'test@example.com'),
         ),
-        lastEditedBy: User.person(
+        lastEditedBy: const User.person(
           id: 'user456',
-          person: const PersonInfo(email: 'test2@example.com'),
+          person: PersonInfo(email: 'test2@example.com'),
         ),
         parent: const Parent.page(pageId: 'page123'),
         title: [
-          RichText.text(
-            text: const TextContent(content: 'Test DB'),
-            annotations: const Annotations(),
+          const RichText.text(
+            text: TextContent(content: 'Test DB'),
+            annotations: Annotations(),
             plainText: 'Test DB',
           ),
         ],
@@ -194,7 +194,7 @@ void main() {
       };
 
       expect(andFilter['and'], isA<List>());
-      expect((andFilter['and'] as List).length, 2);
+      expect((andFilter['and']! as List).length, 2);
 
       // Test compound OR filter
       final orFilter = {
@@ -211,7 +211,7 @@ void main() {
       };
 
       expect(orFilter['or'], isA<List>());
-      expect((orFilter['or'] as List).length, 2);
+      expect((orFilter['or']! as List).length, 2);
 
       // Test sorts
       final sorts = [

@@ -1,8 +1,9 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'user.dart';
-import 'parent.dart';
+
 import 'file.dart';
+import 'parent.dart';
 import 'rich_text.dart';
+import 'user.dart';
 
 part 'database.freezed.dart';
 part 'database.g.dart';
@@ -14,7 +15,6 @@ part 'database.g.dart';
 /// or as a full page (is_inline: false).
 @Freezed(toJson: false, fromJson: false)
 class Database with _$Database {
-  const Database._();
 
   const factory Database({
     required String id,
@@ -35,9 +35,9 @@ class Database with _$Database {
     String? publicUrl,
     bool? isLocked,
   }) = _Database;
+  const Database._();
 
-  factory Database.fromJson(Map<String, dynamic> json) {
-    return Database(
+  factory Database.fromJson(Map<String, dynamic> json) => Database(
       id: json['id'] as String,
       createdTime: DateTime.parse(json['created_time'] as String),
       lastEditedTime: DateTime.parse(json['last_edited_time'] as String),
@@ -69,10 +69,8 @@ class Database with _$Database {
       publicUrl: json['public_url'] as String?,
       isLocked: json['is_locked'] as bool?,
     );
-  }
 
-  Map<String, dynamic> toJson() {
-    return {
+  Map<String, dynamic> toJson() => {
       'id': id,
       'created_time': createdTime.toIso8601String(),
       'last_edited_time': lastEditedTime.toIso8601String(),
@@ -92,7 +90,6 @@ class Database with _$Database {
       if (publicUrl != null) 'public_url': publicUrl,
       if (isLocked != null) 'is_locked': isLocked,
     };
-  }
 }
 
 /// Reference to a data source (minimal info returned with database object)

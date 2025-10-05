@@ -1,12 +1,14 @@
+import '../../notion_dart_kit.dart' show NotionException;
 import '../client/http_client.dart';
-import '../models/page.dart';
 import '../models/database.dart';
+import '../models/page.dart';
+import '../utils/exceptions.dart' show NotionException;
 
 /// Service for interacting with Notion Search API
 class SearchService {
-  final NotionHttpClient _httpClient;
 
   SearchService(this._httpClient);
+  final NotionHttpClient _httpClient;
 
   /// Searches all pages and databases shared with the integration.
   ///
@@ -63,10 +65,6 @@ enum SearchFilter {
 
 /// Search results containing pages and/or databases
 class SearchResults {
-  final String type;
-  final List<SearchResult> results;
-  final bool hasMore;
-  final String? nextCursor;
 
   const SearchResults({
     required this.type,
@@ -97,22 +95,22 @@ class SearchResults {
       nextCursor: json['next_cursor'] as String?,
     );
   }
+  final String type;
+  final List<SearchResult> results;
+  final bool hasMore;
+  final String? nextCursor;
 
-  Map<String, dynamic> toJson() {
-    return {
+  Map<String, dynamic> toJson() => {
       'object': 'list',
       'type': type,
       'results': results.map((r) => r.toJson()).toList(),
       'has_more': hasMore,
       if (nextCursor != null) 'next_cursor': nextCursor,
     };
-  }
 }
 
 /// Union type for search results (Page or Database)
 class SearchResult {
-  final Page? _page;
-  final Database? _database;
 
   const SearchResult.page(Page page)
       : _page = page,
@@ -121,6 +119,8 @@ class SearchResult {
   const SearchResult.database(Database database)
       : _page = null,
         _database = database;
+  final Page? _page;
+  final Database? _database;
 
   bool get isPage => _page != null;
   bool get isDatabase => _database != null;

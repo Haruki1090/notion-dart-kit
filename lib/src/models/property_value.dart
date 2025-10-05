@@ -1,7 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import 'file.dart';
 import 'rich_text.dart';
 import 'user.dart';
-import 'file.dart';
 
 part 'property_value.freezed.dart';
 part 'property_value.g.dart';
