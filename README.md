@@ -1,2 +1,409 @@
 # notion-dart-kit
-A comprehensive, type-safe Dart toolkit for the Notion API
+
+[![pub package](https://img.shields.io/pub/v/notion_dart_kit.svg)](https://pub.dev/packages/notion_dart_kit)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
+A comprehensive, type-safe Dart toolkit for the Notion API. Full endpoint coverage, built-in rate limiting, retry logic, and intuitive API for Dart & Flutter applications.
+
+[日本語版 README はこちら](./README_ja.md)
+
+## ✨ Features
+
+- **🎯 Type-Safe**: Strongly typed models using Freezed for immutable data classes
+- **🔄 Auto-Retry**: Built-in exponential backoff with jitter for rate limit handling
+- **⚡ Rate Limiting**: Automatic 429 error handling with configurable retry logic
+- **📦 Full API Coverage**: Support for Pages, Databases, Blocks, Users, and Search
+- **🛡️ Error Handling**: Custom exception classes for different API error types
+- **📱 Flutter Ready**: Works seamlessly with Flutter applications
+- **🎨 Clean API**: Intuitive, service-based architecture for easy integration
+- **🔧 Configurable**: Customizable HTTP client with timeout and retry settings
+
+## 📦 Installation
+
+Add this to your package's `pubspec.yaml` file:
+
+```yaml
+dependencies:
+  notion_dart_kit: ^0.1.0
+```
+
+Then run:
+
+```bash
+dart pub get
+```
+
+Or for Flutter:
+
+```bash
+flutter pub get
+```
+
+## 🚀 Quick Start
+
+### 1. Get Your Integration Token
+
+Create an integration and get your token from [Notion Integrations](https://www.notion.so/my-integrations).
+
+### 2. Initialize the Client
+
+```dart
+import 'package:notion_dart_kit/notion_dart_kit.dart';
+
+void main() async {
+  // Initialize the client with your integration token
+  final client = NotionClient(
+    token: 'YOUR_INTEGRATION_TOKEN',
+  );
+
+  // Get bot user information
+  final botUser = await client.users.me();
+  print('Bot User: ${botUser.name}');
+
+  // Don't forget to close the client when done
+  client.close();
+}
+```
+
+## 📚 Usage Examples
+
+### Working with Pages
+
+```dart
+// Create a new page
+final page = await client.pages.create(
+  parent: Parent.database('database_id'),
+  properties: {
+    'Name': {
+      'title': [
+        {'text': {'content': 'New Page'}}
+      ]
+    }
+  },
+);
+
+// Retrieve a page
+final retrievedPage = await client.pages.retrieve('page_id');
+
+// Update page properties
+final updatedPage = await client.pages.update(
+  'page_id',
+  properties: {
+    'Status': {
+      'select': {'name': 'In Progress'}
+    }
+  },
+);
+
+// Archive a page
+await client.pages.archive('page_id');
+
+// Restore from trash
+await client.pages.restore('page_id');
+```
+
+### Working with Databases
+
+```dart
+// Create a database
+final database = await client.databases.create(
+  parent: Parent.page('parent_page_id'),
+  title: [
+    RichText.text(content: 'My Database')
+  ],
+  properties: {
+    'Name': {
+      'title': {}
+    },
+    'Status': {
+      'select': {
+        'options': [
+          {'name': 'To Do', 'color': 'red'},
+          {'name': 'In Progress', 'color': 'yellow'},
+          {'name': 'Done', 'color': 'green'},
+        ]
+      }
+    }
+  },
+);
+
+// Retrieve a database
+final db = await client.databases.retrieve('database_id');
+
+// Query a database
+final results = await client.databases.query(
+  'database_id',
+  filter: {
+    'property': 'Status',
+    'select': {
+      'equals': 'In Progress'
+    }
+  },
+  sorts: [
+    {
+      'property': 'Name',
+      'direction': 'ascending'
+    }
+  ],
+  pageSize: 50,
+);
+
+// Iterate through results
+for (final page in results.results) {
+  print('Page: ${page.id}');
+}
+
+// Handle pagination
+if (results.hasMore) {
+  final nextPage = await client.databases.query(
+    'database_id',
+    startCursor: results.nextCursor,
+  );
+}
+
+// Update database
+await client.databases.update(
+  'database_id',
+  title: [RichText.text(content: 'Updated Database Name')],
+  description: [RichText.text(content: 'New description')],
+);
+```
+
+### Working with Blocks
+
+```dart
+// Retrieve a block
+final block = await client.blocks.retrieve('block_id');
+
+// Get block children
+final children = await client.blocks.retrieveChildren('block_id');
+
+// Append new blocks
+await client.blocks.appendChildren('block_id', [
+  {
+    'object': 'block',
+    'type': 'paragraph',
+    'paragraph': {
+      'rich_text': [
+        {
+          'type': 'text',
+          'text': {'content': 'This is a new paragraph'}
+        }
+      ]
+    }
+  },
+  {
+    'object': 'block',
+    'type': 'heading_2',
+    'heading_2': {
+      'rich_text': [
+        {
+          'type': 'text',
+          'text': {'content': 'New Section'}
+        }
+      ]
+    }
+  }
+]);
+
+// Update a block
+await client.blocks.update('block_id', {
+  'paragraph': {
+    'rich_text': [
+      {
+        'type': 'text',
+        'text': {'content': 'Updated content'}
+      }
+    ]
+  }
+});
+
+// Delete (archive) a block
+await client.blocks.delete('block_id');
+```
+
+### Working with Users
+
+```dart
+// Get bot user (me)
+final me = await client.users.me();
+print('Bot: ${me.name}');
+
+// Retrieve a specific user
+final user = await client.users.retrieve('user_id');
+
+// List all users
+final users = await client.users.list(pageSize: 100);
+for (final user in users.results) {
+  print('User: ${user.name}');
+}
+```
+
+### Search
+
+```dart
+// Search for pages and databases
+final results = await client.search.search(
+  query: 'project',
+  filter: SearchFilter.page,
+  sortDirection: 'descending',
+  pageSize: 10,
+);
+
+// Process search results
+for (final result in results.results) {
+  result.when(
+    page: (page) => print('Found page: ${page.id}'),
+    database: (database) => print('Found database: ${database.id}'),
+  );
+}
+
+// Search only databases
+final databases = await client.search.search(
+  filter: SearchFilter.dataSource,
+);
+
+// Get all pages/databases (no query)
+final all = await client.search.search();
+```
+
+## 🔧 Advanced Configuration
+
+### Custom HTTP Client Configuration
+
+```dart
+final client = NotionClient(
+  token: 'YOUR_INTEGRATION_TOKEN',
+);
+
+// The HTTP client supports:
+// - Automatic retry on 429 (rate limit) errors
+// - Exponential backoff with jitter
+// - Configurable timeouts (30s default)
+// - Custom retry attempts (3 by default)
+```
+
+### Error Handling
+
+```dart
+import 'package:notion_dart_kit/notion_dart_kit.dart';
+
+try {
+  final page = await client.pages.retrieve('invalid_id');
+} on NotFoundException catch (e) {
+  print('Page not found: ${e.message}');
+} on AuthenticationException catch (e) {
+  print('Authentication failed: ${e.message}');
+} on RateLimitException catch (e) {
+  print('Rate limited: ${e.message}');
+} on ValidationException catch (e) {
+  print('Invalid request: ${e.message}');
+} on NotionException catch (e) {
+  print('Notion API error: ${e.message} (${e.statusCode})');
+}
+```
+
+## 📖 API Reference
+
+### Services
+
+| Service | Description | Status |
+|---------|-------------|--------|
+| `client.users` | User operations (me, retrieve, list) | ✅ Implemented |
+| `client.pages` | Page operations (create, retrieve, update, archive) | ✅ Implemented |
+| `client.databases` | Database operations (create, retrieve, update, query) | ✅ Implemented |
+| `client.blocks` | Block operations (retrieve, update, append, delete) | ✅ Implemented |
+| `client.search` | Search across pages and databases | ✅ Implemented |
+
+### Planned Features
+
+| Feature | Status |
+|---------|--------|
+| Query Builder (DSL for filters/sorts) | 🚧 Planned |
+| Comments API | 🚧 Planned |
+| Data Sources API | 🚧 Planned |
+| File Upload API | 🚧 Planned |
+| Webhooks Support | 🚧 Planned |
+| Page Property Items API | 🚧 Planned |
+
+## 🏗️ Architecture
+
+```
+notion-dart-kit/
+├── lib/
+│   ├── notion_dart_kit.dart          # Main export file
+│   └── src/
+│       ├── client/
+│       │   ├── http_client.dart       # HTTP client with retry logic
+│       │   └── notion_client.dart     # Main API client
+│       ├── models/
+│       │   ├── user.dart              # User models
+│       │   ├── page.dart              # Page models
+│       │   ├── database.dart          # Database models
+│       │   ├── block.dart             # Block models
+│       │   ├── rich_text.dart         # Rich text models
+│       │   ├── file.dart              # File/icon models
+│       │   ├── parent.dart            # Parent object models
+│       │   ├── property_value.dart    # Property value models
+│       │   └── pagination.dart        # Pagination models
+│       ├── services/
+│       │   ├── users_service.dart     # User API endpoints
+│       │   ├── pages_service.dart     # Page API endpoints
+│       │   ├── databases_service.dart # Database API endpoints
+│       │   ├── blocks_service.dart    # Block API endpoints
+│       │   └── search_service.dart    # Search API endpoints
+│       └── utils/
+│           └── exceptions.dart        # Custom exception classes
+```
+
+## 🧪 Testing
+
+Run tests with:
+
+```bash
+dart test
+```
+
+Run integration tests (requires valid Notion token):
+
+```bash
+export NOTION_TOKEN=your_token_here
+dart test test/integration/
+```
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🔗 Links
+
+- [Notion API Documentation](https://developers.notion.com/)
+- [Package on pub.dev](https://pub.dev/packages/notion_dart_kit)
+- [Issue Tracker](https://github.com/Haruki1090/notion-dart-kit/issues)
+- [Source Code](https://github.com/Haruki1090/notion-dart-kit)
+
+## 👤 Author
+
+**Haruki Inoue**
+
+- GitHub: [@Haruki1090](https://github.com/Haruki1090)
+
+## 🙏 Acknowledgments
+
+- Built with [Freezed](https://pub.dev/packages/freezed) for immutable models
+- HTTP client powered by [Dio](https://pub.dev/packages/dio)
+- Inspired by the official Notion JavaScript SDK
+
+---
+
+Made with ❤️ for the Dart and Flutter community
