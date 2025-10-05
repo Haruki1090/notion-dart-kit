@@ -6,11 +6,12 @@ part of 'user.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_PersonInfo _$PersonInfoFromJson(Map<String, dynamic> json) => _PersonInfo(
+_$PersonInfoImpl _$$PersonInfoImplFromJson(Map<String, dynamic> json) =>
+    _$PersonInfoImpl(
       email: json['email'] as String?,
     );
 
-Map<String, dynamic> _$PersonInfoToJson(_PersonInfo instance) =>
+Map<String, dynamic> _$$PersonInfoImplToJson(_$PersonInfoImpl instance) =>
     <String, dynamic>{
       'email': instance.email,
     };

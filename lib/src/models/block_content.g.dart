@@ -6,8 +6,8 @@ part of 'block_content.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_BlockContent _$BlockContentFromJson(Map<String, dynamic> json) =>
-    _BlockContent(
+_$BlockContentImpl _$$BlockContentImplFromJson(Map<String, dynamic> json) =>
+    _$BlockContentImpl(
       richText: (json['richText'] as List<dynamic>?)
               ?.map((e) => RichText.fromJson(e as Map<String, dynamic>))
               .toList() ??
@@ -17,7 +17,7 @@ _BlockContent _$BlockContentFromJson(Map<String, dynamic> json) =>
       isToggleable: json['isToggleable'] as bool? ?? false,
     );
 
-Map<String, dynamic> _$BlockContentToJson(_BlockContent instance) =>
+Map<String, dynamic> _$$BlockContentImplToJson(_$BlockContentImpl instance) =>
     <String, dynamic>{
       'richText': instance.richText,
       'color': _$BlockColorEnumMap[instance.color]!,
@@ -46,7 +46,8 @@ const _$BlockColorEnumMap = {
   BlockColor.redBackground: 'red_background',
 };
 
-_ToDoContent _$ToDoContentFromJson(Map<String, dynamic> json) => _ToDoContent(
+_$ToDoContentImpl _$$ToDoContentImplFromJson(Map<String, dynamic> json) =>
+    _$ToDoContentImpl(
       richText: (json['richText'] as List<dynamic>?)
               ?.map((e) => RichText.fromJson(e as Map<String, dynamic>))
               .toList() ??
@@ -56,14 +57,15 @@ _ToDoContent _$ToDoContentFromJson(Map<String, dynamic> json) => _ToDoContent(
       checked: json['checked'] as bool? ?? false,
     );
 
-Map<String, dynamic> _$ToDoContentToJson(_ToDoContent instance) =>
+Map<String, dynamic> _$$ToDoContentImplToJson(_$ToDoContentImpl instance) =>
     <String, dynamic>{
       'richText': instance.richText,
       'color': _$BlockColorEnumMap[instance.color]!,
       'checked': instance.checked,
     };
 
-_CodeContent _$CodeContentFromJson(Map<String, dynamic> json) => _CodeContent(
+_$CodeContentImpl _$$CodeContentImplFromJson(Map<String, dynamic> json) =>
+    _$CodeContentImpl(
       richText: (json['richText'] as List<dynamic>?)
               ?.map((e) => RichText.fromJson(e as Map<String, dynamic>))
               .toList() ??
@@ -75,7 +77,7 @@ _CodeContent _$CodeContentFromJson(Map<String, dynamic> json) => _CodeContent(
       language: json['language'] as String? ?? 'plain text',
     );
 
-Map<String, dynamic> _$CodeContentToJson(_CodeContent instance) =>
+Map<String, dynamic> _$$CodeContentImplToJson(_$CodeContentImpl instance) =>
     <String, dynamic>{
       'richText': instance.richText,
       'caption': instance.caption,

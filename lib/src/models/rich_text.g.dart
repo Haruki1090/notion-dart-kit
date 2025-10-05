@@ -6,7 +6,8 @@ part of 'rich_text.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_Annotations _$AnnotationsFromJson(Map<String, dynamic> json) => _Annotations(
+_$AnnotationsImpl _$$AnnotationsImplFromJson(Map<String, dynamic> json) =>
+    _$AnnotationsImpl(
       bold: json['bold'] as bool? ?? false,
       italic: json['italic'] as bool? ?? false,
       strikethrough: json['strikethrough'] as bool? ?? false,
@@ -16,7 +17,7 @@ _Annotations _$AnnotationsFromJson(Map<String, dynamic> json) => _Annotations(
           RichTextColor.defaultColor,
     );
 
-Map<String, dynamic> _$AnnotationsToJson(_Annotations instance) =>
+Map<String, dynamic> _$$AnnotationsImplToJson(_$AnnotationsImpl instance) =>
     <String, dynamic>{
       'bold': instance.bold,
       'italic': instance.italic,
@@ -48,33 +49,38 @@ const _$RichTextColorEnumMap = {
   RichTextColor.redBackground: 'red_background',
 };
 
-_TextContent _$TextContentFromJson(Map<String, dynamic> json) => _TextContent(
+_$TextContentImpl _$$TextContentImplFromJson(Map<String, dynamic> json) =>
+    _$TextContentImpl(
       content: json['content'] as String,
       link: json['link'] == null
           ? null
           : TextLink.fromJson(json['link'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$TextContentToJson(_TextContent instance) =>
+Map<String, dynamic> _$$TextContentImplToJson(_$TextContentImpl instance) =>
     <String, dynamic>{
       'content': instance.content,
       'link': instance.link,
     };
 
-_TextLink _$TextLinkFromJson(Map<String, dynamic> json) => _TextLink(
+_$TextLinkImpl _$$TextLinkImplFromJson(Map<String, dynamic> json) =>
+    _$TextLinkImpl(
       url: json['url'] as String,
     );
 
-Map<String, dynamic> _$TextLinkToJson(_TextLink instance) => <String, dynamic>{
+Map<String, dynamic> _$$TextLinkImplToJson(_$TextLinkImpl instance) =>
+    <String, dynamic>{
       'url': instance.url,
     };
 
-_EquationContent _$EquationContentFromJson(Map<String, dynamic> json) =>
-    _EquationContent(
+_$EquationContentImpl _$$EquationContentImplFromJson(
+        Map<String, dynamic> json) =>
+    _$EquationContentImpl(
       expression: json['expression'] as String,
     );
 
-Map<String, dynamic> _$EquationContentToJson(_EquationContent instance) =>
+Map<String, dynamic> _$$EquationContentImplToJson(
+        _$EquationContentImpl instance) =>
     <String, dynamic>{
       'expression': instance.expression,
     };

@@ -1,5 +1,5 @@
-// GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,86 +9,38 @@ part of 'page.dart';
 // FreezedGenerator
 // **************************************************************************
 
-// dart format off
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$Page {
-  String get id;
-  DateTime get createdTime;
-  DateTime get lastEditedTime;
-  User get createdBy;
-  User get lastEditedBy;
-  Parent get parent;
-  bool get archived;
-  bool get inTrash;
-  Map<String, LegacyPropertyValue> get properties;
-  String get url;
-  PageIcon? get icon;
-  NotionFile? get cover;
-  String? get publicUrl;
+  String get id => throw _privateConstructorUsedError;
+  DateTime get createdTime => throw _privateConstructorUsedError;
+  DateTime get lastEditedTime => throw _privateConstructorUsedError;
+  User get createdBy => throw _privateConstructorUsedError;
+  User get lastEditedBy => throw _privateConstructorUsedError;
+  Parent get parent => throw _privateConstructorUsedError;
+  bool get archived => throw _privateConstructorUsedError;
+  bool get inTrash => throw _privateConstructorUsedError;
+  Map<String, LegacyPropertyValue> get properties =>
+      throw _privateConstructorUsedError;
+  String get url => throw _privateConstructorUsedError;
+  PageIcon? get icon => throw _privateConstructorUsedError;
+  NotionFile? get cover => throw _privateConstructorUsedError;
+  String? get publicUrl => throw _privateConstructorUsedError;
 
   /// Create a copy of Page
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $PageCopyWith<Page> get copyWith =>
-      _$PageCopyWithImpl<Page>(this as Page, _$identity);
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is Page &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.createdTime, createdTime) ||
-                other.createdTime == createdTime) &&
-            (identical(other.lastEditedTime, lastEditedTime) ||
-                other.lastEditedTime == lastEditedTime) &&
-            (identical(other.createdBy, createdBy) ||
-                other.createdBy == createdBy) &&
-            (identical(other.lastEditedBy, lastEditedBy) ||
-                other.lastEditedBy == lastEditedBy) &&
-            (identical(other.parent, parent) || other.parent == parent) &&
-            (identical(other.archived, archived) ||
-                other.archived == archived) &&
-            (identical(other.inTrash, inTrash) || other.inTrash == inTrash) &&
-            const DeepCollectionEquality()
-                .equals(other.properties, properties) &&
-            (identical(other.url, url) || other.url == url) &&
-            (identical(other.icon, icon) || other.icon == icon) &&
-            (identical(other.cover, cover) || other.cover == cover) &&
-            (identical(other.publicUrl, publicUrl) ||
-                other.publicUrl == publicUrl));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      createdTime,
-      lastEditedTime,
-      createdBy,
-      lastEditedBy,
-      parent,
-      archived,
-      inTrash,
-      const DeepCollectionEquality().hash(properties),
-      url,
-      icon,
-      cover,
-      publicUrl);
-
-  @override
-  String toString() {
-    return 'Page(id: $id, createdTime: $createdTime, lastEditedTime: $lastEditedTime, createdBy: $createdBy, lastEditedBy: $lastEditedBy, parent: $parent, archived: $archived, inTrash: $inTrash, properties: $properties, url: $url, icon: $icon, cover: $cover, publicUrl: $publicUrl)';
-  }
+  $PageCopyWith<Page> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract mixin class $PageCopyWith<$Res> {
-  factory $PageCopyWith(Page value, $Res Function(Page) _then) =
-      _$PageCopyWithImpl;
+abstract class $PageCopyWith<$Res> {
+  factory $PageCopyWith(Page value, $Res Function(Page) then) =
+      _$PageCopyWithImpl<$Res, Page>;
   @useResult
   $Res call(
       {String id,
@@ -113,11 +65,14 @@ abstract mixin class $PageCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PageCopyWithImpl<$Res> implements $PageCopyWith<$Res> {
-  _$PageCopyWithImpl(this._self, this._then);
+class _$PageCopyWithImpl<$Res, $Val extends Page>
+    implements $PageCopyWith<$Res> {
+  _$PageCopyWithImpl(this._value, this._then);
 
-  final Page _self;
-  final $Res Function(Page) _then;
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
   /// Create a copy of Page
   /// with the given fields replaced by the non-null parameter values.
@@ -138,60 +93,60 @@ class _$PageCopyWithImpl<$Res> implements $PageCopyWith<$Res> {
     Object? cover = freezed,
     Object? publicUrl = freezed,
   }) {
-    return _then(_self.copyWith(
+    return _then(_value.copyWith(
       id: null == id
-          ? _self.id
+          ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
       createdTime: null == createdTime
-          ? _self.createdTime
+          ? _value.createdTime
           : createdTime // ignore: cast_nullable_to_non_nullable
               as DateTime,
       lastEditedTime: null == lastEditedTime
-          ? _self.lastEditedTime
+          ? _value.lastEditedTime
           : lastEditedTime // ignore: cast_nullable_to_non_nullable
               as DateTime,
       createdBy: null == createdBy
-          ? _self.createdBy
+          ? _value.createdBy
           : createdBy // ignore: cast_nullable_to_non_nullable
               as User,
       lastEditedBy: null == lastEditedBy
-          ? _self.lastEditedBy
+          ? _value.lastEditedBy
           : lastEditedBy // ignore: cast_nullable_to_non_nullable
               as User,
       parent: null == parent
-          ? _self.parent
+          ? _value.parent
           : parent // ignore: cast_nullable_to_non_nullable
               as Parent,
       archived: null == archived
-          ? _self.archived
+          ? _value.archived
           : archived // ignore: cast_nullable_to_non_nullable
               as bool,
       inTrash: null == inTrash
-          ? _self.inTrash
+          ? _value.inTrash
           : inTrash // ignore: cast_nullable_to_non_nullable
               as bool,
       properties: null == properties
-          ? _self.properties
+          ? _value.properties
           : properties // ignore: cast_nullable_to_non_nullable
               as Map<String, LegacyPropertyValue>,
       url: null == url
-          ? _self.url
+          ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String,
       icon: freezed == icon
-          ? _self.icon
+          ? _value.icon
           : icon // ignore: cast_nullable_to_non_nullable
               as PageIcon?,
       cover: freezed == cover
-          ? _self.cover
+          ? _value.cover
           : cover // ignore: cast_nullable_to_non_nullable
               as NotionFile?,
       publicUrl: freezed == publicUrl
-          ? _self.publicUrl
+          ? _value.publicUrl
           : publicUrl // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 
   /// Create a copy of Page
@@ -199,8 +154,8 @@ class _$PageCopyWithImpl<$Res> implements $PageCopyWith<$Res> {
   @override
   @pragma('vm:prefer-inline')
   $UserCopyWith<$Res> get createdBy {
-    return $UserCopyWith<$Res>(_self.createdBy, (value) {
-      return _then(_self.copyWith(createdBy: value));
+    return $UserCopyWith<$Res>(_value.createdBy, (value) {
+      return _then(_value.copyWith(createdBy: value) as $Val);
     });
   }
 
@@ -209,8 +164,8 @@ class _$PageCopyWithImpl<$Res> implements $PageCopyWith<$Res> {
   @override
   @pragma('vm:prefer-inline')
   $UserCopyWith<$Res> get lastEditedBy {
-    return $UserCopyWith<$Res>(_self.lastEditedBy, (value) {
-      return _then(_self.copyWith(lastEditedBy: value));
+    return $UserCopyWith<$Res>(_value.lastEditedBy, (value) {
+      return _then(_value.copyWith(lastEditedBy: value) as $Val);
     });
   }
 
@@ -219,8 +174,8 @@ class _$PageCopyWithImpl<$Res> implements $PageCopyWith<$Res> {
   @override
   @pragma('vm:prefer-inline')
   $ParentCopyWith<$Res> get parent {
-    return $ParentCopyWith<$Res>(_self.parent, (value) {
-      return _then(_self.copyWith(parent: value));
+    return $ParentCopyWith<$Res>(_value.parent, (value) {
+      return _then(_value.copyWith(parent: value) as $Val);
     });
   }
 
@@ -229,12 +184,12 @@ class _$PageCopyWithImpl<$Res> implements $PageCopyWith<$Res> {
   @override
   @pragma('vm:prefer-inline')
   $PageIconCopyWith<$Res>? get icon {
-    if (_self.icon == null) {
+    if (_value.icon == null) {
       return null;
     }
 
-    return $PageIconCopyWith<$Res>(_self.icon!, (value) {
-      return _then(_self.copyWith(icon: value));
+    return $PageIconCopyWith<$Res>(_value.icon!, (value) {
+      return _then(_value.copyWith(icon: value) as $Val);
     });
   }
 
@@ -243,258 +198,137 @@ class _$PageCopyWithImpl<$Res> implements $PageCopyWith<$Res> {
   @override
   @pragma('vm:prefer-inline')
   $NotionFileCopyWith<$Res>? get cover {
-    if (_self.cover == null) {
+    if (_value.cover == null) {
       return null;
     }
 
-    return $NotionFileCopyWith<$Res>(_self.cover!, (value) {
-      return _then(_self.copyWith(cover: value));
+    return $NotionFileCopyWith<$Res>(_value.cover!, (value) {
+      return _then(_value.copyWith(cover: value) as $Val);
     });
   }
 }
 
-/// Adds pattern-matching-related methods to [Page].
-extension PagePatterns on Page {
-  /// A variant of `map` that fallback to returning `orElse`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
+/// @nodoc
+abstract class _$$PageImplCopyWith<$Res> implements $PageCopyWith<$Res> {
+  factory _$$PageImplCopyWith(
+          _$PageImpl value, $Res Function(_$PageImpl) then) =
+      __$$PageImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String id,
+      DateTime createdTime,
+      DateTime lastEditedTime,
+      User createdBy,
+      User lastEditedBy,
+      Parent parent,
+      bool archived,
+      bool inTrash,
+      Map<String, LegacyPropertyValue> properties,
+      String url,
+      PageIcon? icon,
+      NotionFile? cover,
+      String? publicUrl});
 
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_Page value)? $default, {
-    required TResult orElse(),
+  @override
+  $UserCopyWith<$Res> get createdBy;
+  @override
+  $UserCopyWith<$Res> get lastEditedBy;
+  @override
+  $ParentCopyWith<$Res> get parent;
+  @override
+  $PageIconCopyWith<$Res>? get icon;
+  @override
+  $NotionFileCopyWith<$Res>? get cover;
+}
+
+/// @nodoc
+class __$$PageImplCopyWithImpl<$Res>
+    extends _$PageCopyWithImpl<$Res, _$PageImpl>
+    implements _$$PageImplCopyWith<$Res> {
+  __$$PageImplCopyWithImpl(_$PageImpl _value, $Res Function(_$PageImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of Page
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? createdTime = null,
+    Object? lastEditedTime = null,
+    Object? createdBy = null,
+    Object? lastEditedBy = null,
+    Object? parent = null,
+    Object? archived = null,
+    Object? inTrash = null,
+    Object? properties = null,
+    Object? url = null,
+    Object? icon = freezed,
+    Object? cover = freezed,
+    Object? publicUrl = freezed,
   }) {
-    final _that = this;
-    switch (_that) {
-      case _Page() when $default != null:
-        return $default(_that);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// Callbacks receives the raw object, upcasted.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case final Subclass2 value:
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_Page value) $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _Page():
-        return $default(_that);
-      case _:
-        throw StateError('Unexpected subclass');
-    }
-  }
-
-  /// A variant of `map` that fallback to returning `null`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_Page value)? $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _Page() when $default != null:
-        return $default(_that);
-      case _:
-        return null;
-    }
-  }
-
-  /// A variant of `when` that fallback to an `orElse` callback.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(
-            String id,
-            DateTime createdTime,
-            DateTime lastEditedTime,
-            User createdBy,
-            User lastEditedBy,
-            Parent parent,
-            bool archived,
-            bool inTrash,
-            Map<String, LegacyPropertyValue> properties,
-            String url,
-            PageIcon? icon,
-            NotionFile? cover,
-            String? publicUrl)?
-        $default, {
-    required TResult orElse(),
-  }) {
-    final _that = this;
-    switch (_that) {
-      case _Page() when $default != null:
-        return $default(
-            _that.id,
-            _that.createdTime,
-            _that.lastEditedTime,
-            _that.createdBy,
-            _that.lastEditedBy,
-            _that.parent,
-            _that.archived,
-            _that.inTrash,
-            _that.properties,
-            _that.url,
-            _that.icon,
-            _that.cover,
-            _that.publicUrl);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// As opposed to `map`, this offers destructuring.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case Subclass2(:final field2):
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(
-            String id,
-            DateTime createdTime,
-            DateTime lastEditedTime,
-            User createdBy,
-            User lastEditedBy,
-            Parent parent,
-            bool archived,
-            bool inTrash,
-            Map<String, LegacyPropertyValue> properties,
-            String url,
-            PageIcon? icon,
-            NotionFile? cover,
-            String? publicUrl)
-        $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _Page():
-        return $default(
-            _that.id,
-            _that.createdTime,
-            _that.lastEditedTime,
-            _that.createdBy,
-            _that.lastEditedBy,
-            _that.parent,
-            _that.archived,
-            _that.inTrash,
-            _that.properties,
-            _that.url,
-            _that.icon,
-            _that.cover,
-            _that.publicUrl);
-      case _:
-        throw StateError('Unexpected subclass');
-    }
-  }
-
-  /// A variant of `when` that fallback to returning `null`
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(
-            String id,
-            DateTime createdTime,
-            DateTime lastEditedTime,
-            User createdBy,
-            User lastEditedBy,
-            Parent parent,
-            bool archived,
-            bool inTrash,
-            Map<String, LegacyPropertyValue> properties,
-            String url,
-            PageIcon? icon,
-            NotionFile? cover,
-            String? publicUrl)?
-        $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _Page() when $default != null:
-        return $default(
-            _that.id,
-            _that.createdTime,
-            _that.lastEditedTime,
-            _that.createdBy,
-            _that.lastEditedBy,
-            _that.parent,
-            _that.archived,
-            _that.inTrash,
-            _that.properties,
-            _that.url,
-            _that.icon,
-            _that.cover,
-            _that.publicUrl);
-      case _:
-        return null;
-    }
+    return _then(_$PageImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdTime: null == createdTime
+          ? _value.createdTime
+          : createdTime // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      lastEditedTime: null == lastEditedTime
+          ? _value.lastEditedTime
+          : lastEditedTime // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      createdBy: null == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as User,
+      lastEditedBy: null == lastEditedBy
+          ? _value.lastEditedBy
+          : lastEditedBy // ignore: cast_nullable_to_non_nullable
+              as User,
+      parent: null == parent
+          ? _value.parent
+          : parent // ignore: cast_nullable_to_non_nullable
+              as Parent,
+      archived: null == archived
+          ? _value.archived
+          : archived // ignore: cast_nullable_to_non_nullable
+              as bool,
+      inTrash: null == inTrash
+          ? _value.inTrash
+          : inTrash // ignore: cast_nullable_to_non_nullable
+              as bool,
+      properties: null == properties
+          ? _value._properties
+          : properties // ignore: cast_nullable_to_non_nullable
+              as Map<String, LegacyPropertyValue>,
+      url: null == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String,
+      icon: freezed == icon
+          ? _value.icon
+          : icon // ignore: cast_nullable_to_non_nullable
+              as PageIcon?,
+      cover: freezed == cover
+          ? _value.cover
+          : cover // ignore: cast_nullable_to_non_nullable
+              as NotionFile?,
+      publicUrl: freezed == publicUrl
+          ? _value.publicUrl
+          : publicUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
   }
 }
 
 /// @nodoc
 
-class _Page extends Page {
-  const _Page(
+class _$PageImpl extends _Page {
+  const _$PageImpl(
       {required this.id,
       required this.createdTime,
       required this.lastEditedTime,
@@ -544,19 +378,16 @@ class _Page extends Page {
   @override
   final String? publicUrl;
 
-  /// Create a copy of Page
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$PageCopyWith<_Page> get copyWith =>
-      __$PageCopyWithImpl<_Page>(this, _$identity);
+  String toString() {
+    return 'Page(id: $id, createdTime: $createdTime, lastEditedTime: $lastEditedTime, createdBy: $createdBy, lastEditedBy: $lastEditedBy, parent: $parent, archived: $archived, inTrash: $inTrash, properties: $properties, url: $url, icon: $icon, cover: $cover, publicUrl: $publicUrl)';
+  }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Page &&
+            other is _$PageImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.createdTime, createdTime) ||
                 other.createdTime == createdTime) &&
@@ -596,184 +427,63 @@ class _Page extends Page {
       cover,
       publicUrl);
 
+  /// Create a copy of Page
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  String toString() {
-    return 'Page(id: $id, createdTime: $createdTime, lastEditedTime: $lastEditedTime, createdBy: $createdBy, lastEditedBy: $lastEditedBy, parent: $parent, archived: $archived, inTrash: $inTrash, properties: $properties, url: $url, icon: $icon, cover: $cover, publicUrl: $publicUrl)';
-  }
+  @pragma('vm:prefer-inline')
+  _$$PageImplCopyWith<_$PageImpl> get copyWith =>
+      __$$PageImplCopyWithImpl<_$PageImpl>(this, _$identity);
 }
 
-/// @nodoc
-abstract mixin class _$PageCopyWith<$Res> implements $PageCopyWith<$Res> {
-  factory _$PageCopyWith(_Page value, $Res Function(_Page) _then) =
-      __$PageCopyWithImpl;
-  @override
-  @useResult
-  $Res call(
-      {String id,
-      DateTime createdTime,
-      DateTime lastEditedTime,
-      User createdBy,
-      User lastEditedBy,
-      Parent parent,
-      bool archived,
-      bool inTrash,
-      Map<String, LegacyPropertyValue> properties,
-      String url,
-      PageIcon? icon,
-      NotionFile? cover,
-      String? publicUrl});
+abstract class _Page extends Page {
+  const factory _Page(
+      {required final String id,
+      required final DateTime createdTime,
+      required final DateTime lastEditedTime,
+      required final User createdBy,
+      required final User lastEditedBy,
+      required final Parent parent,
+      required final bool archived,
+      required final bool inTrash,
+      required final Map<String, LegacyPropertyValue> properties,
+      required final String url,
+      final PageIcon? icon,
+      final NotionFile? cover,
+      final String? publicUrl}) = _$PageImpl;
+  const _Page._() : super._();
 
   @override
-  $UserCopyWith<$Res> get createdBy;
+  String get id;
   @override
-  $UserCopyWith<$Res> get lastEditedBy;
+  DateTime get createdTime;
   @override
-  $ParentCopyWith<$Res> get parent;
+  DateTime get lastEditedTime;
   @override
-  $PageIconCopyWith<$Res>? get icon;
+  User get createdBy;
   @override
-  $NotionFileCopyWith<$Res>? get cover;
+  User get lastEditedBy;
+  @override
+  Parent get parent;
+  @override
+  bool get archived;
+  @override
+  bool get inTrash;
+  @override
+  Map<String, LegacyPropertyValue> get properties;
+  @override
+  String get url;
+  @override
+  PageIcon? get icon;
+  @override
+  NotionFile? get cover;
+  @override
+  String? get publicUrl;
+
+  /// Create a copy of Page
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$PageImplCopyWith<_$PageImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
-
-/// @nodoc
-class __$PageCopyWithImpl<$Res> implements _$PageCopyWith<$Res> {
-  __$PageCopyWithImpl(this._self, this._then);
-
-  final _Page _self;
-  final $Res Function(_Page) _then;
-
-  /// Create a copy of Page
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? id = null,
-    Object? createdTime = null,
-    Object? lastEditedTime = null,
-    Object? createdBy = null,
-    Object? lastEditedBy = null,
-    Object? parent = null,
-    Object? archived = null,
-    Object? inTrash = null,
-    Object? properties = null,
-    Object? url = null,
-    Object? icon = freezed,
-    Object? cover = freezed,
-    Object? publicUrl = freezed,
-  }) {
-    return _then(_Page(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      createdTime: null == createdTime
-          ? _self.createdTime
-          : createdTime // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      lastEditedTime: null == lastEditedTime
-          ? _self.lastEditedTime
-          : lastEditedTime // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      createdBy: null == createdBy
-          ? _self.createdBy
-          : createdBy // ignore: cast_nullable_to_non_nullable
-              as User,
-      lastEditedBy: null == lastEditedBy
-          ? _self.lastEditedBy
-          : lastEditedBy // ignore: cast_nullable_to_non_nullable
-              as User,
-      parent: null == parent
-          ? _self.parent
-          : parent // ignore: cast_nullable_to_non_nullable
-              as Parent,
-      archived: null == archived
-          ? _self.archived
-          : archived // ignore: cast_nullable_to_non_nullable
-              as bool,
-      inTrash: null == inTrash
-          ? _self.inTrash
-          : inTrash // ignore: cast_nullable_to_non_nullable
-              as bool,
-      properties: null == properties
-          ? _self._properties
-          : properties // ignore: cast_nullable_to_non_nullable
-              as Map<String, LegacyPropertyValue>,
-      url: null == url
-          ? _self.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String,
-      icon: freezed == icon
-          ? _self.icon
-          : icon // ignore: cast_nullable_to_non_nullable
-              as PageIcon?,
-      cover: freezed == cover
-          ? _self.cover
-          : cover // ignore: cast_nullable_to_non_nullable
-              as NotionFile?,
-      publicUrl: freezed == publicUrl
-          ? _self.publicUrl
-          : publicUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-
-  /// Create a copy of Page
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $UserCopyWith<$Res> get createdBy {
-    return $UserCopyWith<$Res>(_self.createdBy, (value) {
-      return _then(_self.copyWith(createdBy: value));
-    });
-  }
-
-  /// Create a copy of Page
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $UserCopyWith<$Res> get lastEditedBy {
-    return $UserCopyWith<$Res>(_self.lastEditedBy, (value) {
-      return _then(_self.copyWith(lastEditedBy: value));
-    });
-  }
-
-  /// Create a copy of Page
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ParentCopyWith<$Res> get parent {
-    return $ParentCopyWith<$Res>(_self.parent, (value) {
-      return _then(_self.copyWith(parent: value));
-    });
-  }
-
-  /// Create a copy of Page
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $PageIconCopyWith<$Res>? get icon {
-    if (_self.icon == null) {
-      return null;
-    }
-
-    return $PageIconCopyWith<$Res>(_self.icon!, (value) {
-      return _then(_self.copyWith(icon: value));
-    });
-  }
-
-  /// Create a copy of Page
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $NotionFileCopyWith<$Res>? get cover {
-    if (_self.cover == null) {
-      return null;
-    }
-
-    return $NotionFileCopyWith<$Res>(_self.cover!, (value) {
-      return _then(_self.copyWith(cover: value));
-    });
-  }
-}
-
-// dart format on

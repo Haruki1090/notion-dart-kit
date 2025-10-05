@@ -6,11 +6,12 @@ part of 'file.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_EmojiIcon _$EmojiIconFromJson(Map<String, dynamic> json) => _EmojiIcon(
+_$EmojiIconImpl _$$EmojiIconImplFromJson(Map<String, dynamic> json) =>
+    _$EmojiIconImpl(
       emoji: json['emoji'] as String,
     );
 
-Map<String, dynamic> _$EmojiIconToJson(_EmojiIcon instance) =>
+Map<String, dynamic> _$$EmojiIconImplToJson(_$EmojiIconImpl instance) =>
     <String, dynamic>{
       'emoji': instance.emoji,
     };

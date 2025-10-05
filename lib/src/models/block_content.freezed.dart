@@ -1,5 +1,5 @@
-// GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,63 +9,49 @@ part of 'block_content.dart';
 // FreezedGenerator
 // **************************************************************************
 
-// dart format off
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+
+BlockContent _$BlockContentFromJson(Map<String, dynamic> json) {
+  return _BlockContent.fromJson(json);
+}
 
 /// @nodoc
 mixin _$BlockContent {
-  List<RichText> get richText;
-  BlockColor get color;
-  bool? get isToggleable;
+  List<RichText> get richText => throw _privateConstructorUsedError;
+  BlockColor get color => throw _privateConstructorUsedError;
+  bool? get isToggleable => throw _privateConstructorUsedError;
+
+  /// Serializes this BlockContent to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of BlockContent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
   $BlockContentCopyWith<BlockContent> get copyWith =>
-      _$BlockContentCopyWithImpl<BlockContent>(
-          this as BlockContent, _$identity);
-
-  /// Serializes this BlockContent to a JSON map.
-  Map<String, dynamic> toJson();
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is BlockContent &&
-            const DeepCollectionEquality().equals(other.richText, richText) &&
-            (identical(other.color, color) || other.color == color) &&
-            (identical(other.isToggleable, isToggleable) ||
-                other.isToggleable == isToggleable));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(richText), color, isToggleable);
-
-  @override
-  String toString() {
-    return 'BlockContent(richText: $richText, color: $color, isToggleable: $isToggleable)';
-  }
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract mixin class $BlockContentCopyWith<$Res> {
+abstract class $BlockContentCopyWith<$Res> {
   factory $BlockContentCopyWith(
-          BlockContent value, $Res Function(BlockContent) _then) =
-      _$BlockContentCopyWithImpl;
+          BlockContent value, $Res Function(BlockContent) then) =
+      _$BlockContentCopyWithImpl<$Res, BlockContent>;
   @useResult
   $Res call({List<RichText> richText, BlockColor color, bool? isToggleable});
 }
 
 /// @nodoc
-class _$BlockContentCopyWithImpl<$Res> implements $BlockContentCopyWith<$Res> {
-  _$BlockContentCopyWithImpl(this._self, this._then);
+class _$BlockContentCopyWithImpl<$Res, $Val extends BlockContent>
+    implements $BlockContentCopyWith<$Res> {
+  _$BlockContentCopyWithImpl(this._value, this._then);
 
-  final BlockContent _self;
-  final $Res Function(BlockContent) _then;
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
   /// Create a copy of BlockContent
   /// with the given fields replaced by the non-null parameter values.
@@ -76,196 +62,79 @@ class _$BlockContentCopyWithImpl<$Res> implements $BlockContentCopyWith<$Res> {
     Object? color = null,
     Object? isToggleable = freezed,
   }) {
-    return _then(_self.copyWith(
+    return _then(_value.copyWith(
       richText: null == richText
-          ? _self.richText
+          ? _value.richText
           : richText // ignore: cast_nullable_to_non_nullable
               as List<RichText>,
       color: null == color
-          ? _self.color
+          ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
               as BlockColor,
       isToggleable: freezed == isToggleable
-          ? _self.isToggleable
+          ? _value.isToggleable
+          : isToggleable // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$BlockContentImplCopyWith<$Res>
+    implements $BlockContentCopyWith<$Res> {
+  factory _$$BlockContentImplCopyWith(
+          _$BlockContentImpl value, $Res Function(_$BlockContentImpl) then) =
+      __$$BlockContentImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({List<RichText> richText, BlockColor color, bool? isToggleable});
+}
+
+/// @nodoc
+class __$$BlockContentImplCopyWithImpl<$Res>
+    extends _$BlockContentCopyWithImpl<$Res, _$BlockContentImpl>
+    implements _$$BlockContentImplCopyWith<$Res> {
+  __$$BlockContentImplCopyWithImpl(
+      _$BlockContentImpl _value, $Res Function(_$BlockContentImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of BlockContent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? richText = null,
+    Object? color = null,
+    Object? isToggleable = freezed,
+  }) {
+    return _then(_$BlockContentImpl(
+      richText: null == richText
+          ? _value._richText
+          : richText // ignore: cast_nullable_to_non_nullable
+              as List<RichText>,
+      color: null == color
+          ? _value.color
+          : color // ignore: cast_nullable_to_non_nullable
+              as BlockColor,
+      isToggleable: freezed == isToggleable
+          ? _value.isToggleable
           : isToggleable // ignore: cast_nullable_to_non_nullable
               as bool?,
     ));
   }
 }
 
-/// Adds pattern-matching-related methods to [BlockContent].
-extension BlockContentPatterns on BlockContent {
-  /// A variant of `map` that fallback to returning `orElse`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_BlockContent value)? $default, {
-    required TResult orElse(),
-  }) {
-    final _that = this;
-    switch (_that) {
-      case _BlockContent() when $default != null:
-        return $default(_that);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// Callbacks receives the raw object, upcasted.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case final Subclass2 value:
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_BlockContent value) $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _BlockContent():
-        return $default(_that);
-      case _:
-        throw StateError('Unexpected subclass');
-    }
-  }
-
-  /// A variant of `map` that fallback to returning `null`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_BlockContent value)? $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _BlockContent() when $default != null:
-        return $default(_that);
-      case _:
-        return null;
-    }
-  }
-
-  /// A variant of `when` that fallback to an `orElse` callback.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(
-            List<RichText> richText, BlockColor color, bool? isToggleable)?
-        $default, {
-    required TResult orElse(),
-  }) {
-    final _that = this;
-    switch (_that) {
-      case _BlockContent() when $default != null:
-        return $default(_that.richText, _that.color, _that.isToggleable);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// As opposed to `map`, this offers destructuring.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case Subclass2(:final field2):
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(
-            List<RichText> richText, BlockColor color, bool? isToggleable)
-        $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _BlockContent():
-        return $default(_that.richText, _that.color, _that.isToggleable);
-      case _:
-        throw StateError('Unexpected subclass');
-    }
-  }
-
-  /// A variant of `when` that fallback to returning `null`
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(
-            List<RichText> richText, BlockColor color, bool? isToggleable)?
-        $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _BlockContent() when $default != null:
-        return $default(_that.richText, _that.color, _that.isToggleable);
-      case _:
-        return null;
-    }
-  }
-}
-
 /// @nodoc
 @JsonSerializable()
-class _BlockContent implements BlockContent {
-  const _BlockContent(
+class _$BlockContentImpl implements _BlockContent {
+  const _$BlockContentImpl(
       {final List<RichText> richText = const [],
       this.color = BlockColor.defaultColor,
       this.isToggleable = false})
       : _richText = richText;
-  factory _BlockContent.fromJson(Map<String, dynamic> json) =>
-      _$BlockContentFromJson(json);
+
+  factory _$BlockContentImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BlockContentImplFromJson(json);
 
   final List<RichText> _richText;
   @override
@@ -283,26 +152,16 @@ class _BlockContent implements BlockContent {
   @JsonKey()
   final bool? isToggleable;
 
-  /// Create a copy of BlockContent
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$BlockContentCopyWith<_BlockContent> get copyWith =>
-      __$BlockContentCopyWithImpl<_BlockContent>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$BlockContentToJson(
-      this,
-    );
+  String toString() {
+    return 'BlockContent(richText: $richText, color: $color, isToggleable: $isToggleable)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _BlockContent &&
+            other is _$BlockContentImpl &&
             const DeepCollectionEquality().equals(other._richText, _richText) &&
             (identical(other.color, color) || other.color == color) &&
             (identical(other.isToggleable, isToggleable) ||
@@ -314,109 +173,84 @@ class _BlockContent implements BlockContent {
   int get hashCode => Object.hash(runtimeType,
       const DeepCollectionEquality().hash(_richText), color, isToggleable);
 
+  /// Create a copy of BlockContent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  String toString() {
-    return 'BlockContent(richText: $richText, color: $color, isToggleable: $isToggleable)';
+  @pragma('vm:prefer-inline')
+  _$$BlockContentImplCopyWith<_$BlockContentImpl> get copyWith =>
+      __$$BlockContentImplCopyWithImpl<_$BlockContentImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$BlockContentImplToJson(
+      this,
+    );
   }
 }
 
-/// @nodoc
-abstract mixin class _$BlockContentCopyWith<$Res>
-    implements $BlockContentCopyWith<$Res> {
-  factory _$BlockContentCopyWith(
-          _BlockContent value, $Res Function(_BlockContent) _then) =
-      __$BlockContentCopyWithImpl;
+abstract class _BlockContent implements BlockContent {
+  const factory _BlockContent(
+      {final List<RichText> richText,
+      final BlockColor color,
+      final bool? isToggleable}) = _$BlockContentImpl;
+
+  factory _BlockContent.fromJson(Map<String, dynamic> json) =
+      _$BlockContentImpl.fromJson;
+
   @override
-  @useResult
-  $Res call({List<RichText> richText, BlockColor color, bool? isToggleable});
-}
-
-/// @nodoc
-class __$BlockContentCopyWithImpl<$Res>
-    implements _$BlockContentCopyWith<$Res> {
-  __$BlockContentCopyWithImpl(this._self, this._then);
-
-  final _BlockContent _self;
-  final $Res Function(_BlockContent) _then;
+  List<RichText> get richText;
+  @override
+  BlockColor get color;
+  @override
+  bool? get isToggleable;
 
   /// Create a copy of BlockContent
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? richText = null,
-    Object? color = null,
-    Object? isToggleable = freezed,
-  }) {
-    return _then(_BlockContent(
-      richText: null == richText
-          ? _self._richText
-          : richText // ignore: cast_nullable_to_non_nullable
-              as List<RichText>,
-      color: null == color
-          ? _self.color
-          : color // ignore: cast_nullable_to_non_nullable
-              as BlockColor,
-      isToggleable: freezed == isToggleable
-          ? _self.isToggleable
-          : isToggleable // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$BlockContentImplCopyWith<_$BlockContentImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+ToDoContent _$ToDoContentFromJson(Map<String, dynamic> json) {
+  return _ToDoContent.fromJson(json);
 }
 
 /// @nodoc
 mixin _$ToDoContent {
-  List<RichText> get richText;
-  BlockColor get color;
-  bool get checked;
+  List<RichText> get richText => throw _privateConstructorUsedError;
+  BlockColor get color => throw _privateConstructorUsedError;
+  bool get checked => throw _privateConstructorUsedError;
+
+  /// Serializes this ToDoContent to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of ToDoContent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
   $ToDoContentCopyWith<ToDoContent> get copyWith =>
-      _$ToDoContentCopyWithImpl<ToDoContent>(this as ToDoContent, _$identity);
-
-  /// Serializes this ToDoContent to a JSON map.
-  Map<String, dynamic> toJson();
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is ToDoContent &&
-            const DeepCollectionEquality().equals(other.richText, richText) &&
-            (identical(other.color, color) || other.color == color) &&
-            (identical(other.checked, checked) || other.checked == checked));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(richText), color, checked);
-
-  @override
-  String toString() {
-    return 'ToDoContent(richText: $richText, color: $color, checked: $checked)';
-  }
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract mixin class $ToDoContentCopyWith<$Res> {
+abstract class $ToDoContentCopyWith<$Res> {
   factory $ToDoContentCopyWith(
-          ToDoContent value, $Res Function(ToDoContent) _then) =
-      _$ToDoContentCopyWithImpl;
+          ToDoContent value, $Res Function(ToDoContent) then) =
+      _$ToDoContentCopyWithImpl<$Res, ToDoContent>;
   @useResult
   $Res call({List<RichText> richText, BlockColor color, bool checked});
 }
 
 /// @nodoc
-class _$ToDoContentCopyWithImpl<$Res> implements $ToDoContentCopyWith<$Res> {
-  _$ToDoContentCopyWithImpl(this._self, this._then);
+class _$ToDoContentCopyWithImpl<$Res, $Val extends ToDoContent>
+    implements $ToDoContentCopyWith<$Res> {
+  _$ToDoContentCopyWithImpl(this._value, this._then);
 
-  final ToDoContent _self;
-  final $Res Function(ToDoContent) _then;
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
   /// Create a copy of ToDoContent
   /// with the given fields replaced by the non-null parameter values.
@@ -427,193 +261,79 @@ class _$ToDoContentCopyWithImpl<$Res> implements $ToDoContentCopyWith<$Res> {
     Object? color = null,
     Object? checked = null,
   }) {
-    return _then(_self.copyWith(
+    return _then(_value.copyWith(
       richText: null == richText
-          ? _self.richText
+          ? _value.richText
           : richText // ignore: cast_nullable_to_non_nullable
               as List<RichText>,
       color: null == color
-          ? _self.color
+          ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
               as BlockColor,
       checked: null == checked
-          ? _self.checked
+          ? _value.checked
+          : checked // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ToDoContentImplCopyWith<$Res>
+    implements $ToDoContentCopyWith<$Res> {
+  factory _$$ToDoContentImplCopyWith(
+          _$ToDoContentImpl value, $Res Function(_$ToDoContentImpl) then) =
+      __$$ToDoContentImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({List<RichText> richText, BlockColor color, bool checked});
+}
+
+/// @nodoc
+class __$$ToDoContentImplCopyWithImpl<$Res>
+    extends _$ToDoContentCopyWithImpl<$Res, _$ToDoContentImpl>
+    implements _$$ToDoContentImplCopyWith<$Res> {
+  __$$ToDoContentImplCopyWithImpl(
+      _$ToDoContentImpl _value, $Res Function(_$ToDoContentImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ToDoContent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? richText = null,
+    Object? color = null,
+    Object? checked = null,
+  }) {
+    return _then(_$ToDoContentImpl(
+      richText: null == richText
+          ? _value._richText
+          : richText // ignore: cast_nullable_to_non_nullable
+              as List<RichText>,
+      color: null == color
+          ? _value.color
+          : color // ignore: cast_nullable_to_non_nullable
+              as BlockColor,
+      checked: null == checked
+          ? _value.checked
           : checked // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
 }
 
-/// Adds pattern-matching-related methods to [ToDoContent].
-extension ToDoContentPatterns on ToDoContent {
-  /// A variant of `map` that fallback to returning `orElse`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_ToDoContent value)? $default, {
-    required TResult orElse(),
-  }) {
-    final _that = this;
-    switch (_that) {
-      case _ToDoContent() when $default != null:
-        return $default(_that);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// Callbacks receives the raw object, upcasted.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case final Subclass2 value:
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_ToDoContent value) $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _ToDoContent():
-        return $default(_that);
-      case _:
-        throw StateError('Unexpected subclass');
-    }
-  }
-
-  /// A variant of `map` that fallback to returning `null`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_ToDoContent value)? $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _ToDoContent() when $default != null:
-        return $default(_that);
-      case _:
-        return null;
-    }
-  }
-
-  /// A variant of `when` that fallback to an `orElse` callback.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(List<RichText> richText, BlockColor color, bool checked)?
-        $default, {
-    required TResult orElse(),
-  }) {
-    final _that = this;
-    switch (_that) {
-      case _ToDoContent() when $default != null:
-        return $default(_that.richText, _that.color, _that.checked);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// As opposed to `map`, this offers destructuring.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case Subclass2(:final field2):
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(List<RichText> richText, BlockColor color, bool checked)
-        $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _ToDoContent():
-        return $default(_that.richText, _that.color, _that.checked);
-      case _:
-        throw StateError('Unexpected subclass');
-    }
-  }
-
-  /// A variant of `when` that fallback to returning `null`
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(List<RichText> richText, BlockColor color, bool checked)?
-        $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _ToDoContent() when $default != null:
-        return $default(_that.richText, _that.color, _that.checked);
-      case _:
-        return null;
-    }
-  }
-}
-
 /// @nodoc
 @JsonSerializable()
-class _ToDoContent implements ToDoContent {
-  const _ToDoContent(
+class _$ToDoContentImpl implements _ToDoContent {
+  const _$ToDoContentImpl(
       {final List<RichText> richText = const [],
       this.color = BlockColor.defaultColor,
       this.checked = false})
       : _richText = richText;
-  factory _ToDoContent.fromJson(Map<String, dynamic> json) =>
-      _$ToDoContentFromJson(json);
+
+  factory _$ToDoContentImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ToDoContentImplFromJson(json);
 
   final List<RichText> _richText;
   @override
@@ -631,26 +351,16 @@ class _ToDoContent implements ToDoContent {
   @JsonKey()
   final bool checked;
 
-  /// Create a copy of ToDoContent
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$ToDoContentCopyWith<_ToDoContent> get copyWith =>
-      __$ToDoContentCopyWithImpl<_ToDoContent>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$ToDoContentToJson(
-      this,
-    );
+  String toString() {
+    return 'ToDoContent(richText: $richText, color: $color, checked: $checked)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ToDoContent &&
+            other is _$ToDoContentImpl &&
             const DeepCollectionEquality().equals(other._richText, _richText) &&
             (identical(other.color, color) || other.color == color) &&
             (identical(other.checked, checked) || other.checked == checked));
@@ -661,112 +371,84 @@ class _ToDoContent implements ToDoContent {
   int get hashCode => Object.hash(runtimeType,
       const DeepCollectionEquality().hash(_richText), color, checked);
 
+  /// Create a copy of ToDoContent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  String toString() {
-    return 'ToDoContent(richText: $richText, color: $color, checked: $checked)';
+  @pragma('vm:prefer-inline')
+  _$$ToDoContentImplCopyWith<_$ToDoContentImpl> get copyWith =>
+      __$$ToDoContentImplCopyWithImpl<_$ToDoContentImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ToDoContentImplToJson(
+      this,
+    );
   }
 }
 
-/// @nodoc
-abstract mixin class _$ToDoContentCopyWith<$Res>
-    implements $ToDoContentCopyWith<$Res> {
-  factory _$ToDoContentCopyWith(
-          _ToDoContent value, $Res Function(_ToDoContent) _then) =
-      __$ToDoContentCopyWithImpl;
+abstract class _ToDoContent implements ToDoContent {
+  const factory _ToDoContent(
+      {final List<RichText> richText,
+      final BlockColor color,
+      final bool checked}) = _$ToDoContentImpl;
+
+  factory _ToDoContent.fromJson(Map<String, dynamic> json) =
+      _$ToDoContentImpl.fromJson;
+
   @override
-  @useResult
-  $Res call({List<RichText> richText, BlockColor color, bool checked});
-}
-
-/// @nodoc
-class __$ToDoContentCopyWithImpl<$Res> implements _$ToDoContentCopyWith<$Res> {
-  __$ToDoContentCopyWithImpl(this._self, this._then);
-
-  final _ToDoContent _self;
-  final $Res Function(_ToDoContent) _then;
+  List<RichText> get richText;
+  @override
+  BlockColor get color;
+  @override
+  bool get checked;
 
   /// Create a copy of ToDoContent
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? richText = null,
-    Object? color = null,
-    Object? checked = null,
-  }) {
-    return _then(_ToDoContent(
-      richText: null == richText
-          ? _self._richText
-          : richText // ignore: cast_nullable_to_non_nullable
-              as List<RichText>,
-      color: null == color
-          ? _self.color
-          : color // ignore: cast_nullable_to_non_nullable
-              as BlockColor,
-      checked: null == checked
-          ? _self.checked
-          : checked // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ToDoContentImplCopyWith<_$ToDoContentImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+CodeContent _$CodeContentFromJson(Map<String, dynamic> json) {
+  return _CodeContent.fromJson(json);
 }
 
 /// @nodoc
 mixin _$CodeContent {
-  List<RichText> get richText;
-  List<RichText> get caption;
-  String get language;
+  List<RichText> get richText => throw _privateConstructorUsedError;
+  List<RichText> get caption => throw _privateConstructorUsedError;
+  String get language => throw _privateConstructorUsedError;
+
+  /// Serializes this CodeContent to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of CodeContent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
   $CodeContentCopyWith<CodeContent> get copyWith =>
-      _$CodeContentCopyWithImpl<CodeContent>(this as CodeContent, _$identity);
-
-  /// Serializes this CodeContent to a JSON map.
-  Map<String, dynamic> toJson();
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is CodeContent &&
-            const DeepCollectionEquality().equals(other.richText, richText) &&
-            const DeepCollectionEquality().equals(other.caption, caption) &&
-            (identical(other.language, language) ||
-                other.language == language));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(richText),
-      const DeepCollectionEquality().hash(caption),
-      language);
-
-  @override
-  String toString() {
-    return 'CodeContent(richText: $richText, caption: $caption, language: $language)';
-  }
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract mixin class $CodeContentCopyWith<$Res> {
+abstract class $CodeContentCopyWith<$Res> {
   factory $CodeContentCopyWith(
-          CodeContent value, $Res Function(CodeContent) _then) =
-      _$CodeContentCopyWithImpl;
+          CodeContent value, $Res Function(CodeContent) then) =
+      _$CodeContentCopyWithImpl<$Res, CodeContent>;
   @useResult
   $Res call({List<RichText> richText, List<RichText> caption, String language});
 }
 
 /// @nodoc
-class _$CodeContentCopyWithImpl<$Res> implements $CodeContentCopyWith<$Res> {
-  _$CodeContentCopyWithImpl(this._self, this._then);
+class _$CodeContentCopyWithImpl<$Res, $Val extends CodeContent>
+    implements $CodeContentCopyWith<$Res> {
+  _$CodeContentCopyWithImpl(this._value, this._then);
 
-  final CodeContent _self;
-  final $Res Function(CodeContent) _then;
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
   /// Create a copy of CodeContent
   /// with the given fields replaced by the non-null parameter values.
@@ -777,197 +459,80 @@ class _$CodeContentCopyWithImpl<$Res> implements $CodeContentCopyWith<$Res> {
     Object? caption = null,
     Object? language = null,
   }) {
-    return _then(_self.copyWith(
+    return _then(_value.copyWith(
       richText: null == richText
-          ? _self.richText
+          ? _value.richText
           : richText // ignore: cast_nullable_to_non_nullable
               as List<RichText>,
       caption: null == caption
-          ? _self.caption
+          ? _value.caption
           : caption // ignore: cast_nullable_to_non_nullable
               as List<RichText>,
       language: null == language
-          ? _self.language
+          ? _value.language
+          : language // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$CodeContentImplCopyWith<$Res>
+    implements $CodeContentCopyWith<$Res> {
+  factory _$$CodeContentImplCopyWith(
+          _$CodeContentImpl value, $Res Function(_$CodeContentImpl) then) =
+      __$$CodeContentImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({List<RichText> richText, List<RichText> caption, String language});
+}
+
+/// @nodoc
+class __$$CodeContentImplCopyWithImpl<$Res>
+    extends _$CodeContentCopyWithImpl<$Res, _$CodeContentImpl>
+    implements _$$CodeContentImplCopyWith<$Res> {
+  __$$CodeContentImplCopyWithImpl(
+      _$CodeContentImpl _value, $Res Function(_$CodeContentImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of CodeContent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? richText = null,
+    Object? caption = null,
+    Object? language = null,
+  }) {
+    return _then(_$CodeContentImpl(
+      richText: null == richText
+          ? _value._richText
+          : richText // ignore: cast_nullable_to_non_nullable
+              as List<RichText>,
+      caption: null == caption
+          ? _value._caption
+          : caption // ignore: cast_nullable_to_non_nullable
+              as List<RichText>,
+      language: null == language
+          ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
 }
 
-/// Adds pattern-matching-related methods to [CodeContent].
-extension CodeContentPatterns on CodeContent {
-  /// A variant of `map` that fallback to returning `orElse`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_CodeContent value)? $default, {
-    required TResult orElse(),
-  }) {
-    final _that = this;
-    switch (_that) {
-      case _CodeContent() when $default != null:
-        return $default(_that);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// Callbacks receives the raw object, upcasted.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case final Subclass2 value:
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_CodeContent value) $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _CodeContent():
-        return $default(_that);
-      case _:
-        throw StateError('Unexpected subclass');
-    }
-  }
-
-  /// A variant of `map` that fallback to returning `null`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_CodeContent value)? $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _CodeContent() when $default != null:
-        return $default(_that);
-      case _:
-        return null;
-    }
-  }
-
-  /// A variant of `when` that fallback to an `orElse` callback.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(
-            List<RichText> richText, List<RichText> caption, String language)?
-        $default, {
-    required TResult orElse(),
-  }) {
-    final _that = this;
-    switch (_that) {
-      case _CodeContent() when $default != null:
-        return $default(_that.richText, _that.caption, _that.language);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// As opposed to `map`, this offers destructuring.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case Subclass2(:final field2):
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(
-            List<RichText> richText, List<RichText> caption, String language)
-        $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _CodeContent():
-        return $default(_that.richText, _that.caption, _that.language);
-      case _:
-        throw StateError('Unexpected subclass');
-    }
-  }
-
-  /// A variant of `when` that fallback to returning `null`
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(
-            List<RichText> richText, List<RichText> caption, String language)?
-        $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _CodeContent() when $default != null:
-        return $default(_that.richText, _that.caption, _that.language);
-      case _:
-        return null;
-    }
-  }
-}
-
 /// @nodoc
 @JsonSerializable()
-class _CodeContent implements CodeContent {
-  const _CodeContent(
+class _$CodeContentImpl implements _CodeContent {
+  const _$CodeContentImpl(
       {final List<RichText> richText = const [],
       final List<RichText> caption = const [],
       this.language = 'plain text'})
       : _richText = richText,
         _caption = caption;
-  factory _CodeContent.fromJson(Map<String, dynamic> json) =>
-      _$CodeContentFromJson(json);
+
+  factory _$CodeContentImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CodeContentImplFromJson(json);
 
   final List<RichText> _richText;
   @override
@@ -991,26 +556,16 @@ class _CodeContent implements CodeContent {
   @JsonKey()
   final String language;
 
-  /// Create a copy of CodeContent
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$CodeContentCopyWith<_CodeContent> get copyWith =>
-      __$CodeContentCopyWithImpl<_CodeContent>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$CodeContentToJson(
-      this,
-    );
+  String toString() {
+    return 'CodeContent(richText: $richText, caption: $caption, language: $language)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _CodeContent &&
+            other is _$CodeContentImpl &&
             const DeepCollectionEquality().equals(other._richText, _richText) &&
             const DeepCollectionEquality().equals(other._caption, _caption) &&
             (identical(other.language, language) ||
@@ -1025,54 +580,42 @@ class _CodeContent implements CodeContent {
       const DeepCollectionEquality().hash(_caption),
       language);
 
+  /// Create a copy of CodeContent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  String toString() {
-    return 'CodeContent(richText: $richText, caption: $caption, language: $language)';
+  @pragma('vm:prefer-inline')
+  _$$CodeContentImplCopyWith<_$CodeContentImpl> get copyWith =>
+      __$$CodeContentImplCopyWithImpl<_$CodeContentImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$CodeContentImplToJson(
+      this,
+    );
   }
 }
 
-/// @nodoc
-abstract mixin class _$CodeContentCopyWith<$Res>
-    implements $CodeContentCopyWith<$Res> {
-  factory _$CodeContentCopyWith(
-          _CodeContent value, $Res Function(_CodeContent) _then) =
-      __$CodeContentCopyWithImpl;
+abstract class _CodeContent implements CodeContent {
+  const factory _CodeContent(
+      {final List<RichText> richText,
+      final List<RichText> caption,
+      final String language}) = _$CodeContentImpl;
+
+  factory _CodeContent.fromJson(Map<String, dynamic> json) =
+      _$CodeContentImpl.fromJson;
+
   @override
-  @useResult
-  $Res call({List<RichText> richText, List<RichText> caption, String language});
-}
-
-/// @nodoc
-class __$CodeContentCopyWithImpl<$Res> implements _$CodeContentCopyWith<$Res> {
-  __$CodeContentCopyWithImpl(this._self, this._then);
-
-  final _CodeContent _self;
-  final $Res Function(_CodeContent) _then;
+  List<RichText> get richText;
+  @override
+  List<RichText> get caption;
+  @override
+  String get language;
 
   /// Create a copy of CodeContent
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? richText = null,
-    Object? caption = null,
-    Object? language = null,
-  }) {
-    return _then(_CodeContent(
-      richText: null == richText
-          ? _self._richText
-          : richText // ignore: cast_nullable_to_non_nullable
-              as List<RichText>,
-      caption: null == caption
-          ? _self._caption
-          : caption // ignore: cast_nullable_to_non_nullable
-              as List<RichText>,
-      language: null == language
-          ? _self.language
-          : language // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$CodeContentImplCopyWith<_$CodeContentImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
-
-// dart format on

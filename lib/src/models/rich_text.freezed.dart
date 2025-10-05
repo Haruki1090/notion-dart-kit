@@ -1,5 +1,5 @@
-// GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,59 +9,39 @@ part of 'rich_text.dart';
 // FreezedGenerator
 // **************************************************************************
 
-// dart format off
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+
+Annotations _$AnnotationsFromJson(Map<String, dynamic> json) {
+  return _Annotations.fromJson(json);
+}
 
 /// @nodoc
 mixin _$Annotations {
-  bool get bold;
-  bool get italic;
-  bool get strikethrough;
-  bool get underline;
-  bool get code;
-  RichTextColor get color;
+  bool get bold => throw _privateConstructorUsedError;
+  bool get italic => throw _privateConstructorUsedError;
+  bool get strikethrough => throw _privateConstructorUsedError;
+  bool get underline => throw _privateConstructorUsedError;
+  bool get code => throw _privateConstructorUsedError;
+  RichTextColor get color => throw _privateConstructorUsedError;
+
+  /// Serializes this Annotations to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of Annotations
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
   $AnnotationsCopyWith<Annotations> get copyWith =>
-      _$AnnotationsCopyWithImpl<Annotations>(this as Annotations, _$identity);
-
-  /// Serializes this Annotations to a JSON map.
-  Map<String, dynamic> toJson();
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is Annotations &&
-            (identical(other.bold, bold) || other.bold == bold) &&
-            (identical(other.italic, italic) || other.italic == italic) &&
-            (identical(other.strikethrough, strikethrough) ||
-                other.strikethrough == strikethrough) &&
-            (identical(other.underline, underline) ||
-                other.underline == underline) &&
-            (identical(other.code, code) || other.code == code) &&
-            (identical(other.color, color) || other.color == color));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, bold, italic, strikethrough, underline, code, color);
-
-  @override
-  String toString() {
-    return 'Annotations(bold: $bold, italic: $italic, strikethrough: $strikethrough, underline: $underline, code: $code, color: $color)';
-  }
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract mixin class $AnnotationsCopyWith<$Res> {
+abstract class $AnnotationsCopyWith<$Res> {
   factory $AnnotationsCopyWith(
-          Annotations value, $Res Function(Annotations) _then) =
-      _$AnnotationsCopyWithImpl;
+          Annotations value, $Res Function(Annotations) then) =
+      _$AnnotationsCopyWithImpl<$Res, Annotations>;
   @useResult
   $Res call(
       {bool bold,
@@ -73,11 +53,14 @@ abstract mixin class $AnnotationsCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$AnnotationsCopyWithImpl<$Res> implements $AnnotationsCopyWith<$Res> {
-  _$AnnotationsCopyWithImpl(this._self, this._then);
+class _$AnnotationsCopyWithImpl<$Res, $Val extends Annotations>
+    implements $AnnotationsCopyWith<$Res> {
+  _$AnnotationsCopyWithImpl(this._value, this._then);
 
-  final Annotations _self;
-  final $Res Function(Annotations) _then;
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
   /// Create a copy of Annotations
   /// with the given fields replaced by the non-null parameter values.
@@ -91,213 +74,114 @@ class _$AnnotationsCopyWithImpl<$Res> implements $AnnotationsCopyWith<$Res> {
     Object? code = null,
     Object? color = null,
   }) {
-    return _then(_self.copyWith(
+    return _then(_value.copyWith(
       bold: null == bold
-          ? _self.bold
+          ? _value.bold
           : bold // ignore: cast_nullable_to_non_nullable
               as bool,
       italic: null == italic
-          ? _self.italic
+          ? _value.italic
           : italic // ignore: cast_nullable_to_non_nullable
               as bool,
       strikethrough: null == strikethrough
-          ? _self.strikethrough
+          ? _value.strikethrough
           : strikethrough // ignore: cast_nullable_to_non_nullable
               as bool,
       underline: null == underline
-          ? _self.underline
+          ? _value.underline
           : underline // ignore: cast_nullable_to_non_nullable
               as bool,
       code: null == code
-          ? _self.code
+          ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as bool,
       color: null == color
-          ? _self.color
+          ? _value.color
+          : color // ignore: cast_nullable_to_non_nullable
+              as RichTextColor,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$AnnotationsImplCopyWith<$Res>
+    implements $AnnotationsCopyWith<$Res> {
+  factory _$$AnnotationsImplCopyWith(
+          _$AnnotationsImpl value, $Res Function(_$AnnotationsImpl) then) =
+      __$$AnnotationsImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {bool bold,
+      bool italic,
+      bool strikethrough,
+      bool underline,
+      bool code,
+      RichTextColor color});
+}
+
+/// @nodoc
+class __$$AnnotationsImplCopyWithImpl<$Res>
+    extends _$AnnotationsCopyWithImpl<$Res, _$AnnotationsImpl>
+    implements _$$AnnotationsImplCopyWith<$Res> {
+  __$$AnnotationsImplCopyWithImpl(
+      _$AnnotationsImpl _value, $Res Function(_$AnnotationsImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of Annotations
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? bold = null,
+    Object? italic = null,
+    Object? strikethrough = null,
+    Object? underline = null,
+    Object? code = null,
+    Object? color = null,
+  }) {
+    return _then(_$AnnotationsImpl(
+      bold: null == bold
+          ? _value.bold
+          : bold // ignore: cast_nullable_to_non_nullable
+              as bool,
+      italic: null == italic
+          ? _value.italic
+          : italic // ignore: cast_nullable_to_non_nullable
+              as bool,
+      strikethrough: null == strikethrough
+          ? _value.strikethrough
+          : strikethrough // ignore: cast_nullable_to_non_nullable
+              as bool,
+      underline: null == underline
+          ? _value.underline
+          : underline // ignore: cast_nullable_to_non_nullable
+              as bool,
+      code: null == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as bool,
+      color: null == color
+          ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
               as RichTextColor,
     ));
   }
 }
 
-/// Adds pattern-matching-related methods to [Annotations].
-extension AnnotationsPatterns on Annotations {
-  /// A variant of `map` that fallback to returning `orElse`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_Annotations value)? $default, {
-    required TResult orElse(),
-  }) {
-    final _that = this;
-    switch (_that) {
-      case _Annotations() when $default != null:
-        return $default(_that);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// Callbacks receives the raw object, upcasted.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case final Subclass2 value:
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_Annotations value) $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _Annotations():
-        return $default(_that);
-      case _:
-        throw StateError('Unexpected subclass');
-    }
-  }
-
-  /// A variant of `map` that fallback to returning `null`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_Annotations value)? $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _Annotations() when $default != null:
-        return $default(_that);
-      case _:
-        return null;
-    }
-  }
-
-  /// A variant of `when` that fallback to an `orElse` callback.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(bool bold, bool italic, bool strikethrough, bool underline,
-            bool code, RichTextColor color)?
-        $default, {
-    required TResult orElse(),
-  }) {
-    final _that = this;
-    switch (_that) {
-      case _Annotations() when $default != null:
-        return $default(_that.bold, _that.italic, _that.strikethrough,
-            _that.underline, _that.code, _that.color);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// As opposed to `map`, this offers destructuring.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case Subclass2(:final field2):
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(bool bold, bool italic, bool strikethrough, bool underline,
-            bool code, RichTextColor color)
-        $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _Annotations():
-        return $default(_that.bold, _that.italic, _that.strikethrough,
-            _that.underline, _that.code, _that.color);
-      case _:
-        throw StateError('Unexpected subclass');
-    }
-  }
-
-  /// A variant of `when` that fallback to returning `null`
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(bool bold, bool italic, bool strikethrough,
-            bool underline, bool code, RichTextColor color)?
-        $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _Annotations() when $default != null:
-        return $default(_that.bold, _that.italic, _that.strikethrough,
-            _that.underline, _that.code, _that.color);
-      case _:
-        return null;
-    }
-  }
-}
-
 /// @nodoc
 @JsonSerializable()
-class _Annotations implements Annotations {
-  const _Annotations(
+class _$AnnotationsImpl implements _Annotations {
+  const _$AnnotationsImpl(
       {this.bold = false,
       this.italic = false,
       this.strikethrough = false,
       this.underline = false,
       this.code = false,
       this.color = RichTextColor.defaultColor});
-  factory _Annotations.fromJson(Map<String, dynamic> json) =>
-      _$AnnotationsFromJson(json);
+
+  factory _$AnnotationsImpl.fromJson(Map<String, dynamic> json) =>
+      _$$AnnotationsImplFromJson(json);
 
   @override
   @JsonKey()
@@ -318,26 +202,16 @@ class _Annotations implements Annotations {
   @JsonKey()
   final RichTextColor color;
 
-  /// Create a copy of Annotations
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$AnnotationsCopyWith<_Annotations> get copyWith =>
-      __$AnnotationsCopyWithImpl<_Annotations>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$AnnotationsToJson(
-      this,
-    );
+  String toString() {
+    return 'Annotations(bold: $bold, italic: $italic, strikethrough: $strikethrough, underline: $underline, code: $code, color: $color)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Annotations &&
+            other is _$AnnotationsImpl &&
             (identical(other.bold, bold) || other.bold == bold) &&
             (identical(other.italic, italic) || other.italic == italic) &&
             (identical(other.strikethrough, strikethrough) ||
@@ -353,116 +227,79 @@ class _Annotations implements Annotations {
   int get hashCode => Object.hash(
       runtimeType, bold, italic, strikethrough, underline, code, color);
 
+  /// Create a copy of Annotations
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  String toString() {
-    return 'Annotations(bold: $bold, italic: $italic, strikethrough: $strikethrough, underline: $underline, code: $code, color: $color)';
+  @pragma('vm:prefer-inline')
+  _$$AnnotationsImplCopyWith<_$AnnotationsImpl> get copyWith =>
+      __$$AnnotationsImplCopyWithImpl<_$AnnotationsImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$AnnotationsImplToJson(
+      this,
+    );
   }
 }
 
-/// @nodoc
-abstract mixin class _$AnnotationsCopyWith<$Res>
-    implements $AnnotationsCopyWith<$Res> {
-  factory _$AnnotationsCopyWith(
-          _Annotations value, $Res Function(_Annotations) _then) =
-      __$AnnotationsCopyWithImpl;
+abstract class _Annotations implements Annotations {
+  const factory _Annotations(
+      {final bool bold,
+      final bool italic,
+      final bool strikethrough,
+      final bool underline,
+      final bool code,
+      final RichTextColor color}) = _$AnnotationsImpl;
+
+  factory _Annotations.fromJson(Map<String, dynamic> json) =
+      _$AnnotationsImpl.fromJson;
+
   @override
-  @useResult
-  $Res call(
-      {bool bold,
-      bool italic,
-      bool strikethrough,
-      bool underline,
-      bool code,
-      RichTextColor color});
-}
-
-/// @nodoc
-class __$AnnotationsCopyWithImpl<$Res> implements _$AnnotationsCopyWith<$Res> {
-  __$AnnotationsCopyWithImpl(this._self, this._then);
-
-  final _Annotations _self;
-  final $Res Function(_Annotations) _then;
+  bool get bold;
+  @override
+  bool get italic;
+  @override
+  bool get strikethrough;
+  @override
+  bool get underline;
+  @override
+  bool get code;
+  @override
+  RichTextColor get color;
 
   /// Create a copy of Annotations
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? bold = null,
-    Object? italic = null,
-    Object? strikethrough = null,
-    Object? underline = null,
-    Object? code = null,
-    Object? color = null,
-  }) {
-    return _then(_Annotations(
-      bold: null == bold
-          ? _self.bold
-          : bold // ignore: cast_nullable_to_non_nullable
-              as bool,
-      italic: null == italic
-          ? _self.italic
-          : italic // ignore: cast_nullable_to_non_nullable
-              as bool,
-      strikethrough: null == strikethrough
-          ? _self.strikethrough
-          : strikethrough // ignore: cast_nullable_to_non_nullable
-              as bool,
-      underline: null == underline
-          ? _self.underline
-          : underline // ignore: cast_nullable_to_non_nullable
-              as bool,
-      code: null == code
-          ? _self.code
-          : code // ignore: cast_nullable_to_non_nullable
-              as bool,
-      color: null == color
-          ? _self.color
-          : color // ignore: cast_nullable_to_non_nullable
-              as RichTextColor,
-    ));
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$AnnotationsImplCopyWith<_$AnnotationsImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+TextContent _$TextContentFromJson(Map<String, dynamic> json) {
+  return _TextContent.fromJson(json);
 }
 
 /// @nodoc
 mixin _$TextContent {
-  String get content;
-  TextLink? get link;
+  String get content => throw _privateConstructorUsedError;
+  TextLink? get link => throw _privateConstructorUsedError;
+
+  /// Serializes this TextContent to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of TextContent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
   $TextContentCopyWith<TextContent> get copyWith =>
-      _$TextContentCopyWithImpl<TextContent>(this as TextContent, _$identity);
-
-  /// Serializes this TextContent to a JSON map.
-  Map<String, dynamic> toJson();
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is TextContent &&
-            (identical(other.content, content) || other.content == content) &&
-            (identical(other.link, link) || other.link == link));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, content, link);
-
-  @override
-  String toString() {
-    return 'TextContent(content: $content, link: $link)';
-  }
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract mixin class $TextContentCopyWith<$Res> {
+abstract class $TextContentCopyWith<$Res> {
   factory $TextContentCopyWith(
-          TextContent value, $Res Function(TextContent) _then) =
-      _$TextContentCopyWithImpl;
+          TextContent value, $Res Function(TextContent) then) =
+      _$TextContentCopyWithImpl<$Res, TextContent>;
   @useResult
   $Res call({String content, TextLink? link});
 
@@ -470,11 +307,14 @@ abstract mixin class $TextContentCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$TextContentCopyWithImpl<$Res> implements $TextContentCopyWith<$Res> {
-  _$TextContentCopyWithImpl(this._self, this._then);
+class _$TextContentCopyWithImpl<$Res, $Val extends TextContent>
+    implements $TextContentCopyWith<$Res> {
+  _$TextContentCopyWithImpl(this._value, this._then);
 
-  final TextContent _self;
-  final $Res Function(TextContent) _then;
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
   /// Create a copy of TextContent
   /// with the given fields replaced by the non-null parameter values.
@@ -484,16 +324,16 @@ class _$TextContentCopyWithImpl<$Res> implements $TextContentCopyWith<$Res> {
     Object? content = null,
     Object? link = freezed,
   }) {
-    return _then(_self.copyWith(
+    return _then(_value.copyWith(
       content: null == content
-          ? _self.content
+          ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
               as String,
       link: freezed == link
-          ? _self.link
+          ? _value.link
           : link // ignore: cast_nullable_to_non_nullable
               as TextLink?,
-    ));
+    ) as $Val);
   }
 
   /// Create a copy of TextContent
@@ -501,205 +341,82 @@ class _$TextContentCopyWithImpl<$Res> implements $TextContentCopyWith<$Res> {
   @override
   @pragma('vm:prefer-inline')
   $TextLinkCopyWith<$Res>? get link {
-    if (_self.link == null) {
+    if (_value.link == null) {
       return null;
     }
 
-    return $TextLinkCopyWith<$Res>(_self.link!, (value) {
-      return _then(_self.copyWith(link: value));
+    return $TextLinkCopyWith<$Res>(_value.link!, (value) {
+      return _then(_value.copyWith(link: value) as $Val);
     });
   }
 }
 
-/// Adds pattern-matching-related methods to [TextContent].
-extension TextContentPatterns on TextContent {
-  /// A variant of `map` that fallback to returning `orElse`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
+/// @nodoc
+abstract class _$$TextContentImplCopyWith<$Res>
+    implements $TextContentCopyWith<$Res> {
+  factory _$$TextContentImplCopyWith(
+          _$TextContentImpl value, $Res Function(_$TextContentImpl) then) =
+      __$$TextContentImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String content, TextLink? link});
 
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_TextContent value)? $default, {
-    required TResult orElse(),
+  @override
+  $TextLinkCopyWith<$Res>? get link;
+}
+
+/// @nodoc
+class __$$TextContentImplCopyWithImpl<$Res>
+    extends _$TextContentCopyWithImpl<$Res, _$TextContentImpl>
+    implements _$$TextContentImplCopyWith<$Res> {
+  __$$TextContentImplCopyWithImpl(
+      _$TextContentImpl _value, $Res Function(_$TextContentImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of TextContent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? content = null,
+    Object? link = freezed,
   }) {
-    final _that = this;
-    switch (_that) {
-      case _TextContent() when $default != null:
-        return $default(_that);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// Callbacks receives the raw object, upcasted.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case final Subclass2 value:
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_TextContent value) $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _TextContent():
-        return $default(_that);
-      case _:
-        throw StateError('Unexpected subclass');
-    }
-  }
-
-  /// A variant of `map` that fallback to returning `null`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_TextContent value)? $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _TextContent() when $default != null:
-        return $default(_that);
-      case _:
-        return null;
-    }
-  }
-
-  /// A variant of `when` that fallback to an `orElse` callback.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String content, TextLink? link)? $default, {
-    required TResult orElse(),
-  }) {
-    final _that = this;
-    switch (_that) {
-      case _TextContent() when $default != null:
-        return $default(_that.content, _that.link);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// As opposed to `map`, this offers destructuring.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case Subclass2(:final field2):
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(String content, TextLink? link) $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _TextContent():
-        return $default(_that.content, _that.link);
-      case _:
-        throw StateError('Unexpected subclass');
-    }
-  }
-
-  /// A variant of `when` that fallback to returning `null`
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String content, TextLink? link)? $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _TextContent() when $default != null:
-        return $default(_that.content, _that.link);
-      case _:
-        return null;
-    }
+    return _then(_$TextContentImpl(
+      content: null == content
+          ? _value.content
+          : content // ignore: cast_nullable_to_non_nullable
+              as String,
+      link: freezed == link
+          ? _value.link
+          : link // ignore: cast_nullable_to_non_nullable
+              as TextLink?,
+    ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _TextContent implements TextContent {
-  const _TextContent({required this.content, this.link});
-  factory _TextContent.fromJson(Map<String, dynamic> json) =>
-      _$TextContentFromJson(json);
+class _$TextContentImpl implements _TextContent {
+  const _$TextContentImpl({required this.content, this.link});
+
+  factory _$TextContentImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TextContentImplFromJson(json);
 
   @override
   final String content;
   @override
   final TextLink? link;
 
-  /// Create a copy of TextContent
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$TextContentCopyWith<_TextContent> get copyWith =>
-      __$TextContentCopyWithImpl<_TextContent>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$TextContentToJson(
-      this,
-    );
+  String toString() {
+    return 'TextContent(content: $content, link: $link)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _TextContent &&
+            other is _$TextContentImpl &&
             (identical(other.content, content) || other.content == content) &&
             (identical(other.link, link) || other.link == link));
   }
@@ -708,114 +425,78 @@ class _TextContent implements TextContent {
   @override
   int get hashCode => Object.hash(runtimeType, content, link);
 
+  /// Create a copy of TextContent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  String toString() {
-    return 'TextContent(content: $content, link: $link)';
+  @pragma('vm:prefer-inline')
+  _$$TextContentImplCopyWith<_$TextContentImpl> get copyWith =>
+      __$$TextContentImplCopyWithImpl<_$TextContentImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$TextContentImplToJson(
+      this,
+    );
   }
 }
 
-/// @nodoc
-abstract mixin class _$TextContentCopyWith<$Res>
-    implements $TextContentCopyWith<$Res> {
-  factory _$TextContentCopyWith(
-          _TextContent value, $Res Function(_TextContent) _then) =
-      __$TextContentCopyWithImpl;
-  @override
-  @useResult
-  $Res call({String content, TextLink? link});
+abstract class _TextContent implements TextContent {
+  const factory _TextContent(
+      {required final String content,
+      final TextLink? link}) = _$TextContentImpl;
+
+  factory _TextContent.fromJson(Map<String, dynamic> json) =
+      _$TextContentImpl.fromJson;
 
   @override
-  $TextLinkCopyWith<$Res>? get link;
-}
-
-/// @nodoc
-class __$TextContentCopyWithImpl<$Res> implements _$TextContentCopyWith<$Res> {
-  __$TextContentCopyWithImpl(this._self, this._then);
-
-  final _TextContent _self;
-  final $Res Function(_TextContent) _then;
+  String get content;
+  @override
+  TextLink? get link;
 
   /// Create a copy of TextContent
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? content = null,
-    Object? link = freezed,
-  }) {
-    return _then(_TextContent(
-      content: null == content
-          ? _self.content
-          : content // ignore: cast_nullable_to_non_nullable
-              as String,
-      link: freezed == link
-          ? _self.link
-          : link // ignore: cast_nullable_to_non_nullable
-              as TextLink?,
-    ));
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$TextContentImplCopyWith<_$TextContentImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
 
-  /// Create a copy of TextContent
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $TextLinkCopyWith<$Res>? get link {
-    if (_self.link == null) {
-      return null;
-    }
-
-    return $TextLinkCopyWith<$Res>(_self.link!, (value) {
-      return _then(_self.copyWith(link: value));
-    });
-  }
+TextLink _$TextLinkFromJson(Map<String, dynamic> json) {
+  return _TextLink.fromJson(json);
 }
 
 /// @nodoc
 mixin _$TextLink {
-  String get url;
+  String get url => throw _privateConstructorUsedError;
+
+  /// Serializes this TextLink to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of TextLink
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
   $TextLinkCopyWith<TextLink> get copyWith =>
-      _$TextLinkCopyWithImpl<TextLink>(this as TextLink, _$identity);
-
-  /// Serializes this TextLink to a JSON map.
-  Map<String, dynamic> toJson();
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is TextLink &&
-            (identical(other.url, url) || other.url == url));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, url);
-
-  @override
-  String toString() {
-    return 'TextLink(url: $url)';
-  }
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract mixin class $TextLinkCopyWith<$Res> {
-  factory $TextLinkCopyWith(TextLink value, $Res Function(TextLink) _then) =
-      _$TextLinkCopyWithImpl;
+abstract class $TextLinkCopyWith<$Res> {
+  factory $TextLinkCopyWith(TextLink value, $Res Function(TextLink) then) =
+      _$TextLinkCopyWithImpl<$Res, TextLink>;
   @useResult
   $Res call({String url});
 }
 
 /// @nodoc
-class _$TextLinkCopyWithImpl<$Res> implements $TextLinkCopyWith<$Res> {
-  _$TextLinkCopyWithImpl(this._self, this._then);
+class _$TextLinkCopyWithImpl<$Res, $Val extends TextLink>
+    implements $TextLinkCopyWith<$Res> {
+  _$TextLinkCopyWithImpl(this._value, this._then);
 
-  final TextLink _self;
-  final $Res Function(TextLink) _then;
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
   /// Create a copy of TextLink
   /// with the given fields replaced by the non-null parameter values.
@@ -824,202 +505,71 @@ class _$TextLinkCopyWithImpl<$Res> implements $TextLinkCopyWith<$Res> {
   $Res call({
     Object? url = null,
   }) {
-    return _then(_self.copyWith(
+    return _then(_value.copyWith(
       url: null == url
-          ? _self.url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$TextLinkImplCopyWith<$Res>
+    implements $TextLinkCopyWith<$Res> {
+  factory _$$TextLinkImplCopyWith(
+          _$TextLinkImpl value, $Res Function(_$TextLinkImpl) then) =
+      __$$TextLinkImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String url});
+}
+
+/// @nodoc
+class __$$TextLinkImplCopyWithImpl<$Res>
+    extends _$TextLinkCopyWithImpl<$Res, _$TextLinkImpl>
+    implements _$$TextLinkImplCopyWith<$Res> {
+  __$$TextLinkImplCopyWithImpl(
+      _$TextLinkImpl _value, $Res Function(_$TextLinkImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of TextLink
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? url = null,
+  }) {
+    return _then(_$TextLinkImpl(
+      url: null == url
+          ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
 }
 
-/// Adds pattern-matching-related methods to [TextLink].
-extension TextLinkPatterns on TextLink {
-  /// A variant of `map` that fallback to returning `orElse`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_TextLink value)? $default, {
-    required TResult orElse(),
-  }) {
-    final _that = this;
-    switch (_that) {
-      case _TextLink() when $default != null:
-        return $default(_that);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// Callbacks receives the raw object, upcasted.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case final Subclass2 value:
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_TextLink value) $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _TextLink():
-        return $default(_that);
-      case _:
-        throw StateError('Unexpected subclass');
-    }
-  }
-
-  /// A variant of `map` that fallback to returning `null`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_TextLink value)? $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _TextLink() when $default != null:
-        return $default(_that);
-      case _:
-        return null;
-    }
-  }
-
-  /// A variant of `when` that fallback to an `orElse` callback.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String url)? $default, {
-    required TResult orElse(),
-  }) {
-    final _that = this;
-    switch (_that) {
-      case _TextLink() when $default != null:
-        return $default(_that.url);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// As opposed to `map`, this offers destructuring.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case Subclass2(:final field2):
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(String url) $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _TextLink():
-        return $default(_that.url);
-      case _:
-        throw StateError('Unexpected subclass');
-    }
-  }
-
-  /// A variant of `when` that fallback to returning `null`
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String url)? $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _TextLink() when $default != null:
-        return $default(_that.url);
-      case _:
-        return null;
-    }
-  }
-}
-
 /// @nodoc
 @JsonSerializable()
-class _TextLink implements TextLink {
-  const _TextLink({required this.url});
-  factory _TextLink.fromJson(Map<String, dynamic> json) =>
-      _$TextLinkFromJson(json);
+class _$TextLinkImpl implements _TextLink {
+  const _$TextLinkImpl({required this.url});
+
+  factory _$TextLinkImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TextLinkImplFromJson(json);
 
   @override
   final String url;
 
-  /// Create a copy of TextLink
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$TextLinkCopyWith<_TextLink> get copyWith =>
-      __$TextLinkCopyWithImpl<_TextLink>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$TextLinkToJson(
-      this,
-    );
+  String toString() {
+    return 'TextLink(url: $url)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _TextLink &&
+            other is _$TextLinkImpl &&
             (identical(other.url, url) || other.url == url));
   }
 
@@ -1027,95 +577,75 @@ class _TextLink implements TextLink {
   @override
   int get hashCode => Object.hash(runtimeType, url);
 
+  /// Create a copy of TextLink
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  String toString() {
-    return 'TextLink(url: $url)';
+  @pragma('vm:prefer-inline')
+  _$$TextLinkImplCopyWith<_$TextLinkImpl> get copyWith =>
+      __$$TextLinkImplCopyWithImpl<_$TextLinkImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$TextLinkImplToJson(
+      this,
+    );
   }
 }
 
-/// @nodoc
-abstract mixin class _$TextLinkCopyWith<$Res>
-    implements $TextLinkCopyWith<$Res> {
-  factory _$TextLinkCopyWith(_TextLink value, $Res Function(_TextLink) _then) =
-      __$TextLinkCopyWithImpl;
+abstract class _TextLink implements TextLink {
+  const factory _TextLink({required final String url}) = _$TextLinkImpl;
+
+  factory _TextLink.fromJson(Map<String, dynamic> json) =
+      _$TextLinkImpl.fromJson;
+
   @override
-  @useResult
-  $Res call({String url});
-}
-
-/// @nodoc
-class __$TextLinkCopyWithImpl<$Res> implements _$TextLinkCopyWith<$Res> {
-  __$TextLinkCopyWithImpl(this._self, this._then);
-
-  final _TextLink _self;
-  final $Res Function(_TextLink) _then;
+  String get url;
 
   /// Create a copy of TextLink
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? url = null,
-  }) {
-    return _then(_TextLink(
-      url: null == url
-          ? _self.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$TextLinkImplCopyWith<_$TextLinkImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+EquationContent _$EquationContentFromJson(Map<String, dynamic> json) {
+  return _EquationContent.fromJson(json);
 }
 
 /// @nodoc
 mixin _$EquationContent {
-  String get expression;
+  String get expression => throw _privateConstructorUsedError;
+
+  /// Serializes this EquationContent to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of EquationContent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
   $EquationContentCopyWith<EquationContent> get copyWith =>
-      _$EquationContentCopyWithImpl<EquationContent>(
-          this as EquationContent, _$identity);
-
-  /// Serializes this EquationContent to a JSON map.
-  Map<String, dynamic> toJson();
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is EquationContent &&
-            (identical(other.expression, expression) ||
-                other.expression == expression));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, expression);
-
-  @override
-  String toString() {
-    return 'EquationContent(expression: $expression)';
-  }
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract mixin class $EquationContentCopyWith<$Res> {
+abstract class $EquationContentCopyWith<$Res> {
   factory $EquationContentCopyWith(
-          EquationContent value, $Res Function(EquationContent) _then) =
-      _$EquationContentCopyWithImpl;
+          EquationContent value, $Res Function(EquationContent) then) =
+      _$EquationContentCopyWithImpl<$Res, EquationContent>;
   @useResult
   $Res call({String expression});
 }
 
 /// @nodoc
-class _$EquationContentCopyWithImpl<$Res>
+class _$EquationContentCopyWithImpl<$Res, $Val extends EquationContent>
     implements $EquationContentCopyWith<$Res> {
-  _$EquationContentCopyWithImpl(this._self, this._then);
+  _$EquationContentCopyWithImpl(this._value, this._then);
 
-  final EquationContent _self;
-  final $Res Function(EquationContent) _then;
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
   /// Create a copy of EquationContent
   /// with the given fields replaced by the non-null parameter values.
@@ -1124,202 +654,71 @@ class _$EquationContentCopyWithImpl<$Res>
   $Res call({
     Object? expression = null,
   }) {
-    return _then(_self.copyWith(
+    return _then(_value.copyWith(
       expression: null == expression
-          ? _self.expression
+          ? _value.expression
           : expression // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
-/// Adds pattern-matching-related methods to [EquationContent].
-extension EquationContentPatterns on EquationContent {
-  /// A variant of `map` that fallback to returning `orElse`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
+/// @nodoc
+abstract class _$$EquationContentImplCopyWith<$Res>
+    implements $EquationContentCopyWith<$Res> {
+  factory _$$EquationContentImplCopyWith(_$EquationContentImpl value,
+          $Res Function(_$EquationContentImpl) then) =
+      __$$EquationContentImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String expression});
+}
 
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_EquationContent value)? $default, {
-    required TResult orElse(),
+/// @nodoc
+class __$$EquationContentImplCopyWithImpl<$Res>
+    extends _$EquationContentCopyWithImpl<$Res, _$EquationContentImpl>
+    implements _$$EquationContentImplCopyWith<$Res> {
+  __$$EquationContentImplCopyWithImpl(
+      _$EquationContentImpl _value, $Res Function(_$EquationContentImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of EquationContent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? expression = null,
   }) {
-    final _that = this;
-    switch (_that) {
-      case _EquationContent() when $default != null:
-        return $default(_that);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// Callbacks receives the raw object, upcasted.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case final Subclass2 value:
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_EquationContent value) $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _EquationContent():
-        return $default(_that);
-      case _:
-        throw StateError('Unexpected subclass');
-    }
-  }
-
-  /// A variant of `map` that fallback to returning `null`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_EquationContent value)? $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _EquationContent() when $default != null:
-        return $default(_that);
-      case _:
-        return null;
-    }
-  }
-
-  /// A variant of `when` that fallback to an `orElse` callback.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String expression)? $default, {
-    required TResult orElse(),
-  }) {
-    final _that = this;
-    switch (_that) {
-      case _EquationContent() when $default != null:
-        return $default(_that.expression);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// As opposed to `map`, this offers destructuring.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case Subclass2(:final field2):
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(String expression) $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _EquationContent():
-        return $default(_that.expression);
-      case _:
-        throw StateError('Unexpected subclass');
-    }
-  }
-
-  /// A variant of `when` that fallback to returning `null`
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String expression)? $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _EquationContent() when $default != null:
-        return $default(_that.expression);
-      case _:
-        return null;
-    }
+    return _then(_$EquationContentImpl(
+      expression: null == expression
+          ? _value.expression
+          : expression // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _EquationContent implements EquationContent {
-  const _EquationContent({required this.expression});
-  factory _EquationContent.fromJson(Map<String, dynamic> json) =>
-      _$EquationContentFromJson(json);
+class _$EquationContentImpl implements _EquationContent {
+  const _$EquationContentImpl({required this.expression});
+
+  factory _$EquationContentImpl.fromJson(Map<String, dynamic> json) =>
+      _$$EquationContentImplFromJson(json);
 
   @override
   final String expression;
 
-  /// Create a copy of EquationContent
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$EquationContentCopyWith<_EquationContent> get copyWith =>
-      __$EquationContentCopyWithImpl<_EquationContent>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$EquationContentToJson(
-      this,
-    );
+  String toString() {
+    return 'EquationContent(expression: $expression)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _EquationContent &&
+            other is _$EquationContentImpl &&
             (identical(other.expression, expression) ||
                 other.expression == expression));
   }
@@ -1328,83 +727,99 @@ class _EquationContent implements EquationContent {
   @override
   int get hashCode => Object.hash(runtimeType, expression);
 
+  /// Create a copy of EquationContent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  String toString() {
-    return 'EquationContent(expression: $expression)';
+  @pragma('vm:prefer-inline')
+  _$$EquationContentImplCopyWith<_$EquationContentImpl> get copyWith =>
+      __$$EquationContentImplCopyWithImpl<_$EquationContentImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$EquationContentImplToJson(
+      this,
+    );
   }
 }
 
-/// @nodoc
-abstract mixin class _$EquationContentCopyWith<$Res>
-    implements $EquationContentCopyWith<$Res> {
-  factory _$EquationContentCopyWith(
-          _EquationContent value, $Res Function(_EquationContent) _then) =
-      __$EquationContentCopyWithImpl;
+abstract class _EquationContent implements EquationContent {
+  const factory _EquationContent({required final String expression}) =
+      _$EquationContentImpl;
+
+  factory _EquationContent.fromJson(Map<String, dynamic> json) =
+      _$EquationContentImpl.fromJson;
+
   @override
-  @useResult
-  $Res call({String expression});
-}
-
-/// @nodoc
-class __$EquationContentCopyWithImpl<$Res>
-    implements _$EquationContentCopyWith<$Res> {
-  __$EquationContentCopyWithImpl(this._self, this._then);
-
-  final _EquationContent _self;
-  final $Res Function(_EquationContent) _then;
+  String get expression;
 
   /// Create a copy of EquationContent
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? expression = null,
-  }) {
-    return _then(_EquationContent(
-      expression: null == expression
-          ? _self.expression
-          : expression // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$EquationContentImplCopyWith<_$EquationContentImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 mixin _$MentionContent {
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is MentionContent);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  String toString() {
-    return 'MentionContent()';
-  }
-}
-
-/// @nodoc
-class $MentionContentCopyWith<$Res> {
-  $MentionContentCopyWith(MentionContent _, $Res Function(MentionContent) __);
-}
-
-/// Adds pattern-matching-related methods to [MentionContent].
-extension MentionContentPatterns on MentionContent {
-  /// A variant of `map` that fallback to returning `orElse`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String id) database,
+    required TResult Function(DateTime start, DateTime? end) date,
+    required TResult Function(String url) linkPreview,
+    required TResult Function(String id) page,
+    required TResult Function(String value) templateMentionDate,
+    required TResult Function(String value) templateMentionUser,
+    required TResult Function(String id) user,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String id)? database,
+    TResult? Function(DateTime start, DateTime? end)? date,
+    TResult? Function(String url)? linkPreview,
+    TResult? Function(String id)? page,
+    TResult? Function(String value)? templateMentionDate,
+    TResult? Function(String value)? templateMentionUser,
+    TResult? Function(String id)? user,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String id)? database,
+    TResult Function(DateTime start, DateTime? end)? date,
+    TResult Function(String url)? linkPreview,
+    TResult Function(String id)? page,
+    TResult Function(String value)? templateMentionDate,
+    TResult Function(String value)? templateMentionUser,
+    TResult Function(String id)? user,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DatabaseMention value) database,
+    required TResult Function(DateMention value) date,
+    required TResult Function(LinkPreviewMention value) linkPreview,
+    required TResult Function(PageMention value) page,
+    required TResult Function(TemplateMentionDate value) templateMentionDate,
+    required TResult Function(TemplateMentionUser value) templateMentionUser,
+    required TResult Function(UserMention value) user,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DatabaseMention value)? database,
+    TResult? Function(DateMention value)? date,
+    TResult? Function(LinkPreviewMention value)? linkPreview,
+    TResult? Function(PageMention value)? page,
+    TResult? Function(TemplateMentionDate value)? templateMentionDate,
+    TResult? Function(TemplateMentionUser value)? templateMentionUser,
+    TResult? Function(UserMention value)? user,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(DatabaseMention value)? database,
@@ -1415,127 +830,126 @@ extension MentionContentPatterns on MentionContent {
     TResult Function(TemplateMentionUser value)? templateMentionUser,
     TResult Function(UserMention value)? user,
     required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $MentionContentCopyWith<$Res> {
+  factory $MentionContentCopyWith(
+          MentionContent value, $Res Function(MentionContent) then) =
+      _$MentionContentCopyWithImpl<$Res, MentionContent>;
+}
+
+/// @nodoc
+class _$MentionContentCopyWithImpl<$Res, $Val extends MentionContent>
+    implements $MentionContentCopyWith<$Res> {
+  _$MentionContentCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of MentionContent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+abstract class _$$DatabaseMentionImplCopyWith<$Res> {
+  factory _$$DatabaseMentionImplCopyWith(_$DatabaseMentionImpl value,
+          $Res Function(_$DatabaseMentionImpl) then) =
+      __$$DatabaseMentionImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String id});
+}
+
+/// @nodoc
+class __$$DatabaseMentionImplCopyWithImpl<$Res>
+    extends _$MentionContentCopyWithImpl<$Res, _$DatabaseMentionImpl>
+    implements _$$DatabaseMentionImplCopyWith<$Res> {
+  __$$DatabaseMentionImplCopyWithImpl(
+      _$DatabaseMentionImpl _value, $Res Function(_$DatabaseMentionImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of MentionContent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
   }) {
-    final _that = this;
-    switch (_that) {
-      case DatabaseMention() when database != null:
-        return database(_that);
-      case DateMention() when date != null:
-        return date(_that);
-      case LinkPreviewMention() when linkPreview != null:
-        return linkPreview(_that);
-      case PageMention() when page != null:
-        return page(_that);
-      case TemplateMentionDate() when templateMentionDate != null:
-        return templateMentionDate(_that);
-      case TemplateMentionUser() when templateMentionUser != null:
-        return templateMentionUser(_that);
-      case UserMention() when user != null:
-        return user(_that);
-      case _:
-        return orElse();
-    }
+    return _then(_$DatabaseMentionImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DatabaseMentionImpl extends DatabaseMention {
+  const _$DatabaseMentionImpl({required this.id}) : super._();
+
+  @override
+  final String id;
+
+  @override
+  String toString() {
+    return 'MentionContent.database(id: $id)';
   }
 
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// Callbacks receives the raw object, upcasted.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case final Subclass2 value:
-  ///     return ...;
-  /// }
-  /// ```
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DatabaseMentionImpl &&
+            (identical(other.id, id) || other.id == id));
+  }
 
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  /// Create a copy of MentionContent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DatabaseMentionImplCopyWith<_$DatabaseMentionImpl> get copyWith =>
+      __$$DatabaseMentionImplCopyWithImpl<_$DatabaseMentionImpl>(
+          this, _$identity);
+
+  @override
   @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(DatabaseMention value) database,
-    required TResult Function(DateMention value) date,
-    required TResult Function(LinkPreviewMention value) linkPreview,
-    required TResult Function(PageMention value) page,
-    required TResult Function(TemplateMentionDate value) templateMentionDate,
-    required TResult Function(TemplateMentionUser value) templateMentionUser,
-    required TResult Function(UserMention value) user,
+  TResult when<TResult extends Object?>({
+    required TResult Function(String id) database,
+    required TResult Function(DateTime start, DateTime? end) date,
+    required TResult Function(String url) linkPreview,
+    required TResult Function(String id) page,
+    required TResult Function(String value) templateMentionDate,
+    required TResult Function(String value) templateMentionUser,
+    required TResult Function(String id) user,
   }) {
-    final _that = this;
-    switch (_that) {
-      case DatabaseMention():
-        return database(_that);
-      case DateMention():
-        return date(_that);
-      case LinkPreviewMention():
-        return linkPreview(_that);
-      case PageMention():
-        return page(_that);
-      case TemplateMentionDate():
-        return templateMentionDate(_that);
-      case TemplateMentionUser():
-        return templateMentionUser(_that);
-      case UserMention():
-        return user(_that);
-      case _:
-        throw StateError('Unexpected subclass');
-    }
+    return database(id);
   }
 
-  /// A variant of `map` that fallback to returning `null`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
+  @override
   @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(DatabaseMention value)? database,
-    TResult? Function(DateMention value)? date,
-    TResult? Function(LinkPreviewMention value)? linkPreview,
-    TResult? Function(PageMention value)? page,
-    TResult? Function(TemplateMentionDate value)? templateMentionDate,
-    TResult? Function(TemplateMentionUser value)? templateMentionUser,
-    TResult? Function(UserMention value)? user,
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String id)? database,
+    TResult? Function(DateTime start, DateTime? end)? date,
+    TResult? Function(String url)? linkPreview,
+    TResult? Function(String id)? page,
+    TResult? Function(String value)? templateMentionDate,
+    TResult? Function(String value)? templateMentionUser,
+    TResult? Function(String id)? user,
   }) {
-    final _that = this;
-    switch (_that) {
-      case DatabaseMention() when database != null:
-        return database(_that);
-      case DateMention() when date != null:
-        return date(_that);
-      case LinkPreviewMention() when linkPreview != null:
-        return linkPreview(_that);
-      case PageMention() when page != null:
-        return page(_that);
-      case TemplateMentionDate() when templateMentionDate != null:
-        return templateMentionDate(_that);
-      case TemplateMentionUser() when templateMentionUser != null:
-        return templateMentionUser(_that);
-      case UserMention() when user != null:
-        return user(_that);
-      case _:
-        return null;
-    }
+    return database?.call(id);
   }
 
-  /// A variant of `when` that fallback to an `orElse` callback.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
+  @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String id)? database,
@@ -1547,40 +961,147 @@ extension MentionContentPatterns on MentionContent {
     TResult Function(String id)? user,
     required TResult orElse(),
   }) {
-    final _that = this;
-    switch (_that) {
-      case DatabaseMention() when database != null:
-        return database(_that.id);
-      case DateMention() when date != null:
-        return date(_that.start, _that.end);
-      case LinkPreviewMention() when linkPreview != null:
-        return linkPreview(_that.url);
-      case PageMention() when page != null:
-        return page(_that.id);
-      case TemplateMentionDate() when templateMentionDate != null:
-        return templateMentionDate(_that.value);
-      case TemplateMentionUser() when templateMentionUser != null:
-        return templateMentionUser(_that.value);
-      case UserMention() when user != null:
-        return user(_that.id);
-      case _:
-        return orElse();
+    if (database != null) {
+      return database(id);
     }
+    return orElse();
   }
 
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// As opposed to `map`, this offers destructuring.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case Subclass2(:final field2):
-  ///     return ...;
-  /// }
-  /// ```
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DatabaseMention value) database,
+    required TResult Function(DateMention value) date,
+    required TResult Function(LinkPreviewMention value) linkPreview,
+    required TResult Function(PageMention value) page,
+    required TResult Function(TemplateMentionDate value) templateMentionDate,
+    required TResult Function(TemplateMentionUser value) templateMentionUser,
+    required TResult Function(UserMention value) user,
+  }) {
+    return database(this);
+  }
 
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DatabaseMention value)? database,
+    TResult? Function(DateMention value)? date,
+    TResult? Function(LinkPreviewMention value)? linkPreview,
+    TResult? Function(PageMention value)? page,
+    TResult? Function(TemplateMentionDate value)? templateMentionDate,
+    TResult? Function(TemplateMentionUser value)? templateMentionUser,
+    TResult? Function(UserMention value)? user,
+  }) {
+    return database?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DatabaseMention value)? database,
+    TResult Function(DateMention value)? date,
+    TResult Function(LinkPreviewMention value)? linkPreview,
+    TResult Function(PageMention value)? page,
+    TResult Function(TemplateMentionDate value)? templateMentionDate,
+    TResult Function(TemplateMentionUser value)? templateMentionUser,
+    TResult Function(UserMention value)? user,
+    required TResult orElse(),
+  }) {
+    if (database != null) {
+      return database(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DatabaseMention extends MentionContent {
+  const factory DatabaseMention({required final String id}) =
+      _$DatabaseMentionImpl;
+  const DatabaseMention._() : super._();
+
+  String get id;
+
+  /// Create a copy of MentionContent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DatabaseMentionImplCopyWith<_$DatabaseMentionImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DateMentionImplCopyWith<$Res> {
+  factory _$$DateMentionImplCopyWith(
+          _$DateMentionImpl value, $Res Function(_$DateMentionImpl) then) =
+      __$$DateMentionImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({DateTime start, DateTime? end});
+}
+
+/// @nodoc
+class __$$DateMentionImplCopyWithImpl<$Res>
+    extends _$MentionContentCopyWithImpl<$Res, _$DateMentionImpl>
+    implements _$$DateMentionImplCopyWith<$Res> {
+  __$$DateMentionImplCopyWithImpl(
+      _$DateMentionImpl _value, $Res Function(_$DateMentionImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of MentionContent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? start = null,
+    Object? end = freezed,
+  }) {
+    return _then(_$DateMentionImpl(
+      start: null == start
+          ? _value.start
+          : start // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      end: freezed == end
+          ? _value.end
+          : end // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DateMentionImpl extends DateMention {
+  const _$DateMentionImpl({required this.start, this.end}) : super._();
+
+  @override
+  final DateTime start;
+  @override
+  final DateTime? end;
+
+  @override
+  String toString() {
+    return 'MentionContent.date(start: $start, end: $end)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DateMentionImpl &&
+            (identical(other.start, start) || other.start == start) &&
+            (identical(other.end, end) || other.end == end));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, start, end);
+
+  /// Create a copy of MentionContent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DateMentionImplCopyWith<_$DateMentionImpl> get copyWith =>
+      __$$DateMentionImplCopyWithImpl<_$DateMentionImpl>(this, _$identity);
+
+  @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String id) database,
@@ -1591,39 +1112,10 @@ extension MentionContentPatterns on MentionContent {
     required TResult Function(String value) templateMentionUser,
     required TResult Function(String id) user,
   }) {
-    final _that = this;
-    switch (_that) {
-      case DatabaseMention():
-        return database(_that.id);
-      case DateMention():
-        return date(_that.start, _that.end);
-      case LinkPreviewMention():
-        return linkPreview(_that.url);
-      case PageMention():
-        return page(_that.id);
-      case TemplateMentionDate():
-        return templateMentionDate(_that.value);
-      case TemplateMentionUser():
-        return templateMentionUser(_that.value);
-      case UserMention():
-        return user(_that.id);
-      case _:
-        throw StateError('Unexpected subclass');
-    }
+    return date(start, end);
   }
 
-  /// A variant of `when` that fallback to returning `null`
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
+  @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String id)? database,
@@ -1634,220 +1126,116 @@ extension MentionContentPatterns on MentionContent {
     TResult? Function(String value)? templateMentionUser,
     TResult? Function(String id)? user,
   }) {
-    final _that = this;
-    switch (_that) {
-      case DatabaseMention() when database != null:
-        return database(_that.id);
-      case DateMention() when date != null:
-        return date(_that.start, _that.end);
-      case LinkPreviewMention() when linkPreview != null:
-        return linkPreview(_that.url);
-      case PageMention() when page != null:
-        return page(_that.id);
-      case TemplateMentionDate() when templateMentionDate != null:
-        return templateMentionDate(_that.value);
-      case TemplateMentionUser() when templateMentionUser != null:
-        return templateMentionUser(_that.value);
-      case UserMention() when user != null:
-        return user(_that.id);
-      case _:
-        return null;
+    return date?.call(start, end);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String id)? database,
+    TResult Function(DateTime start, DateTime? end)? date,
+    TResult Function(String url)? linkPreview,
+    TResult Function(String id)? page,
+    TResult Function(String value)? templateMentionDate,
+    TResult Function(String value)? templateMentionUser,
+    TResult Function(String id)? user,
+    required TResult orElse(),
+  }) {
+    if (date != null) {
+      return date(start, end);
     }
-  }
-}
-
-/// @nodoc
-
-class DatabaseMention extends MentionContent {
-  const DatabaseMention({required this.id}) : super._();
-
-  final String id;
-
-  /// Create a copy of MentionContent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $DatabaseMentionCopyWith<DatabaseMention> get copyWith =>
-      _$DatabaseMentionCopyWithImpl<DatabaseMention>(this, _$identity);
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is DatabaseMention &&
-            (identical(other.id, id) || other.id == id));
+    return orElse();
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id);
-
-  @override
-  String toString() {
-    return 'MentionContent.database(id: $id)';
-  }
-}
-
-/// @nodoc
-abstract mixin class $DatabaseMentionCopyWith<$Res>
-    implements $MentionContentCopyWith<$Res> {
-  factory $DatabaseMentionCopyWith(
-          DatabaseMention value, $Res Function(DatabaseMention) _then) =
-      _$DatabaseMentionCopyWithImpl;
-  @useResult
-  $Res call({String id});
-}
-
-/// @nodoc
-class _$DatabaseMentionCopyWithImpl<$Res>
-    implements $DatabaseMentionCopyWith<$Res> {
-  _$DatabaseMentionCopyWithImpl(this._self, this._then);
-
-  final DatabaseMention _self;
-  final $Res Function(DatabaseMention) _then;
-
-  /// Create a copy of MentionContent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? id = null,
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DatabaseMention value) database,
+    required TResult Function(DateMention value) date,
+    required TResult Function(LinkPreviewMention value) linkPreview,
+    required TResult Function(PageMention value) page,
+    required TResult Function(TemplateMentionDate value) templateMentionDate,
+    required TResult Function(TemplateMentionUser value) templateMentionUser,
+    required TResult Function(UserMention value) user,
   }) {
-    return _then(DatabaseMention(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class DateMention extends MentionContent {
-  const DateMention({required this.start, this.end}) : super._();
-
-  final DateTime start;
-  final DateTime? end;
-
-  /// Create a copy of MentionContent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $DateMentionCopyWith<DateMention> get copyWith =>
-      _$DateMentionCopyWithImpl<DateMention>(this, _$identity);
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is DateMention &&
-            (identical(other.start, start) || other.start == start) &&
-            (identical(other.end, end) || other.end == end));
+    return date(this);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, start, end);
-
-  @override
-  String toString() {
-    return 'MentionContent.date(start: $start, end: $end)';
-  }
-}
-
-/// @nodoc
-abstract mixin class $DateMentionCopyWith<$Res>
-    implements $MentionContentCopyWith<$Res> {
-  factory $DateMentionCopyWith(
-          DateMention value, $Res Function(DateMention) _then) =
-      _$DateMentionCopyWithImpl;
-  @useResult
-  $Res call({DateTime start, DateTime? end});
-}
-
-/// @nodoc
-class _$DateMentionCopyWithImpl<$Res> implements $DateMentionCopyWith<$Res> {
-  _$DateMentionCopyWithImpl(this._self, this._then);
-
-  final DateMention _self;
-  final $Res Function(DateMention) _then;
-
-  /// Create a copy of MentionContent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? start = null,
-    Object? end = freezed,
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DatabaseMention value)? database,
+    TResult? Function(DateMention value)? date,
+    TResult? Function(LinkPreviewMention value)? linkPreview,
+    TResult? Function(PageMention value)? page,
+    TResult? Function(TemplateMentionDate value)? templateMentionDate,
+    TResult? Function(TemplateMentionUser value)? templateMentionUser,
+    TResult? Function(UserMention value)? user,
   }) {
-    return _then(DateMention(
-      start: null == start
-          ? _self.start
-          : start // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      end: freezed == end
-          ? _self.end
-          : end // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-    ));
+    return date?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DatabaseMention value)? database,
+    TResult Function(DateMention value)? date,
+    TResult Function(LinkPreviewMention value)? linkPreview,
+    TResult Function(PageMention value)? page,
+    TResult Function(TemplateMentionDate value)? templateMentionDate,
+    TResult Function(TemplateMentionUser value)? templateMentionUser,
+    TResult Function(UserMention value)? user,
+    required TResult orElse(),
+  }) {
+    if (date != null) {
+      return date(this);
+    }
+    return orElse();
   }
 }
 
-/// @nodoc
+abstract class DateMention extends MentionContent {
+  const factory DateMention(
+      {required final DateTime start, final DateTime? end}) = _$DateMentionImpl;
+  const DateMention._() : super._();
 
-class LinkPreviewMention extends MentionContent {
-  const LinkPreviewMention({required this.url}) : super._();
-
-  final String url;
+  DateTime get start;
+  DateTime? get end;
 
   /// Create a copy of MentionContent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $LinkPreviewMentionCopyWith<LinkPreviewMention> get copyWith =>
-      _$LinkPreviewMentionCopyWithImpl<LinkPreviewMention>(this, _$identity);
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is LinkPreviewMention &&
-            (identical(other.url, url) || other.url == url));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, url);
-
-  @override
-  String toString() {
-    return 'MentionContent.linkPreview(url: $url)';
-  }
+  _$$DateMentionImplCopyWith<_$DateMentionImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract mixin class $LinkPreviewMentionCopyWith<$Res>
-    implements $MentionContentCopyWith<$Res> {
-  factory $LinkPreviewMentionCopyWith(
-          LinkPreviewMention value, $Res Function(LinkPreviewMention) _then) =
-      _$LinkPreviewMentionCopyWithImpl;
+abstract class _$$LinkPreviewMentionImplCopyWith<$Res> {
+  factory _$$LinkPreviewMentionImplCopyWith(_$LinkPreviewMentionImpl value,
+          $Res Function(_$LinkPreviewMentionImpl) then) =
+      __$$LinkPreviewMentionImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String url});
 }
 
 /// @nodoc
-class _$LinkPreviewMentionCopyWithImpl<$Res>
-    implements $LinkPreviewMentionCopyWith<$Res> {
-  _$LinkPreviewMentionCopyWithImpl(this._self, this._then);
-
-  final LinkPreviewMention _self;
-  final $Res Function(LinkPreviewMention) _then;
+class __$$LinkPreviewMentionImplCopyWithImpl<$Res>
+    extends _$MentionContentCopyWithImpl<$Res, _$LinkPreviewMentionImpl>
+    implements _$$LinkPreviewMentionImplCopyWith<$Res> {
+  __$$LinkPreviewMentionImplCopyWithImpl(_$LinkPreviewMentionImpl _value,
+      $Res Function(_$LinkPreviewMentionImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of MentionContent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  @override
   $Res call({
     Object? url = null,
   }) {
-    return _then(LinkPreviewMention(
+    return _then(_$LinkPreviewMentionImpl(
       url: null == url
-          ? _self.url
+          ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String,
     ));
@@ -1856,252 +1244,688 @@ class _$LinkPreviewMentionCopyWithImpl<$Res>
 
 /// @nodoc
 
-class PageMention extends MentionContent {
-  const PageMention({required this.id}) : super._();
+class _$LinkPreviewMentionImpl extends LinkPreviewMention {
+  const _$LinkPreviewMentionImpl({required this.url}) : super._();
 
-  final String id;
+  @override
+  final String url;
 
-  /// Create a copy of MentionContent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $PageMentionCopyWith<PageMention> get copyWith =>
-      _$PageMentionCopyWithImpl<PageMention>(this, _$identity);
+  @override
+  String toString() {
+    return 'MentionContent.linkPreview(url: $url)';
+  }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is PageMention &&
-            (identical(other.id, id) || other.id == id));
+            other is _$LinkPreviewMentionImpl &&
+            (identical(other.url, url) || other.url == url));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id);
+  int get hashCode => Object.hash(runtimeType, url);
+
+  /// Create a copy of MentionContent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LinkPreviewMentionImplCopyWith<_$LinkPreviewMentionImpl> get copyWith =>
+      __$$LinkPreviewMentionImplCopyWithImpl<_$LinkPreviewMentionImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String id) database,
+    required TResult Function(DateTime start, DateTime? end) date,
+    required TResult Function(String url) linkPreview,
+    required TResult Function(String id) page,
+    required TResult Function(String value) templateMentionDate,
+    required TResult Function(String value) templateMentionUser,
+    required TResult Function(String id) user,
+  }) {
+    return linkPreview(url);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String id)? database,
+    TResult? Function(DateTime start, DateTime? end)? date,
+    TResult? Function(String url)? linkPreview,
+    TResult? Function(String id)? page,
+    TResult? Function(String value)? templateMentionDate,
+    TResult? Function(String value)? templateMentionUser,
+    TResult? Function(String id)? user,
+  }) {
+    return linkPreview?.call(url);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String id)? database,
+    TResult Function(DateTime start, DateTime? end)? date,
+    TResult Function(String url)? linkPreview,
+    TResult Function(String id)? page,
+    TResult Function(String value)? templateMentionDate,
+    TResult Function(String value)? templateMentionUser,
+    TResult Function(String id)? user,
+    required TResult orElse(),
+  }) {
+    if (linkPreview != null) {
+      return linkPreview(url);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DatabaseMention value) database,
+    required TResult Function(DateMention value) date,
+    required TResult Function(LinkPreviewMention value) linkPreview,
+    required TResult Function(PageMention value) page,
+    required TResult Function(TemplateMentionDate value) templateMentionDate,
+    required TResult Function(TemplateMentionUser value) templateMentionUser,
+    required TResult Function(UserMention value) user,
+  }) {
+    return linkPreview(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DatabaseMention value)? database,
+    TResult? Function(DateMention value)? date,
+    TResult? Function(LinkPreviewMention value)? linkPreview,
+    TResult? Function(PageMention value)? page,
+    TResult? Function(TemplateMentionDate value)? templateMentionDate,
+    TResult? Function(TemplateMentionUser value)? templateMentionUser,
+    TResult? Function(UserMention value)? user,
+  }) {
+    return linkPreview?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DatabaseMention value)? database,
+    TResult Function(DateMention value)? date,
+    TResult Function(LinkPreviewMention value)? linkPreview,
+    TResult Function(PageMention value)? page,
+    TResult Function(TemplateMentionDate value)? templateMentionDate,
+    TResult Function(TemplateMentionUser value)? templateMentionUser,
+    TResult Function(UserMention value)? user,
+    required TResult orElse(),
+  }) {
+    if (linkPreview != null) {
+      return linkPreview(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LinkPreviewMention extends MentionContent {
+  const factory LinkPreviewMention({required final String url}) =
+      _$LinkPreviewMentionImpl;
+  const LinkPreviewMention._() : super._();
+
+  String get url;
+
+  /// Create a copy of MentionContent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$LinkPreviewMentionImplCopyWith<_$LinkPreviewMentionImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$PageMentionImplCopyWith<$Res> {
+  factory _$$PageMentionImplCopyWith(
+          _$PageMentionImpl value, $Res Function(_$PageMentionImpl) then) =
+      __$$PageMentionImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String id});
+}
+
+/// @nodoc
+class __$$PageMentionImplCopyWithImpl<$Res>
+    extends _$MentionContentCopyWithImpl<$Res, _$PageMentionImpl>
+    implements _$$PageMentionImplCopyWith<$Res> {
+  __$$PageMentionImplCopyWithImpl(
+      _$PageMentionImpl _value, $Res Function(_$PageMentionImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of MentionContent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$PageMentionImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$PageMentionImpl extends PageMention {
+  const _$PageMentionImpl({required this.id}) : super._();
+
+  @override
+  final String id;
 
   @override
   String toString() {
     return 'MentionContent.page(id: $id)';
   }
-}
-
-/// @nodoc
-abstract mixin class $PageMentionCopyWith<$Res>
-    implements $MentionContentCopyWith<$Res> {
-  factory $PageMentionCopyWith(
-          PageMention value, $Res Function(PageMention) _then) =
-      _$PageMentionCopyWithImpl;
-  @useResult
-  $Res call({String id});
-}
-
-/// @nodoc
-class _$PageMentionCopyWithImpl<$Res> implements $PageMentionCopyWith<$Res> {
-  _$PageMentionCopyWithImpl(this._self, this._then);
-
-  final PageMention _self;
-  final $Res Function(PageMention) _then;
-
-  /// Create a copy of MentionContent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? id = null,
-  }) {
-    return _then(PageMention(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class TemplateMentionDate extends MentionContent {
-  const TemplateMentionDate({required this.value}) : super._();
-
-  final String value;
-
-  /// Create a copy of MentionContent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $TemplateMentionDateCopyWith<TemplateMentionDate> get copyWith =>
-      _$TemplateMentionDateCopyWithImpl<TemplateMentionDate>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is TemplateMentionDate &&
-            (identical(other.value, value) || other.value == value));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, value);
-
-  @override
-  String toString() {
-    return 'MentionContent.templateMentionDate(value: $value)';
-  }
-}
-
-/// @nodoc
-abstract mixin class $TemplateMentionDateCopyWith<$Res>
-    implements $MentionContentCopyWith<$Res> {
-  factory $TemplateMentionDateCopyWith(
-          TemplateMentionDate value, $Res Function(TemplateMentionDate) _then) =
-      _$TemplateMentionDateCopyWithImpl;
-  @useResult
-  $Res call({String value});
-}
-
-/// @nodoc
-class _$TemplateMentionDateCopyWithImpl<$Res>
-    implements $TemplateMentionDateCopyWith<$Res> {
-  _$TemplateMentionDateCopyWithImpl(this._self, this._then);
-
-  final TemplateMentionDate _self;
-  final $Res Function(TemplateMentionDate) _then;
-
-  /// Create a copy of MentionContent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? value = null,
-  }) {
-    return _then(TemplateMentionDate(
-      value: null == value
-          ? _self.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class TemplateMentionUser extends MentionContent {
-  const TemplateMentionUser({required this.value}) : super._();
-
-  final String value;
-
-  /// Create a copy of MentionContent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $TemplateMentionUserCopyWith<TemplateMentionUser> get copyWith =>
-      _$TemplateMentionUserCopyWithImpl<TemplateMentionUser>(this, _$identity);
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is TemplateMentionUser &&
-            (identical(other.value, value) || other.value == value));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, value);
-
-  @override
-  String toString() {
-    return 'MentionContent.templateMentionUser(value: $value)';
-  }
-}
-
-/// @nodoc
-abstract mixin class $TemplateMentionUserCopyWith<$Res>
-    implements $MentionContentCopyWith<$Res> {
-  factory $TemplateMentionUserCopyWith(
-          TemplateMentionUser value, $Res Function(TemplateMentionUser) _then) =
-      _$TemplateMentionUserCopyWithImpl;
-  @useResult
-  $Res call({String value});
-}
-
-/// @nodoc
-class _$TemplateMentionUserCopyWithImpl<$Res>
-    implements $TemplateMentionUserCopyWith<$Res> {
-  _$TemplateMentionUserCopyWithImpl(this._self, this._then);
-
-  final TemplateMentionUser _self;
-  final $Res Function(TemplateMentionUser) _then;
-
-  /// Create a copy of MentionContent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? value = null,
-  }) {
-    return _then(TemplateMentionUser(
-      value: null == value
-          ? _self.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class UserMention extends MentionContent {
-  const UserMention({required this.id}) : super._();
-
-  final String id;
-
-  /// Create a copy of MentionContent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $UserMentionCopyWith<UserMention> get copyWith =>
-      _$UserMentionCopyWithImpl<UserMention>(this, _$identity);
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is UserMention &&
+            other is _$PageMentionImpl &&
             (identical(other.id, id) || other.id == id));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, id);
 
+  /// Create a copy of MentionContent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  String toString() {
-    return 'MentionContent.user(id: $id)';
+  @pragma('vm:prefer-inline')
+  _$$PageMentionImplCopyWith<_$PageMentionImpl> get copyWith =>
+      __$$PageMentionImplCopyWithImpl<_$PageMentionImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String id) database,
+    required TResult Function(DateTime start, DateTime? end) date,
+    required TResult Function(String url) linkPreview,
+    required TResult Function(String id) page,
+    required TResult Function(String value) templateMentionDate,
+    required TResult Function(String value) templateMentionUser,
+    required TResult Function(String id) user,
+  }) {
+    return page(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String id)? database,
+    TResult? Function(DateTime start, DateTime? end)? date,
+    TResult? Function(String url)? linkPreview,
+    TResult? Function(String id)? page,
+    TResult? Function(String value)? templateMentionDate,
+    TResult? Function(String value)? templateMentionUser,
+    TResult? Function(String id)? user,
+  }) {
+    return page?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String id)? database,
+    TResult Function(DateTime start, DateTime? end)? date,
+    TResult Function(String url)? linkPreview,
+    TResult Function(String id)? page,
+    TResult Function(String value)? templateMentionDate,
+    TResult Function(String value)? templateMentionUser,
+    TResult Function(String id)? user,
+    required TResult orElse(),
+  }) {
+    if (page != null) {
+      return page(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DatabaseMention value) database,
+    required TResult Function(DateMention value) date,
+    required TResult Function(LinkPreviewMention value) linkPreview,
+    required TResult Function(PageMention value) page,
+    required TResult Function(TemplateMentionDate value) templateMentionDate,
+    required TResult Function(TemplateMentionUser value) templateMentionUser,
+    required TResult Function(UserMention value) user,
+  }) {
+    return page(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DatabaseMention value)? database,
+    TResult? Function(DateMention value)? date,
+    TResult? Function(LinkPreviewMention value)? linkPreview,
+    TResult? Function(PageMention value)? page,
+    TResult? Function(TemplateMentionDate value)? templateMentionDate,
+    TResult? Function(TemplateMentionUser value)? templateMentionUser,
+    TResult? Function(UserMention value)? user,
+  }) {
+    return page?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DatabaseMention value)? database,
+    TResult Function(DateMention value)? date,
+    TResult Function(LinkPreviewMention value)? linkPreview,
+    TResult Function(PageMention value)? page,
+    TResult Function(TemplateMentionDate value)? templateMentionDate,
+    TResult Function(TemplateMentionUser value)? templateMentionUser,
+    TResult Function(UserMention value)? user,
+    required TResult orElse(),
+  }) {
+    if (page != null) {
+      return page(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class PageMention extends MentionContent {
+  const factory PageMention({required final String id}) = _$PageMentionImpl;
+  const PageMention._() : super._();
+
+  String get id;
+
+  /// Create a copy of MentionContent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$PageMentionImplCopyWith<_$PageMentionImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$TemplateMentionDateImplCopyWith<$Res> {
+  factory _$$TemplateMentionDateImplCopyWith(_$TemplateMentionDateImpl value,
+          $Res Function(_$TemplateMentionDateImpl) then) =
+      __$$TemplateMentionDateImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String value});
+}
+
+/// @nodoc
+class __$$TemplateMentionDateImplCopyWithImpl<$Res>
+    extends _$MentionContentCopyWithImpl<$Res, _$TemplateMentionDateImpl>
+    implements _$$TemplateMentionDateImplCopyWith<$Res> {
+  __$$TemplateMentionDateImplCopyWithImpl(_$TemplateMentionDateImpl _value,
+      $Res Function(_$TemplateMentionDateImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of MentionContent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? value = null,
+  }) {
+    return _then(_$TemplateMentionDateImpl(
+      value: null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
   }
 }
 
 /// @nodoc
-abstract mixin class $UserMentionCopyWith<$Res>
-    implements $MentionContentCopyWith<$Res> {
-  factory $UserMentionCopyWith(
-          UserMention value, $Res Function(UserMention) _then) =
-      _$UserMentionCopyWithImpl;
+
+class _$TemplateMentionDateImpl extends TemplateMentionDate {
+  const _$TemplateMentionDateImpl({required this.value}) : super._();
+
+  @override
+  final String value;
+
+  @override
+  String toString() {
+    return 'MentionContent.templateMentionDate(value: $value)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$TemplateMentionDateImpl &&
+            (identical(other.value, value) || other.value == value));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, value);
+
+  /// Create a copy of MentionContent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$TemplateMentionDateImplCopyWith<_$TemplateMentionDateImpl> get copyWith =>
+      __$$TemplateMentionDateImplCopyWithImpl<_$TemplateMentionDateImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String id) database,
+    required TResult Function(DateTime start, DateTime? end) date,
+    required TResult Function(String url) linkPreview,
+    required TResult Function(String id) page,
+    required TResult Function(String value) templateMentionDate,
+    required TResult Function(String value) templateMentionUser,
+    required TResult Function(String id) user,
+  }) {
+    return templateMentionDate(value);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String id)? database,
+    TResult? Function(DateTime start, DateTime? end)? date,
+    TResult? Function(String url)? linkPreview,
+    TResult? Function(String id)? page,
+    TResult? Function(String value)? templateMentionDate,
+    TResult? Function(String value)? templateMentionUser,
+    TResult? Function(String id)? user,
+  }) {
+    return templateMentionDate?.call(value);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String id)? database,
+    TResult Function(DateTime start, DateTime? end)? date,
+    TResult Function(String url)? linkPreview,
+    TResult Function(String id)? page,
+    TResult Function(String value)? templateMentionDate,
+    TResult Function(String value)? templateMentionUser,
+    TResult Function(String id)? user,
+    required TResult orElse(),
+  }) {
+    if (templateMentionDate != null) {
+      return templateMentionDate(value);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DatabaseMention value) database,
+    required TResult Function(DateMention value) date,
+    required TResult Function(LinkPreviewMention value) linkPreview,
+    required TResult Function(PageMention value) page,
+    required TResult Function(TemplateMentionDate value) templateMentionDate,
+    required TResult Function(TemplateMentionUser value) templateMentionUser,
+    required TResult Function(UserMention value) user,
+  }) {
+    return templateMentionDate(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DatabaseMention value)? database,
+    TResult? Function(DateMention value)? date,
+    TResult? Function(LinkPreviewMention value)? linkPreview,
+    TResult? Function(PageMention value)? page,
+    TResult? Function(TemplateMentionDate value)? templateMentionDate,
+    TResult? Function(TemplateMentionUser value)? templateMentionUser,
+    TResult? Function(UserMention value)? user,
+  }) {
+    return templateMentionDate?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DatabaseMention value)? database,
+    TResult Function(DateMention value)? date,
+    TResult Function(LinkPreviewMention value)? linkPreview,
+    TResult Function(PageMention value)? page,
+    TResult Function(TemplateMentionDate value)? templateMentionDate,
+    TResult Function(TemplateMentionUser value)? templateMentionUser,
+    TResult Function(UserMention value)? user,
+    required TResult orElse(),
+  }) {
+    if (templateMentionDate != null) {
+      return templateMentionDate(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class TemplateMentionDate extends MentionContent {
+  const factory TemplateMentionDate({required final String value}) =
+      _$TemplateMentionDateImpl;
+  const TemplateMentionDate._() : super._();
+
+  String get value;
+
+  /// Create a copy of MentionContent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$TemplateMentionDateImplCopyWith<_$TemplateMentionDateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$TemplateMentionUserImplCopyWith<$Res> {
+  factory _$$TemplateMentionUserImplCopyWith(_$TemplateMentionUserImpl value,
+          $Res Function(_$TemplateMentionUserImpl) then) =
+      __$$TemplateMentionUserImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String value});
+}
+
+/// @nodoc
+class __$$TemplateMentionUserImplCopyWithImpl<$Res>
+    extends _$MentionContentCopyWithImpl<$Res, _$TemplateMentionUserImpl>
+    implements _$$TemplateMentionUserImplCopyWith<$Res> {
+  __$$TemplateMentionUserImplCopyWithImpl(_$TemplateMentionUserImpl _value,
+      $Res Function(_$TemplateMentionUserImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of MentionContent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? value = null,
+  }) {
+    return _then(_$TemplateMentionUserImpl(
+      value: null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$TemplateMentionUserImpl extends TemplateMentionUser {
+  const _$TemplateMentionUserImpl({required this.value}) : super._();
+
+  @override
+  final String value;
+
+  @override
+  String toString() {
+    return 'MentionContent.templateMentionUser(value: $value)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$TemplateMentionUserImpl &&
+            (identical(other.value, value) || other.value == value));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, value);
+
+  /// Create a copy of MentionContent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$TemplateMentionUserImplCopyWith<_$TemplateMentionUserImpl> get copyWith =>
+      __$$TemplateMentionUserImplCopyWithImpl<_$TemplateMentionUserImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String id) database,
+    required TResult Function(DateTime start, DateTime? end) date,
+    required TResult Function(String url) linkPreview,
+    required TResult Function(String id) page,
+    required TResult Function(String value) templateMentionDate,
+    required TResult Function(String value) templateMentionUser,
+    required TResult Function(String id) user,
+  }) {
+    return templateMentionUser(value);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String id)? database,
+    TResult? Function(DateTime start, DateTime? end)? date,
+    TResult? Function(String url)? linkPreview,
+    TResult? Function(String id)? page,
+    TResult? Function(String value)? templateMentionDate,
+    TResult? Function(String value)? templateMentionUser,
+    TResult? Function(String id)? user,
+  }) {
+    return templateMentionUser?.call(value);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String id)? database,
+    TResult Function(DateTime start, DateTime? end)? date,
+    TResult Function(String url)? linkPreview,
+    TResult Function(String id)? page,
+    TResult Function(String value)? templateMentionDate,
+    TResult Function(String value)? templateMentionUser,
+    TResult Function(String id)? user,
+    required TResult orElse(),
+  }) {
+    if (templateMentionUser != null) {
+      return templateMentionUser(value);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DatabaseMention value) database,
+    required TResult Function(DateMention value) date,
+    required TResult Function(LinkPreviewMention value) linkPreview,
+    required TResult Function(PageMention value) page,
+    required TResult Function(TemplateMentionDate value) templateMentionDate,
+    required TResult Function(TemplateMentionUser value) templateMentionUser,
+    required TResult Function(UserMention value) user,
+  }) {
+    return templateMentionUser(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DatabaseMention value)? database,
+    TResult? Function(DateMention value)? date,
+    TResult? Function(LinkPreviewMention value)? linkPreview,
+    TResult? Function(PageMention value)? page,
+    TResult? Function(TemplateMentionDate value)? templateMentionDate,
+    TResult? Function(TemplateMentionUser value)? templateMentionUser,
+    TResult? Function(UserMention value)? user,
+  }) {
+    return templateMentionUser?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DatabaseMention value)? database,
+    TResult Function(DateMention value)? date,
+    TResult Function(LinkPreviewMention value)? linkPreview,
+    TResult Function(PageMention value)? page,
+    TResult Function(TemplateMentionDate value)? templateMentionDate,
+    TResult Function(TemplateMentionUser value)? templateMentionUser,
+    TResult Function(UserMention value)? user,
+    required TResult orElse(),
+  }) {
+    if (templateMentionUser != null) {
+      return templateMentionUser(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class TemplateMentionUser extends MentionContent {
+  const factory TemplateMentionUser({required final String value}) =
+      _$TemplateMentionUserImpl;
+  const TemplateMentionUser._() : super._();
+
+  String get value;
+
+  /// Create a copy of MentionContent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$TemplateMentionUserImplCopyWith<_$TemplateMentionUserImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UserMentionImplCopyWith<$Res> {
+  factory _$$UserMentionImplCopyWith(
+          _$UserMentionImpl value, $Res Function(_$UserMentionImpl) then) =
+      __$$UserMentionImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String id});
 }
 
 /// @nodoc
-class _$UserMentionCopyWithImpl<$Res> implements $UserMentionCopyWith<$Res> {
-  _$UserMentionCopyWithImpl(this._self, this._then);
-
-  final UserMention _self;
-  final $Res Function(UserMention) _then;
+class __$$UserMentionImplCopyWithImpl<$Res>
+    extends _$MentionContentCopyWithImpl<$Res, _$UserMentionImpl>
+    implements _$$UserMentionImplCopyWith<$Res> {
+  __$$UserMentionImplCopyWithImpl(
+      _$UserMentionImpl _value, $Res Function(_$UserMentionImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of MentionContent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  @override
   $Res call({
     Object? id = null,
   }) {
-    return _then(UserMention(
+    return _then(_$UserMentionImpl(
       id: null == id
-          ? _self.id
+          ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
     ));
@@ -2109,201 +1933,174 @@ class _$UserMentionCopyWithImpl<$Res> implements $UserMentionCopyWith<$Res> {
 }
 
 /// @nodoc
-mixin _$RichText {
-  Annotations get annotations;
-  String get plainText;
-  String? get href;
 
-  /// Create a copy of RichText
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $RichTextCopyWith<RichText> get copyWith =>
-      _$RichTextCopyWithImpl<RichText>(this as RichText, _$identity);
+class _$UserMentionImpl extends UserMention {
+  const _$UserMentionImpl({required this.id}) : super._();
+
+  @override
+  final String id;
+
+  @override
+  String toString() {
+    return 'MentionContent.user(id: $id)';
+  }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is RichText &&
-            (identical(other.annotations, annotations) ||
-                other.annotations == annotations) &&
-            (identical(other.plainText, plainText) ||
-                other.plainText == plainText) &&
-            (identical(other.href, href) || other.href == href));
+            other is _$UserMentionImpl &&
+            (identical(other.id, id) || other.id == id));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, annotations, plainText, href);
+  int get hashCode => Object.hash(runtimeType, id);
 
-  @override
-  String toString() {
-    return 'RichText(annotations: $annotations, plainText: $plainText, href: $href)';
-  }
-}
-
-/// @nodoc
-abstract mixin class $RichTextCopyWith<$Res> {
-  factory $RichTextCopyWith(RichText value, $Res Function(RichText) _then) =
-      _$RichTextCopyWithImpl;
-  @useResult
-  $Res call({Annotations annotations, String plainText, String? href});
-
-  $AnnotationsCopyWith<$Res> get annotations;
-}
-
-/// @nodoc
-class _$RichTextCopyWithImpl<$Res> implements $RichTextCopyWith<$Res> {
-  _$RichTextCopyWithImpl(this._self, this._then);
-
-  final RichText _self;
-  final $Res Function(RichText) _then;
-
-  /// Create a copy of RichText
+  /// Create a copy of MentionContent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? annotations = null,
-    Object? plainText = null,
-    Object? href = freezed,
-  }) {
-    return _then(_self.copyWith(
-      annotations: null == annotations
-          ? _self.annotations
-          : annotations // ignore: cast_nullable_to_non_nullable
-              as Annotations,
-      plainText: null == plainText
-          ? _self.plainText
-          : plainText // ignore: cast_nullable_to_non_nullable
-              as String,
-      href: freezed == href
-          ? _self.href
-          : href // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-
-  /// Create a copy of RichText
-  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  $AnnotationsCopyWith<$Res> get annotations {
-    return $AnnotationsCopyWith<$Res>(_self.annotations, (value) {
-      return _then(_self.copyWith(annotations: value));
-    });
-  }
-}
+  _$$UserMentionImplCopyWith<_$UserMentionImpl> get copyWith =>
+      __$$UserMentionImplCopyWithImpl<_$UserMentionImpl>(this, _$identity);
 
-/// Adds pattern-matching-related methods to [RichText].
-extension RichTextPatterns on RichText {
-  /// A variant of `map` that fallback to returning `orElse`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
+  @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(TextRichText value)? text,
-    TResult Function(MentionRichText value)? mention,
-    TResult Function(EquationRichText value)? equation,
+  TResult when<TResult extends Object?>({
+    required TResult Function(String id) database,
+    required TResult Function(DateTime start, DateTime? end) date,
+    required TResult Function(String url) linkPreview,
+    required TResult Function(String id) page,
+    required TResult Function(String value) templateMentionDate,
+    required TResult Function(String value) templateMentionUser,
+    required TResult Function(String id) user,
+  }) {
+    return user(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String id)? database,
+    TResult? Function(DateTime start, DateTime? end)? date,
+    TResult? Function(String url)? linkPreview,
+    TResult? Function(String id)? page,
+    TResult? Function(String value)? templateMentionDate,
+    TResult? Function(String value)? templateMentionUser,
+    TResult? Function(String id)? user,
+  }) {
+    return user?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String id)? database,
+    TResult Function(DateTime start, DateTime? end)? date,
+    TResult Function(String url)? linkPreview,
+    TResult Function(String id)? page,
+    TResult Function(String value)? templateMentionDate,
+    TResult Function(String value)? templateMentionUser,
+    TResult Function(String id)? user,
     required TResult orElse(),
   }) {
-    final _that = this;
-    switch (_that) {
-      case TextRichText() when text != null:
-        return text(_that);
-      case MentionRichText() when mention != null:
-        return mention(_that);
-      case EquationRichText() when equation != null:
-        return equation(_that);
-      case _:
-        return orElse();
+    if (user != null) {
+      return user(id);
     }
+    return orElse();
   }
 
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// Callbacks receives the raw object, upcasted.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case final Subclass2 value:
-  ///     return ...;
-  /// }
-  /// ```
-
+  @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(TextRichText value) text,
-    required TResult Function(MentionRichText value) mention,
-    required TResult Function(EquationRichText value) equation,
+    required TResult Function(DatabaseMention value) database,
+    required TResult Function(DateMention value) date,
+    required TResult Function(LinkPreviewMention value) linkPreview,
+    required TResult Function(PageMention value) page,
+    required TResult Function(TemplateMentionDate value) templateMentionDate,
+    required TResult Function(TemplateMentionUser value) templateMentionUser,
+    required TResult Function(UserMention value) user,
   }) {
-    final _that = this;
-    switch (_that) {
-      case TextRichText():
-        return text(_that);
-      case MentionRichText():
-        return mention(_that);
-      case EquationRichText():
-        return equation(_that);
-      case _:
-        throw StateError('Unexpected subclass');
-    }
+    return user(this);
   }
 
-  /// A variant of `map` that fallback to returning `null`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
+  @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(TextRichText value)? text,
-    TResult? Function(MentionRichText value)? mention,
-    TResult? Function(EquationRichText value)? equation,
+    TResult? Function(DatabaseMention value)? database,
+    TResult? Function(DateMention value)? date,
+    TResult? Function(LinkPreviewMention value)? linkPreview,
+    TResult? Function(PageMention value)? page,
+    TResult? Function(TemplateMentionDate value)? templateMentionDate,
+    TResult? Function(TemplateMentionUser value)? templateMentionUser,
+    TResult? Function(UserMention value)? user,
   }) {
-    final _that = this;
-    switch (_that) {
-      case TextRichText() when text != null:
-        return text(_that);
-      case MentionRichText() when mention != null:
-        return mention(_that);
-      case EquationRichText() when equation != null:
-        return equation(_that);
-      case _:
-        return null;
-    }
+    return user?.call(this);
   }
 
-  /// A variant of `when` that fallback to an `orElse` callback.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DatabaseMention value)? database,
+    TResult Function(DateMention value)? date,
+    TResult Function(LinkPreviewMention value)? linkPreview,
+    TResult Function(PageMention value)? page,
+    TResult Function(TemplateMentionDate value)? templateMentionDate,
+    TResult Function(TemplateMentionUser value)? templateMentionUser,
+    TResult Function(UserMention value)? user,
+    required TResult orElse(),
+  }) {
+    if (user != null) {
+      return user(this);
+    }
+    return orElse();
+  }
+}
 
+abstract class UserMention extends MentionContent {
+  const factory UserMention({required final String id}) = _$UserMentionImpl;
+  const UserMention._() : super._();
+
+  String get id;
+
+  /// Create a copy of MentionContent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UserMentionImplCopyWith<_$UserMentionImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$RichText {
+  Annotations get annotations => throw _privateConstructorUsedError;
+  String get plainText => throw _privateConstructorUsedError;
+  String? get href => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(TextContent text, Annotations annotations,
+            String plainText, String? href)
+        text,
+    required TResult Function(MentionContent mention, Annotations annotations,
+            String plainText, String? href)
+        mention,
+    required TResult Function(EquationContent equation, Annotations annotations,
+            String plainText, String? href)
+        equation,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(TextContent text, Annotations annotations,
+            String plainText, String? href)?
+        text,
+    TResult? Function(MentionContent mention, Annotations annotations,
+            String plainText, String? href)?
+        mention,
+    TResult? Function(EquationContent equation, Annotations annotations,
+            String plainText, String? href)?
+        equation,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(TextContent text, Annotations annotations,
@@ -2316,157 +2113,100 @@ extension RichTextPatterns on RichText {
             String plainText, String? href)?
         equation,
     required TResult orElse(),
-  }) {
-    final _that = this;
-    switch (_that) {
-      case TextRichText() when text != null:
-        return text(_that.text, _that.annotations, _that.plainText, _that.href);
-      case MentionRichText() when mention != null:
-        return mention(
-            _that.mention, _that.annotations, _that.plainText, _that.href);
-      case EquationRichText() when equation != null:
-        return equation(
-            _that.equation, _that.annotations, _that.plainText, _that.href);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// As opposed to `map`, this offers destructuring.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case Subclass2(:final field2):
-  ///     return ...;
-  /// }
-  /// ```
-
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(TextContent text, Annotations annotations,
-            String plainText, String? href)
-        text,
-    required TResult Function(MentionContent mention, Annotations annotations,
-            String plainText, String? href)
-        mention,
-    required TResult Function(EquationContent equation, Annotations annotations,
-            String plainText, String? href)
-        equation,
-  }) {
-    final _that = this;
-    switch (_that) {
-      case TextRichText():
-        return text(_that.text, _that.annotations, _that.plainText, _that.href);
-      case MentionRichText():
-        return mention(
-            _that.mention, _that.annotations, _that.plainText, _that.href);
-      case EquationRichText():
-        return equation(
-            _that.equation, _that.annotations, _that.plainText, _that.href);
-      case _:
-        throw StateError('Unexpected subclass');
-    }
-  }
-
-  /// A variant of `when` that fallback to returning `null`
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
+  TResult map<TResult extends Object?>({
+    required TResult Function(TextRichText value) text,
+    required TResult Function(MentionRichText value) mention,
+    required TResult Function(EquationRichText value) equation,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(TextContent text, Annotations annotations,
-            String plainText, String? href)?
-        text,
-    TResult? Function(MentionContent mention, Annotations annotations,
-            String plainText, String? href)?
-        mention,
-    TResult? Function(EquationContent equation, Annotations annotations,
-            String plainText, String? href)?
-        equation,
-  }) {
-    final _that = this;
-    switch (_that) {
-      case TextRichText() when text != null:
-        return text(_that.text, _that.annotations, _that.plainText, _that.href);
-      case MentionRichText() when mention != null:
-        return mention(
-            _that.mention, _that.annotations, _that.plainText, _that.href);
-      case EquationRichText() when equation != null:
-        return equation(
-            _that.equation, _that.annotations, _that.plainText, _that.href);
-      case _:
-        return null;
-    }
-  }
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(TextRichText value)? text,
+    TResult? Function(MentionRichText value)? mention,
+    TResult? Function(EquationRichText value)? equation,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TextRichText value)? text,
+    TResult Function(MentionRichText value)? mention,
+    TResult Function(EquationRichText value)? equation,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+
+  /// Create a copy of RichText
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $RichTextCopyWith<RichText> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
+abstract class $RichTextCopyWith<$Res> {
+  factory $RichTextCopyWith(RichText value, $Res Function(RichText) then) =
+      _$RichTextCopyWithImpl<$Res, RichText>;
+  @useResult
+  $Res call({Annotations annotations, String plainText, String? href});
 
-class TextRichText extends RichText {
-  const TextRichText(
-      {required this.text,
-      required this.annotations,
-      required this.plainText,
-      this.href})
-      : super._();
+  $AnnotationsCopyWith<$Res> get annotations;
+}
 
-  final TextContent text;
+/// @nodoc
+class _$RichTextCopyWithImpl<$Res, $Val extends RichText>
+    implements $RichTextCopyWith<$Res> {
+  _$RichTextCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of RichText
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
   @override
-  final Annotations annotations;
-  @override
-  final String plainText;
-  @override
-  final String? href;
+  $Res call({
+    Object? annotations = null,
+    Object? plainText = null,
+    Object? href = freezed,
+  }) {
+    return _then(_value.copyWith(
+      annotations: null == annotations
+          ? _value.annotations
+          : annotations // ignore: cast_nullable_to_non_nullable
+              as Annotations,
+      plainText: null == plainText
+          ? _value.plainText
+          : plainText // ignore: cast_nullable_to_non_nullable
+              as String,
+      href: freezed == href
+          ? _value.href
+          : href // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
 
   /// Create a copy of RichText
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  $TextRichTextCopyWith<TextRichText> get copyWith =>
-      _$TextRichTextCopyWithImpl<TextRichText>(this, _$identity);
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is TextRichText &&
-            (identical(other.text, text) || other.text == text) &&
-            (identical(other.annotations, annotations) ||
-                other.annotations == annotations) &&
-            (identical(other.plainText, plainText) ||
-                other.plainText == plainText) &&
-            (identical(other.href, href) || other.href == href));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, text, annotations, plainText, href);
-
-  @override
-  String toString() {
-    return 'RichText.text(text: $text, annotations: $annotations, plainText: $plainText, href: $href)';
+  $AnnotationsCopyWith<$Res> get annotations {
+    return $AnnotationsCopyWith<$Res>(_value.annotations, (value) {
+      return _then(_value.copyWith(annotations: value) as $Val);
+    });
   }
 }
 
 /// @nodoc
-abstract mixin class $TextRichTextCopyWith<$Res>
+abstract class _$$TextRichTextImplCopyWith<$Res>
     implements $RichTextCopyWith<$Res> {
-  factory $TextRichTextCopyWith(
-          TextRichText value, $Res Function(TextRichText) _then) =
-      _$TextRichTextCopyWithImpl;
+  factory _$$TextRichTextImplCopyWith(
+          _$TextRichTextImpl value, $Res Function(_$TextRichTextImpl) then) =
+      __$$TextRichTextImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -2481,37 +2221,38 @@ abstract mixin class $TextRichTextCopyWith<$Res>
 }
 
 /// @nodoc
-class _$TextRichTextCopyWithImpl<$Res> implements $TextRichTextCopyWith<$Res> {
-  _$TextRichTextCopyWithImpl(this._self, this._then);
-
-  final TextRichText _self;
-  final $Res Function(TextRichText) _then;
+class __$$TextRichTextImplCopyWithImpl<$Res>
+    extends _$RichTextCopyWithImpl<$Res, _$TextRichTextImpl>
+    implements _$$TextRichTextImplCopyWith<$Res> {
+  __$$TextRichTextImplCopyWithImpl(
+      _$TextRichTextImpl _value, $Res Function(_$TextRichTextImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of RichText
   /// with the given fields replaced by the non-null parameter values.
-  @override
   @pragma('vm:prefer-inline')
+  @override
   $Res call({
     Object? text = null,
     Object? annotations = null,
     Object? plainText = null,
     Object? href = freezed,
   }) {
-    return _then(TextRichText(
+    return _then(_$TextRichTextImpl(
       text: null == text
-          ? _self.text
+          ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as TextContent,
       annotations: null == annotations
-          ? _self.annotations
+          ? _value.annotations
           : annotations // ignore: cast_nullable_to_non_nullable
               as Annotations,
       plainText: null == plainText
-          ? _self.plainText
+          ? _value.plainText
           : plainText // ignore: cast_nullable_to_non_nullable
               as String,
       href: freezed == href
-          ? _self.href
+          ? _value.href
           : href // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
@@ -2522,33 +2263,24 @@ class _$TextRichTextCopyWithImpl<$Res> implements $TextRichTextCopyWith<$Res> {
   @override
   @pragma('vm:prefer-inline')
   $TextContentCopyWith<$Res> get text {
-    return $TextContentCopyWith<$Res>(_self.text, (value) {
-      return _then(_self.copyWith(text: value));
-    });
-  }
-
-  /// Create a copy of RichText
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $AnnotationsCopyWith<$Res> get annotations {
-    return $AnnotationsCopyWith<$Res>(_self.annotations, (value) {
-      return _then(_self.copyWith(annotations: value));
+    return $TextContentCopyWith<$Res>(_value.text, (value) {
+      return _then(_value.copyWith(text: value));
     });
   }
 }
 
 /// @nodoc
 
-class MentionRichText extends RichText {
-  const MentionRichText(
-      {required this.mention,
+class _$TextRichTextImpl extends TextRichText {
+  const _$TextRichTextImpl(
+      {required this.text,
       required this.annotations,
       required this.plainText,
       this.href})
       : super._();
 
-  final MentionContent mention;
+  @override
+  final TextContent text;
   @override
   final Annotations annotations;
   @override
@@ -2556,20 +2288,17 @@ class MentionRichText extends RichText {
   @override
   final String? href;
 
-  /// Create a copy of RichText
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $MentionRichTextCopyWith<MentionRichText> get copyWith =>
-      _$MentionRichTextCopyWithImpl<MentionRichText>(this, _$identity);
+  String toString() {
+    return 'RichText.text(text: $text, annotations: $annotations, plainText: $plainText, href: $href)';
+  }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is MentionRichText &&
-            (identical(other.mention, mention) || other.mention == mention) &&
+            other is _$TextRichTextImpl &&
+            (identical(other.text, text) || other.text == text) &&
             (identical(other.annotations, annotations) ||
                 other.annotations == annotations) &&
             (identical(other.plainText, plainText) ||
@@ -2579,20 +2308,133 @@ class MentionRichText extends RichText {
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, mention, annotations, plainText, href);
+      Object.hash(runtimeType, text, annotations, plainText, href);
+
+  /// Create a copy of RichText
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$TextRichTextImplCopyWith<_$TextRichTextImpl> get copyWith =>
+      __$$TextRichTextImplCopyWithImpl<_$TextRichTextImpl>(this, _$identity);
 
   @override
-  String toString() {
-    return 'RichText.mention(mention: $mention, annotations: $annotations, plainText: $plainText, href: $href)';
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(TextContent text, Annotations annotations,
+            String plainText, String? href)
+        text,
+    required TResult Function(MentionContent mention, Annotations annotations,
+            String plainText, String? href)
+        mention,
+    required TResult Function(EquationContent equation, Annotations annotations,
+            String plainText, String? href)
+        equation,
+  }) {
+    return text(this.text, annotations, plainText, href);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(TextContent text, Annotations annotations,
+            String plainText, String? href)?
+        text,
+    TResult? Function(MentionContent mention, Annotations annotations,
+            String plainText, String? href)?
+        mention,
+    TResult? Function(EquationContent equation, Annotations annotations,
+            String plainText, String? href)?
+        equation,
+  }) {
+    return text?.call(this.text, annotations, plainText, href);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(TextContent text, Annotations annotations,
+            String plainText, String? href)?
+        text,
+    TResult Function(MentionContent mention, Annotations annotations,
+            String plainText, String? href)?
+        mention,
+    TResult Function(EquationContent equation, Annotations annotations,
+            String plainText, String? href)?
+        equation,
+    required TResult orElse(),
+  }) {
+    if (text != null) {
+      return text(this.text, annotations, plainText, href);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(TextRichText value) text,
+    required TResult Function(MentionRichText value) mention,
+    required TResult Function(EquationRichText value) equation,
+  }) {
+    return text(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(TextRichText value)? text,
+    TResult? Function(MentionRichText value)? mention,
+    TResult? Function(EquationRichText value)? equation,
+  }) {
+    return text?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TextRichText value)? text,
+    TResult Function(MentionRichText value)? mention,
+    TResult Function(EquationRichText value)? equation,
+    required TResult orElse(),
+  }) {
+    if (text != null) {
+      return text(this);
+    }
+    return orElse();
   }
 }
 
+abstract class TextRichText extends RichText {
+  const factory TextRichText(
+      {required final TextContent text,
+      required final Annotations annotations,
+      required final String plainText,
+      final String? href}) = _$TextRichTextImpl;
+  const TextRichText._() : super._();
+
+  TextContent get text;
+  @override
+  Annotations get annotations;
+  @override
+  String get plainText;
+  @override
+  String? get href;
+
+  /// Create a copy of RichText
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$TextRichTextImplCopyWith<_$TextRichTextImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 /// @nodoc
-abstract mixin class $MentionRichTextCopyWith<$Res>
+abstract class _$$MentionRichTextImplCopyWith<$Res>
     implements $RichTextCopyWith<$Res> {
-  factory $MentionRichTextCopyWith(
-          MentionRichText value, $Res Function(MentionRichText) _then) =
-      _$MentionRichTextCopyWithImpl;
+  factory _$$MentionRichTextImplCopyWith(_$MentionRichTextImpl value,
+          $Res Function(_$MentionRichTextImpl) then) =
+      __$$MentionRichTextImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -2607,38 +2449,38 @@ abstract mixin class $MentionRichTextCopyWith<$Res>
 }
 
 /// @nodoc
-class _$MentionRichTextCopyWithImpl<$Res>
-    implements $MentionRichTextCopyWith<$Res> {
-  _$MentionRichTextCopyWithImpl(this._self, this._then);
-
-  final MentionRichText _self;
-  final $Res Function(MentionRichText) _then;
+class __$$MentionRichTextImplCopyWithImpl<$Res>
+    extends _$RichTextCopyWithImpl<$Res, _$MentionRichTextImpl>
+    implements _$$MentionRichTextImplCopyWith<$Res> {
+  __$$MentionRichTextImplCopyWithImpl(
+      _$MentionRichTextImpl _value, $Res Function(_$MentionRichTextImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of RichText
   /// with the given fields replaced by the non-null parameter values.
-  @override
   @pragma('vm:prefer-inline')
+  @override
   $Res call({
     Object? mention = null,
     Object? annotations = null,
     Object? plainText = null,
     Object? href = freezed,
   }) {
-    return _then(MentionRichText(
+    return _then(_$MentionRichTextImpl(
       mention: null == mention
-          ? _self.mention
+          ? _value.mention
           : mention // ignore: cast_nullable_to_non_nullable
               as MentionContent,
       annotations: null == annotations
-          ? _self.annotations
+          ? _value.annotations
           : annotations // ignore: cast_nullable_to_non_nullable
               as Annotations,
       plainText: null == plainText
-          ? _self.plainText
+          ? _value.plainText
           : plainText // ignore: cast_nullable_to_non_nullable
               as String,
       href: freezed == href
-          ? _self.href
+          ? _value.href
           : href // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
@@ -2649,33 +2491,24 @@ class _$MentionRichTextCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $MentionContentCopyWith<$Res> get mention {
-    return $MentionContentCopyWith<$Res>(_self.mention, (value) {
-      return _then(_self.copyWith(mention: value));
-    });
-  }
-
-  /// Create a copy of RichText
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $AnnotationsCopyWith<$Res> get annotations {
-    return $AnnotationsCopyWith<$Res>(_self.annotations, (value) {
-      return _then(_self.copyWith(annotations: value));
+    return $MentionContentCopyWith<$Res>(_value.mention, (value) {
+      return _then(_value.copyWith(mention: value));
     });
   }
 }
 
 /// @nodoc
 
-class EquationRichText extends RichText {
-  const EquationRichText(
-      {required this.equation,
+class _$MentionRichTextImpl extends MentionRichText {
+  const _$MentionRichTextImpl(
+      {required this.mention,
       required this.annotations,
       required this.plainText,
       this.href})
       : super._();
 
-  final EquationContent equation;
+  @override
+  final MentionContent mention;
   @override
   final Annotations annotations;
   @override
@@ -2683,21 +2516,17 @@ class EquationRichText extends RichText {
   @override
   final String? href;
 
-  /// Create a copy of RichText
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $EquationRichTextCopyWith<EquationRichText> get copyWith =>
-      _$EquationRichTextCopyWithImpl<EquationRichText>(this, _$identity);
+  String toString() {
+    return 'RichText.mention(mention: $mention, annotations: $annotations, plainText: $plainText, href: $href)';
+  }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is EquationRichText &&
-            (identical(other.equation, equation) ||
-                other.equation == equation) &&
+            other is _$MentionRichTextImpl &&
+            (identical(other.mention, mention) || other.mention == mention) &&
             (identical(other.annotations, annotations) ||
                 other.annotations == annotations) &&
             (identical(other.plainText, plainText) ||
@@ -2707,20 +2536,134 @@ class EquationRichText extends RichText {
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, equation, annotations, plainText, href);
+      Object.hash(runtimeType, mention, annotations, plainText, href);
+
+  /// Create a copy of RichText
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$MentionRichTextImplCopyWith<_$MentionRichTextImpl> get copyWith =>
+      __$$MentionRichTextImplCopyWithImpl<_$MentionRichTextImpl>(
+          this, _$identity);
 
   @override
-  String toString() {
-    return 'RichText.equation(equation: $equation, annotations: $annotations, plainText: $plainText, href: $href)';
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(TextContent text, Annotations annotations,
+            String plainText, String? href)
+        text,
+    required TResult Function(MentionContent mention, Annotations annotations,
+            String plainText, String? href)
+        mention,
+    required TResult Function(EquationContent equation, Annotations annotations,
+            String plainText, String? href)
+        equation,
+  }) {
+    return mention(this.mention, annotations, plainText, href);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(TextContent text, Annotations annotations,
+            String plainText, String? href)?
+        text,
+    TResult? Function(MentionContent mention, Annotations annotations,
+            String plainText, String? href)?
+        mention,
+    TResult? Function(EquationContent equation, Annotations annotations,
+            String plainText, String? href)?
+        equation,
+  }) {
+    return mention?.call(this.mention, annotations, plainText, href);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(TextContent text, Annotations annotations,
+            String plainText, String? href)?
+        text,
+    TResult Function(MentionContent mention, Annotations annotations,
+            String plainText, String? href)?
+        mention,
+    TResult Function(EquationContent equation, Annotations annotations,
+            String plainText, String? href)?
+        equation,
+    required TResult orElse(),
+  }) {
+    if (mention != null) {
+      return mention(this.mention, annotations, plainText, href);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(TextRichText value) text,
+    required TResult Function(MentionRichText value) mention,
+    required TResult Function(EquationRichText value) equation,
+  }) {
+    return mention(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(TextRichText value)? text,
+    TResult? Function(MentionRichText value)? mention,
+    TResult? Function(EquationRichText value)? equation,
+  }) {
+    return mention?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TextRichText value)? text,
+    TResult Function(MentionRichText value)? mention,
+    TResult Function(EquationRichText value)? equation,
+    required TResult orElse(),
+  }) {
+    if (mention != null) {
+      return mention(this);
+    }
+    return orElse();
   }
 }
 
+abstract class MentionRichText extends RichText {
+  const factory MentionRichText(
+      {required final MentionContent mention,
+      required final Annotations annotations,
+      required final String plainText,
+      final String? href}) = _$MentionRichTextImpl;
+  const MentionRichText._() : super._();
+
+  MentionContent get mention;
+  @override
+  Annotations get annotations;
+  @override
+  String get plainText;
+  @override
+  String? get href;
+
+  /// Create a copy of RichText
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$MentionRichTextImplCopyWith<_$MentionRichTextImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 /// @nodoc
-abstract mixin class $EquationRichTextCopyWith<$Res>
+abstract class _$$EquationRichTextImplCopyWith<$Res>
     implements $RichTextCopyWith<$Res> {
-  factory $EquationRichTextCopyWith(
-          EquationRichText value, $Res Function(EquationRichText) _then) =
-      _$EquationRichTextCopyWithImpl;
+  factory _$$EquationRichTextImplCopyWith(_$EquationRichTextImpl value,
+          $Res Function(_$EquationRichTextImpl) then) =
+      __$$EquationRichTextImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -2735,38 +2678,38 @@ abstract mixin class $EquationRichTextCopyWith<$Res>
 }
 
 /// @nodoc
-class _$EquationRichTextCopyWithImpl<$Res>
-    implements $EquationRichTextCopyWith<$Res> {
-  _$EquationRichTextCopyWithImpl(this._self, this._then);
-
-  final EquationRichText _self;
-  final $Res Function(EquationRichText) _then;
+class __$$EquationRichTextImplCopyWithImpl<$Res>
+    extends _$RichTextCopyWithImpl<$Res, _$EquationRichTextImpl>
+    implements _$$EquationRichTextImplCopyWith<$Res> {
+  __$$EquationRichTextImplCopyWithImpl(_$EquationRichTextImpl _value,
+      $Res Function(_$EquationRichTextImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of RichText
   /// with the given fields replaced by the non-null parameter values.
-  @override
   @pragma('vm:prefer-inline')
+  @override
   $Res call({
     Object? equation = null,
     Object? annotations = null,
     Object? plainText = null,
     Object? href = freezed,
   }) {
-    return _then(EquationRichText(
+    return _then(_$EquationRichTextImpl(
       equation: null == equation
-          ? _self.equation
+          ? _value.equation
           : equation // ignore: cast_nullable_to_non_nullable
               as EquationContent,
       annotations: null == annotations
-          ? _self.annotations
+          ? _value.annotations
           : annotations // ignore: cast_nullable_to_non_nullable
               as Annotations,
       plainText: null == plainText
-          ? _self.plainText
+          ? _value.plainText
           : plainText // ignore: cast_nullable_to_non_nullable
               as String,
       href: freezed == href
-          ? _self.href
+          ? _value.href
           : href // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
@@ -2777,20 +2720,170 @@ class _$EquationRichTextCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $EquationContentCopyWith<$Res> get equation {
-    return $EquationContentCopyWith<$Res>(_self.equation, (value) {
-      return _then(_self.copyWith(equation: value));
-    });
-  }
-
-  /// Create a copy of RichText
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $AnnotationsCopyWith<$Res> get annotations {
-    return $AnnotationsCopyWith<$Res>(_self.annotations, (value) {
-      return _then(_self.copyWith(annotations: value));
+    return $EquationContentCopyWith<$Res>(_value.equation, (value) {
+      return _then(_value.copyWith(equation: value));
     });
   }
 }
 
-// dart format on
+/// @nodoc
+
+class _$EquationRichTextImpl extends EquationRichText {
+  const _$EquationRichTextImpl(
+      {required this.equation,
+      required this.annotations,
+      required this.plainText,
+      this.href})
+      : super._();
+
+  @override
+  final EquationContent equation;
+  @override
+  final Annotations annotations;
+  @override
+  final String plainText;
+  @override
+  final String? href;
+
+  @override
+  String toString() {
+    return 'RichText.equation(equation: $equation, annotations: $annotations, plainText: $plainText, href: $href)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$EquationRichTextImpl &&
+            (identical(other.equation, equation) ||
+                other.equation == equation) &&
+            (identical(other.annotations, annotations) ||
+                other.annotations == annotations) &&
+            (identical(other.plainText, plainText) ||
+                other.plainText == plainText) &&
+            (identical(other.href, href) || other.href == href));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, equation, annotations, plainText, href);
+
+  /// Create a copy of RichText
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$EquationRichTextImplCopyWith<_$EquationRichTextImpl> get copyWith =>
+      __$$EquationRichTextImplCopyWithImpl<_$EquationRichTextImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(TextContent text, Annotations annotations,
+            String plainText, String? href)
+        text,
+    required TResult Function(MentionContent mention, Annotations annotations,
+            String plainText, String? href)
+        mention,
+    required TResult Function(EquationContent equation, Annotations annotations,
+            String plainText, String? href)
+        equation,
+  }) {
+    return equation(this.equation, annotations, plainText, href);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(TextContent text, Annotations annotations,
+            String plainText, String? href)?
+        text,
+    TResult? Function(MentionContent mention, Annotations annotations,
+            String plainText, String? href)?
+        mention,
+    TResult? Function(EquationContent equation, Annotations annotations,
+            String plainText, String? href)?
+        equation,
+  }) {
+    return equation?.call(this.equation, annotations, plainText, href);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(TextContent text, Annotations annotations,
+            String plainText, String? href)?
+        text,
+    TResult Function(MentionContent mention, Annotations annotations,
+            String plainText, String? href)?
+        mention,
+    TResult Function(EquationContent equation, Annotations annotations,
+            String plainText, String? href)?
+        equation,
+    required TResult orElse(),
+  }) {
+    if (equation != null) {
+      return equation(this.equation, annotations, plainText, href);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(TextRichText value) text,
+    required TResult Function(MentionRichText value) mention,
+    required TResult Function(EquationRichText value) equation,
+  }) {
+    return equation(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(TextRichText value)? text,
+    TResult? Function(MentionRichText value)? mention,
+    TResult? Function(EquationRichText value)? equation,
+  }) {
+    return equation?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TextRichText value)? text,
+    TResult Function(MentionRichText value)? mention,
+    TResult Function(EquationRichText value)? equation,
+    required TResult orElse(),
+  }) {
+    if (equation != null) {
+      return equation(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class EquationRichText extends RichText {
+  const factory EquationRichText(
+      {required final EquationContent equation,
+      required final Annotations annotations,
+      required final String plainText,
+      final String? href}) = _$EquationRichTextImpl;
+  const EquationRichText._() : super._();
+
+  EquationContent get equation;
+  @override
+  Annotations get annotations;
+  @override
+  String get plainText;
+  @override
+  String? get href;
+
+  /// Create a copy of RichText
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$EquationRichTextImplCopyWith<_$EquationRichTextImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

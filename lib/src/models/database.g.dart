@@ -6,13 +6,13 @@ part of 'database.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_DataSourceRef _$DataSourceRefFromJson(Map<String, dynamic> json) =>
-    _DataSourceRef(
+_$DataSourceRefImpl _$$DataSourceRefImplFromJson(Map<String, dynamic> json) =>
+    _$DataSourceRefImpl(
       id: json['id'] as String,
       name: json['name'] as String,
     );
 
-Map<String, dynamic> _$DataSourceRefToJson(_DataSourceRef instance) =>
+Map<String, dynamic> _$$DataSourceRefImplToJson(_$DataSourceRefImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
