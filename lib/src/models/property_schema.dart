@@ -149,18 +149,20 @@ class PropertySchema with _$PropertySchema {
       case 'title':
         return PropertySchema.title(id: id, name: name);
       case 'number':
+        // ignore: avoid_dynamic_calls
         final format = json['number']?['format'] as String? ?? 'number';
         return PropertySchema.number(id: id, name: name, format: format);
       case 'select':
+        // ignore: avoid_dynamic_calls
         final options = (json['select']?['options'] as List<dynamic>? ?? [])
             .map((e) => SelectOption.fromJson(e as Map<String, dynamic>))
             .toList();
         return PropertySchema.select(id: id, name: name, options: options);
       case 'multi_select':
-        final options =
-            (json['multi_select']?['options'] as List<dynamic>? ?? [])
-                .map((e) => SelectOption.fromJson(e as Map<String, dynamic>))
-                .toList();
+        // ignore: avoid_dynamic_calls
+        final options = (json['multi_select']?['options'] as List<dynamic>? ?? [])
+            .map((e) => SelectOption.fromJson(e as Map<String, dynamic>))
+            .toList();
         return PropertySchema.multiSelect(id: id, name: name, options: options);
       case 'status':
         final statusData = json['status'] as Map<String, dynamic>? ?? {};
@@ -201,6 +203,7 @@ class PropertySchema with _$PropertySchema {
       case 'last_edited_by':
         return PropertySchema.lastEditedBy(id: id, name: name);
       case 'formula':
+        // ignore: avoid_dynamic_calls
         final expression = json['formula']?['expression'] as String? ?? '';
         return PropertySchema.formula(
           id: id,
@@ -231,6 +234,7 @@ class PropertySchema with _$PropertySchema {
           function: rollupData['function'] as String? ?? '',
         );
       case 'unique_id':
+        // ignore: avoid_dynamic_calls
         final prefix = json['unique_id']?['prefix'] as String?;
         return PropertySchema.uniqueId(id: id, name: name, prefix: prefix);
       case 'verification':

@@ -19,10 +19,7 @@ void main() {
       // Should allow 3 requests immediately
       for (var i = 0; i < 3; i++) {
         await rateLimiter.execute(
-          () async {
-            requestCount++;
-            return requestCount;
-          },
+          () async => ++requestCount,
           isRateLimitError: (error) => false,
         );
       }
@@ -41,10 +38,7 @@ void main() {
       // 4th request should be delayed
       for (var i = 0; i < 4; i++) {
         await rateLimiter.execute(
-          () async {
-            requestCount++;
-            return requestCount;
-          },
+          () async => ++requestCount,
           isRateLimitError: (error) => false,
         );
       }
@@ -180,10 +174,7 @@ void main() {
       // Should allow 3 immediate requests again
       for (var i = 0; i < 3; i++) {
         await rateLimiter.execute(
-          () async {
-            requestCount++;
-            return requestCount;
-          },
+          () async => ++requestCount,
           isRateLimitError: (error) => false,
         );
       }

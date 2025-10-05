@@ -221,10 +221,14 @@ class NotionHttpClient {
 
   /// Extracts Retry-After duration from DioException.
   Duration? _extractRetryAfter(dynamic error) {
-    if (error is! DioException) return null;
+    if (error is! DioException) {
+      return null;
+    }
 
     final retryAfterHeader = error.response?.headers['retry-after']?.first;
-    if (retryAfterHeader == null) return null;
+    if (retryAfterHeader == null) {
+      return null;
+    }
 
     // Try to parse as seconds (integer)
     final seconds = int.tryParse(retryAfterHeader);

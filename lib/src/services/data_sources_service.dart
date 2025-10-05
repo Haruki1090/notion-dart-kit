@@ -82,10 +82,18 @@ class DataSourcesService {
     List<String>? filterProperties,
   }) async {
     final body = <String, dynamic>{};
-    if (filter != null) body['filter'] = filter;
-    if (sorts != null) body['sorts'] = sorts;
-    if (startCursor != null) body['start_cursor'] = startCursor;
-    if (pageSize != null) body['page_size'] = pageSize;
+    if (filter != null) {
+      body['filter'] = filter;
+    }
+    if (sorts != null) {
+      body['sorts'] = sorts;
+    }
+    if (startCursor != null) {
+      body['start_cursor'] = startCursor;
+    }
+    if (pageSize != null) {
+      body['page_size'] = pageSize;
+    }
 
     final queryParams = <String, dynamic>{};
     if (filterProperties != null && filterProperties.isNotEmpty) {
