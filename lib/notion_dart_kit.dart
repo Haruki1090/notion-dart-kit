@@ -18,6 +18,7 @@ export 'src/models/page.dart';
 export 'src/models/file.dart';
 export 'src/models/database.dart';
 export 'src/models/block.dart';
+export 'src/models/block_content.dart';
 
 // Export services
 export 'src/services/users_service.dart';
