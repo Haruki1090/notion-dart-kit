@@ -1,5 +1,5 @@
-import 'package:test/test.dart';
 import 'package:notion_dart_kit/src/client/rate_limiter.dart';
+import 'package:test/test.dart';
 
 void main() {
   group('RateLimiter', () {
@@ -7,8 +7,6 @@ void main() {
 
     setUp(() {
       rateLimiter = RateLimiter(
-        maxRequestsPerSecond: 3,
-        maxRetries: 3,
         initialBackoffMs: 100,
         maxBackoffMs: 1000,
       );

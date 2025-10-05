@@ -240,170 +240,169 @@ class PropertySchema with _$PropertySchema {
     }
   }
 
-  Map<String, dynamic> toJson() {
-    return when(
-      checkbox: (id, name) => {
-        'id': id,
-        'name': name,
-        'type': 'checkbox',
-        'checkbox': {},
-      },
-      richText: (id, name) => {
-        'id': id,
-        'name': name,
-        'type': 'rich_text',
-        'rich_text': {},
-      },
-      title: (id, name) => {
-        'id': id,
-        'name': name,
-        'type': 'title',
-        'title': {},
-      },
-      number: (id, name, format) => {
-        'id': id,
-        'name': name,
-        'type': 'number',
-        'number': {'format': format},
-      },
-      select: (id, name, options) => {
-        'id': id,
-        'name': name,
-        'type': 'select',
-        'select': {
-          'options': options.map((e) => e.toJson()).toList(),
+  Map<String, dynamic> toJson() => when(
+        checkbox: (id, name) => {
+          'id': id,
+          'name': name,
+          'type': 'checkbox',
+          'checkbox': {},
         },
-      },
-      multiSelect: (id, name, options) => {
-        'id': id,
-        'name': name,
-        'type': 'multi_select',
-        'multi_select': {
-          'options': options.map((e) => e.toJson()).toList(),
+        richText: (id, name) => {
+          'id': id,
+          'name': name,
+          'type': 'rich_text',
+          'rich_text': {},
         },
-      },
-      status: (id, name, options, groups) => {
-        'id': id,
-        'name': name,
-        'type': 'status',
-        'status': {
-          'options': options.map((e) => e.toJson()).toList(),
-          'groups': groups,
+        title: (id, name) => {
+          'id': id,
+          'name': name,
+          'type': 'title',
+          'title': {},
         },
-      },
-      date: (id, name) => {
-        'id': id,
-        'name': name,
-        'type': 'date',
-        'date': {},
-      },
-      people: (id, name) => {
-        'id': id,
-        'name': name,
-        'type': 'people',
-        'people': {},
-      },
-      files: (id, name) => {
-        'id': id,
-        'name': name,
-        'type': 'files',
-        'files': {},
-      },
-      email: (id, name) => {
-        'id': id,
-        'name': name,
-        'type': 'email',
-        'email': {},
-      },
-      phoneNumber: (id, name) => {
-        'id': id,
-        'name': name,
-        'type': 'phone_number',
-        'phone_number': {},
-      },
-      url: (id, name) => {
-        'id': id,
-        'name': name,
-        'type': 'url',
-        'url': {},
-      },
-      createdTime: (id, name) => {
-        'id': id,
-        'name': name,
-        'type': 'created_time',
-        'created_time': {},
-      },
-      createdBy: (id, name) => {
-        'id': id,
-        'name': name,
-        'type': 'created_by',
-        'created_by': {},
-      },
-      lastEditedTime: (id, name) => {
-        'id': id,
-        'name': name,
-        'type': 'last_edited_time',
-        'last_edited_time': {},
-      },
-      lastEditedBy: (id, name) => {
-        'id': id,
-        'name': name,
-        'type': 'last_edited_by',
-        'last_edited_by': {},
-      },
-      formula: (id, name, expression) => {
-        'id': id,
-        'name': name,
-        'type': 'formula',
-        'formula': {'expression': expression},
-      },
-      relation: (id, name, databaseId, syncedPropertyName, syncedPropertyId) =>
-          {
-        'id': id,
-        'name': name,
-        'type': 'relation',
-        'relation': {
-          'database_id': databaseId,
-          if (syncedPropertyName != null)
-            'synced_property_name': syncedPropertyName,
-          if (syncedPropertyId != null) 'synced_property_id': syncedPropertyId,
+        number: (id, name, format) => {
+          'id': id,
+          'name': name,
+          'type': 'number',
+          'number': {'format': format},
         },
-      },
-      rollup: (
-        id,
-        name,
-        rollupPropertyName,
-        relationPropertyName,
-        rollupPropertyId,
-        relationPropertyId,
-        function,
-      ) =>
-          {
-        'id': id,
-        'name': name,
-        'type': 'rollup',
-        'rollup': {
-          'rollup_property_name': rollupPropertyName,
-          'relation_property_name': relationPropertyName,
-          'rollup_property_id': rollupPropertyId,
-          'relation_property_id': relationPropertyId,
-          'function': function,
+        select: (id, name, options) => {
+          'id': id,
+          'name': name,
+          'type': 'select',
+          'select': {
+            'options': options.map((e) => e.toJson()).toList(),
+          },
         },
-      },
-      uniqueId: (id, name, prefix) => {
-        'id': id,
-        'name': name,
-        'type': 'unique_id',
-        'unique_id': {
-          if (prefix != null) 'prefix': prefix,
+        multiSelect: (id, name, options) => {
+          'id': id,
+          'name': name,
+          'type': 'multi_select',
+          'multi_select': {
+            'options': options.map((e) => e.toJson()).toList(),
+          },
         },
-      },
-      verification: (id, name) => {
-        'id': id,
-        'name': name,
-        'type': 'verification',
-        'verification': {},
-      },
-    );
-  }
+        status: (id, name, options, groups) => {
+          'id': id,
+          'name': name,
+          'type': 'status',
+          'status': {
+            'options': options.map((e) => e.toJson()).toList(),
+            'groups': groups,
+          },
+        },
+        date: (id, name) => {
+          'id': id,
+          'name': name,
+          'type': 'date',
+          'date': {},
+        },
+        people: (id, name) => {
+          'id': id,
+          'name': name,
+          'type': 'people',
+          'people': {},
+        },
+        files: (id, name) => {
+          'id': id,
+          'name': name,
+          'type': 'files',
+          'files': {},
+        },
+        email: (id, name) => {
+          'id': id,
+          'name': name,
+          'type': 'email',
+          'email': {},
+        },
+        phoneNumber: (id, name) => {
+          'id': id,
+          'name': name,
+          'type': 'phone_number',
+          'phone_number': {},
+        },
+        url: (id, name) => {
+          'id': id,
+          'name': name,
+          'type': 'url',
+          'url': {},
+        },
+        createdTime: (id, name) => {
+          'id': id,
+          'name': name,
+          'type': 'created_time',
+          'created_time': {},
+        },
+        createdBy: (id, name) => {
+          'id': id,
+          'name': name,
+          'type': 'created_by',
+          'created_by': {},
+        },
+        lastEditedTime: (id, name) => {
+          'id': id,
+          'name': name,
+          'type': 'last_edited_time',
+          'last_edited_time': {},
+        },
+        lastEditedBy: (id, name) => {
+          'id': id,
+          'name': name,
+          'type': 'last_edited_by',
+          'last_edited_by': {},
+        },
+        formula: (id, name, expression) => {
+          'id': id,
+          'name': name,
+          'type': 'formula',
+          'formula': {'expression': expression},
+        },
+        relation:
+            (id, name, databaseId, syncedPropertyName, syncedPropertyId) => {
+          'id': id,
+          'name': name,
+          'type': 'relation',
+          'relation': {
+            'database_id': databaseId,
+            if (syncedPropertyName != null)
+              'synced_property_name': syncedPropertyName,
+            if (syncedPropertyId != null)
+              'synced_property_id': syncedPropertyId,
+          },
+        },
+        rollup: (
+          id,
+          name,
+          rollupPropertyName,
+          relationPropertyName,
+          rollupPropertyId,
+          relationPropertyId,
+          function,
+        ) =>
+            {
+          'id': id,
+          'name': name,
+          'type': 'rollup',
+          'rollup': {
+            'rollup_property_name': rollupPropertyName,
+            'relation_property_name': relationPropertyName,
+            'rollup_property_id': rollupPropertyId,
+            'relation_property_id': relationPropertyId,
+            'function': function,
+          },
+        },
+        uniqueId: (id, name, prefix) => {
+          'id': id,
+          'name': name,
+          'type': 'unique_id',
+          'unique_id': {
+            if (prefix != null) 'prefix': prefix,
+          },
+        },
+        verification: (id, name) => {
+          'id': id,
+          'name': name,
+          'type': 'verification',
+          'verification': {},
+        },
+      );
 }

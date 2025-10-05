@@ -13,6 +13,21 @@ library;
 /// - Configurable max retry attempts
 /// - Respects Retry-After header from API responses
 class RateLimiter {
+  /// Creates a rate limiter with configurable parameters.
+  ///
+  /// [maxRequestsPerSecond] - Maximum allowed requests per second (default: 3)
+  /// [maxRetries] - Maximum retry attempts on rate limit (default: 3)
+  /// [initialBackoffMs] - Initial backoff delay in ms (default: 1000)
+  /// [maxBackoffMs] - Maximum backoff delay in ms (default: 32000)
+  RateLimiter({
+    this.maxRequestsPerSecond = 3,
+    this.maxRetries = 3,
+    this.initialBackoffMs = 1000,
+    this.maxBackoffMs = 32000,
+  })  : _bucketCapacity = maxRequestsPerSecond,
+        _availableTokens = maxRequestsPerSecond,
+        _lastRefillTime = DateTime.now();
+
   /// Maximum requests per second (Notion API limit)
   final int maxRequestsPerSecond;
 
@@ -34,21 +49,6 @@ class RateLimiter {
   /// Last token refill time
   DateTime _lastRefillTime;
 
-  /// Creates a rate limiter with configurable parameters.
-  ///
-  /// [maxRequestsPerSecond] - Maximum allowed requests per second (default: 3)
-  /// [maxRetries] - Maximum retry attempts on rate limit (default: 3)
-  /// [initialBackoffMs] - Initial backoff delay in ms (default: 1000)
-  /// [maxBackoffMs] - Maximum backoff delay in ms (default: 32000)
-  RateLimiter({
-    this.maxRequestsPerSecond = 3,
-    this.maxRetries = 3,
-    this.initialBackoffMs = 1000,
-    this.maxBackoffMs = 32000,
-  })  : _bucketCapacity = maxRequestsPerSecond,
-        _availableTokens = maxRequestsPerSecond,
-        _lastRefillTime = DateTime.now();
-
   /// Executes a request with rate limiting and retry logic.
   ///
   /// This method:
@@ -67,7 +67,7 @@ class RateLimiter {
     required bool Function(dynamic error) isRateLimitError,
     Duration? Function(dynamic error)? getRetryAfter,
   }) async {
-    int attempts = 0;
+    var attempts = 0;
 
     while (true) {
       // Wait for available token
@@ -90,7 +90,7 @@ class RateLimiter {
         }
 
         // Calculate backoff delay
-        Duration backoffDelay = _calculateBackoff(attempts);
+        var backoffDelay = _calculateBackoff(attempts);
 
         // Check for Retry-After header
         if (getRetryAfter != null) {
@@ -115,7 +115,8 @@ class RateLimiter {
     while (_availableTokens <= 0) {
       final now = DateTime.now();
       final timeSinceLastRefill = now.difference(_lastRefillTime);
-      final timeUntilNextRefill = Duration(seconds: 1) - timeSinceLastRefill;
+      final timeUntilNextRefill =
+          const Duration(seconds: 1) - timeSinceLastRefill;
 
       if (timeUntilNextRefill.isNegative) {
         // Should have tokens now, refill and check again
@@ -139,7 +140,8 @@ class RateLimiter {
     // Refill tokens for each elapsed second
     if (elapsed.inSeconds >= 1) {
       final tokensToAdd = elapsed.inSeconds * maxRequestsPerSecond;
-      _availableTokens = (_availableTokens + tokensToAdd).clamp(0, _bucketCapacity);
+      _availableTokens =
+          (_availableTokens + tokensToAdd).clamp(0, _bucketCapacity);
       _lastRefillTime = now;
     }
   }

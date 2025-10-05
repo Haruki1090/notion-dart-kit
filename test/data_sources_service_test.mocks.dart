@@ -41,18 +41,6 @@ class MockNotionHttpClient extends _i1.Mock implements _i2.NotionHttpClient {
       ) as String);
 
   @override
-  int get maxRetries => (super.noSuchMethod(
-        Invocation.getter(#maxRetries),
-        returnValue: 0,
-      ) as int);
-
-  @override
-  int get initialRetryDelay => (super.noSuchMethod(
-        Invocation.getter(#initialRetryDelay),
-        returnValue: 0,
-      ) as int);
-
-  @override
   _i4.Future<Map<String, dynamic>> get(
     String? path, {
     Map<String, dynamic>? queryParameters,

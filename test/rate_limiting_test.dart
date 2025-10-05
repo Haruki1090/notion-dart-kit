@@ -56,10 +56,7 @@ void main() {
     });
 
     test('HTTP client with rate limiter can be instantiated', () {
-      final rateLimiter = RateLimiter(
-        maxRequestsPerSecond: 3,
-        maxRetries: 3,
-      );
+      final rateLimiter = RateLimiter();
 
       final client = NotionHttpClient(
         token: 'test_token',

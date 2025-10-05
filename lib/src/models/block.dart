@@ -770,9 +770,11 @@ class Block with _$Block {
           archived: archived,
           inTrash: inTrash,
           cells: (rowData['cells'] as List)
-              .map((cell) => (cell as List)
-                  .map((e) => RichText.fromJson(e as Map<String, dynamic>))
-                  .toList())
+              .map(
+                (cell) => (cell as List)
+                    .map((e) => RichText.fromJson(e as Map<String, dynamic>))
+                    .toList(),
+              )
               .toList(),
         );
       case 'table_of_contents':
@@ -1761,48 +1763,4 @@ class Block with _$Block {
           'type': 'unsupported',
         },
       );
-}
-
-/// Helper function to convert BlockColor to string
-String _blockColorToString(BlockColor color) {
-  switch (color) {
-    case BlockColor.defaultColor:
-      return 'default';
-    case BlockColor.gray:
-      return 'gray';
-    case BlockColor.brown:
-      return 'brown';
-    case BlockColor.orange:
-      return 'orange';
-    case BlockColor.yellow:
-      return 'yellow';
-    case BlockColor.green:
-      return 'green';
-    case BlockColor.blue:
-      return 'blue';
-    case BlockColor.purple:
-      return 'purple';
-    case BlockColor.pink:
-      return 'pink';
-    case BlockColor.red:
-      return 'red';
-    case BlockColor.grayBackground:
-      return 'gray_background';
-    case BlockColor.brownBackground:
-      return 'brown_background';
-    case BlockColor.orangeBackground:
-      return 'orange_background';
-    case BlockColor.yellowBackground:
-      return 'yellow_background';
-    case BlockColor.greenBackground:
-      return 'green_background';
-    case BlockColor.blueBackground:
-      return 'blue_background';
-    case BlockColor.purpleBackground:
-      return 'purple_background';
-    case BlockColor.pinkBackground:
-      return 'pink_background';
-    case BlockColor.redBackground:
-      return 'red_background';
-  }
 }
