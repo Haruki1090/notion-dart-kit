@@ -14,13 +14,14 @@ export 'src/models/user.dart';
 export 'src/models/parent.dart';
 export 'src/models/rich_text.dart';
 export 'src/models/pagination.dart';
-// export 'src/models/page.dart';
+export 'src/models/page.dart';
+export 'src/models/file.dart';
 // export 'src/models/database.dart';
 // export 'src/models/block.dart';
 
 // Export services
 export 'src/services/users_service.dart';
-// export 'src/services/pages_service.dart';
+export 'src/services/pages_service.dart';
 // export 'src/services/databases_service.dart';
 // export 'src/services/blocks_service.dart';
 // export 'src/services/search_service.dart';
