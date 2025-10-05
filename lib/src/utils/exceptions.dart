@@ -1,8 +1,8 @@
 /// Base exception for all Notion API errors.
 class NotionException implements Exception {
-
   /// Creates a new [NotionException].
   NotionException(this.message, {this.statusCode});
+
   /// The error message.
   final String message;
 

@@ -21,11 +21,11 @@ void main() async {
     final botUser = await client.users.me();
     print('✅ Botユーザー: ${botUser.name}');
     botUser.when(
-      person: (id, name, avatarUrl, person) {
+      person: (id, person, name, avatarUrl) {
         print('   タイプ: Person');
-        print('   メールアドレス: ${person.email}');
+        print('   メールアドレス: ${person.email ?? "N/A"}');
       },
-      bot: (id, name, avatarUrl, bot) {
+      bot: (id, bot, name, avatarUrl) {
         print('   タイプ: Bot');
         print('   ワークスペース: ${bot.workspaceName ?? "N/A"}');
       },
@@ -119,7 +119,8 @@ void main() async {
     print('   ```dart');
     print('   // ブロックの子要素を取得');
     print(
-        "   final children = await client.blocks.retrieveChildren('block_id');",);
+      "   final children = await client.blocks.retrieveChildren('block_id');",
+    );
     print(r"   print('子ブロックが${children.results.length}件見つかりました');");
     print('');
     print('   // 新しいブロックを追加');

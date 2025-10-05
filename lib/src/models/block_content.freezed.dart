@@ -14,11 +14,18 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
+BlockContent _$BlockContentFromJson(Map<String, dynamic> json) {
+  return _BlockContent.fromJson(json);
+}
+
 /// @nodoc
 mixin _$BlockContent {
   List<RichText> get richText => throw _privateConstructorUsedError;
   BlockColor get color => throw _privateConstructorUsedError;
   bool? get isToggleable => throw _privateConstructorUsedError;
+
+  /// Serializes this BlockContent to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of BlockContent
   /// with the given fields replaced by the non-null parameter values.
@@ -118,13 +125,16 @@ class __$$BlockContentImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$BlockContentImpl implements _BlockContent {
   const _$BlockContentImpl(
       {final List<RichText> richText = const [],
       this.color = BlockColor.defaultColor,
       this.isToggleable = false})
       : _richText = richText;
+
+  factory _$BlockContentImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BlockContentImplFromJson(json);
 
   final List<RichText> _richText;
   @override
@@ -158,6 +168,7 @@ class _$BlockContentImpl implements _BlockContent {
                 other.isToggleable == isToggleable));
   }
 
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType,
       const DeepCollectionEquality().hash(_richText), color, isToggleable);
@@ -169,6 +180,13 @@ class _$BlockContentImpl implements _BlockContent {
   @pragma('vm:prefer-inline')
   _$$BlockContentImplCopyWith<_$BlockContentImpl> get copyWith =>
       __$$BlockContentImplCopyWithImpl<_$BlockContentImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$BlockContentImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _BlockContent implements BlockContent {
@@ -176,6 +194,9 @@ abstract class _BlockContent implements BlockContent {
       {final List<RichText> richText,
       final BlockColor color,
       final bool? isToggleable}) = _$BlockContentImpl;
+
+  factory _BlockContent.fromJson(Map<String, dynamic> json) =
+      _$BlockContentImpl.fromJson;
 
   @override
   List<RichText> get richText;
@@ -192,11 +213,18 @@ abstract class _BlockContent implements BlockContent {
       throw _privateConstructorUsedError;
 }
 
+ToDoContent _$ToDoContentFromJson(Map<String, dynamic> json) {
+  return _ToDoContent.fromJson(json);
+}
+
 /// @nodoc
 mixin _$ToDoContent {
   List<RichText> get richText => throw _privateConstructorUsedError;
   BlockColor get color => throw _privateConstructorUsedError;
   bool get checked => throw _privateConstructorUsedError;
+
+  /// Serializes this ToDoContent to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of ToDoContent
   /// with the given fields replaced by the non-null parameter values.
@@ -296,13 +324,16 @@ class __$$ToDoContentImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$ToDoContentImpl implements _ToDoContent {
   const _$ToDoContentImpl(
       {final List<RichText> richText = const [],
       this.color = BlockColor.defaultColor,
       this.checked = false})
       : _richText = richText;
+
+  factory _$ToDoContentImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ToDoContentImplFromJson(json);
 
   final List<RichText> _richText;
   @override
@@ -335,6 +366,7 @@ class _$ToDoContentImpl implements _ToDoContent {
             (identical(other.checked, checked) || other.checked == checked));
   }
 
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType,
       const DeepCollectionEquality().hash(_richText), color, checked);
@@ -346,6 +378,13 @@ class _$ToDoContentImpl implements _ToDoContent {
   @pragma('vm:prefer-inline')
   _$$ToDoContentImplCopyWith<_$ToDoContentImpl> get copyWith =>
       __$$ToDoContentImplCopyWithImpl<_$ToDoContentImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ToDoContentImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _ToDoContent implements ToDoContent {
@@ -353,6 +392,9 @@ abstract class _ToDoContent implements ToDoContent {
       {final List<RichText> richText,
       final BlockColor color,
       final bool checked}) = _$ToDoContentImpl;
+
+  factory _ToDoContent.fromJson(Map<String, dynamic> json) =
+      _$ToDoContentImpl.fromJson;
 
   @override
   List<RichText> get richText;
@@ -369,11 +411,18 @@ abstract class _ToDoContent implements ToDoContent {
       throw _privateConstructorUsedError;
 }
 
+CodeContent _$CodeContentFromJson(Map<String, dynamic> json) {
+  return _CodeContent.fromJson(json);
+}
+
 /// @nodoc
 mixin _$CodeContent {
   List<RichText> get richText => throw _privateConstructorUsedError;
   List<RichText> get caption => throw _privateConstructorUsedError;
   String get language => throw _privateConstructorUsedError;
+
+  /// Serializes this CodeContent to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of CodeContent
   /// with the given fields replaced by the non-null parameter values.
@@ -473,7 +522,7 @@ class __$$CodeContentImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$CodeContentImpl implements _CodeContent {
   const _$CodeContentImpl(
       {final List<RichText> richText = const [],
@@ -481,6 +530,9 @@ class _$CodeContentImpl implements _CodeContent {
       this.language = 'plain text'})
       : _richText = richText,
         _caption = caption;
+
+  factory _$CodeContentImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CodeContentImplFromJson(json);
 
   final List<RichText> _richText;
   @override
@@ -520,6 +572,7 @@ class _$CodeContentImpl implements _CodeContent {
                 other.language == language));
   }
 
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -534,6 +587,13 @@ class _$CodeContentImpl implements _CodeContent {
   @pragma('vm:prefer-inline')
   _$$CodeContentImplCopyWith<_$CodeContentImpl> get copyWith =>
       __$$CodeContentImplCopyWithImpl<_$CodeContentImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$CodeContentImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _CodeContent implements CodeContent {
@@ -541,6 +601,9 @@ abstract class _CodeContent implements CodeContent {
       {final List<RichText> richText,
       final List<RichText> caption,
       final String language}) = _$CodeContentImpl;
+
+  factory _CodeContent.fromJson(Map<String, dynamic> json) =
+      _$CodeContentImpl.fromJson;
 
   @override
   List<RichText> get richText;

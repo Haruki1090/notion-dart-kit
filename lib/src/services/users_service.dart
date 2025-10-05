@@ -6,7 +6,6 @@ import '../utils/exceptions.dart' show NotionException;
 
 /// Service for interacting with Notion Users API
 class UsersService {
-
   UsersService(this._httpClient);
   final NotionHttpClient _httpClient;
 

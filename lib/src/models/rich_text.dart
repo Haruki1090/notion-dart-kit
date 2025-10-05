@@ -172,44 +172,44 @@ class MentionContent with _$MentionContent {
   }
 
   Map<String, dynamic> toJson() => when(
-      database: (id) => {
-        'type': 'database',
-        'database': {'id': id},
-      },
-      date: (start, end) => {
-        'type': 'date',
-        'date': {
-          'start': start.toIso8601String(),
-          if (end != null) 'end': end.toIso8601String(),
+        database: (id) => {
+          'type': 'database',
+          'database': {'id': id},
         },
-      },
-      linkPreview: (url) => {
-        'type': 'link_preview',
-        'link_preview': {'url': url},
-      },
-      page: (id) => {
-        'type': 'page',
-        'page': {'id': id},
-      },
-      templateMentionDate: (value) => {
-        'type': 'template_mention',
-        'template_mention': {
-          'type': 'template_mention_date',
-          'template_mention_date': value,
+        date: (start, end) => {
+          'type': 'date',
+          'date': {
+            'start': start.toIso8601String(),
+            if (end != null) 'end': end.toIso8601String(),
+          },
         },
-      },
-      templateMentionUser: (value) => {
-        'type': 'template_mention',
-        'template_mention': {
-          'type': 'template_mention_user',
-          'template_mention_user': value,
+        linkPreview: (url) => {
+          'type': 'link_preview',
+          'link_preview': {'url': url},
         },
-      },
-      user: (id) => {
-        'type': 'user',
-        'user': {'id': id},
-      },
-    );
+        page: (id) => {
+          'type': 'page',
+          'page': {'id': id},
+        },
+        templateMentionDate: (value) => {
+          'type': 'template_mention',
+          'template_mention': {
+            'type': 'template_mention_date',
+            'template_mention_date': value,
+          },
+        },
+        templateMentionUser: (value) => {
+          'type': 'template_mention',
+          'template_mention': {
+            'type': 'template_mention_user',
+            'template_mention_user': value,
+          },
+        },
+        user: (id) => {
+          'type': 'user',
+          'user': {'id': id},
+        },
+      );
 }
 
 /// Rich text object with support for text, mentions, and equations
@@ -264,7 +264,8 @@ class RichText with _$RichText {
       case 'equation':
         return RichText.equation(
           equation: EquationContent.fromJson(
-              json['equation'] as Map<String, dynamic>,),
+            json['equation'] as Map<String, dynamic>,
+          ),
           annotations: annotations,
           plainText: plainText,
           href: href,
@@ -275,26 +276,26 @@ class RichText with _$RichText {
   }
 
   Map<String, dynamic> toJson() => when(
-      text: (text, annotations, plainText, href) => {
-        'type': 'text',
-        'text': text.toJson(),
-        'annotations': annotations.toJson(),
-        'plain_text': plainText,
-        if (href != null) 'href': href,
-      },
-      mention: (mention, annotations, plainText, href) => {
-        'type': 'mention',
-        'mention': mention.toJson(),
-        'annotations': annotations.toJson(),
-        'plain_text': plainText,
-        if (href != null) 'href': href,
-      },
-      equation: (equation, annotations, plainText, href) => {
-        'type': 'equation',
-        'equation': equation.toJson(),
-        'annotations': annotations.toJson(),
-        'plain_text': plainText,
-        if (href != null) 'href': href,
-      },
-    );
+        text: (text, annotations, plainText, href) => {
+          'type': 'text',
+          'text': text.toJson(),
+          'annotations': annotations.toJson(),
+          'plain_text': plainText,
+          if (href != null) 'href': href,
+        },
+        mention: (mention, annotations, plainText, href) => {
+          'type': 'mention',
+          'mention': mention.toJson(),
+          'annotations': annotations.toJson(),
+          'plain_text': plainText,
+          if (href != null) 'href': href,
+        },
+        equation: (equation, annotations, plainText, href) => {
+          'type': 'equation',
+          'equation': equation.toJson(),
+          'annotations': annotations.toJson(),
+          'plain_text': plainText,
+          if (href != null) 'href': href,
+        },
+      );
 }

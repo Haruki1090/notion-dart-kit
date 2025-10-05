@@ -605,28 +605,28 @@ mixin _$User {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            String id, String? name, String? avatarUrl, PersonInfo person)
+            String id, PersonInfo person, String? name, String? avatarUrl)
         person,
     required TResult Function(
-            String id, String? name, String? avatarUrl, BotInfo bot)
+            String id, BotInfo bot, String? name, String? avatarUrl)
         bot,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(
-            String id, String? name, String? avatarUrl, PersonInfo person)?
+            String id, PersonInfo person, String? name, String? avatarUrl)?
         person,
-    TResult? Function(String id, String? name, String? avatarUrl, BotInfo bot)?
+    TResult? Function(String id, BotInfo bot, String? name, String? avatarUrl)?
         bot,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
-            String id, String? name, String? avatarUrl, PersonInfo person)?
+            String id, PersonInfo person, String? name, String? avatarUrl)?
         person,
-    TResult Function(String id, String? name, String? avatarUrl, BotInfo bot)?
+    TResult Function(String id, BotInfo bot, String? name, String? avatarUrl)?
         bot,
     required TResult orElse(),
   }) =>
@@ -708,7 +708,7 @@ abstract class _$$PersonUserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       __$$PersonUserImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String? name, String? avatarUrl, PersonInfo person});
+  $Res call({String id, PersonInfo person, String? name, String? avatarUrl});
 
   $PersonInfoCopyWith<$Res> get person;
 }
@@ -727,15 +727,19 @@ class __$$PersonUserImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
+    Object? person = null,
     Object? name = freezed,
     Object? avatarUrl = freezed,
-    Object? person = null,
   }) {
     return _then(_$PersonUserImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
+      person: null == person
+          ? _value.person
+          : person // ignore: cast_nullable_to_non_nullable
+              as PersonInfo,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -744,10 +748,6 @@ class __$$PersonUserImplCopyWithImpl<$Res>
           ? _value.avatarUrl
           : avatarUrl // ignore: cast_nullable_to_non_nullable
               as String?,
-      person: null == person
-          ? _value.person
-          : person // ignore: cast_nullable_to_non_nullable
-              as PersonInfo,
     ));
   }
 
@@ -766,21 +766,21 @@ class __$$PersonUserImplCopyWithImpl<$Res>
 
 class _$PersonUserImpl extends PersonUser {
   const _$PersonUserImpl(
-      {required this.id, this.name, this.avatarUrl, required this.person})
+      {required this.id, required this.person, this.name, this.avatarUrl})
       : super._();
 
   @override
   final String id;
   @override
+  final PersonInfo person;
+  @override
   final String? name;
   @override
   final String? avatarUrl;
-  @override
-  final PersonInfo person;
 
   @override
   String toString() {
-    return 'User.person(id: $id, name: $name, avatarUrl: $avatarUrl, person: $person)';
+    return 'User.person(id: $id, person: $person, name: $name, avatarUrl: $avatarUrl)';
   }
 
   @override
@@ -789,14 +789,14 @@ class _$PersonUserImpl extends PersonUser {
         (other.runtimeType == runtimeType &&
             other is _$PersonUserImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.person, person) || other.person == person) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.avatarUrl, avatarUrl) ||
-                other.avatarUrl == avatarUrl) &&
-            (identical(other.person, person) || other.person == person));
+                other.avatarUrl == avatarUrl));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, avatarUrl, person);
+  int get hashCode => Object.hash(runtimeType, id, person, name, avatarUrl);
 
   /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.
@@ -810,39 +810,39 @@ class _$PersonUserImpl extends PersonUser {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            String id, String? name, String? avatarUrl, PersonInfo person)
+            String id, PersonInfo person, String? name, String? avatarUrl)
         person,
     required TResult Function(
-            String id, String? name, String? avatarUrl, BotInfo bot)
+            String id, BotInfo bot, String? name, String? avatarUrl)
         bot,
   }) {
-    return person(id, name, avatarUrl, this.person);
+    return person(id, this.person, name, avatarUrl);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(
-            String id, String? name, String? avatarUrl, PersonInfo person)?
+            String id, PersonInfo person, String? name, String? avatarUrl)?
         person,
-    TResult? Function(String id, String? name, String? avatarUrl, BotInfo bot)?
+    TResult? Function(String id, BotInfo bot, String? name, String? avatarUrl)?
         bot,
   }) {
-    return person?.call(id, name, avatarUrl, this.person);
+    return person?.call(id, this.person, name, avatarUrl);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
-            String id, String? name, String? avatarUrl, PersonInfo person)?
+            String id, PersonInfo person, String? name, String? avatarUrl)?
         person,
-    TResult Function(String id, String? name, String? avatarUrl, BotInfo bot)?
+    TResult Function(String id, BotInfo bot, String? name, String? avatarUrl)?
         bot,
     required TResult orElse(),
   }) {
     if (person != null) {
-      return person(id, name, avatarUrl, this.person);
+      return person(id, this.person, name, avatarUrl);
     }
     return orElse();
   }
@@ -882,18 +882,18 @@ class _$PersonUserImpl extends PersonUser {
 abstract class PersonUser extends User {
   const factory PersonUser(
       {required final String id,
+      required final PersonInfo person,
       final String? name,
-      final String? avatarUrl,
-      required final PersonInfo person}) = _$PersonUserImpl;
+      final String? avatarUrl}) = _$PersonUserImpl;
   const PersonUser._() : super._();
 
   @override
   String get id;
+  PersonInfo get person;
   @override
   String? get name;
   @override
   String? get avatarUrl;
-  PersonInfo get person;
 
   /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.
@@ -910,7 +910,7 @@ abstract class _$$BotUserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       __$$BotUserImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String? name, String? avatarUrl, BotInfo bot});
+  $Res call({String id, BotInfo bot, String? name, String? avatarUrl});
 
   $BotInfoCopyWith<$Res> get bot;
 }
@@ -929,15 +929,19 @@ class __$$BotUserImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
+    Object? bot = null,
     Object? name = freezed,
     Object? avatarUrl = freezed,
-    Object? bot = null,
   }) {
     return _then(_$BotUserImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
+      bot: null == bot
+          ? _value.bot
+          : bot // ignore: cast_nullable_to_non_nullable
+              as BotInfo,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -946,10 +950,6 @@ class __$$BotUserImplCopyWithImpl<$Res>
           ? _value.avatarUrl
           : avatarUrl // ignore: cast_nullable_to_non_nullable
               as String?,
-      bot: null == bot
-          ? _value.bot
-          : bot // ignore: cast_nullable_to_non_nullable
-              as BotInfo,
     ));
   }
 
@@ -968,21 +968,21 @@ class __$$BotUserImplCopyWithImpl<$Res>
 
 class _$BotUserImpl extends BotUser {
   const _$BotUserImpl(
-      {required this.id, this.name, this.avatarUrl, required this.bot})
+      {required this.id, required this.bot, this.name, this.avatarUrl})
       : super._();
 
   @override
   final String id;
   @override
+  final BotInfo bot;
+  @override
   final String? name;
   @override
   final String? avatarUrl;
-  @override
-  final BotInfo bot;
 
   @override
   String toString() {
-    return 'User.bot(id: $id, name: $name, avatarUrl: $avatarUrl, bot: $bot)';
+    return 'User.bot(id: $id, bot: $bot, name: $name, avatarUrl: $avatarUrl)';
   }
 
   @override
@@ -991,14 +991,14 @@ class _$BotUserImpl extends BotUser {
         (other.runtimeType == runtimeType &&
             other is _$BotUserImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.bot, bot) || other.bot == bot) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.avatarUrl, avatarUrl) ||
-                other.avatarUrl == avatarUrl) &&
-            (identical(other.bot, bot) || other.bot == bot));
+                other.avatarUrl == avatarUrl));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, avatarUrl, bot);
+  int get hashCode => Object.hash(runtimeType, id, bot, name, avatarUrl);
 
   /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.
@@ -1012,39 +1012,39 @@ class _$BotUserImpl extends BotUser {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            String id, String? name, String? avatarUrl, PersonInfo person)
+            String id, PersonInfo person, String? name, String? avatarUrl)
         person,
     required TResult Function(
-            String id, String? name, String? avatarUrl, BotInfo bot)
+            String id, BotInfo bot, String? name, String? avatarUrl)
         bot,
   }) {
-    return bot(id, name, avatarUrl, this.bot);
+    return bot(id, this.bot, name, avatarUrl);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(
-            String id, String? name, String? avatarUrl, PersonInfo person)?
+            String id, PersonInfo person, String? name, String? avatarUrl)?
         person,
-    TResult? Function(String id, String? name, String? avatarUrl, BotInfo bot)?
+    TResult? Function(String id, BotInfo bot, String? name, String? avatarUrl)?
         bot,
   }) {
-    return bot?.call(id, name, avatarUrl, this.bot);
+    return bot?.call(id, this.bot, name, avatarUrl);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
-            String id, String? name, String? avatarUrl, PersonInfo person)?
+            String id, PersonInfo person, String? name, String? avatarUrl)?
         person,
-    TResult Function(String id, String? name, String? avatarUrl, BotInfo bot)?
+    TResult Function(String id, BotInfo bot, String? name, String? avatarUrl)?
         bot,
     required TResult orElse(),
   }) {
     if (bot != null) {
-      return bot(id, name, avatarUrl, this.bot);
+      return bot(id, this.bot, name, avatarUrl);
     }
     return orElse();
   }
@@ -1084,18 +1084,18 @@ class _$BotUserImpl extends BotUser {
 abstract class BotUser extends User {
   const factory BotUser(
       {required final String id,
+      required final BotInfo bot,
       final String? name,
-      final String? avatarUrl,
-      required final BotInfo bot}) = _$BotUserImpl;
+      final String? avatarUrl}) = _$BotUserImpl;
   const BotUser._() : super._();
 
   @override
   String get id;
+  BotInfo get bot;
   @override
   String? get name;
   @override
   String? get avatarUrl;
-  BotInfo get bot;
 
   /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.

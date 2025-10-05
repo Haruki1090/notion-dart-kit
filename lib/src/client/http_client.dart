@@ -6,7 +6,6 @@ import '../utils/exceptions.dart';
 ///
 /// Handles authentication, error handling, API versioning, rate limiting, and retries.
 class NotionHttpClient {
-
   /// Creates a new [NotionHttpClient] with the given [token].
   ///
   /// Optionally accepts a custom [Dio] instance for testing.

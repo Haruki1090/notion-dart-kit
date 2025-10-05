@@ -6,7 +6,6 @@ import '../utils/exceptions.dart' show NotionException;
 
 /// Service for interacting with Notion Search API
 class SearchService {
-
   SearchService(this._httpClient);
   final NotionHttpClient _httpClient;
 
@@ -71,7 +70,6 @@ enum SearchFilter {
 
 /// Search results containing pages and/or databases
 class SearchResults {
-
   const SearchResults({
     required this.type,
     required this.results,
@@ -107,17 +105,16 @@ class SearchResults {
   final String? nextCursor;
 
   Map<String, dynamic> toJson() => {
-      'object': 'list',
-      'type': type,
-      'results': results.map((r) => r.toJson()).toList(),
-      'has_more': hasMore,
-      if (nextCursor != null) 'next_cursor': nextCursor,
-    };
+        'object': 'list',
+        'type': type,
+        'results': results.map((r) => r.toJson()).toList(),
+        'has_more': hasMore,
+        if (nextCursor != null) 'next_cursor': nextCursor,
+      };
 }
 
 /// Union type for search results (Page or Database)
 class SearchResult {
-
   const SearchResult.page(Page page)
       : _page = page,
         _database = null;

@@ -62,8 +62,10 @@ void main() {
       expect(database.archived, false);
       expect(database.title.length, 1);
       expect(database.dataSources.length, 1);
-      expect(database.dataSources.first.id,
-          '248104cd-477e-80af-bc30-000bd28de8f9',);
+      expect(
+        database.dataSources.first.id,
+        '248104cd-477e-80af-bc30-000bd28de8f9',
+      );
       expect(database.dataSources.first.name, 'My Task Tracker');
     });
 

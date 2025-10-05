@@ -40,18 +40,18 @@ class NotionFile with _$NotionFile {
   }
 
   Map<String, dynamic> toJson() => map(
-      external: (file) => {
-        'type': 'external',
-        'external': {'url': file.url},
-      },
-      uploaded: (file) => {
-        'type': 'file',
-        'file': {
-          'url': file.url,
-          'expiry_time': file.expiryTime.toIso8601String(),
+        external: (file) => {
+          'type': 'external',
+          'external': {'url': file.url},
         },
-      },
-    );
+        uploaded: (file) => {
+          'type': 'file',
+          'file': {
+            'url': file.url,
+            'expiry_time': file.expiryTime.toIso8601String(),
+          },
+        },
+      );
 }
 
 /// Represents an emoji icon
@@ -93,10 +93,10 @@ class PageIcon with _$PageIcon {
   }
 
   Map<String, dynamic> toJson() => map(
-      emoji: (icon) => {
-        'type': 'emoji',
-        'emoji': icon.emoji,
-      },
-      file: (icon) => icon.file.toJson(),
-    );
+        emoji: (icon) => {
+          'type': 'emoji',
+          'emoji': icon.emoji,
+        },
+        file: (icon) => icon.file.toJson(),
+      );
 }

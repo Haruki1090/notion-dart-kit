@@ -14,7 +14,6 @@ import 'http_client.dart';
 /// final page = await client.pages.retrieve('page_id');
 /// ```
 class NotionClient {
-
   /// Creates a new [NotionClient] with the given [token].
   NotionClient({required String token})
       : httpClient = NotionHttpClient(token: token) {
@@ -24,6 +23,7 @@ class NotionClient {
     search = SearchService(httpClient);
     blocks = BlocksService(httpClient);
   }
+
   /// The HTTP client used for API requests.
   final NotionHttpClient httpClient;
 

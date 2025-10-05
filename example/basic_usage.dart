@@ -21,11 +21,11 @@ void main() async {
     final botUser = await client.users.me();
     print('✅ Bot User: ${botUser.name}');
     botUser.when(
-      person: (id, name, avatarUrl, person) {
+      person: (id, person, name, avatarUrl) {
         print('   Type: Person');
-        print('   Email: ${person.email}');
+        print('   Email: ${person.email ?? "N/A"}');
       },
-      bot: (id, name, avatarUrl, bot) {
+      bot: (id, bot, name, avatarUrl) {
         print('   Type: Bot');
         print('   Workspace: ${bot.workspaceName ?? "N/A"}');
       },
@@ -119,7 +119,8 @@ void main() async {
     print('   ```dart');
     print('   // Get block children');
     print(
-        "   final children = await client.blocks.retrieveChildren('block_id');",);
+      "   final children = await client.blocks.retrieveChildren('block_id');",
+    );
     print(r"   print('Found ${children.results.length} child blocks');");
     print('');
     print('   // Append new blocks');

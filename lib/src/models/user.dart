@@ -32,15 +32,14 @@ class BotOwner with _$BotOwner {
   }
 
   Map<String, dynamic> toJson() => when(
-      workspace: () => {'type': 'workspace', 'workspace': true},
-      user: () => {'type': 'user'},
-    );
+        workspace: () => {'type': 'workspace', 'workspace': true},
+        user: () => {'type': 'user'},
+      );
 }
 
 /// Bot-specific properties
 @Freezed(toJson: false, fromJson: false)
 class BotInfo with _$BotInfo {
-
   const factory BotInfo({
     required BotOwner owner,
     String? workspaceName,
@@ -48,14 +47,14 @@ class BotInfo with _$BotInfo {
   const BotInfo._();
 
   factory BotInfo.fromJson(Map<String, dynamic> json) => BotInfo(
-      owner: BotOwner.fromJson(json['owner'] as Map<String, dynamic>),
-      workspaceName: json['workspace_name'] as String?,
-    );
+        owner: BotOwner.fromJson(json['owner'] as Map<String, dynamic>),
+        workspaceName: json['workspace_name'] as String?,
+      );
 
   Map<String, dynamic> toJson() => {
-      'owner': owner.toJson(),
-      if (workspaceName != null) 'workspace_name': workspaceName,
-    };
+        'owner': owner.toJson(),
+        if (workspaceName != null) 'workspace_name': workspaceName,
+      };
 }
 
 /// User object representing a user in a Notion workspace
@@ -65,13 +64,15 @@ class User with _$User {
 
   const factory User.person({
     required String id,
-    required PersonInfo person, String? name,
+    required PersonInfo person,
+    String? name,
     String? avatarUrl,
   }) = PersonUser;
 
   const factory User.bot({
     required String id,
-    required BotInfo bot, String? name,
+    required BotInfo bot,
+    String? name,
     String? avatarUrl,
   }) = BotUser;
 
@@ -107,21 +108,21 @@ class User with _$User {
   }
 
   Map<String, dynamic> toJson() => when(
-      person: (id, name, avatarUrl, person) => {
-        'object': 'user',
-        'id': id,
-        if (name != null) 'name': name,
-        if (avatarUrl != null) 'avatar_url': avatarUrl,
-        'type': 'person',
-        'person': person.toJson(),
-      },
-      bot: (id, name, avatarUrl, bot) => {
-        'object': 'user',
-        'id': id,
-        if (name != null) 'name': name,
-        if (avatarUrl != null) 'avatar_url': avatarUrl,
-        'type': 'bot',
-        'bot': bot.toJson(),
-      },
-    );
+        person: (id, person, name, avatarUrl) => {
+          'object': 'user',
+          'id': id,
+          if (name != null) 'name': name,
+          if (avatarUrl != null) 'avatar_url': avatarUrl,
+          'type': 'person',
+          'person': person.toJson(),
+        },
+        bot: (id, bot, name, avatarUrl) => {
+          'object': 'user',
+          'id': id,
+          if (name != null) 'name': name,
+          if (avatarUrl != null) 'avatar_url': avatarUrl,
+          'type': 'bot',
+          'bot': bot.toJson(),
+        },
+      );
 }
