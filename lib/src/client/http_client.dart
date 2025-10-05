@@ -1,6 +1,6 @@
-import 'dart:math';
 import 'package:dio/dio.dart';
 import '../utils/exceptions.dart';
+import 'rate_limiter.dart';
 
 /// HTTP client wrapper for Notion API requests.
 ///
@@ -9,27 +9,22 @@ class NotionHttpClient {
   /// Creates a new [NotionHttpClient] with the given [token].
   ///
   /// Optionally accepts a custom [Dio] instance for testing.
-  /// [maxRetries] - Maximum number of retry attempts (default: 3)
-  /// [initialRetryDelay] - Initial delay in milliseconds for exponential backoff (default: 1000)
+  /// [rateLimiter] - Optional custom rate limiter instance
   NotionHttpClient({
     required this.token,
     Dio? dio,
-    this.maxRetries = 3,
-    this.initialRetryDelay = 1000,
-  }) : _dio = dio ?? Dio() {
+    RateLimiter? rateLimiter,
+  })  : _dio = dio ?? Dio(),
+        _rateLimiter = rateLimiter ?? RateLimiter() {
     _configureDio();
   }
+
   static const String _baseUrl = 'https://api.notion.com/v1';
   static const String _notionVersion = '2022-06-28';
 
   final Dio _dio;
   final String token;
-
-  /// Maximum number of retry attempts for rate-limited requests
-  final int maxRetries;
-
-  /// Initial delay for exponential backoff (in milliseconds)
-  final int initialRetryDelay;
+  final RateLimiter _rateLimiter;
 
   void _configureDio() {
     _dio.options = BaseOptions(
@@ -43,78 +38,12 @@ class NotionHttpClient {
       receiveTimeout: const Duration(seconds: 30),
     );
 
-    // Add retry interceptor first (before error handler)
-    _dio.interceptors.add(
-      QueuedInterceptorsWrapper(
-        onRequest: _onRequest,
-        onError: _onErrorWithRetry,
-      ),
-    );
-
     // Add error handler interceptor
     _dio.interceptors.add(
       InterceptorsWrapper(
         onError: _handleError,
       ),
     );
-  }
-
-  /// Request interceptor for logging/debugging
-  void _onRequest(
-    RequestOptions options,
-    RequestInterceptorHandler handler,
-  ) {
-    // Future: Add request logging here if needed
-    handler.next(options);
-  }
-
-  /// Error interceptor with retry logic for rate limiting
-  Future<void> _onErrorWithRetry(
-    DioException error,
-    ErrorInterceptorHandler handler,
-  ) async {
-    final statusCode = error.response?.statusCode;
-
-    // Only retry on 429 (rate limit) or network errors
-    if (statusCode == 429 ||
-        error.type == DioExceptionType.connectionTimeout ||
-        error.type == DioExceptionType.receiveTimeout) {
-      final attempt = error.requestOptions.extra['retryAttempt'] as int? ?? 0;
-
-      if (attempt < maxRetries) {
-        // Calculate delay with exponential backoff
-        final delay = _calculateRetryDelay(attempt);
-
-        // Wait before retrying
-        await Future.delayed(Duration(milliseconds: delay));
-
-        // Increment retry attempt
-        error.requestOptions.extra['retryAttempt'] = attempt + 1;
-
-        try {
-          // Retry the request
-          final response = await _dio.fetch(error.requestOptions);
-          handler.resolve(response);
-          return;
-        } catch (e) {
-          // If retry fails, let it fall through to error handler
-        }
-      }
-    }
-
-    // Pass to error handler
-    handler.next(error);
-  }
-
-  /// Calculate retry delay using exponential backoff with jitter
-  int _calculateRetryDelay(int attempt) {
-    // Exponential backoff: delay = initialDelay * (2 ^ attempt)
-    final exponentialDelay = initialRetryDelay * pow(2, attempt).toInt();
-
-    // Add jitter (random 0-25% of delay) to prevent thundering herd
-    final jitter = Random().nextInt((exponentialDelay * 0.25).toInt());
-
-    return exponentialDelay + jitter;
   }
 
   /// Handles HTTP errors and converts them to [NotionException]s.
@@ -175,8 +104,21 @@ class NotionHttpClient {
     return error.message;
   }
 
-  /// Makes a GET request to the given [path].
+  /// Makes a GET request to the given [path] with rate limiting.
   Future<Map<String, dynamic>> get(
+    String path, {
+    Map<String, dynamic>? queryParameters,
+  }) async {
+    return _rateLimiter.execute(
+      () => _executeGet(path, queryParameters: queryParameters),
+      isRateLimitError: (error) =>
+          error is DioException && error.response?.statusCode == 429,
+      getRetryAfter: _extractRetryAfter,
+    );
+  }
+
+  /// Internal GET request execution.
+  Future<Map<String, dynamic>> _executeGet(
     String path, {
     Map<String, dynamic>? queryParameters,
   }) async {
@@ -194,8 +136,21 @@ class NotionHttpClient {
     }
   }
 
-  /// Makes a POST request to the given [path].
+  /// Makes a POST request to the given [path] with rate limiting.
   Future<Map<String, dynamic>> post(
+    String path, {
+    Map<String, dynamic>? data,
+  }) async {
+    return _rateLimiter.execute(
+      () => _executePost(path, data: data),
+      isRateLimitError: (error) =>
+          error is DioException && error.response?.statusCode == 429,
+      getRetryAfter: _extractRetryAfter,
+    );
+  }
+
+  /// Internal POST request execution.
+  Future<Map<String, dynamic>> _executePost(
     String path, {
     Map<String, dynamic>? data,
   }) async {
@@ -213,8 +168,21 @@ class NotionHttpClient {
     }
   }
 
-  /// Makes a PATCH request to the given [path].
+  /// Makes a PATCH request to the given [path] with rate limiting.
   Future<Map<String, dynamic>> patch(
+    String path, {
+    Map<String, dynamic>? data,
+  }) async {
+    return _rateLimiter.execute(
+      () => _executePatch(path, data: data),
+      isRateLimitError: (error) =>
+          error is DioException && error.response?.statusCode == 429,
+      getRetryAfter: _extractRetryAfter,
+    );
+  }
+
+  /// Internal PATCH request execution.
+  Future<Map<String, dynamic>> _executePatch(
     String path, {
     Map<String, dynamic>? data,
   }) async {
@@ -232,8 +200,18 @@ class NotionHttpClient {
     }
   }
 
-  /// Makes a DELETE request to the given [path].
+  /// Makes a DELETE request to the given [path] with rate limiting.
   Future<Map<String, dynamic>> delete(String path) async {
+    return _rateLimiter.execute(
+      () => _executeDelete(path),
+      isRateLimitError: (error) =>
+          error is DioException && error.response?.statusCode == 429,
+      getRetryAfter: _extractRetryAfter,
+    );
+  }
+
+  /// Internal DELETE request execution.
+  Future<Map<String, dynamic>> _executeDelete(String path) async {
     try {
       final response = await _dio.delete<Map<String, dynamic>>(path);
       return response.data!;
@@ -243,6 +221,23 @@ class NotionHttpClient {
       }
       rethrow;
     }
+  }
+
+  /// Extracts Retry-After duration from DioException.
+  Duration? _extractRetryAfter(dynamic error) {
+    if (error is! DioException) return null;
+
+    final retryAfterHeader = error.response?.headers['retry-after']?.first;
+    if (retryAfterHeader == null) return null;
+
+    // Try to parse as seconds (integer)
+    final seconds = int.tryParse(retryAfterHeader);
+    if (seconds != null) {
+      return Duration(seconds: seconds);
+    }
+
+    // Try to parse as HTTP date (not commonly used by Notion)
+    return null;
   }
 
   /// Closes the HTTP client and releases resources.

@@ -8,6 +8,7 @@ library notion_dart_kit;
 
 // Export main client
 export 'src/client/notion_client.dart';
+export 'src/client/rate_limiter.dart';
 export 'src/models/block.dart';
 export 'src/models/block_content.dart';
 export 'src/models/data_source.dart';
