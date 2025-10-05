@@ -10,12 +10,15 @@ library notion_dart_kit;
 export 'src/client/notion_client.dart';
 
 // Export models
+export 'src/models/user.dart';
+export 'src/models/parent.dart';
+export 'src/models/rich_text.dart';
 // export 'src/models/page.dart';
 // export 'src/models/database.dart';
 // export 'src/models/block.dart';
-// export 'src/models/user.dart';
 
 // Export services
+export 'src/services/users_service.dart';
 // export 'src/services/pages_service.dart';
 // export 'src/services/databases_service.dart';
 // export 'src/services/blocks_service.dart';
