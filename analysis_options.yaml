@@ -33,6 +33,8 @@ analyzer:
     inference_failure_on_instance_creation: ignore
     inference_failure_on_function_invocation: ignore
     strict_raw_type: ignore
+    # Allow generic catch in examples and retry logic
+    avoid_catches_without_on_clauses: ignore
 
 linter:
   rules:
