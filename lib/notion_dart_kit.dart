@@ -13,6 +13,7 @@ export 'src/client/notion_client.dart';
 export 'src/models/user.dart';
 export 'src/models/parent.dart';
 export 'src/models/rich_text.dart';
+export 'src/models/pagination.dart';
 // export 'src/models/page.dart';
 // export 'src/models/database.dart';
 // export 'src/models/block.dart';

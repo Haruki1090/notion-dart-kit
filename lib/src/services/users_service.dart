@@ -1,5 +1,6 @@
 import '../client/http_client.dart';
 import '../models/user.dart';
+import '../models/pagination.dart';
 
 /// Service for interacting with Notion Users API
 class UsersService {
@@ -35,7 +36,7 @@ class UsersService {
   ///
   /// Returns a paginated list of users.
   /// Throws [NotionException] if the request fails.
-  Future<Map<String, dynamic>> list({
+  Future<PaginatedList<User>> list({
     String? startCursor,
     int? pageSize,
   }) async {
@@ -48,6 +49,6 @@ class UsersService {
       queryParameters: queryParams.isNotEmpty ? queryParams : null,
     );
 
-    return response;
+    return PaginatedList.fromJson(response, User.fromJson);
   }
 }
