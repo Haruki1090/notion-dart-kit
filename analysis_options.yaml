@@ -23,6 +23,8 @@ analyzer:
     recursive_getters: warning
     # Allow print in example directory
     avoid_print: ignore
+    # Ignore cascade_invocations in test files (expect calls)
+    cascade_invocations: ignore
 
 linter:
   rules:
