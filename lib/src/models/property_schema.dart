@@ -160,9 +160,10 @@ class PropertySchema with _$PropertySchema {
         return PropertySchema.select(id: id, name: name, options: options);
       case 'multi_select':
         // ignore: avoid_dynamic_calls
-        final options = (json['multi_select']?['options'] as List<dynamic>? ?? [])
-            .map((e) => SelectOption.fromJson(e as Map<String, dynamic>))
-            .toList();
+        final options =
+            (json['multi_select']?['options'] as List<dynamic>? ?? [])
+                .map((e) => SelectOption.fromJson(e as Map<String, dynamic>))
+                .toList();
         return PropertySchema.multiSelect(id: id, name: name, options: options);
       case 'status':
         final statusData = json['status'] as Map<String, dynamic>? ?? {};
