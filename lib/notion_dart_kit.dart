@@ -29,9 +29,11 @@ export 'src/services/pages_service.dart';
 export 'src/services/search_service.dart';
 // Export services
 export 'src/services/users_service.dart';
-// Export query builders
-// export 'src/query/filter_builder.dart';
-// export 'src/query/sort_builder.dart';
+
+// Export query DSL
+export 'src/query/filter.dart';
+export 'src/query/filter_builder.dart';
+export 'src/query/sort.dart';
 
 // Export exceptions
 export 'src/utils/exceptions.dart';
