@@ -30,7 +30,9 @@ class SearchService {
   }) async {
     final body = <String, dynamic>{};
 
-    if (query != null) body['query'] = query;
+    if (query != null) {
+      body['query'] = query;
+    }
 
     if (filter != null) {
       body['filter'] = {

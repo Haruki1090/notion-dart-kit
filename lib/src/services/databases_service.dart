@@ -88,15 +88,27 @@ class DatabasesService {
     bool? isLocked,
   }) async {
     final body = <String, dynamic>{};
-    if (title != null) body['title'] = title.map((e) => e.toJson()).toList();
+    if (title != null) {
+      body['title'] = title.map((e) => e.toJson()).toList();
+    }
     if (description != null) {
       body['description'] = description.map((e) => e.toJson()).toList();
     }
-    if (icon != null) body['icon'] = icon.toJson();
-    if (cover != null) body['cover'] = cover.toJson();
-    if (isInline != null) body['is_inline'] = isInline;
-    if (inTrash != null) body['in_trash'] = inTrash;
-    if (isLocked != null) body['is_locked'] = isLocked;
+    if (icon != null) {
+      body['icon'] = icon.toJson();
+    }
+    if (cover != null) {
+      body['cover'] = cover.toJson();
+    }
+    if (isInline != null) {
+      body['is_inline'] = isInline;
+    }
+    if (inTrash != null) {
+      body['in_trash'] = inTrash;
+    }
+    if (isLocked != null) {
+      body['is_locked'] = isLocked;
+    }
 
     final response =
         await _httpClient.patch('/databases/$databaseId', data: body);
@@ -140,10 +152,18 @@ class DatabasesService {
     List<String>? filterProperties,
   }) async {
     final body = <String, dynamic>{};
-    if (filter != null) body['filter'] = filter;
-    if (sorts != null) body['sorts'] = sorts;
-    if (startCursor != null) body['start_cursor'] = startCursor;
-    if (pageSize != null) body['page_size'] = pageSize;
+    if (filter != null) {
+      body['filter'] = filter;
+    }
+    if (sorts != null) {
+      body['sorts'] = sorts;
+    }
+    if (startCursor != null) {
+      body['start_cursor'] = startCursor;
+    }
+    if (pageSize != null) {
+      body['page_size'] = pageSize;
+    }
 
     // Build query parameters for filter_properties
     final queryParams = <String, dynamic>{};

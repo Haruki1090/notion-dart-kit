@@ -82,10 +82,18 @@ class PagesService {
     bool? inTrash,
   }) async {
     final body = <String, dynamic>{};
-    if (properties != null) body['properties'] = properties;
-    if (icon != null) body['icon'] = icon.toJson();
-    if (cover != null) body['cover'] = cover.toJson();
-    if (inTrash != null) body['in_trash'] = inTrash;
+    if (properties != null) {
+      body['properties'] = properties;
+    }
+    if (icon != null) {
+      body['icon'] = icon.toJson();
+    }
+    if (cover != null) {
+      body['cover'] = cover.toJson();
+    }
+    if (inTrash != null) {
+      body['in_trash'] = inTrash;
+    }
 
     final response = await _httpClient.patch('/pages/$pageId', data: body);
     return Page.fromJson(response);

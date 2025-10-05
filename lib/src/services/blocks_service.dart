@@ -41,8 +41,12 @@ class BlocksService {
     int? pageSize,
   }) async {
     final queryParams = <String, dynamic>{};
-    if (startCursor != null) queryParams['start_cursor'] = startCursor;
-    if (pageSize != null) queryParams['page_size'] = pageSize;
+    if (startCursor != null) {
+      queryParams['start_cursor'] = startCursor;
+    }
+    if (pageSize != null) {
+      queryParams['page_size'] = pageSize;
+    }
 
     final response = await _httpClient.get(
       '/blocks/$blockId/children',
