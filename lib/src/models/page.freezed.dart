@@ -24,7 +24,7 @@ mixin _$Page {
   Parent get parent => throw _privateConstructorUsedError;
   bool get archived => throw _privateConstructorUsedError;
   bool get inTrash => throw _privateConstructorUsedError;
-  Map<String, PropertyValue> get properties =>
+  Map<String, LegacyPropertyValue> get properties =>
       throw _privateConstructorUsedError;
   String get url => throw _privateConstructorUsedError;
   PageIcon? get icon => throw _privateConstructorUsedError;
@@ -51,7 +51,7 @@ abstract class $PageCopyWith<$Res> {
       Parent parent,
       bool archived,
       bool inTrash,
-      Map<String, PropertyValue> properties,
+      Map<String, LegacyPropertyValue> properties,
       String url,
       PageIcon? icon,
       NotionFile? cover,
@@ -129,7 +129,7 @@ class _$PageCopyWithImpl<$Res, $Val extends Page>
       properties: null == properties
           ? _value.properties
           : properties // ignore: cast_nullable_to_non_nullable
-              as Map<String, PropertyValue>,
+              as Map<String, LegacyPropertyValue>,
       url: null == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
@@ -224,7 +224,7 @@ abstract class _$$PageImplCopyWith<$Res> implements $PageCopyWith<$Res> {
       Parent parent,
       bool archived,
       bool inTrash,
-      Map<String, PropertyValue> properties,
+      Map<String, LegacyPropertyValue> properties,
       String url,
       PageIcon? icon,
       NotionFile? cover,
@@ -304,7 +304,7 @@ class __$$PageImplCopyWithImpl<$Res>
       properties: null == properties
           ? _value._properties
           : properties // ignore: cast_nullable_to_non_nullable
-              as Map<String, PropertyValue>,
+              as Map<String, LegacyPropertyValue>,
       url: null == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
@@ -337,7 +337,7 @@ class _$PageImpl extends _Page {
       required this.parent,
       required this.archived,
       required this.inTrash,
-      required final Map<String, PropertyValue> properties,
+      required final Map<String, LegacyPropertyValue> properties,
       required this.url,
       this.icon,
       this.cover,
@@ -361,9 +361,9 @@ class _$PageImpl extends _Page {
   final bool archived;
   @override
   final bool inTrash;
-  final Map<String, PropertyValue> _properties;
+  final Map<String, LegacyPropertyValue> _properties;
   @override
-  Map<String, PropertyValue> get properties {
+  Map<String, LegacyPropertyValue> get properties {
     if (_properties is EqualUnmodifiableMapView) return _properties;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableMapView(_properties);
@@ -446,7 +446,7 @@ abstract class _Page extends Page {
       required final Parent parent,
       required final bool archived,
       required final bool inTrash,
-      required final Map<String, PropertyValue> properties,
+      required final Map<String, LegacyPropertyValue> properties,
       required final String url,
       final PageIcon? icon,
       final NotionFile? cover,
@@ -470,7 +470,7 @@ abstract class _Page extends Page {
   @override
   bool get inTrash;
   @override
-  Map<String, PropertyValue> get properties;
+  Map<String, LegacyPropertyValue> get properties;
   @override
   String get url;
   @override

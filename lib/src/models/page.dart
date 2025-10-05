@@ -23,7 +23,7 @@ class Page with _$Page {
     required Parent parent,
     required bool archived,
     required bool inTrash,
-    required Map<String, PropertyValue> properties,
+    required Map<String, LegacyPropertyValue> properties,
     required String url,
     PageIcon? icon,
     NotionFile? cover,
@@ -44,7 +44,7 @@ class Page with _$Page {
       properties: (json['properties'] as Map<String, dynamic>).map(
         (key, value) => MapEntry(
           key,
-          PropertyValue.fromJson(value as Map<String, dynamic>),
+          LegacyPropertyValue.fromJson(value as Map<String, dynamic>),
         ),
       ),
       url: json['url'] as String,
@@ -77,21 +77,22 @@ class Page with _$Page {
   }
 }
 
-/// Base class for all property values
+/// Legacy property value wrapper - will be replaced by typed PropertyValue
 /// This is a simplified version - properties are stored as raw JSON for now
-class PropertyValue {
+@Deprecated('Use PropertyValue from property_value.dart instead')
+class LegacyPropertyValue {
   final String id;
   final String type;
   final Map<String, dynamic> data;
 
-  const PropertyValue({
+  const LegacyPropertyValue({
     required this.id,
     required this.type,
     required this.data,
   });
 
-  factory PropertyValue.fromJson(Map<String, dynamic> json) {
-    return PropertyValue(
+  factory LegacyPropertyValue.fromJson(Map<String, dynamic> json) {
+    return LegacyPropertyValue(
       id: json['id'] as String,
       type: json['type'] as String,
       data: Map<String, dynamic>.from(json),
