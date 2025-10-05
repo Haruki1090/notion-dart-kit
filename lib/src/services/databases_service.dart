@@ -165,7 +165,8 @@ class DatabasesService {
   /// Helper method to build query string from parameters
   String _buildQueryString(Map<String, dynamic> params) {
     return params.entries
-        .map((e) => '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value.toString())}')
+        .map((e) =>
+            '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value.toString())}')
         .join('&');
   }
 }

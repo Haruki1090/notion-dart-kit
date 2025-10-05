@@ -184,7 +184,8 @@ class Block with _$Block {
     final createdTime = DateTime.parse(json['created_time'] as String);
     final lastEditedTime = DateTime.parse(json['last_edited_time'] as String);
     final createdBy = User.fromJson(json['created_by'] as Map<String, dynamic>);
-    final lastEditedBy = User.fromJson(json['last_edited_by'] as Map<String, dynamic>);
+    final lastEditedBy =
+        User.fromJson(json['last_edited_by'] as Map<String, dynamic>);
     final hasChildren = json['has_children'] as bool;
     final archived = json['archived'] as bool;
     final inTrash = json['in_trash'] as bool? ?? false;
@@ -201,7 +202,8 @@ class Block with _$Block {
           hasChildren: hasChildren,
           archived: archived,
           inTrash: inTrash,
-          content: BlockContent.fromJson(json['paragraph'] as Map<String, dynamic>),
+          content:
+              BlockContent.fromJson(json['paragraph'] as Map<String, dynamic>),
         );
       case 'heading_1':
         return Block.heading1(
@@ -214,7 +216,8 @@ class Block with _$Block {
           hasChildren: hasChildren,
           archived: archived,
           inTrash: inTrash,
-          content: BlockContent.fromJson(json['heading_1'] as Map<String, dynamic>),
+          content:
+              BlockContent.fromJson(json['heading_1'] as Map<String, dynamic>),
         );
       case 'heading_2':
         return Block.heading2(
@@ -227,7 +230,8 @@ class Block with _$Block {
           hasChildren: hasChildren,
           archived: archived,
           inTrash: inTrash,
-          content: BlockContent.fromJson(json['heading_2'] as Map<String, dynamic>),
+          content:
+              BlockContent.fromJson(json['heading_2'] as Map<String, dynamic>),
         );
       case 'heading_3':
         return Block.heading3(
@@ -240,7 +244,8 @@ class Block with _$Block {
           hasChildren: hasChildren,
           archived: archived,
           inTrash: inTrash,
-          content: BlockContent.fromJson(json['heading_3'] as Map<String, dynamic>),
+          content:
+              BlockContent.fromJson(json['heading_3'] as Map<String, dynamic>),
         );
       case 'bulleted_list_item':
         return Block.bulletedListItem(
@@ -253,7 +258,8 @@ class Block with _$Block {
           hasChildren: hasChildren,
           archived: archived,
           inTrash: inTrash,
-          content: BlockContent.fromJson(json['bulleted_list_item'] as Map<String, dynamic>),
+          content: BlockContent.fromJson(
+              json['bulleted_list_item'] as Map<String, dynamic>),
         );
       case 'numbered_list_item':
         return Block.numberedListItem(
@@ -266,7 +272,8 @@ class Block with _$Block {
           hasChildren: hasChildren,
           archived: archived,
           inTrash: inTrash,
-          content: BlockContent.fromJson(json['numbered_list_item'] as Map<String, dynamic>),
+          content: BlockContent.fromJson(
+              json['numbered_list_item'] as Map<String, dynamic>),
         );
       case 'to_do':
         return Block.toDo(
@@ -292,7 +299,8 @@ class Block with _$Block {
           hasChildren: hasChildren,
           archived: archived,
           inTrash: inTrash,
-          content: BlockContent.fromJson(json['toggle'] as Map<String, dynamic>),
+          content:
+              BlockContent.fromJson(json['toggle'] as Map<String, dynamic>),
         );
       case 'code':
         return Block.code(
@@ -350,7 +358,9 @@ class Block with _$Block {
   /// Custom JSON serialization
   Map<String, dynamic> toJson() {
     return when(
-      paragraph: (id, parent, createdTime, lastEditedTime, createdBy, lastEditedBy, hasChildren, archived, inTrash, content) => {
+      paragraph: (id, parent, createdTime, lastEditedTime, createdBy,
+              lastEditedBy, hasChildren, archived, inTrash, content) =>
+          {
         'object': 'block',
         'id': id,
         'parent': parent.toJson(),
@@ -364,7 +374,9 @@ class Block with _$Block {
         'type': 'paragraph',
         'paragraph': content.toJson(),
       },
-      heading1: (id, parent, createdTime, lastEditedTime, createdBy, lastEditedBy, hasChildren, archived, inTrash, content) => {
+      heading1: (id, parent, createdTime, lastEditedTime, createdBy,
+              lastEditedBy, hasChildren, archived, inTrash, content) =>
+          {
         'object': 'block',
         'id': id,
         'parent': parent.toJson(),
@@ -378,7 +390,9 @@ class Block with _$Block {
         'type': 'heading_1',
         'heading_1': content.toJson(),
       },
-      heading2: (id, parent, createdTime, lastEditedTime, createdBy, lastEditedBy, hasChildren, archived, inTrash, content) => {
+      heading2: (id, parent, createdTime, lastEditedTime, createdBy,
+              lastEditedBy, hasChildren, archived, inTrash, content) =>
+          {
         'object': 'block',
         'id': id,
         'parent': parent.toJson(),
@@ -392,7 +406,9 @@ class Block with _$Block {
         'type': 'heading_2',
         'heading_2': content.toJson(),
       },
-      heading3: (id, parent, createdTime, lastEditedTime, createdBy, lastEditedBy, hasChildren, archived, inTrash, content) => {
+      heading3: (id, parent, createdTime, lastEditedTime, createdBy,
+              lastEditedBy, hasChildren, archived, inTrash, content) =>
+          {
         'object': 'block',
         'id': id,
         'parent': parent.toJson(),
@@ -406,7 +422,9 @@ class Block with _$Block {
         'type': 'heading_3',
         'heading_3': content.toJson(),
       },
-      bulletedListItem: (id, parent, createdTime, lastEditedTime, createdBy, lastEditedBy, hasChildren, archived, inTrash, content) => {
+      bulletedListItem: (id, parent, createdTime, lastEditedTime, createdBy,
+              lastEditedBy, hasChildren, archived, inTrash, content) =>
+          {
         'object': 'block',
         'id': id,
         'parent': parent.toJson(),
@@ -420,7 +438,9 @@ class Block with _$Block {
         'type': 'bulleted_list_item',
         'bulleted_list_item': content.toJson(),
       },
-      numberedListItem: (id, parent, createdTime, lastEditedTime, createdBy, lastEditedBy, hasChildren, archived, inTrash, content) => {
+      numberedListItem: (id, parent, createdTime, lastEditedTime, createdBy,
+              lastEditedBy, hasChildren, archived, inTrash, content) =>
+          {
         'object': 'block',
         'id': id,
         'parent': parent.toJson(),
@@ -434,7 +454,9 @@ class Block with _$Block {
         'type': 'numbered_list_item',
         'numbered_list_item': content.toJson(),
       },
-      toDo: (id, parent, createdTime, lastEditedTime, createdBy, lastEditedBy, hasChildren, archived, inTrash, content) => {
+      toDo: (id, parent, createdTime, lastEditedTime, createdBy, lastEditedBy,
+              hasChildren, archived, inTrash, content) =>
+          {
         'object': 'block',
         'id': id,
         'parent': parent.toJson(),
@@ -448,7 +470,9 @@ class Block with _$Block {
         'type': 'to_do',
         'to_do': content.toJson(),
       },
-      toggle: (id, parent, createdTime, lastEditedTime, createdBy, lastEditedBy, hasChildren, archived, inTrash, content) => {
+      toggle: (id, parent, createdTime, lastEditedTime, createdBy, lastEditedBy,
+              hasChildren, archived, inTrash, content) =>
+          {
         'object': 'block',
         'id': id,
         'parent': parent.toJson(),
@@ -462,7 +486,9 @@ class Block with _$Block {
         'type': 'toggle',
         'toggle': content.toJson(),
       },
-      code: (id, parent, createdTime, lastEditedTime, createdBy, lastEditedBy, hasChildren, archived, inTrash, content) => {
+      code: (id, parent, createdTime, lastEditedTime, createdBy, lastEditedBy,
+              hasChildren, archived, inTrash, content) =>
+          {
         'object': 'block',
         'id': id,
         'parent': parent.toJson(),
@@ -476,7 +502,9 @@ class Block with _$Block {
         'type': 'code',
         'code': content.toJson(),
       },
-      quote: (id, parent, createdTime, lastEditedTime, createdBy, lastEditedBy, hasChildren, archived, inTrash, content) => {
+      quote: (id, parent, createdTime, lastEditedTime, createdBy, lastEditedBy,
+              hasChildren, archived, inTrash, content) =>
+          {
         'object': 'block',
         'id': id,
         'parent': parent.toJson(),
@@ -490,7 +518,9 @@ class Block with _$Block {
         'type': 'quote',
         'quote': content.toJson(),
       },
-      divider: (id, parent, createdTime, lastEditedTime, createdBy, lastEditedBy, hasChildren, archived, inTrash) => {
+      divider: (id, parent, createdTime, lastEditedTime, createdBy,
+              lastEditedBy, hasChildren, archived, inTrash) =>
+          {
         'object': 'block',
         'id': id,
         'parent': parent.toJson(),
@@ -504,7 +534,9 @@ class Block with _$Block {
         'type': 'divider',
         'divider': {},
       },
-      unsupported: (id, parent, createdTime, lastEditedTime, createdBy, lastEditedBy, hasChildren, archived, inTrash) => {
+      unsupported: (id, parent, createdTime, lastEditedTime, createdBy,
+              lastEditedBy, hasChildren, archived, inTrash) =>
+          {
         'object': 'block',
         'id': id,
         'parent': parent.toJson(),

@@ -68,7 +68,8 @@ class Page with _$Page {
       'parent': parent.toJson(),
       'archived': archived,
       'in_trash': inTrash,
-      'properties': properties.map((key, value) => MapEntry(key, value.toJson())),
+      'properties':
+          properties.map((key, value) => MapEntry(key, value.toJson())),
       'url': url,
       if (icon != null) 'icon': icon!.toJson(),
       if (cover != null) 'cover': cover!.toJson(),

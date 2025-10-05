@@ -144,7 +144,10 @@ void main() {
             'created_time': '2025-01-01T00:00:00.000Z',
             'last_edited_time': '2025-01-01T00:00:00.000Z',
             'created_by': <String, dynamic>{'object': 'user', 'id': 'user1'},
-            'last_edited_by': <String, dynamic>{'object': 'user', 'id': 'user2'},
+            'last_edited_by': <String, dynamic>{
+              'object': 'user',
+              'id': 'user2'
+            },
             'parent': <String, dynamic>{'type': 'workspace', 'workspace': true},
             'archived': false,
             'in_trash': false,

@@ -140,7 +140,9 @@ class MentionContent with _$MentionContent {
         final date = json['date'] as Map<String, dynamic>;
         return MentionContent.date(
           start: DateTime.parse(date['start'] as String),
-          end: date['end'] != null ? DateTime.parse(date['end'] as String) : null,
+          end: date['end'] != null
+              ? DateTime.parse(date['end'] as String)
+              : null,
         );
       case 'link_preview':
         final linkPreview = json['link_preview'] as Map<String, dynamic>;
@@ -149,7 +151,8 @@ class MentionContent with _$MentionContent {
         final page = json['page'] as Map<String, dynamic>;
         return MentionContent.page(id: page['id'] as String);
       case 'template_mention':
-        final templateMention = json['template_mention'] as Map<String, dynamic>;
+        final templateMention =
+            json['template_mention'] as Map<String, dynamic>;
         final tmType = templateMention['type'] as String;
         if (tmType == 'template_mention_date') {
           return MentionContent.templateMentionDate(
@@ -239,7 +242,8 @@ class RichText with _$RichText {
 
   factory RichText.fromJson(Map<String, dynamic> json) {
     final type = json['type'] as String;
-    final annotations = Annotations.fromJson(json['annotations'] as Map<String, dynamic>);
+    final annotations =
+        Annotations.fromJson(json['annotations'] as Map<String, dynamic>);
     final plainText = json['plain_text'] as String;
     final href = json['href'] as String?;
 
@@ -253,14 +257,16 @@ class RichText with _$RichText {
         );
       case 'mention':
         return RichText.mention(
-          mention: MentionContent.fromJson(json['mention'] as Map<String, dynamic>),
+          mention:
+              MentionContent.fromJson(json['mention'] as Map<String, dynamic>),
           annotations: annotations,
           plainText: plainText,
           href: href,
         );
       case 'equation':
         return RichText.equation(
-          equation: EquationContent.fromJson(json['equation'] as Map<String, dynamic>),
+          equation: EquationContent.fromJson(
+              json['equation'] as Map<String, dynamic>),
           annotations: annotations,
           plainText: plainText,
           href: href,
