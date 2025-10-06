@@ -65,6 +65,36 @@ void main() async {
 }
 ```
 
+## 🧭 Architecture Overview
+
+> _A high-level tour of the moving parts that power `notion_dart_kit`._
+
+- **Composable Client** – `NotionClient` wires together dedicated services for pages, databases, data sources, blocks, search, and users so that each domain stays focused and type-safe.【F:lib/src/client/notion_client.dart†L1-L57】
+- **Thin HTTP Core** – `NotionHttpClient` wraps `dio` with shared configuration, Notion API headers, logging, and automatic error translation into rich domain exceptions.【F:lib/src/client/http_client.dart†L1-L200】
+- **Resilient Requests** – A purpose-built `RateLimiter` throttles bursts, honours `Retry-After`, and retries with exponential backoff to protect your integration from 429s.【F:lib/src/client/rate_limiter.dart†L1-L167】
+- **Expressive Models** – Freezed-generated models keep responses immutable and exhaustively typed, making it straightforward to work with blocks, pages, databases, data sources, files, and rich text primitives.【F:lib/src/models/page.dart†L1-L22】【F:lib/src/models/database.dart†L1-L21】【F:lib/src/models/block.dart†L1-L23】
+
+### Service Surface at a Glance
+
+| Domain | Key Methods | Notes |
+| --- | --- | --- |
+| Pages | `create`, `retrieve`, `update`, `archive`, `restore` | Mirrors the Pages REST endpoints with optional icons, covers, and selective property retrieval.【F:lib/src/services/pages_service.dart†L1-L91】 |
+| Databases | `create`, `retrieve`, `update`, `query`, `archive`, `restore` | Handles inline/locked flags, initial data source provisioning, and filtered queries with server-side sorting.【F:lib/src/services/databases_service.dart†L1-L130】 |
+| Data Sources | `create`, `retrieve`, `update`, `query` | Encapsulates the v3 Data Sources API including schema and property filtering per request.【F:lib/src/services/data_sources_service.dart†L1-L91】 |
+| Blocks | `retrieve`, `retrieveChildren`, `appendChildren`, `update`, `delete` | Supports pagination helpers for child traversal and safe mutation of block content.【F:lib/src/services/blocks_service.dart†L1-L96】 |
+| Search | `search` | Combines page and database hits with ergonomic discriminated unions.【F:lib/src/services/search_service.dart†L1-L86】 |
+| Users | `me`, `retrieve`, `list` | Provides pagination-ready user listings and bot metadata access.【F:lib/src/services/users_service.dart†L1-L60】 |
+
+## 🛡️ Resilience & Error Handling
+
+- **Smart Exceptions** – HTTP failures are mapped into `AuthenticationException`, `NotFoundException`, `RateLimitException`, and friends so you can handle them precisely in your app logic.【F:lib/src/utils/exceptions.dart†L1-L35】【F:lib/src/client/http_client.dart†L53-L99】
+- **Backoff Without Boilerplate** – All service calls automatically flow through the shared rate limiter, so you get jittered retries and token-bucket throttling for free.【F:lib/src/client/http_client.dart†L111-L199】【F:lib/src/client/rate_limiter.dart†L52-L166】
+- **Explicit Closure** – Calling `client.close()` disposes of underlying network resources when you are done, keeping long-lived CLI tools and servers tidy.【F:lib/src/client/notion_client.dart†L50-L56】
+
+## 🧪 Explore via Examples
+
+The [`example/`](./example) directory doubles as living documentation. Start with [`basic_usage.dart`](./example/basic_usage.dart) to see service orchestration, pagination loops, and typed pattern matching end-to-end.【F:example/basic_usage.dart†L1-L132】
+
 ## 📚 Usage Examples
 
 For complete, runnable examples, see the [example](./example) directory:
@@ -460,6 +490,9 @@ try {
 | File Upload API | 🚧 Planned |
 | Webhooks Support | 🚧 Planned |
 | Page Property Items API | 🚧 Planned |
+
+> 🗂️ Progress for these roadmap items now lives in the public GitHub Issues queue so you can follow along or subscribe for upda
+tes.
 
 ## 🏗️ Architecture
 
