@@ -65,6 +65,36 @@ void main() async {
 }
 ```
 
+## 🧭 アーキテクチャ概要
+
+> _`notion_dart_kit` を支える主要コンポーネントをざっくり俯瞰できます。_
+
+- **コンポーザブルなクライアント** – `NotionClient` がページ・データベース・データソース・ブロック・検索・ユーザー向けサービスを束ね、領域ごとに型安全な API を提供します。【F:lib/src/client/notion_client.dart†L1-L57】
+- **軽量な HTTP コア** – `NotionHttpClient` が `dio` をラップし、共通ヘッダーやログ出力、例外変換までを一元管理します。【F:lib/src/client/http_client.dart†L1-L200】
+- **堅牢なリクエスト制御** – 専用の `RateLimiter` がバーストを抑えつつ `Retry-After` を尊重し、指数バックオフ付きで 429 を回避します。【F:lib/src/client/rate_limiter.dart†L1-L167】
+- **表現力の高いモデル** – Freezed 生成モデルにより、ブロック・ページ・データベース・データソース・ファイル・リッチテキストを不変で網羅的に扱えます。【F:lib/src/models/page.dart†L1-L22】【F:lib/src/models/database.dart†L1-L21】【F:lib/src/models/block.dart†L1-L23】
+
+### サービス機能早見表
+
+| ドメイン | 主なメソッド | 補足 |
+| --- | --- | --- |
+| Pages | `create`, `retrieve`, `update`, `archive`, `restore` | アイコン・カバー指定やプロパティ絞り込みなど、Pages API をほぼそのままラップしています。【F:lib/src/services/pages_service.dart†L1-L91】 |
+| Databases | `create`, `retrieve`, `update`, `query`, `archive`, `restore` | インライン表示やロック状態、初期データソース設定、フィルター＋ソート付きクエリに対応します。【F:lib/src/services/databases_service.dart†L1-L130】 |
+| Data Sources | `create`, `retrieve`, `update`, `query` | v3 の Data Sources API をカバーし、クエリごとのスキーマ／プロパティ制御を簡潔に扱えます。【F:lib/src/services/data_sources_service.dart†L1-L91】 |
+| Blocks | `retrieve`, `retrieveChildren`, `appendChildren`, `update`, `delete` | 子ブロック巡回のためのページネーション補助や安全な更新処理を提供します。【F:lib/src/services/blocks_service.dart†L1-L96】 |
+| Search | `search` | ページ／データベースの結果を判別しやすい合併型で返します。【F:lib/src/services/search_service.dart†L1-L86】 |
+| Users | `me`, `retrieve`, `list` | ページネーション対応のユーザー一覧とボット情報取得をサポートします。【F:lib/src/services/users_service.dart†L1-L60】 |
+
+## 🛡️ レジリエンスとエラーハンドリング
+
+- **意味のある例外** – HTTP 失敗は `AuthenticationException` や `NotFoundException` などのドメイン例外に変換され、用途に応じたリカバリーが可能です。【F:lib/src/utils/exceptions.dart†L1-L35】【F:lib/src/client/http_client.dart†L53-L99】
+- **ボイラープレート不要の再試行** – すべてのサービス呼び出しが共通レートリミッターを通るため、ジッター付きリトライとトークンバケット制御を自動で享受できます。【F:lib/src/client/http_client.dart†L111-L199】【F:lib/src/client/rate_limiter.dart†L52-L166】
+- **明示的なリソース解放** – `client.close()` を呼べば内部のネットワークリソースが解放され、CLI や常駐プロセスでもクリーンに終了できます。【F:lib/src/client/notion_client.dart†L50-L56】
+
+## 🧪 サンプルで学ぶ
+
+[`example/`](./example) ディレクトリは実行可能なドキュメントです。[`basic_usage.dart`](./example/basic_usage.dart) ではサービス連携やページネーションループ、パターンマッチまで一通り確認できます。【F:example/basic_usage.dart†L1-L132】
+
 ## 📚 使用例
 
 ### ページの操作
@@ -325,6 +355,8 @@ try {
 | File Upload API | 🚧 計画中 |
 | Webhooks サポート | 🚧 計画中 |
 | Page Property Items API | 🚧 計画中 |
+
+> 🗂️ これらのロードマップ項目の進捗管理と議論は、公開されている GitHub Issues で追跡しています。ぜひウォッチしてアップデートをフォローしてください。
 
 ## 🏗️ アーキテクチャ
 
