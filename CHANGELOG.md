@@ -13,6 +13,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **NotionClient**: Main client for interacting with the Notion API
 - **Type-safe models**: Strongly typed models using Freezed for immutable data classes
 - **Auto-retry logic**: Built-in exponential backoff with jitter for rate limit handling
+- **Rate Limiting**: Token bucket algorithm with 3 requests/second default
+- **Result Type Pattern**: Functional error handling with `Result<T, E>`
+- **Comprehensive Logging**: Debug logging with sanitized output (NotionLogger)
 - **Custom exceptions**: Specific exception classes for different API error types
 
 #### API Services
@@ -22,15 +25,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **BlocksService**: Block operations (retrieve, retrieveChildren, appendChildren, update, delete)
 - **SearchService**: Search across pages and databases with filters
 
+#### Query DSL
+- **Filter**: Type-safe filter construction for database queries
+  - Support for all property types (text, number, select, multi-select, date, people, files, etc.)
+  - Logical operators: AND, OR
+  - Nested filter combinations
+- **Sort**: Type-safe sorting for database queries
+  - Property sorting (ascending/descending)
+  - Timestamp sorting (created_time, last_edited_time)
+
 #### Models
 - **User**: Person and Bot user types with union type support
 - **Page**: Page object with properties and metadata
 - **Database**: Database object with schema and properties
-- **Block**: Block object with various block types
-- **RichText**: Rich text formatting support
-- **File**: File and icon support
-- **Parent**: Parent object (page, database, workspace)
-- **PropertyValue**: Database property values
+- **Block**: 31+ block types (paragraph, headings, lists, to-do, code, callout, etc.)
+- **RichText**: Rich text formatting with annotations, mentions, and equations
+- **File**: File and icon support (external and internal)
+- **Parent**: Parent object (page, database, workspace, block, data source)
+- **PropertyValue**: 21 property types (title, rich_text, number, select, multi_select, date, people, checkbox, url, email, phone, files, relation, rollup, formula, status, etc.)
+- **PropertySchema**: 21 property schema types for database structure
 - **Pagination**: Paginated list support with cursors
 
 #### HTTP Client Features
@@ -41,18 +54,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Notion API version header (2022-06-28)
 - Bearer token authentication
 
-#### Documentation
+#### Documentation & Examples
 - Comprehensive README (English)
 - Japanese README (日本語)
-- Basic usage example
+- **Example Files**:
+  - `basic_usage.dart` - Getting started with all APIs
+  - `query_dsl_example.dart` - Advanced filtering and sorting examples
+  - `properties_and_blocks_example.dart` - Working with properties and blocks
+  - `pagination_example.dart` - Handling large datasets with pagination
+- Troubleshooting guide
+- Contributing guidelines (English & Japanese)
 - API reference documentation
 - MIT License
+
+#### Testing
+- **113+ comprehensive tests** covering all core functionality
+- Unit tests for models, services, and utilities
+- Integration test structure
+- 80%+ test coverage
 
 ### Dependencies
 - `dio: ^5.4.0` - HTTP client
 - `json_annotation: ^4.8.1` - JSON serialization annotations
 - `freezed_annotation: ^2.4.1` - Immutable class annotations
 - `meta: ^1.10.0` - Metadata annotations
+- `logger: ^2.0.2` - Logging
 
 ### Dev Dependencies
 - `build_runner: ^2.4.6` - Code generation
@@ -63,9 +89,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `lints: ^3.0.0` - Dart linter
 
 ### Known Limitations
-- Query Builder (DSL for filters/sorts) not yet implemented
 - Comments API not yet implemented
-- Data Sources API not yet implemented
 - File Upload API not yet implemented
 - Webhooks Support not yet implemented
 - Page Property Items API not yet implemented
@@ -73,16 +97,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Planned Features
-- Query Builder with fluent API for filters and sorts
 - Comments API support
-- Data Sources API support
 - File Upload API support
 - Webhooks support
 - Page Property Items API
-- Enhanced error messages
-- Request/response logging options
-- Caching layer
-- Offline support
+- Enhanced error messages with detailed context
+- Caching layer for frequently accessed data
+- Offline support with local data persistence
+- More comprehensive integration tests
+- Performance optimizations for large datasets
 
 ---
 

@@ -67,6 +67,12 @@ void main() async {
 
 ## 📚 Usage Examples
 
+For complete, runnable examples, see the [example](./example) directory:
+- [basic_usage.dart](./example/basic_usage.dart) - Getting started with all APIs
+- [query_dsl_example.dart](./example/query_dsl_example.dart) - Advanced filtering and sorting
+- [properties_and_blocks_example.dart](./example/properties_and_blocks_example.dart) - Working with properties and blocks
+- [pagination_example.dart](./example/pagination_example.dart) - Handling large datasets
+
 ### Working with Pages
 
 ```dart
@@ -267,6 +273,126 @@ final databases = await client.search.search(
 final all = await client.search.search();
 ```
 
+### Query DSL (Type-Safe Filters & Sorts)
+
+The library includes a powerful Query DSL for building type-safe filters and sorts:
+
+```dart
+import 'package:notion_dart_kit/notion_dart_kit.dart';
+
+// Simple filters
+final statusFilter = Filter.property('Status').select.equals('In Progress');
+final priorityFilter = Filter.property('Priority').number.greaterThan(3);
+final dateFilter = Filter.property('Due Date').date.thisWeek(const {});
+
+// Compound filters with AND
+final andFilter = Filter.and([
+  Filter.property('Status').select.equals('In Progress'),
+  Filter.property('Priority').number.greaterThan(3),
+]);
+
+// Compound filters with OR
+final orFilter = Filter.or([
+  Filter.property('Status').select.equals('Todo'),
+  Filter.property('Status').select.equals('In Progress'),
+]);
+
+// Nested filters
+final complexFilter = Filter.and([
+  Filter.or([
+    Filter.property('Status').select.equals('Todo'),
+    Filter.property('Status').select.equals('In Progress'),
+  ]),
+  Filter.property('Priority').number.greaterThan(3),
+]);
+
+// Sorting
+final sorts = [
+  Sort.property('Priority').descending(),
+  Sort.createdTime.ascending(),
+];
+
+// Use in query
+final results = await client.databases.query(
+  databaseId,
+  filter: complexFilter.toJson(),
+  sorts: sorts.map((s) => s.toJson()).toList(),
+);
+```
+
+**Supported Filter Types:**
+- Text: `contains`, `equals`, `startsWith`, `endsWith`, `isEmpty`, `isNotEmpty`
+- Number: `equals`, `greaterThan`, `lessThan`, `greaterThanOrEqualTo`, `lessThanOrEqualTo`
+- Checkbox: `equals`, `doesNotEqual`
+- Select: `equals`, `doesNotEqual`, `isEmpty`, `isNotEmpty`
+- Multi-select: `contains`, `doesNotContain`, `isEmpty`, `isNotEmpty`
+- Date: `after`, `before`, `equals`, `onOrAfter`, `onOrBefore`, `pastWeek`, `pastMonth`, `thisWeek`, `nextWeek`, etc.
+- People: `contains`, `doesNotContain`, `isEmpty`, `isNotEmpty`
+- Files: `isEmpty`, `isNotEmpty`
+- And many more...
+
+See [query_dsl_example.dart](./example/query_dsl_example.dart) for comprehensive examples.
+
+### Working with Properties
+
+```dart
+// Create a page with various property types
+final properties = {
+  'Title': PropertyValue.title([
+    RichText.text(
+      text: 'My Page',
+      annotations: const Annotations(bold: true, color: 'blue'),
+    ),
+  ]).toJson(),
+
+  'Status': PropertyValue.select('In Progress').toJson(),
+  'Priority': PropertyValue.number(5).toJson(),
+  'Tags': PropertyValue.multiSelect(['urgent', 'planning']).toJson(),
+  'Due Date': PropertyValue.date(
+    start: DateTime.now().add(const Duration(days: 7)),
+  ).toJson(),
+  'Completed': PropertyValue.checkbox(false).toJson(),
+  'Assignees': PropertyValue.people(['user_id']).toJson(),
+  'URL': PropertyValue.url('https://example.com').toJson(),
+};
+
+final page = await client.pages.create(
+  parent: Parent.database(databaseId).toJson(),
+  properties: properties,
+);
+```
+
+**Supported Property Types:** Title, Rich Text, Number, Select, Multi-select, Date, People, Checkbox, URL, Email, Phone, Files, Relation, Rollup, Formula, Status, Created Time, Created By, Last Edited Time, Last Edited By, and Unique ID.
+
+See [properties_and_blocks_example.dart](./example/properties_and_blocks_example.dart) for more examples.
+
+### Pagination
+
+Handle large datasets efficiently with built-in pagination support:
+
+```dart
+// Fetch all pages from a database
+final allPages = <Page>[];
+String? cursor;
+
+do {
+  final response = await client.databases.query(
+    databaseId,
+    startCursor: cursor,
+    pageSize: 100,
+  );
+
+  allPages.addAll(response.results);
+  cursor = response.nextCursor;
+
+  print('Fetched ${allPages.length} pages so far...');
+} while (cursor != null);
+
+print('Total pages: ${allPages.length}');
+```
+
+See [pagination_example.dart](./example/pagination_example.dart) for advanced pagination patterns.
+
 ## 🔧 Advanced Configuration
 
 ### Custom HTTP Client Configuration
@@ -315,13 +441,22 @@ try {
 | `client.blocks` | Block operations (retrieve, update, append, delete) | ✅ Implemented |
 | `client.search` | Search across pages and databases | ✅ Implemented |
 
+### Core Features
+
+| Feature | Status |
+|---------|--------|
+| Query DSL (Type-safe filters/sorts) | ✅ Implemented |
+| Rate Limiting & Retry Logic | ✅ Implemented |
+| Result Type Pattern | ✅ Implemented |
+| Comprehensive Logging | ✅ Implemented |
+| 21 Property Types | ✅ Implemented |
+| 31+ Block Types | ✅ Implemented |
+
 ### Planned Features
 
 | Feature | Status |
 |---------|--------|
-| Query Builder (DSL for filters/sorts) | 🚧 Planned |
 | Comments API | 🚧 Planned |
-| Data Sources API | 🚧 Planned |
 | File Upload API | 🚧 Planned |
 | Webhooks Support | 🚧 Planned |
 | Page Property Items API | 🚧 Planned |
