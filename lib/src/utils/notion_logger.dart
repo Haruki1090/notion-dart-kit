@@ -71,7 +71,9 @@ class NotionLogger {
     Map<String, dynamic>? headers,
     dynamic data,
   }) {
-    if (!_isDebugMode || _logger == null) return;
+    if (!_isDebugMode || _logger == null) {
+      return;
+    }
 
     final sanitizedHeaders = _sanitizeHeaders(headers);
     final buffer = StringBuffer();
@@ -97,7 +99,9 @@ class NotionLogger {
     int? durationMs,
     String? notionRequestId,
   }) {
-    if (!_isDebugMode || _logger == null) return;
+    if (!_isDebugMode || _logger == null) {
+      return;
+    }
 
     final buffer = StringBuffer();
     buffer.writeln('✅ HTTP Response');
@@ -125,7 +129,9 @@ class NotionLogger {
     required String error,
     dynamic data,
   }) {
-    if (!_isDebugMode || _logger == null) return;
+    if (!_isDebugMode || _logger == null) {
+      return;
+    }
 
     final buffer = StringBuffer();
     buffer.writeln('❌ HTTP Error');
@@ -144,7 +150,9 @@ class NotionLogger {
 
   /// Sanitize headers to hide sensitive information.
   Map<String, dynamic>? _sanitizeHeaders(Map<String, dynamic>? headers) {
-    if (headers == null) return null;
+    if (headers == null) {
+      return null;
+    }
 
     return headers.map((key, value) {
       if (key.toLowerCase() == 'authorization') {

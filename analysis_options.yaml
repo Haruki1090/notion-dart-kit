@@ -37,6 +37,10 @@ analyzer:
     avoid_catches_without_on_clauses: ignore
     # Allow throwing generic types in Result.getOrThrow()
     only_throw_errors: ignore
+    # Allow positional bool parameters in query DSL
+    avoid_positional_boolean_parameters: ignore
+    # Allow static-only classes for utility classes like Sort
+    avoid_classes_with_only_static_members: ignore
 
 linter:
   rules:
