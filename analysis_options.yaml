@@ -35,6 +35,8 @@ analyzer:
     strict_raw_type: ignore
     # Allow generic catch in examples and retry logic
     avoid_catches_without_on_clauses: ignore
+    # Allow throwing generic types in Result.getOrThrow()
+    only_throw_errors: ignore
 
 linter:
   rules:
