@@ -391,6 +391,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [Package on pub.dev](https://pub.dev/packages/notion_dart_kit)
 - [Issue Tracker](https://github.com/Haruki1090/notion-dart-kit/issues)
 - [Source Code](https://github.com/Haruki1090/notion-dart-kit)
+- [Troubleshooting Guide](./TROUBLESHOOTING.md) - Common issues and solutions
 - [Contributing Guidelines](./CONTRIBUTING.md) | [日本語版](./CONTRIBUTING_ja.md)
 - [Changelog](./CHANGELOG.md) | [日本語版](./CHANGELOG_ja.md)
 
