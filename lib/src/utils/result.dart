@@ -36,26 +36,26 @@ class Result<T, E> with _$Result<T, E> {
   ///
   /// If this is a [Failure], returns the failure unchanged.
   Result<U, E> mapValue<U>(U Function(T value) mapper) => when(
-      success: (value) => Result.success(mapper(value)),
-      failure: Result.failure,
-    );
+        success: (value) => Result.success(mapper(value)),
+        failure: Result.failure,
+      );
 
   /// Maps the error value using the given function.
   ///
   /// If this is a [Success], returns the success unchanged.
   Result<T, F> mapError<F>(F Function(E error) mapper) => when(
-      success: Result.success,
-      failure: (error) => Result.failure(mapper(error)),
-    );
+        success: Result.success,
+        failure: (error) => Result.failure(mapper(error)),
+      );
 
   /// Applies a function that returns a Result to the success value.
   ///
   /// This is useful for chaining operations that can fail.
   /// If this is a [Failure], returns the failure unchanged.
   Result<U, E> flatMap<U>(Result<U, E> Function(T value) mapper) => when(
-      success: (value) => mapper(value),
-      failure: Result.failure,
-    );
+        success: (value) => mapper(value),
+        failure: Result.failure,
+      );
 
   /// Folds the result into a single value.
   ///
@@ -63,42 +63,43 @@ class Result<T, E> with _$Result<T, E> {
   U fold<U>({
     required U Function(T value) onSuccess,
     required U Function(E error) onFailure,
-  }) => when(
-      success: onSuccess,
-      failure: onFailure,
-    );
+  }) =>
+      when(
+        success: onSuccess,
+        failure: onFailure,
+      );
 
   /// Returns the success value or throws the error.
   ///
   /// Throws [E] if this is a [Failure].
   T getOrThrow() => when(
-      success: (value) => value,
-      failure: (error) => throw error as Object,
-    );
+        success: (value) => value,
+        failure: (error) => throw error as Object,
+      );
 
   /// Returns the success value or the provided default.
   T getOrElse(T defaultValue) => when(
-      success: (value) => value,
-      failure: (_) => defaultValue,
-    );
+        success: (value) => value,
+        failure: (_) => defaultValue,
+      );
 
   /// Returns the success value or computes it from the error.
   T getOrElseGet(T Function(E error) onError) => when(
-      success: (value) => value,
-      failure: (error) => onError(error),
-    );
+        success: (value) => value,
+        failure: (error) => onError(error),
+      );
 
   /// Returns the success value or null.
   T? getOrNull() => when(
-      success: (value) => value,
-      failure: (_) => null,
-    );
+        success: (value) => value,
+        failure: (_) => null,
+      );
 
   /// Returns the error or null.
   E? errorOrNull() => when(
-      success: (_) => null,
-      failure: (error) => error,
-    );
+        success: (_) => null,
+        failure: (error) => error,
+      );
 }
 
 /// Extension methods for Future<Result<T, E>>

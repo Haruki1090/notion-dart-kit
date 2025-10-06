@@ -276,8 +276,7 @@ class _LoggingInterceptor extends Interceptor {
 
     _logger.logResponse(
       method: response.requestOptions.method,
-      url:
-          '${response.requestOptions.baseUrl}${response.requestOptions.path}',
+      url: '${response.requestOptions.baseUrl}${response.requestOptions.path}',
       statusCode: response.statusCode ?? 0,
       data: response.data,
       durationMs: _stopwatch.elapsedMilliseconds,
