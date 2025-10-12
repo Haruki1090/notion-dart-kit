@@ -78,6 +78,7 @@ class CommentAttachment with _$CommentAttachment {
 
   const CommentAttachment._();
 
+  @override
   Map<String, dynamic> toJson() => {
         'category': category,
         'file': file.toJson(),
@@ -123,6 +124,7 @@ class Comment with _$Comment {
               ),
       );
 
+  @override
   Map<String, dynamic> toJson() => {
         'object': object,
         'id': id,
