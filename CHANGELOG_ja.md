@@ -1,3 +1,12 @@
+## Unreleased
+
+### 追加
+- File Upload API をサポート:
+  - `FileUploadsService` (`create`, `sendBytes`, `sendFile`, `complete`, `retrieve`, `list`)
+  - `FileUpload` モデルと `FileUploadStatus` 列挙
+  - 公開エクスポートと `NotionClient.fileUploads`
+  - サンプル `example/file_uploads_example.dart`
+
 # 変更履歴
 
 このプロジェクトのすべての重要な変更は、このファイルに記録されます。
