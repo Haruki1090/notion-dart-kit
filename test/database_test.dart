@@ -45,7 +45,7 @@ void main() {
                   'type': 'text',
                   'text': {'content': 'Related Item'},
                 }
-              ]
+              ],
             },
             'Amount': {
               'number': 10,
@@ -69,16 +69,16 @@ void main() {
                 'options': [
                   {'name': 'A', 'color': 'blue'},
                   {'name': 'B', 'color': 'green'},
-                ]
-              }
+                ],
+              },
             },
             'Multi': {
               'multi_select': {
                 'options': [
                   {'name': 'Red', 'color': 'red'},
                   {'name': 'Blue', 'color': 'blue'},
-                ]
-              }
+                ],
+              },
             },
             'Date': {'date': {}},
             'People': {'people': {}},
@@ -93,8 +93,8 @@ void main() {
                   {'name': 'Todo', 'color': 'blue'},
                   {'name': 'In Progress', 'color': 'yellow'},
                   {'name': 'Done', 'color': 'green'},
-                ]
-              }
+                ],
+              },
             },
 
             // Read-only/computed properties
@@ -105,25 +105,25 @@ void main() {
             'Unique': {
               'unique_id': {
                 'prefix': 'ID',
-              }
+              },
             },
             'Formula': {
               'formula': {
                 // reference Number property
                 'expression': 'prop("Number") + 1',
-              }
+              },
             },
             'Relation': {
               'relation': {
                 'database_id': relatedDb.id,
-              }
+              },
             },
             'Rollup': {
               'rollup': {
                 'relation_property_name': 'Relation',
                 'rollup_property_name': 'Amount',
                 'function': 'sum',
-              }
+              },
             },
           },
         );
@@ -137,37 +137,37 @@ void main() {
               'title': [
                 {
                   'type': 'text',
-                  'text': {'content': 'Item1'}
+                  'text': {'content': 'Item1'},
                 },
-              ]
+              ],
             },
             'Rich': {
               'rich_text': [
                 {
                   'type': 'text',
-                  'text': {'content': 'Hello'}
+                  'text': {'content': 'Hello'},
                 }
-              ]
+              ],
             },
             'Number': {'number': 5},
             'Select': {
-              'select': {'name': 'A'}
+              'select': {'name': 'A'},
             },
             'Multi': {
               'multi_select': [
                 {'name': 'Red'},
                 {'name': 'Blue'},
-              ]
+              ],
             },
             'Date': {
               'date': {
                 'start': DateTime.now().toUtc().toIso8601String(),
-              }
+              },
             },
             'People': {
               'people': [
-                {'id': me.id}
-              ]
+                {'id': me.id},
+              ],
             },
             'Done': {'checkbox': true},
             'URL': {'url': 'https://example.com'},
@@ -178,17 +178,17 @@ void main() {
                 {
                   'type': 'external',
                   'name': 'Example',
-                  'external': {'url': 'https://example.com/example.pdf'}
+                  'external': {'url': 'https://example.com/example.pdf'},
                 }
-              ]
+              ],
             },
             'Status': {
-              'status': {'name': 'Todo'}
+              'status': {'name': 'Todo'},
             },
             'Relation': {
               'relation': [
-                {'id': relatedPage.id}
-              ]
+                {'id': relatedPage.id},
+              ],
             },
           },
         );
@@ -200,7 +200,7 @@ void main() {
             'Number': {'number': 9},
             'Done': {'checkbox': false},
             'Select': {
-              'select': {'name': 'B'}
+              'select': {'name': 'B'},
             },
           },
         );
@@ -210,9 +210,9 @@ void main() {
         expect(updated.properties['Select']?.type, 'select');
 
         // 5) Filter + Sort: Number > 3, sort by Number desc
-        final filter = Filter.property(
+        const filter = Filter.property(
           name: 'Number',
-          filter: const PropertyFilter.numberGreaterThan(3),
+          filter: PropertyFilter.numberGreaterThan(3),
         );
         final sorts = ['Number'.descending().toJson()];
 
@@ -235,7 +235,7 @@ void main() {
                     'type': 'text',
                     'text': {'content': 'Item${i + 2}'},
                   }
-                ]
+                ],
               },
               'Number': {'number': i + 1},
             },
