@@ -14,9 +14,9 @@ void main() {
       final comments = client.comments;
 
       final richText = [
-        RichText.text(
-          text: const TextContent(content: 'hello'),
-          annotations: const Annotations(),
+        const RichText.text(
+          text: TextContent(content: 'hello'),
+          annotations: Annotations(),
           plainText: 'hello',
         ),
       ];
