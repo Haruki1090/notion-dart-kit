@@ -1,6 +1,7 @@
 ## Unreleased
 
 ### Added
+- Database integration test covering 21 property types (test/database_test.dart)
 - File Upload API support:
   - `FileUploadsService` with `create`, `sendBytes`, `sendFile`, `complete`, `retrieve`, `list`
   - `FileUpload` model and `FileUploadStatus` enum

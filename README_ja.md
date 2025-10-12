@@ -85,6 +85,8 @@ void main() async {
 | Blocks | `retrieve`, `retrieveChildren`, `appendChildren`, `update`, `delete` | 子の走査とブロックコンテンツの安全な変更のためのページネーションヘルパーをサポートします。 |
 | Search | `search` | エルゴノミックな判別共用体でページとデータベースのヒットを組み合わせます。 |
 | Users | `me`, `retrieve`, `list` | ページネーション対応のユーザーリストとボットメタデータアクセスを提供します。 |
+| Comments | `create`, `list`, `retrieve` | ページ/ブロック上のコメント作成・取得。添付や表示名の上書きも対応。 |
+| File Uploads | `create`, `sendBytes`, `sendFile`, `complete`, `retrieve`, `list` | シングル/マルチパート/外部URLのアップロードに対応。 |
 
 ## 🛡️ 回復力とエラーハンドリング
 
@@ -302,6 +304,58 @@ final databases = await client.search.search(
 
 // すべてのページ/データベースを取得(クエリなし)
 final all = await client.search.search();
+```
+
+### コメントの操作
+
+```dart
+// コメントを作成（親ページに対して）
+final comment = await client.comments.create(
+  parent: Parent.page('page_id'),
+  richText: [
+    RichText.text(content: 'これはコメントです'),
+  ],
+);
+
+// ブロック/ページの未解決コメントを一覧
+final comments = await client.comments.list(blockId: 'block_or_page_id');
+for (final c in comments.results) {
+  print('Comment: ${c.id}');
+}
+
+// コメントをIDで取得
+final retrieved = await client.comments.retrieve(comment.id);
+```
+
+### ファイルのアップロード
+
+```dart
+// 1) シングルパートの小さなファイルをアップロード
+final created = await client.fileUploads.create(
+  mode: FileUploadMode.singlePart,
+  filename: 'hello.txt',
+  contentType: 'text/plain',
+);
+
+final uploaded = await client.fileUploads.sendBytes(
+  created.id,
+  'Hello Notion'.codeUnits,
+  filename: 'hello.txt',
+  contentType: 'text/plain',
+);
+print('Upload status: ${uploaded.status}');
+
+// 2) マルチパートの大きなファイル（例）
+// final session = await client.fileUploads.create(
+//   mode: FileUploadMode.multiPart,
+//   filename: 'big.mov',
+//   contentType: 'video/quicktime',
+//   numberOfParts: 3,
+// );
+// await client.fileUploads.sendFile(session.id, '/path/part1', partNumber: 1);
+// await client.fileUploads.sendFile(session.id, '/path/part2', partNumber: 2);
+// await client.fileUploads.sendFile(session.id, '/path/part3', partNumber: 3);
+// final done = await client.fileUploads.complete(session.id);
 ```
 
 ### クエリ DSL (型安全フィルターとソート)
@@ -523,7 +577,9 @@ notion-dart-kit/
 │       │   ├── databases_service.dart # Database API エンドポイント
 │       │   ├── data_sources_service.dart # Data Sources API (v3)
 │       │   ├── blocks_service.dart    # Block API エンドポイント
-│       │   └── search_service.dart    # Search API エンドポイント
+│       │   ├── search_service.dart    # Search API エンドポイント
+│       │   ├── comments_service.dart  # Comments API エンドポイント
+│       │   └── file_uploads_service.dart # File Uploads API エンドポイント
 │       ├── query/
 │       │   ├── filter.dart            # クエリフィルター DSL
 │       │   ├── filter_builder.dart    # 型安全フィルタービルダー

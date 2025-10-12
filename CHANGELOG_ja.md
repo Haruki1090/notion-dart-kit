@@ -1,6 +1,7 @@
 ## Unreleased
 
 ### 追加
+- 21種類のプロパティ型を網羅するデータベース統合テストを追加（test/database_test.dart）
 - File Upload API をサポート:
   - `FileUploadsService` (`create`, `sendBytes`, `sendFile`, `complete`, `retrieve`, `list`)
   - `FileUpload` モデルと `FileUploadStatus` 列挙

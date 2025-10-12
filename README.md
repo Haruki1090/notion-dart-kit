@@ -85,6 +85,8 @@ void main() async {
 | Blocks | `retrieve`, `retrieveChildren`, `appendChildren`, `update`, `delete` | Supports pagination helpers for child traversal and safe mutation of block content. |
 | Search | `search` | Combines page and database hits with ergonomic discriminated unions. |
 | Users | `me`, `retrieve`, `list` | Provides pagination-ready user listings and bot metadata access. |
+| Comments | `create`, `list`, `retrieve` | Create and fetch comments for pages/blocks; supports attachments and display name overrides. |
+| File Uploads | `create`, `sendBytes`, `sendFile`, `complete`, `retrieve`, `list` | Supports single-part, multi-part, and external URL uploads. |
 
 ## 🛡️ Resilience & Error Handling
 
@@ -274,6 +276,62 @@ final users = await client.users.list(pageSize: 100);
 for (final user in users.results) {
   print('User: ${user.name}');
 }
+```
+
+### Comments
+
+```dart
+// Create a comment on a page
+final comment = await client.comments.create(
+  parent: Parent.page(pageId: 'page_id'),
+  richText: [
+    RichText.text(
+      text: TextContent(content: 'This is a comment'),
+      annotations: const Annotations(),
+      plainText: 'This is a comment',
+    ),
+  ],
+);
+
+// List unresolved comments for a page or block
+final comments = await client.comments.list(blockId: 'block_or_page_id');
+for (final c in comments.results) {
+  print('Comment: ${c.id}');
+}
+
+// Retrieve a comment by ID
+final retrieved = await client.comments.retrieve(comment.id);
+```
+
+### File Uploads
+
+```dart
+// Single-part small file upload
+final session = await client.fileUploads.create(
+  mode: FileUploadMode.singlePart,
+  filename: 'hello.txt',
+  contentType: 'text/plain',
+);
+
+final uploaded = await client.fileUploads.sendBytes(
+  session.id,
+  'Hello Notion'.codeUnits,
+  filename: 'hello.txt',
+  contentType: 'text/plain',
+);
+print('Upload status: ${uploaded.status}');
+
+// Multi-part (example)
+// final multi = await client.fileUploads.create(
+//   mode: FileUploadMode.multiPart,
+//   filename: 'big.mov',
+//   contentType: 'video/quicktime',
+//   numberOfParts: 3,
+// );
+// await client.fileUploads.sendFile(multi.id, '/path/part1', partNumber: 1);
+// await client.fileUploads.sendFile(multi.id, '/path/part2', partNumber: 2);
+// await client.fileUploads.sendFile(multi.id, '/path/part3', partNumber: 3);
+// final done = await client.fileUploads.complete(multi.id);
 ```
 
 ### Search
@@ -472,6 +530,8 @@ try {
 | `client.dataSources` | Data Sources API (v3) | ✅ Implemented |
 | `client.blocks` | Block operations (retrieve, update, append, delete) | ✅ Implemented |
 | `client.search` | Search across pages and databases | ✅ Implemented |
+| `client.comments` | Comments operations (create, list, retrieve) | ✅ Implemented |
+| `client.fileUploads` | File Uploads API (create/send/complete/list) | ✅ Implemented |
 
 ### Core Features
 
@@ -523,7 +583,9 @@ notion-dart-kit/
 │       │   ├── databases_service.dart # Database API endpoints
 │       │   ├── data_sources_service.dart # Data Sources API (v3)
 │       │   ├── blocks_service.dart    # Block API endpoints
-│       │   └── search_service.dart    # Search API endpoints
+│       │   ├── search_service.dart    # Search API endpoints
+│       │   ├── comments_service.dart  # Comments API endpoints
+│       │   └── file_uploads_service.dart # File Uploads API endpoints
 │       ├── query/
 │       │   ├── filter.dart            # Query filter DSL
 │       │   ├── filter_builder.dart    # Type-safe filter builders
@@ -548,7 +610,11 @@ Run integration tests (requires valid Notion token):
 
 ```bash
 export NOTION_TOKEN=your_token_here
-dart test test/integration/
+export NOTION_PARENT_PAGE_ID=your_parent_page_id
+
+# Run full suite or just the database integration test
+dart test
+dart test test/database_test.dart
 ```
 
 ## 🤝 Contributing
