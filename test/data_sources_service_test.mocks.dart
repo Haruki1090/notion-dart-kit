@@ -5,6 +5,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i4;
 
+import 'package:dio/dio.dart' as _i5;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i3;
 import 'package:notion_dart_kit/src/client/http_client.dart' as _i2;
@@ -65,6 +66,21 @@ class MockNotionHttpClient extends _i1.Mock implements _i2.NotionHttpClient {
           #post,
           [path],
           {#data: data},
+        ),
+        returnValue:
+            _i4.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+      ) as _i4.Future<Map<String, dynamic>>);
+
+  @override
+  _i4.Future<Map<String, dynamic>> postMultipart(
+    String? path, {
+    required _i5.FormData? formData,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #postMultipart,
+          [path],
+          {#formData: formData},
         ),
         returnValue:
             _i4.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
