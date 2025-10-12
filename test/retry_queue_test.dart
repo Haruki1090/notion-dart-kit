@@ -6,7 +6,7 @@ import 'package:test/test.dart';
 void main() {
   group('RetryQueue', () {
     test('executes success without retry', () async {
-      final queue = RetryQueue(maxConcurrent: 1);
+      final queue = RetryQueue();
       queue.start();
 
       var executed = 0;
@@ -29,7 +29,6 @@ void main() {
 
     test('retries on retryable error up to maxRetries', () async {
       final queue = RetryQueue(
-        maxConcurrent: 1,
         defaultMaxRetries: 2,
         defaultInitialBackoff: const Duration(milliseconds: 50),
         defaultMaxBackoff: const Duration(milliseconds: 100),
@@ -57,7 +56,6 @@ void main() {
 
     test('respects Retry-After over exponential backoff', () async {
       final queue = RetryQueue(
-        maxConcurrent: 1,
         defaultMaxRetries: 1,
         defaultInitialBackoff: const Duration(seconds: 5),
         defaultMaxBackoff: const Duration(seconds: 5),

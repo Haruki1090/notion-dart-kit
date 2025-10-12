@@ -32,3 +32,7 @@ doc/api/
 .cursorrules
 .claude
 CLAUDE.md
+
+# Generated code (json_serializable, freezed)
+**/*.g.dart
+**/*.freezed.dart

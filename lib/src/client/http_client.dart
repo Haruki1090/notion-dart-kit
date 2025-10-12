@@ -386,16 +386,20 @@ extension NotionHttpClientRetry on NotionHttpClient {
   }) {
     final status = error.response?.statusCode;
     final retryable = _isRetryable(error, statusCode: status);
-    if (!retryable) return;
+    if (!retryable) {
+      return;
+    }
 
     final id = '$method:$path:${DateTime.now().microsecondsSinceEpoch}';
     _retryQueue.enqueue(
       id: id,
       executor: () => executor(),
-      isRetryable: (err) => _isRetryable(err,
-          statusCode: (err is DioException)
-              ? err.response?.statusCode
-              : (err is NotionException ? err.statusCode : null)),
+      isRetryable: (err) => _isRetryable(
+        err,
+        statusCode: (err is DioException)
+            ? err.response?.statusCode
+            : (err is NotionException ? err.statusCode : null),
+      ),
       getRetryAfter: (err) =>
           err is DioException ? _extractRetryAfter(err) : null,
       priority: _priorityForMethod(method),
@@ -415,23 +419,24 @@ extension NotionHttpClientRetry on NotionHttpClient {
           break;
       }
       final code = error.response?.statusCode;
-      if (code != null && _isTransientStatus(code)) return true;
+      if (code != null && _isTransientStatus(code)) {
+        return true;
+      }
     }
-    if (error is RateLimitException) return true;
+    if (error is RateLimitException) {
+      return true;
+    }
     if (error is NotionException) {
       final code = error.statusCode;
-      if (code != null && _isTransientStatus(code)) return true;
+      if (code != null && _isTransientStatus(code)) {
+        return true;
+      }
     }
     return false;
   }
 
-  bool _isTransientStatus(int code) {
-    return code == 429 ||
-        code == 500 ||
-        code == 502 ||
-        code == 503 ||
-        code == 504;
-  }
+  bool _isTransientStatus(int code) =>
+      code == 429 || code == 500 || code == 502 || code == 503 || code == 504;
 
   RetryPriority _priorityForMethod(String method) {
     switch (method) {

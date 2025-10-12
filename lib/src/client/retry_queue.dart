@@ -3,16 +3,8 @@ import 'dart:async';
 /// Priority levels for retry tasks.
 enum RetryPriority { high, normal, low }
 
-int _priorityScore(RetryPriority p) {
-  switch (p) {
-    case RetryPriority.high:
-      return 2;
-    case RetryPriority.normal:
-      return 1;
-    case RetryPriority.low:
-      return 0;
-  }
-}
+int _priorityScore(RetryPriority p) =>
+    p == RetryPriority.high ? 2 : (p == RetryPriority.normal ? 1 : 0);
 
 /// Abstract persistence layer for the retry queue.
 ///
@@ -34,10 +26,9 @@ class InMemoryRetryQueueStorage implements RetryQueueStorage {
   }
 
   @override
-  Future<List<RetryQueueEntry>> load() async {
-    // Executable closures are not persisted; caller must reattach executors.
-    return _snapshot.map((e) => e.copyForPersistence()).toList(growable: false);
-  }
+  Future<List<RetryQueueEntry>> load() async =>
+      // Executable closures are not persisted; caller must reattach executors.
+      _snapshot.map((e) => e.copyForPersistence()).toList(growable: false);
 }
 
 /// A function that executes the task.
@@ -61,11 +52,10 @@ class RetryQueueEntry {
     required this.getRetryAfter,
     this.executor,
     DateTime? scheduledAt,
-    int attempt = 0,
+    this.attempt = 0,
     this.persistKey,
     this.payload,
-  })  : attempt = attempt,
-        scheduledAt = scheduledAt ?? DateTime.now();
+  }) : scheduledAt = scheduledAt ?? DateTime.now();
 
   final String id;
   final RetryPriority priority;
@@ -81,22 +71,19 @@ class RetryQueueEntry {
   int attempt;
   DateTime scheduledAt;
 
-  RetryQueueEntry copyForPersistence() {
-    return RetryQueueEntry(
-      id: id,
-      priority: priority,
-      maxRetries: maxRetries,
-      initialBackoff: initialBackoff,
-      maxBackoff: maxBackoff,
-      isRetryable: isRetryable,
-      getRetryAfter: getRetryAfter,
-      executor: null, // executors cannot be persisted
-      scheduledAt: scheduledAt,
-      attempt: attempt,
-      persistKey: persistKey,
-      payload: payload == null ? null : Map<String, dynamic>.from(payload!),
-    );
-  }
+  RetryQueueEntry copyForPersistence() => RetryQueueEntry(
+        id: id,
+        priority: priority,
+        maxRetries: maxRetries,
+        initialBackoff: initialBackoff,
+        maxBackoff: maxBackoff,
+        isRetryable: isRetryable,
+        getRetryAfter: getRetryAfter,
+        scheduledAt: scheduledAt,
+        attempt: attempt,
+        persistKey: persistKey,
+        payload: payload == null ? null : Map<String, dynamic>.from(payload!),
+      );
 }
 
 /// Retry queue with priority scheduling and exponential backoff.
@@ -123,7 +110,9 @@ class RetryQueue {
 
   /// Start background processing.
   void start() {
-    if (_started) return;
+    if (_started) {
+      return;
+    }
     _started = true;
     _scheduleTick();
   }
@@ -189,13 +178,17 @@ class RetryQueue {
   }
 
   void _wakeup() {
-    if (!_started) return;
+    if (!_started) {
+      return;
+    }
     _scheduleTick(immediate: true);
   }
 
   void _scheduleTick({bool immediate = false}) {
     _tickTimer?.cancel();
-    if (!_started) return;
+    if (!_started) {
+      return;
+    }
 
     if (immediate) {
       _onTick();
@@ -207,20 +200,26 @@ class RetryQueue {
   }
 
   void _onTick() {
-    if (!_started) return;
+    if (!_started) {
+      return;
+    }
 
     // Sort by priority desc then scheduledAt asc
     _entries.sort((a, b) {
       final p =
           _priorityScore(b.priority).compareTo(_priorityScore(a.priority));
-      if (p != 0) return p;
+      if (p != 0) {
+        return p;
+      }
       return a.scheduledAt.compareTo(b.scheduledAt);
     });
 
     // Start tasks up to concurrency limit
     while (_running < maxConcurrent) {
       final nextIndex = _nextRunnableIndex();
-      if (nextIndex == -1) break;
+      if (nextIndex == -1) {
+        break;
+      }
       final entry = _entries.removeAt(nextIndex);
       _runEntry(entry);
     }
