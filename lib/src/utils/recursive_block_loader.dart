@@ -35,15 +35,14 @@ Future<List<Block>> recursivelyLoadBlocks(
   int? maxDepth,
   int concurrency = 4,
   BlockChildrenCache? cache,
-}) async {
-  return recursivelyLoadBlocksFromService(
-    client.blocks,
-    blockId,
-    maxDepth: maxDepth,
-    concurrency: concurrency,
-    cache: cache,
-  );
-}
+}) async =>
+    recursivelyLoadBlocksFromService(
+      client.blocks,
+      blockId,
+      maxDepth: maxDepth,
+      concurrency: concurrency,
+      cache: cache,
+    );
 
 /// Variant that accepts a [BlocksService] directly (useful for testing).
 Future<List<Block>> recursivelyLoadBlocksFromService(
@@ -56,11 +55,11 @@ Future<List<Block>> recursivelyLoadBlocksFromService(
   final childrenCache = cache ?? BlockChildrenCache();
 
   // Use BFS across depth levels to better control concurrency per level.
-  final List<Block> all = [];
-  final Set<String> processedParents = <String>{};
+  final all = <Block>[];
+  final processedParents = <String>{};
 
   // Queue of (parentId, depth)
-  List<_QueueItem> currentLevel = [
+  var currentLevel = <_QueueItem>[
     _QueueItem(parentId: blockId, depth: 0),
   ];
 
@@ -134,7 +133,7 @@ Future<List<Block>> _getAllChildren(
     return cache.get(blockId)!;
   }
 
-  final List<Block> results = [];
+  final results = <Block>[];
   String? cursor;
 
   do {
@@ -158,3 +157,4 @@ class _QueueItem {
   final int depth;
 }
 
+// End of file
