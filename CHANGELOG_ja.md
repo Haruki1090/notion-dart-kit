@@ -7,6 +7,10 @@
   - `FileUpload` モデルと `FileUploadStatus` 列挙
   - 公開エクスポートと `NotionClient.fileUploads`
   - サンプル `example/file_uploads_example.dart`
+ - 再帰的なブロック取得ユーティリティを追加:
+   - `recursivelyLoadBlocks`（深さ制限、キャッシュ、並列取得に対応）
+   - 子ブロック結果を再利用する `BlockChildrenCache`
+   - 公開エクスポート `src/utils/recursive_block_loader.dart`
 
 # 変更履歴
 

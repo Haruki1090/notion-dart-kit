@@ -7,6 +7,10 @@
   - `FileUpload` model and `FileUploadStatus` enum
   - Public exports and `NotionClient.fileUploads`
   - Example `example/file_uploads_example.dart`
+ - Recursive Block Loader utility:
+   - `recursivelyLoadBlocks` with depth limit, caching, and parallel fetching
+   - `BlockChildrenCache` for reusing child block results across calls
+   - Public export `src/utils/recursive_block_loader.dart`
 
 # Changelog
 
