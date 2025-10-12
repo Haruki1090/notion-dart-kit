@@ -2,6 +2,7 @@
 
 [![pub package](https://img.shields.io/pub/v/notion_dart_kit.svg)](https://pub.dev/packages/notion_dart_kit)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![CI](https://github.com/Haruki1090/notion-dart-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/Haruki1090/notion-dart-kit/actions)
 
 A comprehensive, type-safe Dart toolkit for the Notion API. Full endpoint coverage, built-in rate limiting, retry logic, and intuitive API for Dart & Flutter applications.
 
@@ -69,31 +70,31 @@ void main() async {
 
 > _A high-level tour of the moving parts that power `notion_dart_kit`._
 
-- **Composable Client** – `NotionClient` wires together dedicated services for pages, databases, data sources, blocks, search, and users so that each domain stays focused and type-safe.【F:lib/src/client/notion_client.dart†L1-L57】
-- **Thin HTTP Core** – `NotionHttpClient` wraps `dio` with shared configuration, Notion API headers, logging, and automatic error translation into rich domain exceptions.【F:lib/src/client/http_client.dart†L1-L200】
-- **Resilient Requests** – A purpose-built `RateLimiter` throttles bursts, honours `Retry-After`, and retries with exponential backoff to protect your integration from 429s.【F:lib/src/client/rate_limiter.dart†L1-L167】
-- **Expressive Models** – Freezed-generated models keep responses immutable and exhaustively typed, making it straightforward to work with blocks, pages, databases, data sources, files, and rich text primitives.【F:lib/src/models/page.dart†L1-L22】【F:lib/src/models/database.dart†L1-L21】【F:lib/src/models/block.dart†L1-L23】
+- **Composable Client** – `NotionClient` wires together dedicated services for pages, databases, data sources, blocks, search, and users so that each domain stays focused and type-safe.
+- **Thin HTTP Core** – `NotionHttpClient` wraps `dio` with shared configuration, Notion API headers, logging, and automatic error translation into rich domain exceptions.
+- **Resilient Requests** – A purpose-built `RateLimiter` throttles bursts, honours `Retry-After`, and retries with exponential backoff to protect your integration from 429s.
+- **Expressive Models** – Freezed-generated models keep responses immutable and exhaustively typed, making it straightforward to work with blocks, pages, databases, data sources, files, and rich text primitives.
 
 ### Service Surface at a Glance
 
 | Domain | Key Methods | Notes |
 | --- | --- | --- |
-| Pages | `create`, `retrieve`, `update`, `archive`, `restore` | Mirrors the Pages REST endpoints with optional icons, covers, and selective property retrieval.【F:lib/src/services/pages_service.dart†L1-L91】 |
-| Databases | `create`, `retrieve`, `update`, `query`, `archive`, `restore` | Handles inline/locked flags, initial data source provisioning, and filtered queries with server-side sorting.【F:lib/src/services/databases_service.dart†L1-L130】 |
-| Data Sources | `create`, `retrieve`, `update`, `query` | Encapsulates the v3 Data Sources API including schema and property filtering per request.【F:lib/src/services/data_sources_service.dart†L1-L91】 |
-| Blocks | `retrieve`, `retrieveChildren`, `appendChildren`, `update`, `delete` | Supports pagination helpers for child traversal and safe mutation of block content.【F:lib/src/services/blocks_service.dart†L1-L96】 |
-| Search | `search` | Combines page and database hits with ergonomic discriminated unions.【F:lib/src/services/search_service.dart†L1-L86】 |
-| Users | `me`, `retrieve`, `list` | Provides pagination-ready user listings and bot metadata access.【F:lib/src/services/users_service.dart†L1-L60】 |
+| Pages | `create`, `retrieve`, `update`, `archive`, `restore` | Mirrors the Pages REST endpoints with optional icons, covers, and selective property retrieval. |
+| Databases | `create`, `retrieve`, `update`, `query`, `archive`, `restore` | Handles inline/locked flags, initial data source provisioning, and filtered queries with server-side sorting. |
+| Data Sources | `create`, `retrieve`, `update`, `query` | Encapsulates the v3 Data Sources API including schema and property filtering per request. |
+| Blocks | `retrieve`, `retrieveChildren`, `appendChildren`, `update`, `delete` | Supports pagination helpers for child traversal and safe mutation of block content. |
+| Search | `search` | Combines page and database hits with ergonomic discriminated unions. |
+| Users | `me`, `retrieve`, `list` | Provides pagination-ready user listings and bot metadata access. |
 
 ## 🛡️ Resilience & Error Handling
 
-- **Smart Exceptions** – HTTP failures are mapped into `AuthenticationException`, `NotFoundException`, `RateLimitException`, and friends so you can handle them precisely in your app logic.【F:lib/src/utils/exceptions.dart†L1-L35】【F:lib/src/client/http_client.dart†L53-L99】
-- **Backoff Without Boilerplate** – All service calls automatically flow through the shared rate limiter, so you get jittered retries and token-bucket throttling for free.【F:lib/src/client/http_client.dart†L111-L199】【F:lib/src/client/rate_limiter.dart†L52-L166】
-- **Explicit Closure** – Calling `client.close()` disposes of underlying network resources when you are done, keeping long-lived CLI tools and servers tidy.【F:lib/src/client/notion_client.dart†L50-L56】
+- **Smart Exceptions** – HTTP failures are mapped into `AuthenticationException`, `NotFoundException`, `RateLimitException`, and friends so you can handle them precisely in your app logic.
+- **Backoff Without Boilerplate** – All service calls automatically flow through the shared rate limiter, so you get jittered retries and token-bucket throttling for free.
+- **Explicit Closure** – Calling `client.close()` disposes of underlying network resources when you are done, keeping long-lived CLI tools and servers tidy.
 
 ## 🧪 Explore via Examples
 
-The [`example/`](./example) directory doubles as living documentation. Start with [`basic_usage.dart`](./example/basic_usage.dart) to see service orchestration, pagination loops, and typed pattern matching end-to-end.【F:example/basic_usage.dart†L1-L132】
+The [`example/`](./example) directory doubles as living documentation. Start with [`basic_usage.dart`](./example/basic_usage.dart) to see service orchestration, pagination loops, and typed pattern matching end-to-end.
 
 ## 📚 Usage Examples
 
@@ -468,6 +469,7 @@ try {
 | `client.users` | User operations (me, retrieve, list) | ✅ Implemented |
 | `client.pages` | Page operations (create, retrieve, update, archive) | ✅ Implemented |
 | `client.databases` | Database operations (create, retrieve, update, query) | ✅ Implemented |
+| `client.dataSources` | Data Sources API (v3) | ✅ Implemented |
 | `client.blocks` | Block operations (retrieve, update, append, delete) | ✅ Implemented |
 | `client.search` | Search across pages and databases | ✅ Implemented |
 
@@ -486,13 +488,12 @@ try {
 
 | Feature | Status |
 |---------|--------|
-| Comments API | 🚧 Planned |
-| File Upload API | 🚧 Planned |
+| Comments API | 🚧 Planned ([#6](https://github.com/Haruki1090/notion-dart-kit/issues/6)) |
+| File Upload API | 🚧 Planned ([#7](https://github.com/Haruki1090/notion-dart-kit/issues/7)) |
 | Webhooks Support | 🚧 Planned |
 | Page Property Items API | 🚧 Planned |
 
-> 🗂️ Progress for these roadmap items now lives in the public GitHub Issues queue so you can follow along or subscribe for upda
-tes.
+> 🗂️ Progress for these roadmap items now lives in the public GitHub Issues queue so you can follow along or subscribe for updates.
 
 ## 🏗️ Architecture
 
@@ -503,25 +504,34 @@ notion-dart-kit/
 │   └── src/
 │       ├── client/
 │       │   ├── http_client.dart       # HTTP client with retry logic
-│       │   └── notion_client.dart     # Main API client
+│       │   ├── notion_client.dart     # Main API client
+│       │   └── rate_limiter.dart      # Rate limiting implementation
 │       ├── models/
 │       │   ├── user.dart              # User models
 │       │   ├── page.dart              # Page models
 │       │   ├── database.dart          # Database models
-│       │   ├── block.dart             # Block models
+│       │   ├── block.dart             # Block models (31+ types)
 │       │   ├── rich_text.dart         # Rich text models
 │       │   ├── file.dart              # File/icon models
 │       │   ├── parent.dart            # Parent object models
-│       │   ├── property_value.dart    # Property value models
+│       │   ├── property_value.dart    # Property value models (21 types)
+│       │   ├── property_schema.dart   # Property schema models
 │       │   └── pagination.dart        # Pagination models
 │       ├── services/
 │       │   ├── users_service.dart     # User API endpoints
 │       │   ├── pages_service.dart     # Page API endpoints
 │       │   ├── databases_service.dart # Database API endpoints
+│       │   ├── data_sources_service.dart # Data Sources API (v3)
 │       │   ├── blocks_service.dart    # Block API endpoints
 │       │   └── search_service.dart    # Search API endpoints
+│       ├── query/
+│       │   ├── filter.dart            # Query filter DSL
+│       │   ├── filter_builder.dart    # Type-safe filter builders
+│       │   └── sort.dart              # Sort DSL
 │       └── utils/
-│           └── exceptions.dart        # Custom exception classes
+│           ├── exceptions.dart        # Custom exception classes
+│           ├── notion_logger.dart     # Logging utilities
+│           └── result.dart            # Result type pattern
 ```
 
 ## 🧪 Testing
@@ -531,6 +541,8 @@ Run tests with:
 ```bash
 dart test
 ```
+
+Current test coverage: **118 tests passing** covering all core functionality.
 
 Run integration tests (requires valid Notion token):
 
@@ -545,9 +557,13 @@ Contributions are welcome! Please feel free to submit a Pull Request. For major 
 
 1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+3. Run tests and ensure they pass (`dart test`)
+4. Format code (`dart format .`)
+5. Commit your changes (`git commit -m 'Add some amazing feature'`)
+6. Push to the branch (`git push origin feature/amazing-feature`)
+7. Open a Pull Request
+
+Please see [CONTRIBUTING.md](./CONTRIBUTING.md) for detailed guidelines.
 
 ## 📝 License
 
@@ -559,9 +575,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [Package on pub.dev](https://pub.dev/packages/notion_dart_kit)
 - [Issue Tracker](https://github.com/Haruki1090/notion-dart-kit/issues)
 - [Source Code](https://github.com/Haruki1090/notion-dart-kit)
-- [Troubleshooting Guide](./TROUBLESHOOTING.md) - Common issues and solutions
-- [Contributing Guidelines](./CONTRIBUTING.md) | [日本語版](./CONTRIBUTING_ja.md)
-- [Changelog](./CHANGELOG.md) | [日本語版](./CHANGELOG_ja.md)
+- [Changelog](./CHANGELOG.md)
 
 ## 👤 Author
 

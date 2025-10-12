@@ -2,38 +2,39 @@
 
 [![pub package](https://img.shields.io/pub/v/notion_dart_kit.svg)](https://pub.dev/packages/notion_dart_kit)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![CI](https://github.com/Haruki1090/notion-dart-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/Haruki1090/notion-dart-kit/actions)
 
-Notion API用の包括的で型安全なDartツールキット。完全なエンドポイントカバレッジ、組み込みのレート制限、リトライロジック、DartとFlutterアプリケーション向けの直感的なAPIを提供します。
+Notion API のための包括的な型安全 Dart ツールキット。完全なエンドポイントカバレッジ、ビルトインのレート制限、リトライロジック、直感的な API を備えた Dart & Flutter アプリケーション向けライブラリです。
 
 [English README is here](./README.md)
 
 ## ✨ 特徴
 
-- **🎯 型安全**: Freezedを使用した不変データクラスによる強い型付け
-- **🔄 自動リトライ**: レート制限処理のための指数バックオフ（ジッター付き）を内蔵
-- **⚡ レート制限対応**: 設定可能なリトライロジックによる自動429エラーハンドリング
-- **📦 完全なAPIカバレッジ**: Pages、Databases、Blocks、Users、Searchをサポート
-- **🛡️ エラーハンドリング**: 異なるAPIエラータイプ用のカスタム例外クラス
-- **📱 Flutter対応**: Flutterアプリケーションとシームレスに連携
-- **🎨 クリーンなAPI**: 簡単に統合できる直感的なサービスベースのアーキテクチャ
-- **🔧 カスタマイズ可能**: タイムアウトとリトライ設定が可能なHTTPクライアント
+- **🎯 型安全**: Freezed による強力な型付きモデルとイミュータブルなデータクラス
+- **🔄 自動リトライ**: ジッター付き指数バックオフによるレート制限の自動処理
+- **⚡ レート制限**: 429 エラーの自動ハンドリングと設定可能なリトライロジック
+- **📦 完全な API カバレッジ**: Pages、Databases、Blocks、Users、Search の完全サポート
+- **🛡️ エラーハンドリング**: 異なる API エラータイプ用のカスタム例外クラス
+- **📱 Flutter 対応**: Flutter アプリケーションでシームレスに動作
+- **🎨 クリーンな API**: 統合しやすい直感的なサービスベースアーキテクチャ
+- **🔧 カスタマイズ可能**: タイムアウトとリトライ設定が可能な HTTP クライアント
 
 ## 📦 インストール
 
-`pubspec.yaml`ファイルに以下を追加してください：
+`pubspec.yaml` ファイルに以下を追加してください:
 
 ```yaml
 dependencies:
   notion_dart_kit: ^0.1.0
 ```
 
-その後、以下を実行：
+次に以下を実行:
 
 ```bash
 dart pub get
 ```
 
-Flutterの場合：
+または Flutter の場合:
 
 ```bash
 flutter pub get
@@ -41,9 +42,9 @@ flutter pub get
 
 ## 🚀 クイックスタート
 
-### 1. 統合トークンの取得
+### 1. インテグレーショントークンの取得
 
-[Notion Integrations](https://www.notion.so/my-integrations)から統合を作成し、トークンを取得してください。
+[Notion Integrations](https://www.notion.so/my-integrations) からインテグレーションを作成し、トークンを取得してください。
 
 ### 2. クライアントの初期化
 
@@ -51,51 +52,57 @@ flutter pub get
 import 'package:notion_dart_kit/notion_dart_kit.dart';
 
 void main() async {
-  // 統合トークンでクライアントを初期化
+  // インテグレーショントークンでクライアントを初期化
   final client = NotionClient(
     token: 'YOUR_INTEGRATION_TOKEN',
   );
 
-  // Botユーザー情報を取得
+  // ボットユーザー情報を取得
   final botUser = await client.users.me();
   print('Bot User: ${botUser.name}');
 
-  // 使用後はクライアントを閉じることを忘れずに
+  // 使用後はクライアントをクローズすることを忘れずに
   client.close();
 }
 ```
 
 ## 🧭 アーキテクチャ概要
 
-> _`notion_dart_kit` を支える主要コンポーネントをざっくり俯瞰できます。_
+> _`notion_dart_kit` を支える主要コンポーネントの概要_
 
-- **コンポーザブルなクライアント** – `NotionClient` がページ・データベース・データソース・ブロック・検索・ユーザー向けサービスを束ね、領域ごとに型安全な API を提供します。【F:lib/src/client/notion_client.dart†L1-L57】
-- **軽量な HTTP コア** – `NotionHttpClient` が `dio` をラップし、共通ヘッダーやログ出力、例外変換までを一元管理します。【F:lib/src/client/http_client.dart†L1-L200】
-- **堅牢なリクエスト制御** – 専用の `RateLimiter` がバーストを抑えつつ `Retry-After` を尊重し、指数バックオフ付きで 429 を回避します。【F:lib/src/client/rate_limiter.dart†L1-L167】
-- **表現力の高いモデル** – Freezed 生成モデルにより、ブロック・ページ・データベース・データソース・ファイル・リッチテキストを不変で網羅的に扱えます。【F:lib/src/models/page.dart†L1-L22】【F:lib/src/models/database.dart†L1-L21】【F:lib/src/models/block.dart†L1-L23】
+- **構成可能なクライアント** – `NotionClient` は pages、databases、data sources、blocks、search、users 用の専用サービスを統合し、各ドメインが集中的かつ型安全に保たれます。
+- **薄い HTTP コア** – `NotionHttpClient` は `dio` を Notion API ヘッダー、ロギング、自動エラー変換とともにラップします。
+- **回復力のあるリクエスト** – 専用の `RateLimiter` がバーストを抑制し、`Retry-After` を尊重し、指数バックオフでリトライすることで、429 エラーからインテグレーションを保護します。
+- **表現力豊かなモデル** – Freezed 生成モデルはレスポンスをイミュータブルかつ完全に型付けされた状態に保ち、ブロック、ページ、データベース、データソース、ファイル、リッチテキストプリミティブの扱いを簡単にします。
 
-### サービス機能早見表
+### サービス一覧
 
-| ドメイン | 主なメソッド | 補足 |
+| ドメイン | 主要メソッド | 備考 |
 | --- | --- | --- |
-| Pages | `create`, `retrieve`, `update`, `archive`, `restore` | アイコン・カバー指定やプロパティ絞り込みなど、Pages API をほぼそのままラップしています。【F:lib/src/services/pages_service.dart†L1-L91】 |
-| Databases | `create`, `retrieve`, `update`, `query`, `archive`, `restore` | インライン表示やロック状態、初期データソース設定、フィルター＋ソート付きクエリに対応します。【F:lib/src/services/databases_service.dart†L1-L130】 |
-| Data Sources | `create`, `retrieve`, `update`, `query` | v3 の Data Sources API をカバーし、クエリごとのスキーマ／プロパティ制御を簡潔に扱えます。【F:lib/src/services/data_sources_service.dart†L1-L91】 |
-| Blocks | `retrieve`, `retrieveChildren`, `appendChildren`, `update`, `delete` | 子ブロック巡回のためのページネーション補助や安全な更新処理を提供します。【F:lib/src/services/blocks_service.dart†L1-L96】 |
-| Search | `search` | ページ／データベースの結果を判別しやすい合併型で返します。【F:lib/src/services/search_service.dart†L1-L86】 |
-| Users | `me`, `retrieve`, `list` | ページネーション対応のユーザー一覧とボット情報取得をサポートします。【F:lib/src/services/users_service.dart†L1-L60】 |
+| Pages | `create`, `retrieve`, `update`, `archive`, `restore` | オプションのアイコン、カバー、選択的プロパティ取得を備えた Pages REST エンドポイントをミラーします。 |
+| Databases | `create`, `retrieve`, `update`, `query`, `archive`, `restore` | inline/locked フラグ、初期データソースプロビジョニング、サーバーサイドソート付きフィルタクエリを処理します。 |
+| Data Sources | `create`, `retrieve`, `update`, `query` | リクエストごとのスキーマとプロパティフィルタリングを含む v3 Data Sources API をカプセル化します。 |
+| Blocks | `retrieve`, `retrieveChildren`, `appendChildren`, `update`, `delete` | 子の走査とブロックコンテンツの安全な変更のためのページネーションヘルパーをサポートします。 |
+| Search | `search` | エルゴノミックな判別共用体でページとデータベースのヒットを組み合わせます。 |
+| Users | `me`, `retrieve`, `list` | ページネーション対応のユーザーリストとボットメタデータアクセスを提供します。 |
 
-## 🛡️ レジリエンスとエラーハンドリング
+## 🛡️ 回復力とエラーハンドリング
 
-- **意味のある例外** – HTTP 失敗は `AuthenticationException` や `NotFoundException` などのドメイン例外に変換され、用途に応じたリカバリーが可能です。【F:lib/src/utils/exceptions.dart†L1-L35】【F:lib/src/client/http_client.dart†L53-L99】
-- **ボイラープレート不要の再試行** – すべてのサービス呼び出しが共通レートリミッターを通るため、ジッター付きリトライとトークンバケット制御を自動で享受できます。【F:lib/src/client/http_client.dart†L111-L199】【F:lib/src/client/rate_limiter.dart†L52-L166】
-- **明示的なリソース解放** – `client.close()` を呼べば内部のネットワークリソースが解放され、CLI や常駐プロセスでもクリーンに終了できます。【F:lib/src/client/notion_client.dart†L50-L56】
+- **スマートな例外** – HTTP 失敗は `AuthenticationException`、`NotFoundException`、`RateLimitException` などにマッピングされるため、アプリケーションロジックで正確に処理できます。
+- **ボイラープレートなしのバックオフ** – すべてのサービス呼び出しは自動的に共有レートリミッターを経由するため、ジッター付きリトライとトークンバケット抑制が無料で得られます。
+- **明示的なクローズ** – 完了時に `client.close()` を呼び出すことで、基礎となるネットワークリソースを破棄し、長時間実行される CLI ツールやサーバーをきれいに保ちます。
 
-## 🧪 サンプルで学ぶ
+## 🧪 サンプルで探索
 
-[`example/`](./example) ディレクトリは実行可能なドキュメントです。[`basic_usage.dart`](./example/basic_usage.dart) ではサービス連携やページネーションループ、パターンマッチまで一通り確認できます。【F:example/basic_usage.dart†L1-L132】
+[`example/`](./example) ディレクトリは生きたドキュメントとして機能します。サービスオーケストレーション、ページネーションループ、型付きパターンマッチングをエンドツーエンドで確認するには、[`basic_usage.dart`](./example/basic_usage.dart) から始めてください。
 
 ## 📚 使用例
+
+完全な実行可能なサンプルについては、[example](./example) ディレクトリを参照してください:
+- [basic_usage.dart](./example/basic_usage.dart) - すべての API の使い方
+- [query_dsl_example.dart](./example/query_dsl_example.dart) - 高度なフィルタリングとソート
+- [properties_and_blocks_example.dart](./example/properties_and_blocks_example.dart) - プロパティとブロックの操作
+- [pagination_example.dart](./example/pagination_example.dart) - 大規模データセットの処理
 
 ### ページの操作
 
@@ -183,7 +190,7 @@ for (final page in results.results) {
   print('Page: ${page.id}');
 }
 
-// ページネーション処理
+// ページネーションを処理
 if (results.hasMore) {
   final nextPage = await client.databases.query(
     'database_id',
@@ -205,7 +212,7 @@ await client.databases.update(
 // ブロックを取得
 final block = await client.blocks.retrieve('block_id');
 
-// ブロックの子要素を取得
+// ブロックの子を取得
 final children = await client.blocks.retrieveChildren('block_id');
 
 // 新しいブロックを追加
@@ -248,21 +255,21 @@ await client.blocks.update('block_id', {
   }
 });
 
-// ブロックを削除（アーカイブ）
+// ブロックを削除(アーカイブ)
 await client.blocks.delete('block_id');
 ```
 
 ### ユーザーの操作
 
 ```dart
-// Botユーザー（自分）を取得
+// ボットユーザーを取得 (me)
 final me = await client.users.me();
 print('Bot: ${me.name}');
 
 // 特定のユーザーを取得
 final user = await client.users.retrieve('user_id');
 
-// すべてのユーザーをリスト表示
+// すべてのユーザーをリスト
 final users = await client.users.list(pageSize: 100);
 for (final user in users.results) {
   print('User: ${user.name}');
@@ -293,24 +300,144 @@ final databases = await client.search.search(
   filter: SearchFilter.dataSource,
 );
 
-// すべてのページ/データベースを取得（クエリなし）
+// すべてのページ/データベースを取得(クエリなし)
 final all = await client.search.search();
 ```
 
+### クエリ DSL (型安全フィルターとソート)
+
+ライブラリには型安全なフィルターとソートを構築するための強力なクエリ DSL が含まれています:
+
+```dart
+import 'package:notion_dart_kit/notion_dart_kit.dart';
+
+// シンプルなフィルター
+final statusFilter = Filter.property('Status').select.equals('In Progress');
+final priorityFilter = Filter.property('Priority').number.greaterThan(3);
+final dateFilter = Filter.property('Due Date').date.thisWeek(const {});
+
+// AND による複合フィルター
+final andFilter = Filter.and([
+  Filter.property('Status').select.equals('In Progress'),
+  Filter.property('Priority').number.greaterThan(3),
+]);
+
+// OR による複合フィルター
+final orFilter = Filter.or([
+  Filter.property('Status').select.equals('Todo'),
+  Filter.property('Status').select.equals('In Progress'),
+]);
+
+// ネストされたフィルター
+final complexFilter = Filter.and([
+  Filter.or([
+    Filter.property('Status').select.equals('Todo'),
+    Filter.property('Status').select.equals('In Progress'),
+  ]),
+  Filter.property('Priority').number.greaterThan(3),
+]);
+
+// ソート
+final sorts = [
+  Sort.property('Priority').descending(),
+  Sort.createdTime.ascending(),
+];
+
+// クエリで使用
+final results = await client.databases.query(
+  databaseId,
+  filter: complexFilter.toJson(),
+  sorts: sorts.map((s) => s.toJson()).toList(),
+);
+```
+
+**サポートされているフィルタータイプ:**
+- Text: `contains`, `equals`, `startsWith`, `endsWith`, `isEmpty`, `isNotEmpty`
+- Number: `equals`, `greaterThan`, `lessThan`, `greaterThanOrEqualTo`, `lessThanOrEqualTo`
+- Checkbox: `equals`, `doesNotEqual`
+- Select: `equals`, `doesNotEqual`, `isEmpty`, `isNotEmpty`
+- Multi-select: `contains`, `doesNotContain`, `isEmpty`, `isNotEmpty`
+- Date: `after`, `before`, `equals`, `onOrAfter`, `onOrBefore`, `pastWeek`, `pastMonth`, `thisWeek`, `nextWeek` など
+- People: `contains`, `doesNotContain`, `isEmpty`, `isNotEmpty`
+- Files: `isEmpty`, `isNotEmpty`
+- その他多数...
+
+包括的なサンプルは [query_dsl_example.dart](./example/query_dsl_example.dart) を参照してください。
+
+### プロパティの操作
+
+```dart
+// 様々なプロパティタイプでページを作成
+final properties = {
+  'Title': PropertyValue.title([
+    RichText.text(
+      text: 'My Page',
+      annotations: const Annotations(bold: true, color: 'blue'),
+    ),
+  ]).toJson(),
+
+  'Status': PropertyValue.select('In Progress').toJson(),
+  'Priority': PropertyValue.number(5).toJson(),
+  'Tags': PropertyValue.multiSelect(['urgent', 'planning']).toJson(),
+  'Due Date': PropertyValue.date(
+    start: DateTime.now().add(const Duration(days: 7)),
+  ).toJson(),
+  'Completed': PropertyValue.checkbox(false).toJson(),
+  'Assignees': PropertyValue.people(['user_id']).toJson(),
+  'URL': PropertyValue.url('https://example.com').toJson(),
+};
+
+final page = await client.pages.create(
+  parent: Parent.database(databaseId).toJson(),
+  properties: properties,
+);
+```
+
+**サポートされているプロパティタイプ:** Title, Rich Text, Number, Select, Multi-select, Date, People, Checkbox, URL, Email, Phone, Files, Relation, Rollup, Formula, Status, Created Time, Created By, Last Edited Time, Last Edited By, Unique ID
+
+詳細は [properties_and_blocks_example.dart](./example/properties_and_blocks_example.dart) を参照してください。
+
+### ページネーション
+
+ビルトインのページネーションサポートで大規模データセットを効率的に処理:
+
+```dart
+// データベースからすべてのページを取得
+final allPages = <Page>[];
+String? cursor;
+
+do {
+  final response = await client.databases.query(
+    databaseId,
+    startCursor: cursor,
+    pageSize: 100,
+  );
+
+  allPages.addAll(response.results);
+  cursor = response.nextCursor;
+
+  print('これまでに ${allPages.length} ページを取得...');
+} while (cursor != null);
+
+print('合計ページ数: ${allPages.length}');
+```
+
+高度なページネーションパターンについては [pagination_example.dart](./example/pagination_example.dart) を参照してください。
+
 ## 🔧 高度な設定
 
-### カスタムHTTPクライアント設定
+### カスタム HTTP クライアント設定
 
 ```dart
 final client = NotionClient(
   token: 'YOUR_INTEGRATION_TOKEN',
 );
 
-// HTTPクライアントは以下をサポートしています：
-// - 429（レート制限）エラー時の自動リトライ
+// HTTP クライアントは以下をサポート:
+// - 429 (レート制限) エラー時の自動リトライ
 // - ジッター付き指数バックオフ
-// - 設定可能なタイムアウト（デフォルト30秒）
-// - カスタムリトライ回数（デフォルト3回）
+// - 設定可能なタイムアウト (デフォルト30秒)
+// - カスタムリトライ回数 (デフォルト3回)
 ```
 
 ### エラーハンドリング
@@ -329,34 +456,44 @@ try {
 } on ValidationException catch (e) {
   print('無効なリクエスト: ${e.message}');
 } on NotionException catch (e) {
-  print('Notion APIエラー: ${e.message} (${e.statusCode})');
+  print('Notion API エラー: ${e.message} (${e.statusCode})');
 }
 ```
 
-## 📖 APIリファレンス
+## 📖 API リファレンス
 
 ### サービス
 
 | サービス | 説明 | ステータス |
-|---------|------|-----------|
-| `client.users` | ユーザー操作（me、retrieve、list） | ✅ 実装済み |
-| `client.pages` | ページ操作（create、retrieve、update、archive） | ✅ 実装済み |
-| `client.databases` | データベース操作（create、retrieve、update、query） | ✅ 実装済み |
-| `client.blocks` | ブロック操作（retrieve、update、append、delete） | ✅ 実装済み |
-| `client.search` | ページとデータベース全体の検索 | ✅ 実装済み |
+|---------|-------------|--------|
+| `client.users` | ユーザー操作 (me, retrieve, list) | ✅ 実装済み |
+| `client.pages` | ページ操作 (create, retrieve, update, archive) | ✅ 実装済み |
+| `client.databases` | データベース操作 (create, retrieve, update, query) | ✅ 実装済み |
+| `client.dataSources` | Data Sources API (v3) | ✅ 実装済み |
+| `client.blocks` | ブロック操作 (retrieve, update, append, delete) | ✅ 実装済み |
+| `client.search` | ページとデータベースを横断検索 | ✅ 実装済み |
 
-### 計画中の機能
+### コア機能
 
 | 機能 | ステータス |
-|------|-----------|
-| Query Builder（フィルター/ソート用DSL） | 🚧 計画中 |
-| Comments API | 🚧 計画中 |
-| Data Sources API | 🚧 計画中 |
-| File Upload API | 🚧 計画中 |
-| Webhooks サポート | 🚧 計画中 |
-| Page Property Items API | 🚧 計画中 |
+|---------|--------|
+| クエリ DSL (型安全フィルター/ソート) | ✅ 実装済み |
+| レート制限 & リトライロジック | ✅ 実装済み |
+| Result 型パターン | ✅ 実装済み |
+| 包括的なロギング | ✅ 実装済み |
+| 21種類のプロパティタイプ | ✅ 実装済み |
+| 31種類以上のブロックタイプ | ✅ 実装済み |
 
-> 🗂️ これらのロードマップ項目の進捗管理と議論は、公開されている GitHub Issues で追跡しています。ぜひウォッチしてアップデートをフォローしてください。
+### 予定機能
+
+| 機能 | ステータス |
+|---------|--------|
+| Comments API | 🚧 予定 ([#6](https://github.com/Haruki1090/notion-dart-kit/issues/6)) |
+| File Upload API | 🚧 予定 ([#7](https://github.com/Haruki1090/notion-dart-kit/issues/7)) |
+| Webhooks サポート | 🚧 予定 |
+| Page Property Items API | 🚧 予定 |
+
+> 🗂️ これらのロードマップ項目の進捗状況は公開 GitHub Issues キューで確認またはフォローできます。
 
 ## 🏗️ アーキテクチャ
 
@@ -366,37 +503,48 @@ notion-dart-kit/
 │   ├── notion_dart_kit.dart          # メインエクスポートファイル
 │   └── src/
 │       ├── client/
-│       │   ├── http_client.dart       # リトライロジック付きHTTPクライアント
-│       │   └── notion_client.dart     # メインAPIクライアント
+│       │   ├── http_client.dart       # リトライロジック付き HTTP クライアント
+│       │   ├── notion_client.dart     # メイン API クライアント
+│       │   └── rate_limiter.dart      # レート制限実装
 │       ├── models/
 │       │   ├── user.dart              # ユーザーモデル
 │       │   ├── page.dart              # ページモデル
 │       │   ├── database.dart          # データベースモデル
-│       │   ├── block.dart             # ブロックモデル
+│       │   ├── block.dart             # ブロックモデル (31種類以上)
 │       │   ├── rich_text.dart         # リッチテキストモデル
 │       │   ├── file.dart              # ファイル/アイコンモデル
 │       │   ├── parent.dart            # 親オブジェクトモデル
-│       │   ├── property_value.dart    # プロパティ値モデル
+│       │   ├── property_value.dart    # プロパティ値モデル (21種類)
+│       │   ├── property_schema.dart   # プロパティスキーマモデル
 │       │   └── pagination.dart        # ページネーションモデル
 │       ├── services/
-│       │   ├── users_service.dart     # ユーザーAPIエンドポイント
-│       │   ├── pages_service.dart     # ページAPIエンドポイント
-│       │   ├── databases_service.dart # データベースAPIエンドポイント
-│       │   ├── blocks_service.dart    # ブロックAPIエンドポイント
-│       │   └── search_service.dart    # 検索APIエンドポイント
+│       │   ├── users_service.dart     # User API エンドポイント
+│       │   ├── pages_service.dart     # Page API エンドポイント
+│       │   ├── databases_service.dart # Database API エンドポイント
+│       │   ├── data_sources_service.dart # Data Sources API (v3)
+│       │   ├── blocks_service.dart    # Block API エンドポイント
+│       │   └── search_service.dart    # Search API エンドポイント
+│       ├── query/
+│       │   ├── filter.dart            # クエリフィルター DSL
+│       │   ├── filter_builder.dart    # 型安全フィルタービルダー
+│       │   └── sort.dart              # ソート DSL
 │       └── utils/
-│           └── exceptions.dart        # カスタム例外クラス
+│           ├── exceptions.dart        # カスタム例外クラス
+│           ├── notion_logger.dart     # ロギングユーティリティ
+│           └── result.dart            # Result 型パターン
 ```
 
 ## 🧪 テスト
 
-テストを実行：
+テストを実行:
 
 ```bash
 dart test
 ```
 
-統合テストを実行（有効なNotionトークンが必要）：
+現在のテストカバレッジ: すべてのコア機能をカバーする **118 テストが合格**。
+
+統合テストを実行 (有効な Notion トークンが必要):
 
 ```bash
 export NOTION_TOKEN=your_token_here
@@ -405,26 +553,29 @@ dart test test/integration/
 
 ## 🤝 コントリビューション
 
-コントリビューションを歓迎します！プルリクエストをお気軽に提出してください。大きな変更の場合は、まずissueを開いて変更内容について議論してください。
+コントリビューションを歓迎します! プルリクエストを自由に送信してください。大きな変更の場合は、まず Issue を開いて変更内容について議論してください。
 
 1. リポジトリをフォーク
-2. フィーチャーブランチを作成（`git checkout -b feature/amazing-feature`）
-3. 変更をコミット（`git commit -m 'Add some amazing feature'`）
-4. ブランチにプッシュ（`git push origin feature/amazing-feature`）
-5. プルリクエストを開く
+2. フィーチャーブランチを作成 (`git checkout -b feature/amazing-feature`)
+3. テストを実行して合格を確認 (`dart test`)
+4. コードをフォーマット (`dart format .`)
+5. 変更をコミット (`git commit -m 'Add some amazing feature'`)
+6. ブランチにプッシュ (`git push origin feature/amazing-feature`)
+7. プルリクエストを開く
+
+詳細なガイドラインについては [CONTRIBUTING.md](./CONTRIBUTING.md) を参照してください。
 
 ## 📝 ライセンス
 
-このプロジェクトはMITライセンスの下でライセンスされています。詳細は[LICENSE](LICENSE)ファイルをご覧ください。
+このプロジェクトは MIT ライセンスの下でライセンスされています - 詳細は [LICENSE](LICENSE) ファイルを参照してください。
 
 ## 🔗 リンク
 
 - [Notion API ドキュメント](https://developers.notion.com/)
-- [pub.devのパッケージ](https://pub.dev/packages/notion_dart_kit)
-- [Issue Tracker](https://github.com/Haruki1090/notion-dart-kit/issues)
+- [pub.dev のパッケージ](https://pub.dev/packages/notion_dart_kit)
+- [Issue トラッカー](https://github.com/Haruki1090/notion-dart-kit/issues)
 - [ソースコード](https://github.com/Haruki1090/notion-dart-kit)
-- [コントリビューションガイド](./CONTRIBUTING_ja.md) | [English](./CONTRIBUTING.md)
-- [変更履歴](./CHANGELOG_ja.md) | [English](./CHANGELOG.md)
+- [変更履歴](./CHANGELOG.md)
 
 ## 👤 作者
 
@@ -434,9 +585,9 @@ dart test test/integration/
 
 ## 🙏 謝辞
 
-- [Freezed](https://pub.dev/packages/freezed)を使用した不変モデル
-- [Dio](https://pub.dev/packages/dio)を使用したHTTPクライアント
-- 公式Notion JavaScript SDKからインスパイア
+- イミュータブルなモデルのために [Freezed](https://pub.dev/packages/freezed) で構築
+- HTTP クライアントは [Dio](https://pub.dev/packages/dio) を使用
+- 公式 Notion JavaScript SDK にインスパイアされました
 
 ---
 
