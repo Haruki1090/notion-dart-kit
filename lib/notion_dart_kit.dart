@@ -9,10 +9,6 @@ library notion_dart_kit;
 // Export main client and related modules (alphabetical by section and path)
 export 'src/client/notion_client.dart';
 export 'src/client/rate_limiter.dart';
-
-// Exceptions
-export 'src/utils/exceptions.dart';
-
 // Models
 export 'src/models/block.dart';
 export 'src/models/block_content.dart';
@@ -28,12 +24,10 @@ export 'src/models/property_schema.dart';
 export 'src/models/property_value.dart';
 export 'src/models/rich_text.dart';
 export 'src/models/user.dart';
-
 // Query DSL
 export 'src/query/filter.dart';
 export 'src/query/filter_builder.dart';
 export 'src/query/sort.dart';
-
 // Services
 export 'src/services/blocks_service.dart';
 export 'src/services/comments_service.dart';
@@ -43,7 +37,8 @@ export 'src/services/file_uploads_service.dart';
 export 'src/services/pages_service.dart';
 export 'src/services/search_service.dart';
 export 'src/services/users_service.dart';
-
+// Exceptions
+export 'src/utils/exceptions.dart';
 // Utilities
 export 'src/utils/notion_logger.dart';
 export 'src/utils/recursive_block_loader.dart';
