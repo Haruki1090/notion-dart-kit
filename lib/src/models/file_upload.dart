@@ -5,26 +5,9 @@ class FileUpload {
     required this.object,
     required this.createdTime,
     required this.lastEditedTime,
-    this.expiryTime,
+    required this.archived, required this.status, required this.filename, required this.contentType, required this.contentLength, this.expiryTime,
     this.uploadUrl,
-    required this.archived,
-    required this.status,
-    required this.filename,
-    required this.contentType,
-    required this.contentLength,
   });
-
-  final String id;
-  final String object;
-  final DateTime createdTime;
-  final DateTime lastEditedTime;
-  final DateTime? expiryTime;
-  final String? uploadUrl;
-  final bool archived;
-  final FileUploadStatus status;
-  final String filename;
-  final String contentType;
-  final int contentLength;
 
   factory FileUpload.fromJson(Map<String, dynamic> json) => FileUpload(
         id: json['id'] as String,
@@ -41,6 +24,18 @@ class FileUpload {
         contentType: json['content_type'] as String,
         contentLength: (json['content_length'] as num).toInt(),
       );
+
+  final String id;
+  final String object;
+  final DateTime createdTime;
+  final DateTime lastEditedTime;
+  final DateTime? expiryTime;
+  final String? uploadUrl;
+  final bool archived;
+  final FileUploadStatus status;
+  final String filename;
+  final String contentType;
+  final int contentLength;
 
   Map<String, dynamic> toJson() => {
         'id': id,
