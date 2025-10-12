@@ -170,6 +170,43 @@ class NotionHttpClient {
     }
   }
 
+  /// Makes a multipart/form-data POST request (used for file uploads).
+  Future<Map<String, dynamic>> postMultipart(
+    String path, {
+    required FormData formData,
+  }) async =>
+      _rateLimiter.execute(
+        () => _executePostMultipart(path, formData: formData),
+        isRateLimitError: (error) =>
+            error is DioException && error.response?.statusCode == 429,
+        getRetryAfter: _extractRetryAfter,
+      );
+
+  /// Internal multipart POST execution.
+  Future<Map<String, dynamic>> _executePostMultipart(
+    String path, {
+    required FormData formData,
+  }) async {
+    try {
+      final response = await _dio.post<Map<String, dynamic>>(
+        path,
+        data: formData,
+        options: Options(
+          headers: {
+            // Let Dio set the proper multipart boundary automatically
+            'Content-Type': 'multipart/form-data',
+          },
+        ),
+      );
+      return response.data!;
+    } on DioException catch (e) {
+      if (e.error is NotionException) {
+        throw e.error! as NotionException;
+      }
+      rethrow;
+    }
+  }
+
   /// Makes a PATCH request to the given [path] with rate limiting.
   Future<Map<String, dynamic>> patch(
     String path, {
