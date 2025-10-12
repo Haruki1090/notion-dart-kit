@@ -750,14 +750,22 @@ NotionLogger.instance.initialize(isDebugMode: true);
 
 ### 6. Respect Rate Limits
 
-The library has built-in rate limiting (3 requests/second by default) and automatic retry with exponential backoff. However, for optimal performance:
+The library has built-in rate limiting (3 requests/second by default), automatic retry with exponential backoff, and a background Retry Queue for transient failures. However, for optimal performance:
 
 - Batch operations when possible
 - Use pagination efficiently
 - Cache results when appropriate
 - Filter on the server side, not client side
 
-### 7. Handle Archived and Trashed Items
+### 7. Monitor the Retry Queue (Optional)
+
+```dart
+final queue = client.retryQueue; // auto-started
+// Inspect or stop if needed
+// queue.stop();
+```
+
+### 8. Handle Archived and Trashed Items
 
 ```dart
 final page = await client.pages.retrieve('page_id');

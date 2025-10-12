@@ -111,7 +111,8 @@ void main() {
       );
 
       // Depth 0: only direct children of root
-      final ids1 = resultDepthDirect.map((b) => b.toJson()['id'] as String).toSet();
+      final ids1 =
+          resultDepthDirect.map((b) => b.toJson()['id'] as String).toSet();
       expect(ids1, {'A', 'B'});
 
       final resultDepth2 = await recursivelyLoadBlocksFromService(

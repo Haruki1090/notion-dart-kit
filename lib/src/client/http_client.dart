@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import '../utils/exceptions.dart';
 import '../utils/notion_logger.dart';
 import 'rate_limiter.dart';
+import 'retry_queue.dart';
 
 /// HTTP client wrapper for Notion API requests.
 ///
@@ -15,9 +16,12 @@ class NotionHttpClient {
     required this.token,
     Dio? dio,
     RateLimiter? rateLimiter,
+    RetryQueue? retryQueue,
   })  : _dio = dio ?? Dio(),
-        _rateLimiter = rateLimiter ?? RateLimiter() {
+        _rateLimiter = rateLimiter ?? RateLimiter(),
+        _retryQueue = retryQueue ?? RetryQueue() {
     _configureDio();
+    _retryQueue.start();
   }
 
   static const String _baseUrl = 'https://api.notion.com/v1';
@@ -26,6 +30,7 @@ class NotionHttpClient {
   final Dio _dio;
   final String token;
   final RateLimiter _rateLimiter;
+  final RetryQueue _retryQueue;
 
   void _configureDio() {
     _dio.options = BaseOptions(
@@ -132,6 +137,12 @@ class NotionHttpClient {
       );
       return response.data!;
     } on DioException catch (e) {
+      _maybeEnqueueRetry(
+        method: 'GET',
+        path: path,
+        executor: () => _executeGet(path, queryParameters: queryParameters),
+        error: e,
+      );
       if (e.error is NotionException) {
         throw e.error! as NotionException;
       }
@@ -163,6 +174,12 @@ class NotionHttpClient {
       );
       return response.data!;
     } on DioException catch (e) {
+      _maybeEnqueueRetry(
+        method: 'POST',
+        path: path,
+        executor: () => _executePost(path, data: data),
+        error: e,
+      );
       if (e.error is NotionException) {
         throw e.error! as NotionException;
       }
@@ -200,6 +217,12 @@ class NotionHttpClient {
       );
       return response.data!;
     } on DioException catch (e) {
+      _maybeEnqueueRetry(
+        method: 'POST',
+        path: path,
+        executor: () => _executePostMultipart(path, formData: formData),
+        error: e,
+      );
       if (e.error is NotionException) {
         throw e.error! as NotionException;
       }
@@ -231,6 +254,12 @@ class NotionHttpClient {
       );
       return response.data!;
     } on DioException catch (e) {
+      _maybeEnqueueRetry(
+        method: 'PATCH',
+        path: path,
+        executor: () => _executePatch(path, data: data),
+        error: e,
+      );
       if (e.error is NotionException) {
         throw e.error! as NotionException;
       }
@@ -253,6 +282,12 @@ class NotionHttpClient {
       final response = await _dio.delete<Map<String, dynamic>>(path);
       return response.data!;
     } on DioException catch (e) {
+      _maybeEnqueueRetry(
+        method: 'DELETE',
+        path: path,
+        executor: () => _executeDelete(path),
+        error: e,
+      );
       if (e.error is NotionException) {
         throw e.error! as NotionException;
       }
@@ -284,6 +319,7 @@ class NotionHttpClient {
   /// Closes the HTTP client and releases resources.
   void close() {
     _dio.close();
+    _retryQueue.close();
   }
 }
 
@@ -336,5 +372,77 @@ class _LoggingInterceptor extends Interceptor {
     );
 
     super.onError(err, handler);
+  }
+}
+
+extension NotionHttpClientRetry on NotionHttpClient {
+  RetryQueue get retryQueue => _retryQueue;
+
+  void _maybeEnqueueRetry({
+    required String method,
+    required String path,
+    required Future<Map<String, dynamic>> Function() executor,
+    required DioException error,
+  }) {
+    final status = error.response?.statusCode;
+    final retryable = _isRetryable(error, statusCode: status);
+    if (!retryable) return;
+
+    final id = '$method:$path:${DateTime.now().microsecondsSinceEpoch}';
+    _retryQueue.enqueue(
+      id: id,
+      executor: () => executor(),
+      isRetryable: (err) => _isRetryable(err,
+          statusCode: (err is DioException)
+              ? err.response?.statusCode
+              : (err is NotionException ? err.statusCode : null)),
+      getRetryAfter: (err) =>
+          err is DioException ? _extractRetryAfter(err) : null,
+      priority: _priorityForMethod(method),
+    );
+  }
+
+  bool _isRetryable(Object error, {int? statusCode}) {
+    if (error is DioException) {
+      // Network and timeout errors
+      switch (error.type) {
+        case DioExceptionType.connectionError:
+        case DioExceptionType.connectionTimeout:
+        case DioExceptionType.receiveTimeout:
+        case DioExceptionType.sendTimeout:
+          return true;
+        default:
+          break;
+      }
+      final code = error.response?.statusCode;
+      if (code != null && _isTransientStatus(code)) return true;
+    }
+    if (error is RateLimitException) return true;
+    if (error is NotionException) {
+      final code = error.statusCode;
+      if (code != null && _isTransientStatus(code)) return true;
+    }
+    return false;
+  }
+
+  bool _isTransientStatus(int code) {
+    return code == 429 ||
+        code == 500 ||
+        code == 502 ||
+        code == 503 ||
+        code == 504;
+  }
+
+  RetryPriority _priorityForMethod(String method) {
+    switch (method) {
+      case 'GET':
+        return RetryPriority.low;
+      case 'POST':
+      case 'PATCH':
+      case 'DELETE':
+        return RetryPriority.normal;
+      default:
+        return RetryPriority.normal;
+    }
   }
 }

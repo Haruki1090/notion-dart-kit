@@ -13,6 +13,7 @@ A comprehensive, type-safe Dart toolkit for the Notion API. Full endpoint covera
 - **🎯 Type-Safe**: Strongly typed models using Freezed for immutable data classes
 - **🔄 Auto-Retry**: Built-in exponential backoff with jitter for rate limit handling
 - **⚡ Rate Limiting**: Automatic 429 error handling with configurable retry logic
+- **🧵 Retry Queue (New)**: Automatically re-enqueues failed requests with priority scheduling and honors `Retry-After`
 - **📦 Full API Coverage**: Support for Pages, Databases, Blocks, Users, Search, and File Uploads
 - **🛡️ Error Handling**: Custom exception classes for different API error types
 - **📱 Flutter Ready**: Works seamlessly with Flutter applications
@@ -519,7 +520,23 @@ final client = NotionClient(
 // - Exponential backoff with jitter
 // - Configurable timeouts (30s default)
 // - Custom retry attempts (3 by default)
+// - Background re-enqueue and retry on transient failures (RetryQueue)
+
+// Access RetryQueue directly to monitor/stop if needed
+final queue = client.retryQueue;
+queue.start(); // explicit start not necessary (auto-started by NotionHttpClient)
+// queue.stop(); // client.close() stops it automatically
 ```
+
+### Retry Queue Behavior
+
+- **Targets**: Transient failures (429/5xx) and network timeouts/connection errors
+- **Priority**: `GET` low, `POST`/`PATCH`/`DELETE` normal by default
+- **Backoff**: Exponential backoff; `Retry-After` header takes precedence when present
+- **Concurrency**: Default `1` (safety-first)
+- **Max Retries**: Default `5`
+
+For advanced customization, wrap `NotionClient` construction and inject a configured `RetryQueue` into `NotionHttpClient`.
 
 ### Error Handling
 

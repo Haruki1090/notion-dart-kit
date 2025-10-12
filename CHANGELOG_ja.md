@@ -1,6 +1,9 @@
 ## Unreleased
 
 ### 追加
+- リトライキュー: 一時的失敗 (429/5xx/ネットワーク) をバックグラウンドで再試行
+- `NotionClient.retryQueue` を公開し、直接監視/制御が可能に
+- `NotionHttpClient` で再試行可能な失敗を自動的にエンキュー
 - 21種類のプロパティ型を網羅するデータベース統合テストを追加（test/database_test.dart）
 - File Upload API をサポート:
   - `FileUploadsService` (`create`, `sendBytes`, `sendFile`, `complete`, `retrieve`, `list`)

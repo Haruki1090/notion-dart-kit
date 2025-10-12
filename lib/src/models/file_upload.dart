@@ -5,7 +5,12 @@ class FileUpload {
     required this.object,
     required this.createdTime,
     required this.lastEditedTime,
-    required this.archived, required this.status, required this.filename, required this.contentType, required this.contentLength, this.expiryTime,
+    required this.archived,
+    required this.status,
+    required this.filename,
+    required this.contentType,
+    required this.contentLength,
+    this.expiryTime,
     this.uploadUrl,
   });
 

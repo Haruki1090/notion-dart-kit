@@ -110,6 +110,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Retry Queue: background re-enqueue and retry for transient failures (429/5xx/network)
+- Exposed `RetryQueue` via `NotionClient.retryQueue` and public export
+- Automatic enqueue on retryable failures in `NotionHttpClient`
+
 ### Planned Features
 - Comments API support
 - File Upload API support

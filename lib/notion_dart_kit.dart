@@ -9,6 +9,7 @@ library notion_dart_kit;
 // Export main client and related modules (alphabetical by section and path)
 export 'src/client/notion_client.dart';
 export 'src/client/rate_limiter.dart';
+export 'src/client/retry_queue.dart';
 // Models
 export 'src/models/block.dart';
 export 'src/models/block_content.dart';
