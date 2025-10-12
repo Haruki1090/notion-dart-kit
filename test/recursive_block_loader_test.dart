@@ -27,7 +27,6 @@ class _FakeBlocksService extends BlocksService {
       object: 'list',
       results: results,
       hasMore: false,
-      nextCursor: null,
     );
   }
 }
@@ -38,7 +37,7 @@ Block _makeParagraph({
   required bool hasChildren,
 }) {
   final now = DateTime.now();
-  final user = User.person(id: 'user1', person: const PersonInfo());
+  const user = User.person(id: 'user1', person: PersonInfo());
   return Block.paragraph(
     id: id,
     parent: parent,
@@ -66,15 +65,15 @@ void main() {
       // root -> A(has), B(no)
       // A -> A1(has), A2(no)
       // A1 -> A1a(no)
-      final root = 'root';
+      const root = 'root';
       final a = _makeParagraph(
         id: 'A',
-        parent: Parent.page(pageId: root),
+        parent: const Parent.page(pageId: root),
         hasChildren: true,
       );
       final b = _makeParagraph(
         id: 'B',
-        parent: Parent.page(pageId: root),
+        parent: const Parent.page(pageId: root),
         hasChildren: false,
       );
 
