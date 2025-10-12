@@ -14,6 +14,7 @@ export 'src/models/block_content.dart';
 export 'src/models/data_source.dart';
 export 'src/models/database.dart';
 export 'src/models/file.dart';
+export 'src/models/file_upload.dart';
 export 'src/models/page.dart';
 export 'src/models/pagination.dart';
 export 'src/models/parent.dart';
@@ -31,6 +32,7 @@ export 'src/services/blocks_service.dart';
 export 'src/services/data_sources_service.dart';
 export 'src/services/databases_service.dart';
 export 'src/services/pages_service.dart';
+export 'src/services/file_uploads_service.dart';
 export 'src/services/search_service.dart';
 // Export services
 export 'src/services/users_service.dart';
