@@ -3,6 +3,7 @@ import '../services/data_sources_service.dart';
 import '../services/databases_service.dart';
 import '../services/comments_service.dart';
 import '../services/pages_service.dart';
+import '../services/file_uploads_service.dart';
 import '../services/search_service.dart';
 import '../services/users_service.dart';
 import 'http_client.dart';
@@ -26,6 +27,7 @@ class NotionClient {
     search = SearchService(httpClient);
     blocks = BlocksService(httpClient);
     comments = CommentsService(httpClient);
+    fileUploads = FileUploadsService(httpClient);
   }
 
   /// The HTTP client used for API requests.
@@ -51,6 +53,9 @@ class NotionClient {
 
   /// Service for Comments API endpoints.
   late final CommentsService comments;
+
+  /// Service for File Uploads API endpoints.
+  late final FileUploadsService fileUploads;
 
   /// The Notion API integration token.
   String get token => httpClient.token;
