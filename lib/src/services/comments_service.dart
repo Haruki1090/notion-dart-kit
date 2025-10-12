@@ -20,9 +20,9 @@ class CommentsService {
   /// Returns the created [Comment].
   /// Throws [NotionException] if the request fails.
   Future<Comment> create({
+    required List<RichText> richText,
     Parent? parent,
     String? discussionId,
-    required List<RichText> richText,
     List<Map<String, dynamic>>? attachments,
     Map<String, dynamic>? displayName,
   }) async {
@@ -58,8 +58,12 @@ class CommentsService {
     int? pageSize,
   }) async {
     final queryParams = <String, dynamic>{'block_id': blockId};
-    if (startCursor != null) queryParams['start_cursor'] = startCursor;
-    if (pageSize != null) queryParams['page_size'] = pageSize;
+    if (startCursor != null) {
+      queryParams['start_cursor'] = startCursor;
+    }
+    if (pageSize != null) {
+      queryParams['page_size'] = pageSize;
+    }
 
     final response = await _httpClient.get(
       '/comments',
