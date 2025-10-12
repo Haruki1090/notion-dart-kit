@@ -147,9 +147,15 @@ class FileUploadsService {
     int? pageSize,
   }) async {
     final query = <String, dynamic>{};
-    if (status != null) query['status'] = status.name;
-    if (startCursor != null) query['start_cursor'] = startCursor;
-    if (pageSize != null) query['page_size'] = pageSize;
+    if (status != null) {
+      query['status'] = status.name;
+    }
+    if (startCursor != null) {
+      query['start_cursor'] = startCursor;
+    }
+    if (pageSize != null) {
+      query['page_size'] = pageSize;
+    }
 
     final response = await _httpClient.get(
       '/file_uploads',
