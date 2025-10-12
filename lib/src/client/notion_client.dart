@@ -7,6 +7,7 @@ import '../services/pages_service.dart';
 import '../services/search_service.dart';
 import '../services/users_service.dart';
 import 'http_client.dart';
+import 'retry_queue.dart';
 
 /// Main client for interacting with the Notion API.
 ///
@@ -59,6 +60,9 @@ class NotionClient {
 
   /// The Notion API integration token.
   String get token => httpClient.token;
+
+  /// Retry queue instance for inspecting or customizing behavior.
+  RetryQueue get retryQueue => httpClient.retryQueue;
 
   /// Closes the client and releases resources.
   void close() {
