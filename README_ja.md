@@ -261,6 +261,29 @@ await client.blocks.update('block_id', {
 await client.blocks.delete('block_id');
 ```
 
+#### ネストしたブロックの再帰取得
+
+ページまたはブロック配下の全ての子孫ブロックを、深さ制限・キャッシュ・並列取得で最適化して取得できます。
+
+```dart
+import 'package:notion_dart_kit/notion_dart_kit.dart';
+
+final client = NotionClient(token: 'YOUR_TOKEN');
+
+// 最大10階層までの子孫ブロックを再帰的に取得
+final allBlocks = await recursivelyLoadBlocks(
+  client,
+  'block_or_page_id',
+  maxDepth: 10,      // 0 = 直下の子のみ, null = 無制限
+  concurrency: 4,    // レベル毎の並列取得数
+);
+
+// キャッシュを使い回して重複リクエストを避ける
+final cache = BlockChildrenCache();
+final first = await recursivelyLoadBlocks(client, 'root', cache: cache);
+final second = await recursivelyLoadBlocks(client, 'root', cache: cache);
+```
+
 ### ユーザーの操作
 
 ```dart

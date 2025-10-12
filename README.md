@@ -261,6 +261,29 @@ await client.blocks.update('block_id', {
 await client.blocks.delete('block_id');
 ```
 
+#### Recursively load nested blocks
+
+Fetch all descendant blocks under a page or block with depth limit, caching, and parallel fetching:
+
+```dart
+import 'package:notion_dart_kit/notion_dart_kit.dart';
+
+final client = NotionClient(token: 'YOUR_TOKEN');
+
+// Load all descendants up to 10 levels deep
+final allBlocks = await recursivelyLoadBlocks(
+  client,
+  'block_or_page_id',
+  maxDepth: 10,       // 0 = direct children only, null = unlimited
+  concurrency: 4,     // parallel fetches per level
+);
+
+// Reuse cache across calls (avoids repeated network requests)
+final cache = BlockChildrenCache();
+final first = await recursivelyLoadBlocks(client, 'root', cache: cache);
+final second = await recursivelyLoadBlocks(client, 'root', cache: cache);
+```
+
 ### Working with Users
 
 ```dart
