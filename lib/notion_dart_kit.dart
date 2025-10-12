@@ -6,11 +6,17 @@
 /// ```
 library notion_dart_kit;
 
-// Export main client
+// Export main client and related modules (alphabetical by section and path)
 export 'src/client/notion_client.dart';
 export 'src/client/rate_limiter.dart';
+
+// Exceptions
+export 'src/utils/exceptions.dart';
+
+// Models
 export 'src/models/block.dart';
 export 'src/models/block_content.dart';
+export 'src/models/comment.dart';
 export 'src/models/data_source.dart';
 export 'src/models/database.dart';
 export 'src/models/file.dart';
@@ -21,25 +27,24 @@ export 'src/models/parent.dart';
 export 'src/models/property_schema.dart';
 export 'src/models/property_value.dart';
 export 'src/models/rich_text.dart';
-export 'src/models/comment.dart';
-// Export models
 export 'src/models/user.dart';
-// Export query DSL
+
+// Query DSL
 export 'src/query/filter.dart';
 export 'src/query/filter_builder.dart';
 export 'src/query/sort.dart';
+
+// Services
 export 'src/services/blocks_service.dart';
+export 'src/services/comments_service.dart';
 export 'src/services/data_sources_service.dart';
 export 'src/services/databases_service.dart';
-export 'src/services/pages_service.dart';
 export 'src/services/file_uploads_service.dart';
+export 'src/services/pages_service.dart';
 export 'src/services/search_service.dart';
-// Export services
 export 'src/services/users_service.dart';
-export 'src/services/comments_service.dart';
-// Export exceptions
-export 'src/utils/exceptions.dart';
-// Export utilities
+
+// Utilities
 export 'src/utils/notion_logger.dart';
-export 'src/utils/result.dart';
 export 'src/utils/recursive_block_loader.dart';
+export 'src/utils/result.dart';
