@@ -20,6 +20,7 @@ export 'src/models/parent.dart';
 export 'src/models/property_schema.dart';
 export 'src/models/property_value.dart';
 export 'src/models/rich_text.dart';
+export 'src/models/comment.dart';
 // Export models
 export 'src/models/user.dart';
 // Export query DSL
@@ -33,6 +34,7 @@ export 'src/services/pages_service.dart';
 export 'src/services/search_service.dart';
 // Export services
 export 'src/services/users_service.dart';
+export 'src/services/comments_service.dart';
 // Export exceptions
 export 'src/utils/exceptions.dart';
 // Export utilities
