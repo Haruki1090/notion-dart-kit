@@ -573,6 +573,7 @@ dart test test/integration/
 
 - [Notion API ドキュメント](https://developers.notion.com/)
 - [pub.dev のパッケージ](https://pub.dev/packages/notion_dart_kit)
+- [API リファレンス (dartdoc)](https://pub.dev/documentation/notion_dart_kit/latest/)
 - [Issue トラッカー](https://github.com/Haruki1090/notion-dart-kit/issues)
 - [ソースコード](https://github.com/Haruki1090/notion-dart-kit)
 - [変更履歴](./CHANGELOG.md)

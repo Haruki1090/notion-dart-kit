@@ -573,6 +573,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - [Notion API Documentation](https://developers.notion.com/)
 - [Package on pub.dev](https://pub.dev/packages/notion_dart_kit)
+- [API Reference (dartdoc)](https://pub.dev/documentation/notion_dart_kit/latest/)
 - [Issue Tracker](https://github.com/Haruki1090/notion-dart-kit/issues)
 - [Source Code](https://github.com/Haruki1090/notion-dart-kit)
 - [Changelog](./CHANGELOG.md)

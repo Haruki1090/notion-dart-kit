@@ -2,27 +2,81 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'filter.freezed.dart';
 
-/// Filter型のUnion型定義
+/// Type-safe filter DSL for Notion database queries.
 ///
-/// Notion APIのデータベースクエリで使用するフィルタを表現する型安全なDSL。
-/// AND条件、OR条件、プロパティフィルタをサポート。
+/// Represents filter conditions that can be used in database queries.
+/// Supports AND, OR, and property-specific filters.
+///
+/// Example:
+/// ```dart
+/// // Simple property filter
+/// final filter = Filter.property(
+///   name: 'Status',
+///   filter: PropertyFilter.selectEquals('In Progress'),
+/// );
+///
+/// // Complex filter with AND/OR
+/// final complexFilter = Filter.and([
+///   Filter.property(
+///     name: 'Status',
+///     filter: PropertyFilter.selectEquals('In Progress'),
+///   ),
+///   Filter.or([
+///     Filter.property(
+///       name: 'Priority',
+///       filter: PropertyFilter.numberGreaterThan(5),
+///     ),
+///     Filter.property(
+///       name: 'Due Date',
+///       filter: PropertyFilter.datePastWeek(),
+///     ),
+///   ]),
+/// ]);
+/// ```
 @Freezed(toJson: false)
 sealed class Filter with _$Filter {
   const Filter._();
 
-  /// AND条件（複数フィルタを全て満たす）
+  /// AND condition - matches results that satisfy all filters.
+  ///
+  /// Example:
+  /// ```dart
+  /// Filter.and([
+  ///   Filter.property(name: 'Status', filter: PropertyFilter.selectEquals('Done')),
+  ///   Filter.property(name: 'Priority', filter: PropertyFilter.numberGreaterThan(3)),
+  /// ])
+  /// ```
   const factory Filter.and(List<Filter> filters) = AndFilter;
 
-  /// OR条件（複数フィルタのいずれかを満たす）
+  /// OR condition - matches results that satisfy any of the filters.
+  ///
+  /// Example:
+  /// ```dart
+  /// Filter.or([
+  ///   Filter.property(name: 'Status', filter: PropertyFilter.selectEquals('Todo')),
+  ///   Filter.property(name: 'Status', filter: PropertyFilter.selectEquals('In Progress')),
+  /// ])
+  /// ```
   const factory Filter.or(List<Filter> filters) = OrFilter;
 
-  /// プロパティフィルタ
+  /// Property filter - filters based on a specific property value.
+  ///
+  /// [name] - The name of the property to filter on.
+  /// [filter] - The property-specific filter condition.
+  ///
+  /// Example:
+  /// ```dart
+  /// Filter.property(
+  ///   name: 'Status',
+  ///   filter: PropertyFilter.selectEquals('In Progress'),
+  /// )
+  /// ```
   const factory Filter.property({
     required String name,
     required PropertyFilter filter,
   }) = PropertyFilterCondition;
 
-  /// JSONに変換
+  /// Converts this filter to a JSON map for the Notion API.
   Map<String, dynamic> toJson() => when(
         and: (filters) => {
           'and': filters.map((f) => f.toJson()).toList(),
@@ -37,203 +91,234 @@ sealed class Filter with _$Filter {
       );
 }
 
-/// プロパティフィルタのUnion型
+/// Type-safe property filter conditions for different property types.
 ///
-/// 各プロパティ型（title, text, number, select等）に対応した
-/// フィルタ条件を型安全に表現。
+/// Supports filters for all Notion property types including:
+/// - Text properties (title, rich_text, url, email, phone_number)
+/// - Number properties
+/// - Checkbox properties
+/// - Select and multi-select properties
+/// - Date properties (with relative date support)
+/// - People properties
+/// - Files properties
+/// - Relation properties
+///
+/// Example:
+/// ```dart
+/// // Text filter
+/// PropertyFilter.textContains('important')
+///
+/// // Number filter
+/// PropertyFilter.numberGreaterThan(100)
+///
+/// // Date filter
+/// PropertyFilter.datePastWeek()
+/// ```
 @Freezed(toJson: false)
 sealed class PropertyFilter with _$PropertyFilter {
   const PropertyFilter._();
 
   // ============================================
-  // テキスト系フィルタ（title, rich_text, url, email, phone_number）
+  // Text filters (title, rich_text, url, email, phone_number)
   // ============================================
 
-  /// 完全一致
+  /// Text equals - exact match.
   const factory PropertyFilter.textEquals(String value) = TextEqualsFilter;
 
-  /// 不一致
+  /// Text does not equal - not an exact match.
   const factory PropertyFilter.textDoesNotEqual(String value) =
       TextDoesNotEqualFilter;
 
-  /// 含む
+  /// Text contains - contains the substring.
   const factory PropertyFilter.textContains(String value) = TextContainsFilter;
 
-  /// 含まない
+  /// Text does not contain - does not contain the substring.
   const factory PropertyFilter.textDoesNotContain(String value) =
       TextDoesNotContainFilter;
 
-  /// で始まる
+  /// Text starts with - starts with the prefix.
   const factory PropertyFilter.textStartsWith(String value) =
       TextStartsWithFilter;
 
-  /// で終わる
+  /// Text ends with - ends with the suffix.
   const factory PropertyFilter.textEndsWith(String value) = TextEndsWithFilter;
 
-  /// 空である
+  /// Text is empty - has no value.
   const factory PropertyFilter.textIsEmpty() = TextIsEmptyFilter;
 
-  /// 空でない
+  /// Text is not empty - has any value.
   const factory PropertyFilter.textIsNotEmpty() = TextIsNotEmptyFilter;
 
   // ============================================
-  // 数値系フィルタ（number）
+  // Number filters
   // ============================================
 
-  /// 等しい
+  /// Number equals - exactly equal to the value.
   const factory PropertyFilter.numberEquals(double value) = NumberEqualsFilter;
 
-  /// 等しくない
+  /// Number does not equal - not equal to the value.
   const factory PropertyFilter.numberDoesNotEqual(double value) =
       NumberDoesNotEqualFilter;
 
-  /// より大きい
+  /// Number greater than - strictly greater than the value.
   const factory PropertyFilter.numberGreaterThan(double value) =
       NumberGreaterThanFilter;
 
-  /// より小さい
+  /// Number less than - strictly less than the value.
   const factory PropertyFilter.numberLessThan(double value) =
       NumberLessThanFilter;
 
-  /// 以上
+  /// Number greater than or equal - greater than or equal to the value.
   const factory PropertyFilter.numberGreaterThanOrEqual(double value) =
       NumberGreaterThanOrEqualFilter;
 
-  /// 以下
+  /// Number less than or equal - less than or equal to the value.
   const factory PropertyFilter.numberLessThanOrEqual(double value) =
       NumberLessThanOrEqualFilter;
 
-  /// 空である
+  /// Number is empty - has no value.
   const factory PropertyFilter.numberIsEmpty() = NumberIsEmptyFilter;
 
-  /// 空でない
+  /// Number is not empty - has any value.
   const factory PropertyFilter.numberIsNotEmpty() = NumberIsNotEmptyFilter;
 
   // ============================================
-  // チェックボックスフィルタ（checkbox）
+  // Checkbox filters
   // ============================================
 
-  /// チェックボックスの値
+  /// Checkbox equals - matches the boolean value.
   const factory PropertyFilter.checkboxEquals(bool value) =
       CheckboxEqualsFilter;
 
   // ============================================
-  // Select/Status系フィルタ（select, status）
+  // Select/Status filters
   // ============================================
 
-  /// 等しい
+  /// Select equals - matches the exact option name.
   const factory PropertyFilter.selectEquals(String value) = SelectEqualsFilter;
 
-  /// 等しくない
+  /// Select does not equal - does not match the option name.
   const factory PropertyFilter.selectDoesNotEqual(String value) =
       SelectDoesNotEqualFilter;
 
-  /// 空である
+  /// Select is empty - has no selected option.
   const factory PropertyFilter.selectIsEmpty() = SelectIsEmptyFilter;
 
-  /// 空でない
+  /// Select is not empty - has any selected option.
   const factory PropertyFilter.selectIsNotEmpty() = SelectIsNotEmptyFilter;
 
   // ============================================
-  // MultiSelect系フィルタ（multi_select）
+  // Multi-select filters
   // ============================================
 
-  /// 含む（いずれか）
+  /// Multi-select contains - includes the specified option.
   const factory PropertyFilter.multiSelectContains(String value) =
       MultiSelectContainsFilter;
 
-  /// 含まない
+  /// Multi-select does not contain - does not include the specified option.
   const factory PropertyFilter.multiSelectDoesNotContain(String value) =
       MultiSelectDoesNotContainFilter;
 
-  /// 空である
+  /// Multi-select is empty - has no selected options.
   const factory PropertyFilter.multiSelectIsEmpty() = MultiSelectIsEmptyFilter;
 
-  /// 空でない
+  /// Multi-select is not empty - has any selected options.
   const factory PropertyFilter.multiSelectIsNotEmpty() =
       MultiSelectIsNotEmptyFilter;
 
   // ============================================
-  // 日付系フィルタ（date, created_time, last_edited_time）
+  // Date filters (date, created_time, last_edited_time)
   // ============================================
 
-  /// 等しい
+  /// Date equals - exactly matches the date (ISO 8601).
   const factory PropertyFilter.dateEquals(String date) = DateEqualsFilter;
 
-  /// より前
+  /// Date before - strictly before the date.
   const factory PropertyFilter.dateBefore(String date) = DateBeforeFilter;
 
-  /// より後
+  /// Date after - strictly after the date.
   const factory PropertyFilter.dateAfter(String date) = DateAfterFilter;
 
-  /// 以前
+  /// Date on or before - on or before the date.
   const factory PropertyFilter.dateOnOrBefore(String date) =
       DateOnOrBeforeFilter;
 
-  /// 以降
+  /// Date on or after - on or after the date.
   const factory PropertyFilter.dateOnOrAfter(String date) = DateOnOrAfterFilter;
 
-  /// 空である
+  /// Date is empty - has no date value.
   const factory PropertyFilter.dateIsEmpty() = DateIsEmptyFilter;
 
-  /// 空でない
+  /// Date is not empty - has any date value.
   const factory PropertyFilter.dateIsNotEmpty() = DateIsNotEmptyFilter;
 
-  // 相対日付フィルタ
+  // Relative date filters
+
+  /// Date is within the past week.
   const factory PropertyFilter.datePastWeek() = DatePastWeekFilter;
+
+  /// Date is within the past month.
   const factory PropertyFilter.datePastMonth() = DatePastMonthFilter;
+
+  /// Date is within the past year.
   const factory PropertyFilter.datePastYear() = DatePastYearFilter;
+
+  /// Date is within the next week.
   const factory PropertyFilter.dateNextWeek() = DateNextWeekFilter;
+
+  /// Date is within the next month.
   const factory PropertyFilter.dateNextMonth() = DateNextMonthFilter;
+
+  /// Date is within the next year.
   const factory PropertyFilter.dateNextYear() = DateNextYearFilter;
 
   // ============================================
-  // People系フィルタ（people, created_by, last_edited_by）
+  // People filters (people, created_by, last_edited_by)
   // ============================================
 
-  /// 含む（いずれか）
+  /// People contains - includes the specified user ID.
   const factory PropertyFilter.peopleContains(String userId) =
       PeopleContainsFilter;
 
-  /// 含まない
+  /// People does not contain - does not include the specified user ID.
   const factory PropertyFilter.peopleDoesNotContain(String userId) =
       PeopleDoesNotContainFilter;
 
-  /// 空である
+  /// People is empty - has no users assigned.
   const factory PropertyFilter.peopleIsEmpty() = PeopleIsEmptyFilter;
 
-  /// 空でない
+  /// People is not empty - has any users assigned.
   const factory PropertyFilter.peopleIsNotEmpty() = PeopleIsNotEmptyFilter;
 
   // ============================================
-  // Files系フィルタ（files）
+  // Files filters
   // ============================================
 
-  /// 空である
+  /// Files is empty - has no files attached.
   const factory PropertyFilter.filesIsEmpty() = FilesIsEmptyFilter;
 
-  /// 空でない
+  /// Files is not empty - has any files attached.
   const factory PropertyFilter.filesIsNotEmpty() = FilesIsNotEmptyFilter;
 
   // ============================================
-  // Relation系フィルタ（relation）
+  // Relation filters
   // ============================================
 
-  /// 含む（いずれか）
+  /// Relation contains - links to the specified page ID.
   const factory PropertyFilter.relationContains(String pageId) =
       RelationContainsFilter;
 
-  /// 含まない
+  /// Relation does not contain - does not link to the specified page ID.
   const factory PropertyFilter.relationDoesNotContain(String pageId) =
       RelationDoesNotContainFilter;
 
-  /// 空である
+  /// Relation is empty - has no related pages.
   const factory PropertyFilter.relationIsEmpty() = RelationIsEmptyFilter;
 
-  /// 空でない
+  /// Relation is not empty - has any related pages.
   const factory PropertyFilter.relationIsNotEmpty() = RelationIsNotEmptyFilter;
 
-  /// JSONに変換
+  /// Converts this property filter to a JSON map for the Notion API.
   Map<String, dynamic> toJson() => when(
         // テキスト系
         textEquals: (value) => {

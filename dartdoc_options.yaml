@@ -1,0 +1,5 @@
+dartdoc:
+  nodoc:
+    - lib/**/*.g.dart
+    - lib/**/*.freezed.dart
+
