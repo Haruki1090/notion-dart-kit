@@ -119,6 +119,7 @@ class RetryQueue {
   int _running = 0;
   Timer? _tickTimer;
   bool _started = false;
+  static const Duration _tickInterval = Duration(milliseconds: 100);
 
   /// Start background processing.
   void start() {
@@ -201,8 +202,8 @@ class RetryQueue {
       return;
     }
 
-    // Run tick every 500ms to check schedule.
-    _tickTimer = Timer(const Duration(milliseconds: 500), _onTick);
+    // Run tick periodically to check schedule.
+    _tickTimer = Timer(_tickInterval, _onTick);
   }
 
   void _onTick() {
@@ -263,6 +264,9 @@ class RetryQueue {
       }
     }).whenComplete(() {
       _running--;
+      if (_started) {
+        _wakeup();
+      }
     });
   }
 
