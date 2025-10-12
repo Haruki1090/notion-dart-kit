@@ -13,7 +13,7 @@ A comprehensive, type-safe Dart toolkit for the Notion API. Full endpoint covera
 - **🎯 Type-Safe**: Strongly typed models using Freezed for immutable data classes
 - **🔄 Auto-Retry**: Built-in exponential backoff with jitter for rate limit handling
 - **⚡ Rate Limiting**: Automatic 429 error handling with configurable retry logic
-- **📦 Full API Coverage**: Support for Pages, Databases, Blocks, Users, and Search
+- **📦 Full API Coverage**: Support for Pages, Databases, Blocks, Users, Search, and File Uploads
 - **🛡️ Error Handling**: Custom exception classes for different API error types
 - **📱 Flutter Ready**: Works seamlessly with Flutter applications
 - **🎨 Clean API**: Intuitive, service-based architecture for easy integration
@@ -484,12 +484,12 @@ try {
 | 21 Property Types | ✅ Implemented |
 | 31+ Block Types | ✅ Implemented |
 
-### Planned Features
+### Planned Features / New Features
 
 | Feature | Status |
 |---------|--------|
 | Comments API | 🚧 Planned ([#6](https://github.com/Haruki1090/notion-dart-kit/issues/6)) |
-| File Upload API | 🚧 Planned ([#7](https://github.com/Haruki1090/notion-dart-kit/issues/7)) |
+| File Upload API | ✅ Implemented ([#7](https://github.com/Haruki1090/notion-dart-kit/issues/7)) |
 | Webhooks Support | 🚧 Planned |
 | Page Property Items API | 🚧 Planned |
 

@@ -13,7 +13,7 @@ Notion API のための包括的な型安全 Dart ツールキット。完全な
 - **🎯 型安全**: Freezed による強力な型付きモデルとイミュータブルなデータクラス
 - **🔄 自動リトライ**: ジッター付き指数バックオフによるレート制限の自動処理
 - **⚡ レート制限**: 429 エラーの自動ハンドリングと設定可能なリトライロジック
-- **📦 完全な API カバレッジ**: Pages、Databases、Blocks、Users、Search の完全サポート
+- **📦 完全な API カバレッジ**: Pages、Databases、Blocks、Users、Search、File Uploads の完全サポート
 - **🛡️ エラーハンドリング**: 異なる API エラータイプ用のカスタム例外クラス
 - **📱 Flutter 対応**: Flutter アプリケーションでシームレスに動作
 - **🎨 クリーンな API**: 統合しやすい直感的なサービスベースアーキテクチャ
@@ -484,12 +484,12 @@ try {
 | 21種類のプロパティタイプ | ✅ 実装済み |
 | 31種類以上のブロックタイプ | ✅ 実装済み |
 
-### 予定機能
+### 予定機能 / 新機能
 
 | 機能 | ステータス |
 |---------|--------|
 | Comments API | 🚧 予定 ([#6](https://github.com/Haruki1090/notion-dart-kit/issues/6)) |
-| File Upload API | 🚧 予定 ([#7](https://github.com/Haruki1090/notion-dart-kit/issues/7)) |
+| File Upload API | ✅ 実装済み ([#7](https://github.com/Haruki1090/notion-dart-kit/issues/7)) |
 | Webhooks サポート | 🚧 予定 |
 | Page Property Items API | 🚧 予定 |
 
