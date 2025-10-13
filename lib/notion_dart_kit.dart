@@ -42,5 +42,6 @@ export 'src/services/users_service.dart';
 export 'src/utils/exceptions.dart';
 // Utilities
 export 'src/utils/notion_logger.dart';
+export 'src/utils/property_builder.dart';
 export 'src/utils/recursive_block_loader.dart';
 export 'src/utils/result.dart';

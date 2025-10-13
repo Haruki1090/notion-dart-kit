@@ -448,56 +448,41 @@ See [query_dsl_example.dart](./example/query_dsl_example.dart) for comprehensive
 
 ### Working with Properties
 
-When creating pages, properties must be provided as JSON Maps. The `PropertyValue` models are read-only and used for parsing API responses.
+Use the **PropertyBuilder API** for creating properties with a clean, fluent interface instead of deeply nested Maps.
 
 ```dart
-// Create a page with various property types
+// Create a page with PropertyBuilder (NEW!)
 final properties = {
-  // Title property (required for database pages)
-  'Title': {
-    'title': [
-      {
-        'type': 'text',
-        'text': {'content': 'My Page'},
-      }
-    ]
-  },
+  // Title property with formatting
+  'Title': PropertyBuilder.title('My Page')
+    .bold()
+    .color('blue')
+    .toJson(),
 
-  // Select property
-  'Status': {
-    'select': {'name': 'In Progress'}
-  },
+  // Simple properties
+  'Status': PropertyBuilder.select('In Progress'),
+  'Priority': PropertyBuilder.number(5),
+  'Completed': PropertyBuilder.checkbox(false),
+  'URL': PropertyBuilder.url('https://example.com'),
+  'Email': PropertyBuilder.email('team@example.com'),
+  'Phone': PropertyBuilder.phone('+1-234-567-8900'),
 
-  // Number property
-  'Priority': {'number': 5},
+  // Collections
+  'Tags': PropertyBuilder.multiSelect(['urgent', 'planning']),
+  'Assignees': PropertyBuilder.people(['user_id_1', 'user_id_2']),
+  'Related': PropertyBuilder.relation(['page_id']),
 
-  // Multi-select property
-  'Tags': {
-    'multi_select': [
-      {'name': 'urgent'},
-      {'name': 'planning'},
-    ]
-  },
+  // Date properties
+  'Due Date': PropertyBuilder.date(
+    start: DateTime.now().add(const Duration(days: 7)),
+    end: DateTime.now().add(const Duration(days: 14)),
+  ).toJson(),
 
-  // Date property
-  'Due Date': {
-    'date': {
-      'start': DateTime.now().add(const Duration(days: 7)).toIso8601String(),
-    }
-  },
-
-  // Checkbox property
-  'Completed': {'checkbox': false},
-
-  // People property
-  'Assignees': {
-    'people': [
-      {'id': 'user_id'}
-    ]
-  },
-
-  // URL property
-  'URL': {'url': 'https://example.com'},
+  // Rich text with formatting
+  'Description': PropertyBuilder.richText('Important note')
+    .italic()
+    .color('red')
+    .toJson(),
 };
 
 final page = await client.pages.create(
@@ -519,9 +504,14 @@ titleProperty?.when(
 
 **Supported Property Types:** Title, Rich Text, Number, Select, Multi-select, Date, People, Checkbox, URL, Email, Phone, Files, Relation, Rollup, Formula, Status, Created Time, Created By, Last Edited Time, Last Edited By, and Unique ID.
 
-> **Note**: For easier property creation, see the upcoming `PropertyBuilder` API ([#15](https://github.com/Haruki1090/notion-dart-kit/issues/15)).
+**PropertyBuilder Benefits:**
+- ✅ Less nesting, more readable
+- ✅ Fluent API with method chaining
+- ✅ Type-safe property construction
+- ✅ IDE autocomplete support
+- ✅ Reduced chance of errors
 
-See [properties_and_blocks_example.dart](./example/properties_and_blocks_example.dart) for more examples.
+See [property_builder_example.dart](./example/property_builder_example.dart) for comprehensive examples.
 
 ### Pagination
 
