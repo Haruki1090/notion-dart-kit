@@ -53,7 +53,8 @@ void main() async {
     print('Multi-styled text created\n');
 
     // Code formatting
-    final codeText = RichTextBuilder.text('console.log("Hello")').code().toJson();
+    final codeText =
+        RichTextBuilder.text('console.log("Hello")').code().toJson();
     print('Code formatted text created\n');
 
     // Strikethrough
@@ -202,8 +203,7 @@ void main() async {
       'callout': {
         'rich_text': [
           RichTextBuilder.text('Important: ').bold().color('red').toJson(),
-          RichTextBuilder.text('Read the ')
-              .toJson(),
+          RichTextBuilder.text('Read the ').toJson(),
           RichTextBuilder.text('documentation')
               .link('https://docs.example.com')
               .underline()
@@ -257,7 +257,8 @@ void main() async {
         'type': 'code',
         'code': {
           'rich_text': [
-            RichTextBuilder.text('def hello():\n    print("Hello World")').toJson(),
+            RichTextBuilder.text('def hello():\n    print("Hello World")')
+                .toJson(),
           ],
           'language': 'python',
         },

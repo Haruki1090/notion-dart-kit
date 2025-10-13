@@ -72,7 +72,8 @@ void main() {
     });
 
     test('multi-select property generates correct JSON', () {
-      final property = PropertyBuilder.multiSelect(['bug', 'urgent', 'frontend']);
+      final property =
+          PropertyBuilder.multiSelect(['bug', 'urgent', 'frontend']);
 
       expect(property, {
         'multi_select': [
@@ -209,7 +210,8 @@ void main() {
     });
 
     test('title with color generates correct JSON', () {
-      final property = PropertyBuilder.title('Colored Title').color('blue').toJson();
+      final property =
+          PropertyBuilder.title('Colored Title').color('blue').toJson();
 
       expect(property, {
         'title': [
@@ -341,9 +343,8 @@ void main() {
     });
 
     test('rich text with color generates correct JSON', () {
-      final property = PropertyBuilder.richText('Colored text')
-          .color('orange')
-          .toJson();
+      final property =
+          PropertyBuilder.richText('Colored text').color('orange').toJson();
 
       expect(property, {
         'rich_text': [

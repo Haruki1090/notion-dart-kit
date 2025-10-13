@@ -403,10 +403,10 @@ class DatePropertyBuilder {
 
   /// Converts the builder to a JSON-compatible Map
   Map<String, dynamic> toJson() => {
-      'date': {
-        'start': start.toIso8601String(),
-        if (end != null) 'end': end!.toIso8601String(),
-        if (_timeZone != null) 'time_zone': _timeZone,
-      },
-    };
+        'date': {
+          'start': start.toIso8601String(),
+          if (end != null) 'end': end!.toIso8601String(),
+          if (_timeZone != null) 'time_zone': _timeZone,
+        },
+      };
 }

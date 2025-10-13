@@ -201,7 +201,8 @@ void main() async {
     */
 
     print('ℹ️  Query setup complete!');
-    print('   Uncomment the query execution code to run with valid credentials.\n');
+    print(
+        '   Uncomment the query execution code to run with valid credentials.\n');
 
     // ========================================
     // Summary

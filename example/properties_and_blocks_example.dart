@@ -26,7 +26,8 @@ void main() async {
     // 1. Creating Pages with Various Properties
     // ========================================
     print('📝 1. Creating a Page with Various Properties\n');
-    print('ℹ️  Note: Properties must be provided as Maps (not PropertyValue models)\n');
+    print(
+        'ℹ️  Note: Properties must be provided as Maps (not PropertyValue models)\n');
 
     // Property creation uses raw Maps
     // (PropertyValue models are read-only and used for parsing responses)

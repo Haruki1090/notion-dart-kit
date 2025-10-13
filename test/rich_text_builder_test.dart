@@ -199,10 +199,8 @@ void main() {
     });
 
     test('mention with formatting', () {
-      final richText = RichTextBuilder.mentionUser('user_id')
-          .bold()
-          .color('blue')
-          .toJson();
+      final richText =
+          RichTextBuilder.mentionUser('user_id').bold().color('blue').toJson();
 
       expect(richText['annotations']['bold'], true);
       expect(richText['annotations']['color'], 'blue');

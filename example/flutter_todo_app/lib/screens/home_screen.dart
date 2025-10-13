@@ -35,7 +35,8 @@ class HomeScreen extends ConsumerWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.check_circle_outline, size: 64, color: Colors.grey),
+                  Icon(Icons.check_circle_outline,
+                      size: 64, color: Colors.grey),
                   SizedBox(height: 16),
                   Text(
                     'No tasks yet!',

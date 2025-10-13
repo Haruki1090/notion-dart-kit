@@ -81,10 +81,8 @@ void main() async {
     print('Bold title created\n');
 
     // Title with multiple formatting options
-    final fancyTitleProp = PropertyBuilder.title('Fancy Title')
-        .bold()
-        .color('blue')
-        .toJson();
+    final fancyTitleProp =
+        PropertyBuilder.title('Fancy Title').bold().color('blue').toJson();
     print('Fancy title (bold + blue) created\n');
 
     // Title with link
