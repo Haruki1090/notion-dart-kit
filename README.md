@@ -103,6 +103,8 @@ The [`example/`](./example) directory doubles as living documentation. Start wit
 
 For complete, runnable examples, see the [example](./example) directory:
 - [basic_usage.dart](./example/basic_usage.dart) - Getting started with all APIs
+- [property_builder_example.dart](./example/property_builder_example.dart) - Creating properties with PropertyBuilder (NEW!)
+- [rich_text_builder_example.dart](./example/rich_text_builder_example.dart) - Creating rich text with RichTextBuilder (NEW!)
 - [query_dsl_example.dart](./example/query_dsl_example.dart) - Advanced filtering and sorting
 - [properties_and_blocks_example.dart](./example/properties_and_blocks_example.dart) - Working with properties and blocks
 - [pagination_example.dart](./example/pagination_example.dart) - Handling large datasets
@@ -211,6 +213,8 @@ await client.databases.update(
 
 ### Working with Blocks
 
+Use the **RichTextBuilder API** (NEW!) for creating block content with formatted text:
+
 ```dart
 // Retrieve a block
 final block = await client.blocks.retrieve('block_id');
@@ -218,17 +222,16 @@ final block = await client.blocks.retrieve('block_id');
 // Get block children
 final children = await client.blocks.retrieveChildren('block_id');
 
-// Append new blocks
+// Append new blocks with RichTextBuilder
 await client.blocks.appendChildren('block_id', [
   {
     'object': 'block',
     'type': 'paragraph',
     'paragraph': {
       'rich_text': [
-        {
-          'type': 'text',
-          'text': {'content': 'This is a new paragraph'}
-        }
+        RichTextBuilder.text('This is a ').toJson(),
+        RichTextBuilder.text('formatted').bold().color('blue').toJson(),
+        RichTextBuilder.text(' paragraph.').toJson(),
       ]
     }
   },
@@ -237,23 +240,29 @@ await client.blocks.appendChildren('block_id', [
     'type': 'heading_2',
     'heading_2': {
       'rich_text': [
-        {
-          'type': 'text',
-          'text': {'content': 'New Section'}
-        }
+        RichTextBuilder.text('New Section').bold().toJson(),
       ]
+    }
+  },
+  {
+    'object': 'block',
+    'type': 'callout',
+    'callout': {
+      'rich_text': [
+        RichTextBuilder.text('Important: ').bold().color('red').toJson(),
+        RichTextBuilder.text('Read this carefully.').toJson(),
+      ],
+      'icon': {'type': 'emoji', 'emoji': '⚠️'},
     }
   }
 ]);
 
-// Update a block
+// Update a block with formatted text
 await client.blocks.update('block_id', {
   'paragraph': {
     'rich_text': [
-      {
-        'type': 'text',
-        'text': {'content': 'Updated content'}
-      }
+      RichTextBuilder.text('Updated ').toJson(),
+      RichTextBuilder.text('content').italic().toJson(),
     ]
   }
 });
@@ -261,6 +270,15 @@ await client.blocks.update('block_id', {
 // Delete (archive) a block
 await client.blocks.delete('block_id');
 ```
+
+**RichTextBuilder Benefits:**
+- ✅ Simplified rich text creation
+- ✅ Fluent API for formatting (bold, italic, colors, links)
+- ✅ Support for mentions (users, pages, dates)
+- ✅ Equation support for math content
+- ✅ No need to manually set plain_text
+
+See [rich_text_builder_example.dart](./example/rich_text_builder_example.dart) for comprehensive examples.
 
 #### Recursively load nested blocks
 

@@ -45,3 +45,4 @@ export 'src/utils/notion_logger.dart';
 export 'src/utils/property_builder.dart';
 export 'src/utils/recursive_block_loader.dart';
 export 'src/utils/result.dart';
+export 'src/utils/rich_text_builder.dart';
