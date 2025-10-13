@@ -27,19 +27,19 @@ void main() async {
     print('📝 1. Text Blocks\n');
 
     // Simple paragraph
-    final paragraph = BlockBuilder.paragraph('This is a simple paragraph.')
-        .toJson();
+    final paragraph =
+        BlockBuilder.paragraph('This is a simple paragraph.').toJson();
     print('Paragraph block created\n');
 
     // Paragraph with color
-    final coloredParagraph = BlockBuilder.paragraph('Colored paragraph')
-        .color('blue')
-        .toJson();
+    final coloredParagraph =
+        BlockBuilder.paragraph('Colored paragraph').color('blue').toJson();
     print('Colored paragraph created\n');
 
     // Headings
     final heading1 = BlockBuilder.heading1('Chapter 1: Introduction').toJson();
-    final heading2 = BlockBuilder.heading2('Section 1.1').color('blue').toJson();
+    final heading2 =
+        BlockBuilder.heading2('Section 1.1').color('blue').toJson();
     final heading3 = BlockBuilder.heading3('Subsection 1.1.1').toJson();
     print('Headings created\n');
 
@@ -62,17 +62,13 @@ void main() async {
     print('📋 2. List Blocks\n');
 
     // Bulleted list
-    final bulletedItem1 =
-        BlockBuilder.bulletedListItem('First item').toJson();
-    final bulletedItem2 =
-        BlockBuilder.bulletedListItem('Second item').toJson();
+    final bulletedItem1 = BlockBuilder.bulletedListItem('First item').toJson();
+    final bulletedItem2 = BlockBuilder.bulletedListItem('Second item').toJson();
     print('Bulleted list items created\n');
 
     // Numbered list
-    final numberedItem1 =
-        BlockBuilder.numberedListItem('Step 1').toJson();
-    final numberedItem2 =
-        BlockBuilder.numberedListItem('Step 2').toJson();
+    final numberedItem1 = BlockBuilder.numberedListItem('Step 1').toJson();
+    final numberedItem2 = BlockBuilder.numberedListItem('Step 2').toJson();
     print('Numbered list items created\n');
 
     // To-do items
@@ -90,30 +86,24 @@ void main() async {
     print('🗂️  3. Nested Blocks\n');
 
     // List with nested items
-    final nestedList = BlockBuilder.bulletedListItem('Parent item')
-        .children([
-          BlockBuilder.bulletedListItem('Child item 1').toJson(),
-          BlockBuilder.bulletedListItem('Child item 2').toJson(),
-        ])
-        .toJson();
+    final nestedList = BlockBuilder.bulletedListItem('Parent item').children([
+      BlockBuilder.bulletedListItem('Child item 1').toJson(),
+      BlockBuilder.bulletedListItem('Child item 2').toJson(),
+    ]).toJson();
     print('Nested list created\n');
 
     // Toggle with content
-    final toggleWithContent = BlockBuilder.toggle('FAQs')
-        .children([
-          BlockBuilder.paragraph('Q: What is Notion?').toJson(),
-          BlockBuilder.paragraph('A: A note-taking application.').toJson(),
-        ])
-        .toJson();
+    final toggleWithContent = BlockBuilder.toggle('FAQs').children([
+      BlockBuilder.paragraph('Q: What is Notion?').toJson(),
+      BlockBuilder.paragraph('A: A note-taking application.').toJson(),
+    ]).toJson();
     print('Toggle with content created\n');
 
     // Toggleable heading
-    final toggleableHeading = BlockBuilder.heading2('Expandable Section')
-        .toggleable()
-        .children([
-          BlockBuilder.paragraph('Hidden content goes here.').toJson(),
-        ])
-        .toJson();
+    final toggleableHeading =
+        BlockBuilder.heading2('Expandable Section').toggleable().children([
+      BlockBuilder.paragraph('Hidden content goes here.').toJson(),
+    ]).toJson();
     print('Toggleable heading created\n');
 
     // ========================================
@@ -158,8 +148,7 @@ void main() async {
     print('🖼️  6. Media Blocks\n');
 
     // Image
-    final image =
-        BlockBuilder.image('https://example.com/image.jpg').toJson();
+    final image = BlockBuilder.image('https://example.com/image.jpg').toJson();
     print('Image block created\n');
 
     // Image with caption
@@ -169,13 +158,11 @@ void main() async {
     print('Image with caption created\n');
 
     // Video
-    final video =
-        BlockBuilder.video('https://example.com/video.mp4').toJson();
+    final video = BlockBuilder.video('https://example.com/video.mp4').toJson();
     print('Video block created\n');
 
     // File
-    final file =
-        BlockBuilder.file('https://example.com/document.pdf').toJson();
+    final file = BlockBuilder.file('https://example.com/document.pdf').toJson();
     print('File block created\n');
 
     // PDF
@@ -194,8 +181,8 @@ void main() async {
     print('Bookmark created\n');
 
     // Embed
-    final embed = BlockBuilder.embed('https://www.youtube.com/watch?v=example')
-        .toJson();
+    final embed =
+        BlockBuilder.embed('https://www.youtube.com/watch?v=example').toJson();
     print('Embed created\n');
 
     // Equation
@@ -294,19 +281,14 @@ void main() async {
 
       // FAQ
       BlockBuilder.heading2('FAQ').toJson(),
-      BlockBuilder.toggle('What is this project?')
-          .children([
-            BlockBuilder.paragraph(
-              'This is a demonstration of the BlockBuilder API.',
-            ).toJson(),
-          ])
-          .toJson(),
-      BlockBuilder.toggle('How do I contribute?')
-          .children([
-            BlockBuilder.paragraph('Fork the repository and submit a PR.')
-                .toJson(),
-          ])
-          .toJson(),
+      BlockBuilder.toggle('What is this project?').children([
+        BlockBuilder.paragraph(
+          'This is a demonstration of the BlockBuilder API.',
+        ).toJson(),
+      ]).toJson(),
+      BlockBuilder.toggle('How do I contribute?').children([
+        BlockBuilder.paragraph('Fork the repository and submit a PR.').toJson(),
+      ]).toJson(),
     ];
 
     print('Created ${completePageBlocks.length} blocks for complete page\n');
@@ -343,23 +325,20 @@ void main() async {
         .icon('🗓️')
         .color('blue_background')
         .children([
-          BlockBuilder.paragraph()
-              .addText('Our ')
-              .addRichText(RichTextBuilder.text('Q1 2025').bold().toJson())
-              .addText(' milestones:')
-              .toJson(),
-          BlockBuilder.toDo('Complete MVP').checked().toJson(),
-          BlockBuilder.toDo('Launch beta version').toJson(),
-          BlockBuilder.toDo('Gather user feedback').toJson(),
-          BlockBuilder.toggle('Detailed Timeline')
-              .children([
-                BlockBuilder.bulletedListItem('January: Development').toJson(),
-                BlockBuilder.bulletedListItem('February: Testing').toJson(),
-                BlockBuilder.bulletedListItem('March: Launch').toJson(),
-              ])
-              .toJson(),
-        ])
-        .toJson();
+      BlockBuilder.paragraph()
+          .addText('Our ')
+          .addRichText(RichTextBuilder.text('Q1 2025').bold().toJson())
+          .addText(' milestones:')
+          .toJson(),
+      BlockBuilder.toDo('Complete MVP').checked().toJson(),
+      BlockBuilder.toDo('Launch beta version').toJson(),
+      BlockBuilder.toDo('Gather user feedback').toJson(),
+      BlockBuilder.toggle('Detailed Timeline').children([
+        BlockBuilder.bulletedListItem('January: Development').toJson(),
+        BlockBuilder.bulletedListItem('February: Testing').toJson(),
+        BlockBuilder.bulletedListItem('March: Launch').toJson(),
+      ]).toJson(),
+    ]).toJson();
 
     print('Complex nested structure created\n');
 

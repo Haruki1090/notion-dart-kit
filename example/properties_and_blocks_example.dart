@@ -5,12 +5,16 @@ import 'package:notion_dart_kit/notion_dart_kit.dart';
 /// This example shows how to work with various property types and block types
 /// when creating and updating Notion pages.
 ///
+/// **NEW in v1.x**: Builder APIs for easier content creation!
+/// - PropertyBuilder - Simplified property creation (#15)
+/// - RichTextBuilder - Formatted text creation (#17)
+/// - BlockBuilder - Block creation without nested Maps (#18)
+///
 /// **IMPORTANT NOTES:**
 /// - PropertyValue, RichText, and Block models are READ-ONLY
 /// - They are used for parsing API responses, not for creating content
-/// - When creating pages/blocks, use raw Maps as shown in this example
-/// - For easier property/block creation, see the PropertyBuilder (#15),
-///   RichTextBuilder (#17), and BlockBuilder (#18) APIs (coming soon)
+/// - When creating pages/blocks, use Builder APIs or raw Maps
+/// - This example shows BOTH approaches for comparison
 void main() async {
   print('=== Properties and Blocks Example ===\n');
 
@@ -489,9 +493,63 @@ void main() async {
     print('✓ And 13+ more types!\n');
 
     // ========================================
-    // 8. Reading Properties (PropertyValue models)
+    // 8. Using Builder APIs (NEW!)
     // ========================================
-    print('📖 8. Reading Properties from Retrieved Pages\n');
+    print('🚀 8. Using Builder APIs for Easier Creation\n');
+
+    // PropertyBuilder for properties
+    print('Using PropertyBuilder:');
+    final builderProperties = {
+      'Title': PropertyBuilder.title('Project Planning Document').toJson(),
+      'Description':
+          PropertyBuilder.richText('This is a detailed project plan.').toJson(),
+      'Priority': PropertyBuilder.number(5).toJson(),
+      'Status': PropertyBuilder.select('In Progress').toJson(),
+      'Tags':
+          PropertyBuilder.multiSelect(['urgent', 'planning', 'q1']).toJson(),
+      'Due Date': PropertyBuilder.date(
+        start: DateTime.now().add(const Duration(days: 7)),
+        end: DateTime.now().add(const Duration(days: 14)),
+      ).toJson(),
+      'Completed': PropertyBuilder.checkbox(false).toJson(),
+    };
+    print('  ✅ Properties created with PropertyBuilder\n');
+
+    // BlockBuilder for content
+    print('Using BlockBuilder:');
+    final builderBlocks = [
+      BlockBuilder.heading1('Project Overview').color('blue').toJson(),
+      BlockBuilder.paragraph('This project aims to deliver...').toJson(),
+      BlockBuilder.bulletedListItem('Research phase').toJson(),
+      BlockBuilder.bulletedListItem('Design phase').toJson(),
+      BlockBuilder.bulletedListItem('Implementation phase').toJson(),
+      BlockBuilder.toDo('Complete requirements gathering').checked().toJson(),
+      BlockBuilder.toDo('Create wireframes').toJson(),
+      BlockBuilder.callout('Important: Review with stakeholders')
+          .icon('⚠️')
+          .color('yellow_background')
+          .toJson(),
+      BlockBuilder.code(
+        'function example() {\n  return "Hello";\n}',
+        language: 'javascript',
+      ).toJson(),
+      BlockBuilder.quote('Quality is not an act, it is a habit. - Aristotle')
+          .color('gray')
+          .toJson(),
+      BlockBuilder.divider().toJson(),
+    ];
+    print('  ✅ ${builderBlocks.length} blocks created with BlockBuilder\n');
+
+    print('Benefits of Builder APIs:');
+    print('  ✅ Less nesting - cleaner code');
+    print('  ✅ Fluent API - method chaining');
+    print('  ✅ Type-safe - IDE autocomplete');
+    print('  ✅ Less error-prone\n');
+
+    // ========================================
+    // 9. Reading Properties (PropertyValue models)
+    // ========================================
+    print('📖 9. Reading Properties from Retrieved Pages\n');
     print('ℹ️  PropertyValue models ARE used for reading API responses\n');
 
     // Example of reading properties using pattern matching
@@ -523,12 +581,53 @@ void main() async {
     print(');');
     print('```\n');
 
+    print('More pattern matching examples:');
+    print('```dart');
+    print('// Reading multi-select');
+    print("final tagsProp = page.properties['Tags'];");
+    print('final tags = tagsProp?.when(');
+    print('  multiSelect: (id, options) {');
+    print('    return options.map((opt) => opt.name).toList();');
+    print('  },');
+    print('  orElse: () => <String>[],');
+    print(') ?? <String>[];');
+    print('');
+    print('// Reading date (with range)');
+    print("final dateProp = page.properties['Due Date'];");
+    print('final dateRange = dateProp?.when(');
+    print('  date: (id, date) {');
+    print('    if (date == null) return null;');
+    print('    final start = date.start;');
+    print('    final end = date.end;');
+    print('    return end != null ? "$start to $end" : start;');
+    print('  },');
+    print('  orElse: () => null,');
+    print(');');
+    print('');
+    print('// Reading checkbox');
+    print("final completedProp = page.properties['Completed'];");
+    print('final isCompleted = completedProp?.when(');
+    print('  checkbox: (id, checked) => checked,');
+    print('  orElse: () => false,');
+    print(') ?? false;');
+    print('');
+    print('// Reading people');
+    print("final assigneesProp = page.properties['Assignees'];");
+    print('final assignees = assigneesProp?.when(');
+    print('  people: (id, users) {');
+    print('    return users.map((user) => user.name).toList();');
+    print('  },');
+    print('  orElse: () => <String?>[],');
+    print(') ?? <String?>[];');
+    print('```\n');
+
     print('Key Points:');
     print('  ✓ PropertyValue models have .when() for pattern matching');
     print('  ✓ Each property type has its own case in when()');
     print('  ✓ Use orElse() to handle unexpected types');
     print('  ✓ Rich text arrays can be joined to get plain text');
-    print('  ✓ Type-safe access to property values\n');
+    print('  ✓ Type-safe access to property values');
+    print('  ✓ Always provide fallback values for null safety\n');
 
     // ========================================
     // Summary
@@ -537,9 +636,11 @@ void main() async {
     print('✅ Properties and Blocks examples completed!');
     print('=' * 50);
     print('\n💡 Key Takeaways:');
-    print('   📝 Creating: Use raw Maps (shown above)');
+    print('   📝 Creating (OLD): Use raw Maps');
+    print(
+        '   🚀 Creating (NEW): Use Builder APIs (PropertyBuilder, BlockBuilder)');
     print('   📖 Reading: Use PropertyValue models with .when()');
-    print('   🔜 Coming soon: Builder APIs for easier creation');
+    print('   ✨ Pattern matching: Type-safe property extraction');
     print('\n💡 Next steps:');
     print('   1. Replace YOUR_INTEGRATION_TOKEN and IDs');
     print('   2. Uncomment examples to create real content');
