@@ -1,0 +1,31 @@
+# .pubignore
+# Files to exclude when publishing to pub.dev
+# Note: Generated files (*.g.dart, *.freezed.dart) are needed for the package
+
+# Development files
+.dart_tool/
+.packages
+
+# AI assistant files
+.cursorrules
+.claude/
+CLAUDE.md
+
+# Documentation build directory
+doc/api/
+
+# Environment files
+.env*
+
+# Test files (tests are not needed in published package)
+test/
+
+# Build configuration
+build.yaml
+
+# CI/CD
+.github/
+
+# Git
+.git/
+.gitignore
