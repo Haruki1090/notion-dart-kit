@@ -1,3 +1,5 @@
+// ignore_for_file: use_late_for_private_fields_and_variables
+
 /// RichTextBuilder API for creating Notion rich text objects
 ///
 /// This API provides a fluent interface for creating rich text objects
