@@ -26,6 +26,8 @@ analyzer:
     avoid_print: ignore
     # Ignore cascade_invocations in test files (expect calls)
     cascade_invocations: ignore
+    # Ignore avoid_dynamic_calls in test files (dynamic JSON access)
+    avoid_dynamic_calls: ignore
     # Ignore deprecated member use (for backward compatibility)
     deprecated_member_use: ignore
     deprecated_member_use_from_same_package: ignore
