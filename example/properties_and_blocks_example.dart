@@ -4,6 +4,13 @@ import 'package:notion_dart_kit/notion_dart_kit.dart';
 ///
 /// This example shows how to work with various property types and block types
 /// when creating and updating Notion pages.
+///
+/// **IMPORTANT NOTES:**
+/// - PropertyValue, RichText, and Block models are READ-ONLY
+/// - They are used for parsing API responses, not for creating content
+/// - When creating pages/blocks, use raw Maps as shown in this example
+/// - For easier property/block creation, see the PropertyBuilder (#15),
+///   RichTextBuilder (#17), and BlockBuilder (#18) APIs (coming soon)
 void main() async {
   print('=== Properties and Blocks Example ===\n');
 
@@ -19,7 +26,10 @@ void main() async {
     // 1. Creating Pages with Various Properties
     // ========================================
     print('📝 1. Creating a Page with Various Properties\n');
+    print('ℹ️  Note: Properties must be provided as Maps (not PropertyValue models)\n');
 
+    // Property creation uses raw Maps
+    // (PropertyValue models are read-only and used for parsing responses)
     final pageProperties = {
       // Title property
       'Title': {
@@ -478,11 +488,57 @@ void main() async {
     print('✓ And 13+ more types!\n');
 
     // ========================================
+    // 8. Reading Properties (PropertyValue models)
+    // ========================================
+    print('📖 8. Reading Properties from Retrieved Pages\n');
+    print('ℹ️  PropertyValue models ARE used for reading API responses\n');
+
+    // Example of reading properties using pattern matching
+    print('Example code for reading properties:');
+    print('```dart');
+    print("final page = await client.pages.retrieve('page_id');");
+    print('');
+    print("// Reading title property");
+    print("final titleProp = page.properties['Title'];");
+    print('final title = titleProp?.when(');
+    print('  title: (id, richText) {');
+    print('    return richText.map((rt) => rt.plainText).join();');
+    print('  },');
+    print("  orElse: () => 'Untitled',");
+    print(") ?? 'Untitled';");
+    print('');
+    print("// Reading select property");
+    print("final statusProp = page.properties['Status'];");
+    print('final status = statusProp?.when(');
+    print('  select: (id, option) => option?.name,');
+    print('  orElse: () => null,');
+    print(');');
+    print('');
+    print("// Reading number property");
+    print("final priorityProp = page.properties['Priority'];");
+    print('final priority = priorityProp?.when(');
+    print('  number: (id, value) => value,');
+    print('  orElse: () => null,');
+    print(');');
+    print('```\n');
+
+    print('Key Points:');
+    print('  ✓ PropertyValue models have .when() for pattern matching');
+    print('  ✓ Each property type has its own case in when()');
+    print('  ✓ Use orElse() to handle unexpected types');
+    print('  ✓ Rich text arrays can be joined to get plain text');
+    print('  ✓ Type-safe access to property values\n');
+
+    // ========================================
     // Summary
     // ========================================
     print('=' * 50);
     print('✅ Properties and Blocks examples completed!');
     print('=' * 50);
+    print('\n💡 Key Takeaways:');
+    print('   📝 Creating: Use raw Maps (shown above)');
+    print('   📖 Reading: Use PropertyValue models with .when()');
+    print('   🔜 Coming soon: Builder APIs for easier creation');
     print('\n💡 Next steps:');
     print('   1. Replace YOUR_INTEGRATION_TOKEN and IDs');
     print('   2. Uncomment examples to create real content');

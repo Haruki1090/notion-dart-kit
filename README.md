@@ -393,36 +393,36 @@ The library includes a powerful Query DSL for building type-safe filters and sor
 ```dart
 import 'package:notion_dart_kit/notion_dart_kit.dart';
 
-// Simple filters
-final statusFilter = Filter.property('Status').select.equals('In Progress');
-final priorityFilter = Filter.property('Priority').number.greaterThan(3);
-final dateFilter = Filter.property('Due Date').date.thisWeek(const {});
+// Simple filters using string extension
+final statusFilter = 'Status'.property.select().equals('In Progress');
+final priorityFilter = 'Priority'.property.number().greaterThan(3);
+final dateFilter = 'Due Date'.property.date().pastWeek();
 
 // Compound filters with AND
 final andFilter = Filter.and([
-  Filter.property('Status').select.equals('In Progress'),
-  Filter.property('Priority').number.greaterThan(3),
+  'Status'.property.select().equals('In Progress'),
+  'Priority'.property.number().greaterThan(3),
 ]);
 
 // Compound filters with OR
 final orFilter = Filter.or([
-  Filter.property('Status').select.equals('Todo'),
-  Filter.property('Status').select.equals('In Progress'),
+  'Status'.property.select().equals('Todo'),
+  'Status'.property.select().equals('In Progress'),
 ]);
 
 // Nested filters
 final complexFilter = Filter.and([
   Filter.or([
-    Filter.property('Status').select.equals('Todo'),
-    Filter.property('Status').select.equals('In Progress'),
+    'Status'.property.select().equals('Todo'),
+    'Status'.property.select().equals('In Progress'),
   ]),
-  Filter.property('Priority').number.greaterThan(3),
+  'Priority'.property.number().greaterThan(3),
 ]);
 
-// Sorting
+// Sorting using string extension or SortBuilder
 final sorts = [
-  Sort.property('Priority').descending(),
-  Sort.createdTime.ascending(),
+  'Priority'.descending(),
+  SortBuilder.createdTimeAscending(),
 ];
 
 // Use in query
@@ -448,34 +448,78 @@ See [query_dsl_example.dart](./example/query_dsl_example.dart) for comprehensive
 
 ### Working with Properties
 
+When creating pages, properties must be provided as JSON Maps. The `PropertyValue` models are read-only and used for parsing API responses.
+
 ```dart
 // Create a page with various property types
 final properties = {
-  'Title': PropertyValue.title([
-    RichText.text(
-      text: 'My Page',
-      annotations: const Annotations(bold: true, color: 'blue'),
-    ),
-  ]).toJson(),
+  // Title property (required for database pages)
+  'Title': {
+    'title': [
+      {
+        'type': 'text',
+        'text': {'content': 'My Page'},
+      }
+    ]
+  },
 
-  'Status': PropertyValue.select('In Progress').toJson(),
-  'Priority': PropertyValue.number(5).toJson(),
-  'Tags': PropertyValue.multiSelect(['urgent', 'planning']).toJson(),
-  'Due Date': PropertyValue.date(
-    start: DateTime.now().add(const Duration(days: 7)),
-  ).toJson(),
-  'Completed': PropertyValue.checkbox(false).toJson(),
-  'Assignees': PropertyValue.people(['user_id']).toJson(),
-  'URL': PropertyValue.url('https://example.com').toJson(),
+  // Select property
+  'Status': {
+    'select': {'name': 'In Progress'}
+  },
+
+  // Number property
+  'Priority': {'number': 5},
+
+  // Multi-select property
+  'Tags': {
+    'multi_select': [
+      {'name': 'urgent'},
+      {'name': 'planning'},
+    ]
+  },
+
+  // Date property
+  'Due Date': {
+    'date': {
+      'start': DateTime.now().add(const Duration(days: 7)).toIso8601String(),
+    }
+  },
+
+  // Checkbox property
+  'Completed': {'checkbox': false},
+
+  // People property
+  'Assignees': {
+    'people': [
+      {'id': 'user_id'}
+    ]
+  },
+
+  // URL property
+  'URL': {'url': 'https://example.com'},
 };
 
 final page = await client.pages.create(
-  parent: Parent.database(databaseId).toJson(),
+  parent: {'type': 'database_id', 'database_id': databaseId},
   properties: properties,
+);
+
+// Reading properties from retrieved pages
+final retrievedPage = await client.pages.retrieve(page.id);
+final titleProperty = retrievedPage.properties['Title'];
+titleProperty?.when(
+  title: (id, richText) {
+    final title = richText.map((rt) => rt.plainText).join();
+    print('Page title: $title');
+  },
+  orElse: () => print('No title found'),
 );
 ```
 
 **Supported Property Types:** Title, Rich Text, Number, Select, Multi-select, Date, People, Checkbox, URL, Email, Phone, Files, Relation, Rollup, Formula, Status, Created Time, Created By, Last Edited Time, Last Edited By, and Unique ID.
+
+> **Note**: For easier property creation, see the upcoming `PropertyBuilder` API ([#15](https://github.com/Haruki1090/notion-dart-kit/issues/15)).
 
 See [properties_and_blocks_example.dart](./example/properties_and_blocks_example.dart) for more examples.
 
