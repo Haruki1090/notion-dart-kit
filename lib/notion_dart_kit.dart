@@ -38,9 +38,10 @@ export 'src/services/file_uploads_service.dart';
 export 'src/services/pages_service.dart';
 export 'src/services/search_service.dart';
 export 'src/services/users_service.dart';
+// Utilities
+export 'src/utils/block_builder.dart';
 // Exceptions
 export 'src/utils/exceptions.dart';
-// Utilities
 export 'src/utils/notion_logger.dart';
 export 'src/utils/property_builder.dart';
 export 'src/utils/recursive_block_loader.dart';

@@ -105,6 +105,7 @@ For complete, runnable examples, see the [example](./example) directory:
 - [basic_usage.dart](./example/basic_usage.dart) - Getting started with all APIs
 - [property_builder_example.dart](./example/property_builder_example.dart) - Creating properties with PropertyBuilder (NEW!)
 - [rich_text_builder_example.dart](./example/rich_text_builder_example.dart) - Creating rich text with RichTextBuilder (NEW!)
+- [block_builder_example.dart](./example/block_builder_example.dart) - Creating blocks with BlockBuilder (NEW!)
 - [query_dsl_example.dart](./example/query_dsl_example.dart) - Advanced filtering and sorting
 - [properties_and_blocks_example.dart](./example/properties_and_blocks_example.dart) - Working with properties and blocks
 - [pagination_example.dart](./example/pagination_example.dart) - Handling large datasets
@@ -213,7 +214,7 @@ await client.databases.update(
 
 ### Working with Blocks
 
-Use the **RichTextBuilder API** (NEW!) for creating block content with formatted text:
+Use the **BlockBuilder API** (NEW!) for creating blocks with a clean, fluent interface:
 
 ```dart
 // Retrieve a block
@@ -222,47 +223,66 @@ final block = await client.blocks.retrieve('block_id');
 // Get block children
 final children = await client.blocks.retrieveChildren('block_id');
 
-// Append new blocks with RichTextBuilder
+// Append new blocks with BlockBuilder (NEW!)
 await client.blocks.appendChildren('block_id', [
-  {
-    'object': 'block',
-    'type': 'paragraph',
-    'paragraph': {
-      'rich_text': [
-        RichTextBuilder.text('This is a ').toJson(),
-        RichTextBuilder.text('formatted').bold().color('blue').toJson(),
-        RichTextBuilder.text(' paragraph.').toJson(),
-      ]
-    }
-  },
-  {
-    'object': 'block',
-    'type': 'heading_2',
-    'heading_2': {
-      'rich_text': [
-        RichTextBuilder.text('New Section').bold().toJson(),
-      ]
-    }
-  },
-  {
-    'object': 'block',
-    'type': 'callout',
-    'callout': {
-      'rich_text': [
-        RichTextBuilder.text('Important: ').bold().color('red').toJson(),
-        RichTextBuilder.text('Read this carefully.').toJson(),
-      ],
-      'icon': {'type': 'emoji', 'emoji': '⚠️'},
-    }
-  }
+  // Text blocks
+  BlockBuilder.paragraph('This is a simple paragraph.').toJson(),
+  BlockBuilder.heading1('Chapter 1').toJson(),
+  BlockBuilder.heading2('Section 1.1').color('blue').toJson(),
+
+  // Lists
+  BlockBuilder.bulletedListItem('First item').toJson(),
+  BlockBuilder.bulletedListItem('Second item').toJson(),
+  BlockBuilder.numberedListItem('Step 1').toJson(),
+  BlockBuilder.numberedListItem('Step 2').toJson(),
+
+  // To-do items
+  BlockBuilder.toDo('Task to complete').toJson(),
+  BlockBuilder.toDo('Completed task').checked().toJson(),
+
+  // Callout
+  BlockBuilder.callout('Important note!')
+    .icon('⚠️')
+    .color('yellow_background')
+    .toJson(),
+
+  // Code block
+  BlockBuilder.code(
+    'print("Hello, World!")',
+    language: 'python',
+  ).caption('Python example').toJson(),
+
+  // Layout
+  BlockBuilder.divider().toJson(),
+  BlockBuilder.quote('A wise quote').color('gray').toJson(),
 ]);
 
-// Update a block with formatted text
+// Blocks with formatted text (combines BlockBuilder + RichTextBuilder)
+await client.blocks.appendChildren('block_id', [
+  BlockBuilder.paragraph()
+    .addText('This text is ')
+    .addRichText(RichTextBuilder.text('bold').bold().toJson())
+    .addText(' and ')
+    .addRichText(RichTextBuilder.text('colored').color('red').toJson())
+    .toJson(),
+]);
+
+// Nested blocks with children
+await client.blocks.appendChildren('block_id', [
+  BlockBuilder.toggle('Click to expand')
+    .children([
+      BlockBuilder.paragraph('Hidden content').toJson(),
+      BlockBuilder.bulletedListItem('Nested item 1').toJson(),
+      BlockBuilder.bulletedListItem('Nested item 2').toJson(),
+    ])
+    .toJson(),
+]);
+
+// Update a block
 await client.blocks.update('block_id', {
   'paragraph': {
     'rich_text': [
-      RichTextBuilder.text('Updated ').toJson(),
-      RichTextBuilder.text('content').italic().toJson(),
+      RichTextBuilder.text('Updated content').toJson(),
     ]
   }
 });
@@ -271,14 +291,17 @@ await client.blocks.update('block_id', {
 await client.blocks.delete('block_id');
 ```
 
-**RichTextBuilder Benefits:**
-- ✅ Simplified rich text creation
-- ✅ Fluent API for formatting (bold, italic, colors, links)
-- ✅ Support for mentions (users, pages, dates)
-- ✅ Equation support for math content
-- ✅ No need to manually set plain_text
+**BlockBuilder Benefits:**
+- ✅ Dramatically reduced nesting
+- ✅ Fluent API with method chaining
+- ✅ Support for 31+ block types
+- ✅ Type-safe block construction
+- ✅ Integrates with RichTextBuilder for formatting
+- ✅ Nested blocks with `.children()`
 
-See [rich_text_builder_example.dart](./example/rich_text_builder_example.dart) for comprehensive examples.
+**Supported Block Types:** paragraph, heading1-3, quote, callout, bulletedListItem, numberedListItem, toDo, toggle, code, divider, tableOfContents, breadcrumb, image, video, file, pdf, bookmark, embed, equation, table, and more.
+
+See [block_builder_example.dart](./example/block_builder_example.dart) for comprehensive examples.
 
 #### Recursively load nested blocks
 
