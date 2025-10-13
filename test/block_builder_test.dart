@@ -110,7 +110,9 @@ void main() {
 
       expect(block['type'], 'quote');
       expect(
-          block['quote']['rich_text'][0]['text']['content'], 'This is a quote');
+        block['quote']['rich_text'][0]['text']['content'],
+        'This is a quote',
+      );
     });
 
     test('quote with color', () {
@@ -133,8 +135,10 @@ void main() {
       final block = BlockBuilder.callout('Important note').toJson();
 
       expect(block['type'], 'callout');
-      expect(block['callout']['rich_text'][0]['text']['content'],
-          'Important note');
+      expect(
+        block['callout']['rich_text'][0]['text']['content'],
+        'Important note',
+      );
       expect(block['callout']['icon'], {
         'type': 'emoji',
         'emoji': '💡',
@@ -173,16 +177,20 @@ void main() {
       final block = BlockBuilder.bulletedListItem('First item').toJson();
 
       expect(block['type'], 'bulleted_list_item');
-      expect(block['bulleted_list_item']['rich_text'][0]['text']['content'],
-          'First item');
+      expect(
+        block['bulleted_list_item']['rich_text'][0]['text']['content'],
+        'First item',
+      );
     });
 
     test('numbered list item generates correct JSON', () {
       final block = BlockBuilder.numberedListItem('First item').toJson();
 
       expect(block['type'], 'numbered_list_item');
-      expect(block['numbered_list_item']['rich_text'][0]['text']['content'],
-          'First item');
+      expect(
+        block['numbered_list_item']['rich_text'][0]['text']['content'],
+        'First item',
+      );
     });
 
     test('nested list items', () {
@@ -238,8 +246,10 @@ void main() {
       final block = BlockBuilder.toggle('Click to expand').toJson();
 
       expect(block['type'], 'toggle');
-      expect(block['toggle']['rich_text'][0]['text']['content'],
-          'Click to expand');
+      expect(
+        block['toggle']['rich_text'][0]['text']['content'],
+        'Click to expand',
+      );
     });
 
     test('toggle with children', () {
@@ -267,7 +277,9 @@ void main() {
 
       expect(block['type'], 'code');
       expect(
-          block['code']['rich_text'][0]['text']['content'], 'print("Hello")');
+        block['code']['rich_text'][0]['text']['content'],
+        'print("Hello")',
+      );
       expect(block['code']['language'], 'python');
     });
 
@@ -342,7 +354,9 @@ void main() {
 
       expect(block['type'], 'video');
       expect(
-          block['video']['external']['url'], 'https://example.com/video.mp4');
+        block['video']['external']['url'],
+        'https://example.com/video.mp4',
+      );
     });
 
     test('file block generates correct JSON', () {
@@ -387,8 +401,10 @@ void main() {
           .toJson();
 
       expect(block['bookmark']['caption'], isNotEmpty);
-      expect(block['bookmark']['caption'][0]['text']['content'],
-          'Example website');
+      expect(
+        block['bookmark']['caption'][0]['text']['content'],
+        'Example website',
+      );
     });
 
     test('embed block generates correct JSON', () {

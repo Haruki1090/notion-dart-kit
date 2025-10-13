@@ -295,7 +295,7 @@ void main() {
         },
       };
 
-      final paragraph = block['paragraph'] as Map<String, dynamic>;
+      final paragraph = block['paragraph']! as Map<String, dynamic>;
       final richText = paragraph['rich_text'] as List;
       expect(richText.length, 3);
       final first = richText[0] as Map<String, dynamic>;
@@ -323,15 +323,17 @@ void main() {
         },
       };
 
-      final callout = block['callout'] as Map<String, dynamic>;
+      final callout = block['callout']! as Map<String, dynamic>;
       final richText = callout['rich_text'] as List;
       expect(richText.length, 3);
       final first = richText[0] as Map<String, dynamic>;
       final second = richText[1] as Map<String, dynamic>;
       expect((first['annotations'] as Map)['bold'], true);
       expect((first['annotations'] as Map)['color'], 'red');
-      expect(((second['text'] as Map)['link'] as Map)['url'],
-          'https://docs.example.com');
+      expect(
+        ((second['text'] as Map)['link'] as Map)['url'],
+        'https://docs.example.com',
+      );
       expect((second['annotations'] as Map)['underline'], true);
     });
 

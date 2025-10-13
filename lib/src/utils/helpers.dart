@@ -92,7 +92,9 @@ class PageHelper {
         title: (id, richText) => richText.map((rt) => rt.plainText).join(),
         orElse: () => null,
       );
-      if (title != null) return title;
+      if (title != null) {
+        return title;
+      }
     }
     return defaultValue;
   }
@@ -108,9 +110,8 @@ class PageHelper {
   /// final status = PageHelper.getProperty(page, 'Status');
   /// final statusValue = status?.toPropertyValue();
   /// ```
-  static LegacyPropertyValue? getProperty(Page page, String propertyName) {
-    return page.properties[propertyName];
-  }
+  static LegacyPropertyValue? getProperty(Page page, String propertyName) =>
+      page.properties[propertyName];
 
   /// Gets all property names from a page.
   ///
@@ -122,9 +123,8 @@ class PageHelper {
   /// final properties = PageHelper.getPropertyNames(page);
   /// print('Available properties: ${properties.join(", ")}');
   /// ```
-  static List<String> getPropertyNames(Page page) {
-    return page.properties.keys.toList();
-  }
+  static List<String> getPropertyNames(Page page) =>
+      page.properties.keys.toList();
 
   /// Checks if a page is in the trash.
   ///
@@ -135,9 +135,7 @@ class PageHelper {
   ///   print('Page is in trash');
   /// }
   /// ```
-  static bool isInTrash(Page page) {
-    return page.inTrash ?? false;
-  }
+  static bool isInTrash(Page page) => page.inTrash;
 
   /// Checks if a page is archived.
   ///
@@ -148,9 +146,7 @@ class PageHelper {
   ///   print('Page is archived');
   /// }
   /// ```
-  static bool isArchived(Page page) {
-    return page.archived;
-  }
+  static bool isArchived(Page page) => page.archived;
 
   /// Gets the last edited time of a page.
   ///
@@ -160,9 +156,7 @@ class PageHelper {
   /// final lastEdited = PageHelper.getLastEditedTime(page);
   /// print('Last edited: $lastEdited');
   /// ```
-  static DateTime getLastEditedTime(Page page) {
-    return page.lastEditedTime;
-  }
+  static DateTime getLastEditedTime(Page page) => page.lastEditedTime;
 
   /// Gets the created time of a page.
   ///
@@ -172,9 +166,7 @@ class PageHelper {
   /// final created = PageHelper.getCreatedTime(page);
   /// print('Created: $created');
   /// ```
-  static DateTime getCreatedTime(Page page) {
-    return page.createdTime;
-  }
+  static DateTime getCreatedTime(Page page) => page.createdTime;
 }
 
 /// Helper functions for extracting typed values from properties.
@@ -194,13 +186,12 @@ class PropertyHelper {
   static String extractTitle(
     PropertyValue? property, {
     String defaultValue = '',
-  }) {
-    return property?.maybeWhen(
-          title: (id, richText) => richText.map((rt) => rt.plainText).join(),
-          orElse: () => null,
-        ) ??
-        defaultValue;
-  }
+  }) =>
+      property?.maybeWhen(
+        title: (id, richText) => richText.map((rt) => rt.plainText).join(),
+        orElse: () => null,
+      ) ??
+      defaultValue;
 
   /// Extracts rich text from a property.
   ///
@@ -215,13 +206,12 @@ class PropertyHelper {
   static String extractRichText(
     PropertyValue? property, {
     String defaultValue = '',
-  }) {
-    return property?.maybeWhen(
-          richText: (id, richText) => richText.map((rt) => rt.plainText).join(),
-          orElse: () => null,
-        ) ??
-        defaultValue;
-  }
+  }) =>
+      property?.maybeWhen(
+        richText: (id, richText) => richText.map((rt) => rt.plainText).join(),
+        orElse: () => null,
+      ) ??
+      defaultValue;
 
   /// Extracts a number value from a property.
   ///
@@ -232,12 +222,10 @@ class PropertyHelper {
   /// final page = await client.pages.retrieve('page_id');
   /// final priority = PropertyHelper.extractNumber(page.properties['Priority']);
   /// ```
-  static num? extractNumber(PropertyValue? property) {
-    return property?.maybeWhen(
-      number: (id, value) => value,
-      orElse: () => null,
-    );
-  }
+  static num? extractNumber(PropertyValue? property) => property?.maybeWhen(
+        number: (id, value) => value,
+        orElse: () => null,
+      );
 
   /// Extracts a select value from a property.
   ///
@@ -248,12 +236,10 @@ class PropertyHelper {
   /// final page = await client.pages.retrieve('page_id');
   /// final status = PropertyHelper.extractSelect(page.properties['Status']);
   /// ```
-  static String? extractSelect(PropertyValue? property) {
-    return property?.maybeWhen(
-      select: (id, option) => option?.name,
-      orElse: () => null,
-    );
-  }
+  static String? extractSelect(PropertyValue? property) => property?.maybeWhen(
+        select: (id, option) => option?.name,
+        orElse: () => null,
+      );
 
   /// Extracts multi-select values from a property.
   ///
@@ -265,13 +251,12 @@ class PropertyHelper {
   /// final tags = PropertyHelper.extractMultiSelect(page.properties['Tags']);
   /// print('Tags: ${tags.join(", ")}');
   /// ```
-  static List<String> extractMultiSelect(PropertyValue? property) {
-    return property?.maybeWhen(
-          multiSelect: (id, options) => options.map((opt) => opt.name).toList(),
-          orElse: () => null,
-        ) ??
-        [];
-  }
+  static List<String> extractMultiSelect(PropertyValue? property) =>
+      property?.maybeWhen(
+        multiSelect: (id, options) => options.map((opt) => opt.name).toList(),
+        orElse: () => null,
+      ) ??
+      [];
 
   /// Extracts a status value from a property.
   ///
@@ -282,12 +267,10 @@ class PropertyHelper {
   /// final page = await client.pages.retrieve('page_id');
   /// final status = PropertyHelper.extractStatus(page.properties['Status']);
   /// ```
-  static String? extractStatus(PropertyValue? property) {
-    return property?.maybeWhen(
-      status: (id, status) => status?.name,
-      orElse: () => null,
-    );
-  }
+  static String? extractStatus(PropertyValue? property) => property?.maybeWhen(
+        status: (id, status) => status?.name,
+        orElse: () => null,
+      );
 
   /// Extracts a checkbox value from a property.
   ///
@@ -298,13 +281,12 @@ class PropertyHelper {
   /// final page = await client.pages.retrieve('page_id');
   /// final completed = PropertyHelper.extractCheckbox(page.properties['Completed']);
   /// ```
-  static bool extractCheckbox(PropertyValue? property) {
-    return property?.maybeWhen(
-          checkbox: (id, checked) => checked,
-          orElse: () => null,
-        ) ??
-        false;
-  }
+  static bool extractCheckbox(PropertyValue? property) =>
+      property?.maybeWhen(
+        checkbox: (id, checked) => checked,
+        orElse: () => null,
+      ) ??
+      false;
 
   /// Extracts a date from a property.
   ///
@@ -342,17 +324,18 @@ class PropertyHelper {
   /// ```
   static (DateTime start, DateTime? end)? extractDateRange(
     PropertyValue? property,
-  ) {
-    return property?.maybeWhen<(DateTime, DateTime?)?>(
-      date: (id, date) {
-        if (date == null) return null;
-        final start = DateTime.parse(date.start);
-        final end = date.end != null ? DateTime.parse(date.end!) : null;
-        return (start, end);
-      },
-      orElse: () => null,
-    );
-  }
+  ) =>
+      property?.maybeWhen<(DateTime, DateTime?)?>(
+        date: (id, date) {
+          if (date == null) {
+            return null;
+          }
+          final start = DateTime.parse(date.start);
+          final end = date.end != null ? DateTime.parse(date.end!) : null;
+          return (start, end);
+        },
+        orElse: () => null,
+      );
 
   /// Extracts a URL from a property.
   ///
@@ -363,12 +346,10 @@ class PropertyHelper {
   /// final page = await client.pages.retrieve('page_id');
   /// final url = PropertyHelper.extractUrl(page.properties['Link']);
   /// ```
-  static String? extractUrl(PropertyValue? property) {
-    return property?.maybeWhen(
-      url: (id, url) => url,
-      orElse: () => null,
-    );
-  }
+  static String? extractUrl(PropertyValue? property) => property?.maybeWhen(
+        url: (id, url) => url,
+        orElse: () => null,
+      );
 
   /// Extracts an email from a property.
   ///
@@ -379,12 +360,10 @@ class PropertyHelper {
   /// final page = await client.pages.retrieve('page_id');
   /// final email = PropertyHelper.extractEmail(page.properties['Contact']);
   /// ```
-  static String? extractEmail(PropertyValue? property) {
-    return property?.maybeWhen(
-      email: (id, email) => email,
-      orElse: () => null,
-    );
-  }
+  static String? extractEmail(PropertyValue? property) => property?.maybeWhen(
+        email: (id, email) => email,
+        orElse: () => null,
+      );
 
   /// Extracts a phone number from a property.
   ///
@@ -395,12 +374,11 @@ class PropertyHelper {
   /// final page = await client.pages.retrieve('page_id');
   /// final phone = PropertyHelper.extractPhoneNumber(page.properties['Phone']);
   /// ```
-  static String? extractPhoneNumber(PropertyValue? property) {
-    return property?.maybeWhen(
-      phoneNumber: (id, phone) => phone,
-      orElse: () => null,
-    );
-  }
+  static String? extractPhoneNumber(PropertyValue? property) =>
+      property?.maybeWhen(
+        phoneNumber: (id, phone) => phone,
+        orElse: () => null,
+      );
 
   /// Extracts people (user names) from a property.
   ///
@@ -412,13 +390,12 @@ class PropertyHelper {
   /// final assignees = PropertyHelper.extractPeople(page.properties['Assignees']);
   /// print('Assigned to: ${assignees.join(", ")}');
   /// ```
-  static List<String?> extractPeople(PropertyValue? property) {
-    return property?.maybeWhen(
-          people: (id, users) => users.map((user) => user.name).toList(),
-          orElse: () => null,
-        ) ??
-        [];
-  }
+  static List<String?> extractPeople(PropertyValue? property) =>
+      property?.maybeWhen(
+        people: (id, users) => users.map((user) => user.name).toList(),
+        orElse: () => null,
+      ) ??
+      [];
 
   /// Extracts relation page IDs from a property.
   ///
@@ -429,13 +406,12 @@ class PropertyHelper {
   /// final page = await client.pages.retrieve('page_id');
   /// final relatedIds = PropertyHelper.extractRelation(page.properties['Related']);
   /// ```
-  static List<String> extractRelation(PropertyValue? property) {
-    return property?.maybeWhen(
-          relation: (id, pages) => pages.map((page) => page.id).toList(),
-          orElse: () => null,
-        ) ??
-        [];
-  }
+  static List<String> extractRelation(PropertyValue? property) =>
+      property?.maybeWhen(
+        relation: (id, pages) => pages.map((page) => page.id).toList(),
+        orElse: () => null,
+      ) ??
+      [];
 
   /// Checks if a property is empty.
   ///
@@ -447,7 +423,9 @@ class PropertyHelper {
   /// final hasAssignees = !PropertyHelper.isEmpty(page.properties['Assignees']);
   /// ```
   static bool isEmpty(PropertyValue? property) {
-    if (property == null) return true;
+    if (property == null) {
+      return true;
+    }
 
     return property.when(
       title: (id, richText) => richText.isEmpty,
@@ -487,9 +465,8 @@ class RichTextHelper {
   /// final richText = [...];
   /// final plainText = RichTextHelper.toPlainText(richText);
   /// ```
-  static String toPlainText(List<RichText> richText) {
-    return richText.map((rt) => rt.plainText).join();
-  }
+  static String toPlainText(List<RichText> richText) =>
+      richText.map((rt) => rt.plainText).join();
 
   /// Extracts plain text and applies a separator between elements.
   ///
@@ -501,9 +478,8 @@ class RichTextHelper {
   static String toPlainTextWithSeparator(
     List<RichText> richText,
     String separator,
-  ) {
-    return richText.map((rt) => rt.plainText).join(separator);
-  }
+  ) =>
+      richText.map((rt) => rt.plainText).join(separator);
 
   /// Checks if a rich text array is empty or contains only whitespace.
   ///
@@ -514,10 +490,8 @@ class RichTextHelper {
   ///   print('No content');
   /// }
   /// ```
-  static bool isEmpty(List<RichText> richText) {
-    return richText.isEmpty ||
-        richText.every((rt) => rt.plainText.trim().isEmpty);
-  }
+  static bool isEmpty(List<RichText> richText) =>
+      richText.isEmpty || richText.every((rt) => rt.plainText.trim().isEmpty);
 
   /// Gets the total length of all plain text.
   ///
@@ -527,9 +501,8 @@ class RichTextHelper {
   /// final length = RichTextHelper.length(richText);
   /// print('Total length: $length characters');
   /// ```
-  static int length(List<RichText> richText) {
-    return richText.fold(0, (sum, rt) => sum + rt.plainText.length);
-  }
+  static int length(List<RichText> richText) =>
+      richText.fold(0, (sum, rt) => sum + rt.plainText.length);
 }
 
 /// Helper functions for batch operations on pages.
@@ -547,12 +520,12 @@ class BatchHelper {
   static List<String> extractTitles(
     List<Page> pages, {
     String defaultValue = 'Untitled',
-  }) {
-    return pages
-        .map(
-            (page) => PageHelper.extractTitle(page, defaultValue: defaultValue))
-        .toList();
-  }
+  }) =>
+      pages
+          .map(
+            (page) => PageHelper.extractTitle(page, defaultValue: defaultValue),
+          )
+          .toList();
 
   /// Filters pages by a property value.
   ///
@@ -569,13 +542,13 @@ class BatchHelper {
     List<Page> pages,
     String propertyName,
     bool Function(PropertyValue?) predicate,
-  ) {
-    return pages
-        .where(
-          (page) => predicate(page.properties[propertyName]?.toPropertyValue()),
-        )
-        .toList();
-  }
+  ) =>
+      pages
+          .where(
+            (page) =>
+                predicate(page.properties[propertyName]?.toPropertyValue()),
+          )
+          .toList();
 
   /// Groups pages by a property value.
   ///
@@ -670,7 +643,9 @@ class BatchHelper {
     List<Page> pages, {
     required bool includeArchived,
   }) {
-    if (includeArchived) return pages;
+    if (includeArchived) {
+      return pages;
+    }
     return pages.where((page) => !PageHelper.isArchived(page)).toList();
   }
 
@@ -685,7 +660,9 @@ class BatchHelper {
     List<Page> pages, {
     required bool includeTrashed,
   }) {
-    if (includeTrashed) return pages;
+    if (includeTrashed) {
+      return pages;
+    }
     return pages.where((page) => !PageHelper.isInTrash(page)).toList();
   }
 }

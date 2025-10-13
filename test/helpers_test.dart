@@ -2,130 +2,131 @@ import 'package:notion_dart_kit/notion_dart_kit.dart';
 import 'package:test/test.dart';
 
 // Helper to create properly typed Map for Page.fromJson
-Map<String, dynamic> createPageJson(Map<String, dynamic> json) {
-  return Map<String, dynamic>.from({
-    ...json,
-    'properties': Map<String, dynamic>.from(json['properties'] as Map? ?? {}),
-  });
-}
+Map<String, dynamic> createPageJson(Map<String, dynamic> json) =>
+    Map<String, dynamic>.from({
+      ...json,
+      'properties': Map<String, dynamic>.from(json['properties'] as Map? ?? {}),
+    });
 
 // Helper to create rich text object with proper structure
-Map<String, dynamic> createRichTextJson(String content) {
-  return {
-    'type': 'text',
-    'text': {'content': content},
-    'plain_text': content,
-    'annotations': {
-      'bold': false,
-      'italic': false,
-      'strikethrough': false,
-      'underline': false,
-      'code': false,
-      'color': 'default',
-    },
-    'href': null,
-  };
-}
+Map<String, dynamic> createRichTextJson(String content) => {
+      'type': 'text',
+      'text': {'content': content},
+      'plain_text': content,
+      'annotations': {
+        'bold': false,
+        'italic': false,
+        'strikethrough': false,
+        'underline': false,
+        'code': false,
+        'color': 'default',
+      },
+      'href': null,
+    };
 
 // Helper to create select option with proper structure
-Map<String, dynamic> createSelectOptionJson(String name, String color) {
-  return {
-    'id': 'opt_${name.toLowerCase()}',
-    'name': name,
-    'color': color,
-  };
-}
+Map<String, dynamic> createSelectOptionJson(String name, String color) => {
+      'id': 'opt_${name.toLowerCase()}',
+      'name': name,
+      'color': color,
+    };
 
 void main() {
   group('PageHelper', () {
     test('extractTitle returns title from title property', () {
-      final page = Page.fromJson(createPageJson({
-        'id': 'page_id',
-        'created_time': '2024-01-01T00:00:00Z',
-        'last_edited_time': '2024-01-01T00:00:00Z',
-        'created_by': {
-          'object': 'user',
-          'id': 'user1',
-        },
-        'last_edited_by': {
-          'object': 'user',
-          'id': 'user1',
-        },
-        'parent': {
-          'type': 'workspace',
-          'workspace': true,
-        },
-        'archived': false,
-        'in_trash': false,
-        'properties': {
-          'Title': {
-            'id': 'title',
-            'type': 'title',
-            'title': [createRichTextJson('My Page Title')],
+      final page = Page.fromJson(
+        createPageJson({
+          'id': 'page_id',
+          'created_time': '2024-01-01T00:00:00Z',
+          'last_edited_time': '2024-01-01T00:00:00Z',
+          'created_by': {
+            'object': 'user',
+            'id': 'user1',
           },
-        },
-        'url': 'https://notion.so/page_id',
-      }));
+          'last_edited_by': {
+            'object': 'user',
+            'id': 'user1',
+          },
+          'parent': {
+            'type': 'workspace',
+            'workspace': true,
+          },
+          'archived': false,
+          'in_trash': false,
+          'properties': {
+            'Title': {
+              'id': 'title',
+              'type': 'title',
+              'title': [createRichTextJson('My Page Title')],
+            },
+          },
+          'url': 'https://notion.so/page_id',
+        }),
+      );
 
       final title = PageHelper.extractTitle(page);
       expect(title, 'My Page Title');
     });
 
     test('extractTitle returns default value when no title property', () {
-      final page = Page.fromJson(createPageJson({
-        'id': 'page_id',
-        'created_time': '2024-01-01T00:00:00Z',
-        'last_edited_time': '2024-01-01T00:00:00Z',
-        'created_by': {
-          'object': 'user',
-          'id': 'user1',
-        },
-        'last_edited_by': {
-          'object': 'user',
-          'id': 'user1',
-        },
-        'parent': {
-          'type': 'workspace',
-          'workspace': true,
-        },
-        'archived': false,
-        'in_trash': false,
-        'properties': {},
-        'url': 'https://notion.so/page_id',
-      }));
+      final page = Page.fromJson(
+        createPageJson({
+          'id': 'page_id',
+          'created_time': '2024-01-01T00:00:00Z',
+          'last_edited_time': '2024-01-01T00:00:00Z',
+          'created_by': {
+            'object': 'user',
+            'id': 'user1',
+          },
+          'last_edited_by': {
+            'object': 'user',
+            'id': 'user1',
+          },
+          'parent': {
+            'type': 'workspace',
+            'workspace': true,
+          },
+          'archived': false,
+          'in_trash': false,
+          'properties': {},
+          'url': 'https://notion.so/page_id',
+        }),
+      );
 
       final title = PageHelper.extractTitle(page);
       expect(title, 'Untitled');
     });
 
     test('getProperty returns property by name', () {
-      final page = Page.fromJson(createPageJson({
-        'id': 'page_id',
-        'created_time': '2024-01-01T00:00:00Z',
-        'last_edited_time': '2024-01-01T00:00:00Z',
-        'created_by': {
-          'object': 'user',
-          'id': 'user1',
-        },
-        'last_edited_by': {
-          'object': 'user',
-          'id': 'user1',
-        },
-        'parent': {
-          'type': 'workspace',
-          'workspace': true,
-        },
-        'archived': false,
-        'in_trash': false,
-        'properties': {
-          'Status': {
-            'id': 'status',
-            'type': 'select',
-            'select': {'name': 'In Progress'},
+      final page = Page.fromJson(
+        createPageJson({
+          'id': 'page_id',
+          'created_time': '2024-01-01T00:00:00Z',
+          'last_edited_time': '2024-01-01T00:00:00Z',
+          'created_by': {
+            'object': 'user',
+            'id': 'user1',
           },
-        },
-        'url': 'https://notion.so/page_id',
-      }));
+          'last_edited_by': {
+            'object': 'user',
+            'id': 'user1',
+          },
+          'parent': {
+            'type': 'workspace',
+            'workspace': true,
+          },
+          'archived': false,
+          'in_trash': false,
+          'properties': {
+            'Status': {
+              'id': 'status',
+              'type': 'select',
+              'select': {'name': 'In Progress'},
+            },
+          },
+          'url': 'https://notion.so/page_id',
+        }),
+      );
 
       final property = PageHelper.getProperty(page, 'Status');
       expect(property, isNotNull);
@@ -133,38 +134,40 @@ void main() {
     });
 
     test('getPropertyNames returns all property names', () {
-      final page = Page.fromJson(createPageJson({
-        'id': 'page_id',
-        'created_time': '2024-01-01T00:00:00Z',
-        'last_edited_time': '2024-01-01T00:00:00Z',
-        'created_by': {
-          'object': 'user',
-          'id': 'user1',
-        },
-        'last_edited_by': {
-          'object': 'user',
-          'id': 'user1',
-        },
-        'parent': {
-          'type': 'workspace',
-          'workspace': true,
-        },
-        'archived': false,
-        'in_trash': false,
-        'properties': {
-          'Title': {
-            'id': 'title',
-            'type': 'title',
-            'title': [],
+      final page = Page.fromJson(
+        createPageJson({
+          'id': 'page_id',
+          'created_time': '2024-01-01T00:00:00Z',
+          'last_edited_time': '2024-01-01T00:00:00Z',
+          'created_by': {
+            'object': 'user',
+            'id': 'user1',
           },
-          'Status': {
-            'id': 'status',
-            'type': 'select',
-            'select': null,
+          'last_edited_by': {
+            'object': 'user',
+            'id': 'user1',
           },
-        },
-        'url': 'https://notion.so/page_id',
-      }));
+          'parent': {
+            'type': 'workspace',
+            'workspace': true,
+          },
+          'archived': false,
+          'in_trash': false,
+          'properties': {
+            'Title': {
+              'id': 'title',
+              'type': 'title',
+              'title': [],
+            },
+            'Status': {
+              'id': 'status',
+              'type': 'select',
+              'select': null,
+            },
+          },
+          'url': 'https://notion.so/page_id',
+        }),
+      );
 
       final names = PageHelper.getPropertyNames(page);
       expect(names, contains('Title'));
@@ -172,53 +175,57 @@ void main() {
     });
 
     test('isArchived returns correct status', () {
-      final archivedPage = Page.fromJson(createPageJson({
-        'id': 'page_id',
-        'created_time': '2024-01-01T00:00:00Z',
-        'last_edited_time': '2024-01-01T00:00:00Z',
-        'created_by': {
-          'object': 'user',
-          'id': 'user1',
-        },
-        'last_edited_by': {
-          'object': 'user',
-          'id': 'user1',
-        },
-        'parent': {
-          'type': 'workspace',
-          'workspace': true,
-        },
-        'archived': true,
-        'in_trash': false,
-        'properties': {},
-        'url': 'https://notion.so/page_id',
-      }));
+      final archivedPage = Page.fromJson(
+        createPageJson({
+          'id': 'page_id',
+          'created_time': '2024-01-01T00:00:00Z',
+          'last_edited_time': '2024-01-01T00:00:00Z',
+          'created_by': {
+            'object': 'user',
+            'id': 'user1',
+          },
+          'last_edited_by': {
+            'object': 'user',
+            'id': 'user1',
+          },
+          'parent': {
+            'type': 'workspace',
+            'workspace': true,
+          },
+          'archived': true,
+          'in_trash': false,
+          'properties': {},
+          'url': 'https://notion.so/page_id',
+        }),
+      );
 
       expect(PageHelper.isArchived(archivedPage), true);
     });
 
     test('isInTrash returns correct status', () {
-      final trashedPage = Page.fromJson(createPageJson({
-        'id': 'page_id',
-        'created_time': '2024-01-01T00:00:00Z',
-        'last_edited_time': '2024-01-01T00:00:00Z',
-        'created_by': {
-          'object': 'user',
-          'id': 'user1',
-        },
-        'last_edited_by': {
-          'object': 'user',
-          'id': 'user1',
-        },
-        'parent': {
-          'type': 'workspace',
-          'workspace': true,
-        },
-        'archived': false,
-        'in_trash': true,
-        'properties': {},
-        'url': 'https://notion.so/page_id',
-      }));
+      final trashedPage = Page.fromJson(
+        createPageJson({
+          'id': 'page_id',
+          'created_time': '2024-01-01T00:00:00Z',
+          'last_edited_time': '2024-01-01T00:00:00Z',
+          'created_by': {
+            'object': 'user',
+            'id': 'user1',
+          },
+          'last_edited_by': {
+            'object': 'user',
+            'id': 'user1',
+          },
+          'parent': {
+            'type': 'workspace',
+            'workspace': true,
+          },
+          'archived': false,
+          'in_trash': true,
+          'properties': {},
+          'url': 'https://notion.so/page_id',
+        }),
+      );
 
       expect(PageHelper.isInTrash(trashedPage), true);
     });
@@ -457,17 +464,15 @@ void main() {
   group('RichTextHelper', () {
     test('toPlainText joins rich text elements', () {
       final richText = [
-        RichText.text(
-          text: const TextContent(content: 'Hello '),
-          annotations: const Annotations(),
+        const RichText.text(
+          text: TextContent(content: 'Hello '),
+          annotations: Annotations(),
           plainText: 'Hello ',
-          href: null,
         ),
-        RichText.text(
-          text: const TextContent(content: 'World'),
-          annotations: const Annotations(),
+        const RichText.text(
+          text: TextContent(content: 'World'),
+          annotations: Annotations(),
           plainText: 'World',
-          href: null,
         ),
       ];
 
@@ -477,17 +482,15 @@ void main() {
 
     test('toPlainTextWithSeparator uses custom separator', () {
       final richText = [
-        RichText.text(
-          text: const TextContent(content: 'First'),
-          annotations: const Annotations(),
+        const RichText.text(
+          text: TextContent(content: 'First'),
+          annotations: Annotations(),
           plainText: 'First',
-          href: null,
         ),
-        RichText.text(
-          text: const TextContent(content: 'Second'),
-          annotations: const Annotations(),
+        const RichText.text(
+          text: TextContent(content: 'Second'),
+          annotations: Annotations(),
           plainText: 'Second',
-          href: null,
         ),
       ];
 
@@ -501,11 +504,10 @@ void main() {
 
     test('isEmpty returns true for whitespace-only text', () {
       final richText = [
-        RichText.text(
-          text: const TextContent(content: '   '),
-          annotations: const Annotations(),
+        const RichText.text(
+          text: TextContent(content: '   '),
+          annotations: Annotations(),
           plainText: '   ',
-          href: null,
         ),
       ];
 
@@ -514,17 +516,15 @@ void main() {
 
     test('length returns total character count', () {
       final richText = [
-        RichText.text(
-          text: const TextContent(content: 'Hello'),
-          annotations: const Annotations(),
+        const RichText.text(
+          text: TextContent(content: 'Hello'),
+          annotations: Annotations(),
           plainText: 'Hello',
-          href: null,
         ),
-        RichText.text(
-          text: const TextContent(content: 'World'),
-          annotations: const Annotations(),
+        const RichText.text(
+          text: TextContent(content: 'World'),
+          annotations: Annotations(),
           plainText: 'World',
-          href: null,
         ),
       ];
 
@@ -537,117 +537,123 @@ void main() {
 
     setUp(() {
       pages = [
-        Page.fromJson(createPageJson({
-          'id': 'page1',
-          'created_time': '2024-01-01T00:00:00Z',
-          'last_edited_time': '2024-01-01T00:00:00Z',
-          'created_by': {
-            'object': 'user',
-            'id': 'user1',
-          },
-          'last_edited_by': {
-            'object': 'user',
-            'id': 'user1',
-          },
-          'parent': {
-            'type': 'workspace',
-            'workspace': true,
-          },
-          'archived': false,
-          'in_trash': false,
-          'properties': {
-            'Title': {
-              'id': 'title',
-              'type': 'title',
-              'title': [createRichTextJson('Page 1')],
+        Page.fromJson(
+          createPageJson({
+            'id': 'page1',
+            'created_time': '2024-01-01T00:00:00Z',
+            'last_edited_time': '2024-01-01T00:00:00Z',
+            'created_by': {
+              'object': 'user',
+              'id': 'user1',
             },
-            'Status': {
-              'id': 'status',
-              'type': 'select',
-              'select': createSelectOptionJson('Todo', 'default'),
+            'last_edited_by': {
+              'object': 'user',
+              'id': 'user1',
             },
-            'Priority': {
-              'id': 'priority',
-              'type': 'number',
-              'number': 5,
+            'parent': {
+              'type': 'workspace',
+              'workspace': true,
             },
-          },
-          'url': 'https://notion.so/page1',
-        })),
-        Page.fromJson(createPageJson({
-          'id': 'page2',
-          'created_time': '2024-01-02T00:00:00Z',
-          'last_edited_time': '2024-01-02T00:00:00Z',
-          'created_by': {
-            'object': 'user',
-            'id': 'user1',
-          },
-          'last_edited_by': {
-            'object': 'user',
-            'id': 'user1',
-          },
-          'parent': {
-            'type': 'workspace',
-            'workspace': true,
-          },
-          'archived': false,
-          'in_trash': false,
-          'properties': {
-            'Title': {
-              'id': 'title',
-              'type': 'title',
-              'title': [createRichTextJson('Page 2')],
+            'archived': false,
+            'in_trash': false,
+            'properties': {
+              'Title': {
+                'id': 'title',
+                'type': 'title',
+                'title': [createRichTextJson('Page 1')],
+              },
+              'Status': {
+                'id': 'status',
+                'type': 'select',
+                'select': createSelectOptionJson('Todo', 'default'),
+              },
+              'Priority': {
+                'id': 'priority',
+                'type': 'number',
+                'number': 5,
+              },
             },
-            'Status': {
-              'id': 'status',
-              'type': 'select',
-              'select': createSelectOptionJson('In Progress', 'blue'),
+            'url': 'https://notion.so/page1',
+          }),
+        ),
+        Page.fromJson(
+          createPageJson({
+            'id': 'page2',
+            'created_time': '2024-01-02T00:00:00Z',
+            'last_edited_time': '2024-01-02T00:00:00Z',
+            'created_by': {
+              'object': 'user',
+              'id': 'user1',
             },
-            'Priority': {
-              'id': 'priority',
-              'type': 'number',
-              'number': 3,
+            'last_edited_by': {
+              'object': 'user',
+              'id': 'user1',
             },
-          },
-          'url': 'https://notion.so/page2',
-        })),
-        Page.fromJson(createPageJson({
-          'id': 'page3',
-          'created_time': '2024-01-03T00:00:00Z',
-          'last_edited_time': '2024-01-03T00:00:00Z',
-          'created_by': {
-            'object': 'user',
-            'id': 'user1',
-          },
-          'last_edited_by': {
-            'object': 'user',
-            'id': 'user1',
-          },
-          'parent': {
-            'type': 'workspace',
-            'workspace': true,
-          },
-          'archived': true,
-          'in_trash': false,
-          'properties': {
-            'Title': {
-              'id': 'title',
-              'type': 'title',
-              'title': [createRichTextJson('Page 3')],
+            'parent': {
+              'type': 'workspace',
+              'workspace': true,
             },
-            'Status': {
-              'id': 'status',
-              'type': 'select',
-              'select': createSelectOptionJson('Done', 'green'),
+            'archived': false,
+            'in_trash': false,
+            'properties': {
+              'Title': {
+                'id': 'title',
+                'type': 'title',
+                'title': [createRichTextJson('Page 2')],
+              },
+              'Status': {
+                'id': 'status',
+                'type': 'select',
+                'select': createSelectOptionJson('In Progress', 'blue'),
+              },
+              'Priority': {
+                'id': 'priority',
+                'type': 'number',
+                'number': 3,
+              },
             },
-            'Priority': {
-              'id': 'priority',
-              'type': 'number',
-              'number': 1,
+            'url': 'https://notion.so/page2',
+          }),
+        ),
+        Page.fromJson(
+          createPageJson({
+            'id': 'page3',
+            'created_time': '2024-01-03T00:00:00Z',
+            'last_edited_time': '2024-01-03T00:00:00Z',
+            'created_by': {
+              'object': 'user',
+              'id': 'user1',
             },
-          },
-          'url': 'https://notion.so/page3',
-        })),
+            'last_edited_by': {
+              'object': 'user',
+              'id': 'user1',
+            },
+            'parent': {
+              'type': 'workspace',
+              'workspace': true,
+            },
+            'archived': true,
+            'in_trash': false,
+            'properties': {
+              'Title': {
+                'id': 'title',
+                'type': 'title',
+                'title': [createRichTextJson('Page 3')],
+              },
+              'Status': {
+                'id': 'status',
+                'type': 'select',
+                'select': createSelectOptionJson('Done', 'green'),
+              },
+              'Priority': {
+                'id': 'priority',
+                'type': 'number',
+                'number': 1,
+              },
+            },
+            'url': 'https://notion.so/page3',
+          }),
+        ),
       ];
     });
 
