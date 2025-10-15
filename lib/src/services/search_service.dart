@@ -129,12 +129,12 @@ class SearchResults {
   final String? nextCursor;
 
   Map<String, dynamic> toJson() => {
-        'object': 'list',
-        'type': type,
-        'results': results.map((r) => r.toJson()).toList(),
-        'has_more': hasMore,
-        if (nextCursor != null) 'next_cursor': nextCursor,
-      };
+    'object': 'list',
+    'type': type,
+    'results': results.map((r) => r.toJson()).toList(),
+    'has_more': hasMore,
+    if (nextCursor != null) 'next_cursor': nextCursor,
+  };
 }
 
 /// Union type for search results (Page or Database).
@@ -151,13 +151,11 @@ class SearchResults {
 /// );
 /// ```
 class SearchResult {
-  const SearchResult.page(Page page)
-      : _page = page,
-        _database = null;
+  const SearchResult.page(Page page) : _page = page, _database = null;
 
   const SearchResult.database(Database database)
-      : _page = null,
-        _database = database;
+    : _page = null,
+      _database = database;
   final Page? _page;
   final Database? _database;
 
@@ -172,7 +170,7 @@ class SearchResult {
     if (_page == null) {
       throw StateError('SearchResult is not a Page');
     }
-    return _page!;
+    return _page;
   }
 
   /// Returns the database if this result is a database, throws otherwise.
@@ -180,7 +178,7 @@ class SearchResult {
     if (_database == null) {
       throw StateError('SearchResult is not a Database');
     }
-    return _database!;
+    return _database;
   }
 
   /// Pattern matching for search results.
@@ -199,9 +197,9 @@ class SearchResult {
     required T Function(Database database) database,
   }) {
     if (_page != null) {
-      return page(_page!);
+      return page(_page);
     } else if (_database != null) {
-      return database(_database!);
+      return database(_database);
     } else {
       throw StateError('SearchResult is in an invalid state');
     }
@@ -209,9 +207,9 @@ class SearchResult {
 
   Map<String, dynamic> toJson() {
     if (_page != null) {
-      return _page!.toJson();
+      return _page.toJson();
     } else if (_database != null) {
-      return _database!.toJson();
+      return _database.toJson();
     } else {
       throw StateError('SearchResult is in an invalid state');
     }

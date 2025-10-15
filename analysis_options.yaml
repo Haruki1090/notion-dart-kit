@@ -44,6 +44,16 @@ analyzer:
     avoid_positional_boolean_parameters: ignore
     # Allow static-only classes for utility classes like Sort
     avoid_classes_with_only_static_members: ignore
+    # Allow multiple underscores in test code (common pattern for unused variables)
+    unnecessary_underscores: ignore
+    # Allow library names (some prefer them for clarity)
+    unnecessary_library_name: ignore
+    # Allow angle brackets in doc comments
+    unintended_html_in_doc_comment: ignore
+    # Allow block function bodies (expression bodies can be less readable)
+    prefer_expression_function_bodies: ignore
+    # Ignore comment references that may not resolve
+    comment_references: ignore
 
 linter:
   rules:

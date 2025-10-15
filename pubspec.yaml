@@ -6,20 +6,20 @@ repository: https://github.com/Haruki1090/notion-dart-kit
 issue_tracker: https://github.com/Haruki1090/notion-dart-kit/issues
 
 environment:
-  sdk: '>=3.0.0 <4.0.0'
+  sdk: '>=3.8.0 <4.0.0'
 
 dependencies:
   dio: ^5.4.0               # HTTPクライアント
-  json_annotation: ^4.8.1   # JSONシリアライズ用アノテーション
-  freezed_annotation: ^2.4.1 # Immutableクラス生成用
+  json_annotation: ^4.9.0   # JSONシリアライズ用アノテーション
+  freezed_annotation: ^2.4.4 # Immutableクラス生成用
   meta: ^1.10.0             # メタデータアノテーション
   logger: ^2.0.2            # ロギング
   http_parser: ^4.0.2       # multipart用 MediaType
 
 dev_dependencies:
   build_runner: ^2.4.6      # コード生成ツール
-  freezed: ^2.4.5           # Freezedコードジェネレータ
+  freezed: ^2.5.7           # Freezedコードジェネレータ
   json_serializable: ^6.7.1 # JSONシリアライズコード生成
   test: ^1.24.0             # テストフレームワーク
   mockito: ^5.4.2           # モック生成
-  lints: ^3.0.0             # Dartリンター
+  lints: ^6.0.0             # Dartリンター
