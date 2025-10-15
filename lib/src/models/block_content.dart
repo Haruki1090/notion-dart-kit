@@ -133,7 +133,7 @@ extension ToDoContentExtension on ToDoContent {
   Map<String, dynamic> toJson() => {
         'rich_text': richText.map((e) => e.toJson()).toList(),
         'color': _blockColorToString(color),
-        'checked': checked,
+        'checked': this.checked,
       };
 }
 

@@ -22,7 +22,7 @@ class Page with _$Page {
     required Parent parent,
     required bool archived,
     required bool inTrash,
-    required Map<String, LegacyPropertyValue> properties,
+    required Map<String, dynamic> properties,
     required String url,
     PageIcon? icon,
     NotionFile? cover,
@@ -43,7 +43,7 @@ class Page with _$Page {
         properties: (json['properties'] as Map<String, dynamic>).map(
           (key, value) => MapEntry(
             key,
-            LegacyPropertyValue.fromJson(value as Map<String, dynamic>),
+            value as Map<String, dynamic>,
           ),
         ),
         url: json['url'] as String,
@@ -65,8 +65,7 @@ class Page with _$Page {
         'parent': parent.toJson(),
         'archived': archived,
         'in_trash': inTrash,
-        'properties':
-            properties.map((key, value) => MapEntry(key, value.toJson())),
+        'properties': properties,
         'url': url,
         if (icon != null) 'icon': icon!.toJson(),
         if (cover != null) 'cover': cover!.toJson(),
