@@ -64,19 +64,19 @@ class Annotations with _$Annotations {
   const factory Annotations({
     /// Whether the text is bold.
     @Default(false) bool bold,
-    
+
     /// Whether the text is italic.
     @Default(false) bool italic,
-    
+
     /// Whether the text has strikethrough.
     @Default(false) bool strikethrough,
-    
+
     /// Whether the text is underlined.
     @Default(false) bool underline,
-    
+
     /// Whether the text is formatted as code.
     @Default(false) bool code,
-    
+
     /// The color of the text.
     @Default(RichTextColor.defaultColor) RichTextColor color,
   }) = _Annotations;
@@ -102,7 +102,7 @@ class TextContent with _$TextContent {
   const factory TextContent({
     /// The actual text content.
     required String content,
-    
+
     /// Optional link to apply to the text.
     TextLink? link,
   }) = _TextContent;

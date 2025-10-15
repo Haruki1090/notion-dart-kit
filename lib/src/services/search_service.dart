@@ -115,16 +115,16 @@ class SearchResults {
       nextCursor: json['next_cursor'] as String?,
     );
   }
-  
+
   /// The type of object returned (always "list").
   final String type;
-  
+
   /// List of search results (pages and/or databases).
   final List<SearchResult> results;
-  
+
   /// Whether there are more results available.
   final bool hasMore;
-  
+
   /// Cursor for the next page of results, if available.
   final String? nextCursor;
 
@@ -163,7 +163,7 @@ class SearchResult {
 
   /// Whether this search result is a page.
   bool get isPage => _page != null;
-  
+
   /// Whether this search result is a database.
   bool get isDatabase => _database != null;
 
@@ -184,9 +184,9 @@ class SearchResult {
   }
 
   /// Pattern matching for search results.
-  /// 
+  ///
   /// Executes the appropriate callback based on the type of search result.
-  /// 
+  ///
   /// Example:
   /// ```dart
   /// final title = searchResult.when(

@@ -167,10 +167,10 @@ class SelectOption with _$SelectOption {
   const factory SelectOption({
     /// Unique identifier for the option.
     required String id,
-    
+
     /// Display name of the option.
     required String name,
-    
+
     /// Color of the option (e.g., 'red', 'blue', 'green').
     required String color,
   }) = _SelectOption;
@@ -198,10 +198,10 @@ class StatusOption with _$StatusOption {
   const factory StatusOption({
     /// Unique identifier for the status option.
     required String id,
-    
+
     /// Display name of the status option.
     required String name,
-    
+
     /// Color of the status option (e.g., 'red', 'blue', 'green').
     required String color,
   }) = _StatusOption;
@@ -228,10 +228,10 @@ class DateValue with _$DateValue {
   const factory DateValue({
     /// Start date in ISO 8601 format (YYYY-MM-DD or YYYY-MM-DDTHH:MM:SS).
     required String start,
-    
+
     /// Optional end date for date ranges.
     String? end,
-    
+
     /// Optional timezone identifier (e.g., 'America/New_York').
     String? timeZone,
   }) = _DateValue;

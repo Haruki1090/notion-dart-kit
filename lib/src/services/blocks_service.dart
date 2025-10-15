@@ -136,16 +136,16 @@ class BlockChildren {
         nextCursor: json['next_cursor'] as String?,
         hasMore: json['has_more'] as bool,
       );
-      
+
   /// The type of object returned (always "list").
   final String object;
-  
+
   /// List of child blocks.
   final List<Block> results;
-  
+
   /// Cursor for the next page of results, if available.
   final String? nextCursor;
-  
+
   /// Whether there are more results available.
   final bool hasMore;
 
