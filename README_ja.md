@@ -107,6 +107,13 @@ void main() async {
 - [properties_and_blocks_example.dart](./example/properties_and_blocks_example.dart) - プロパティとブロックの操作
 - [pagination_example.dart](./example/pagination_example.dart) - 大規模データセットの処理
 
+### 🔍 比較ガイド（コードサンプル付き）
+
+本ライブラリと素のHTTP実装（Dio等）の比較を、実際のコードで示したドキュメントを用意しています。用途に応じた選定の参考にしてください。
+
+- 日本語: [doc/comparison_ja.md](./doc/comparison_ja.md)
+- English: [doc/comparison.md](./doc/comparison.md)
+
 ### ページの操作
 
 ```dart

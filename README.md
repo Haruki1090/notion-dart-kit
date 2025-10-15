@@ -110,6 +110,13 @@ For complete, runnable examples, see the [example](./example) directory:
 - [properties_and_blocks_example.dart](./example/properties_and_blocks_example.dart) - Working with properties and blocks
 - [pagination_example.dart](./example/pagination_example.dart) - Handling large datasets
 
+### 🔍 Comparison guide (with code)
+
+We prepared a concise comparison between this library and a plain HTTP approach (Dio, etc.), including side-by-side code samples.
+
+- English: [doc/comparison.md](./doc/comparison.md)
+- 日本語: [doc/comparison_ja.md](./doc/comparison_ja.md)
+
 ### Working with Pages
 
 ```dart
