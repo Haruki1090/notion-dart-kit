@@ -1,6 +1,11 @@
 ## Unreleased
 
 ### Added
+- **Web Platform Support**: Full support for web platforms with conditional imports
+  - Web-compatible logger implementation (`notion_logger_web.dart`)
+  - Conditional imports for platform-specific logger packages
+  - Web platform tests (`notion_logger_web_test.dart`, `web_platform_test.dart`)
+  - Updated `pubspec.yaml` to include web platform support
 - Database integration test covering 21 property types (test/database_test.dart)
 - File Upload API support:
   - `FileUploadsService` with `create`, `sendBytes`, `sendFile`, `complete`, `retrieve`, `list`

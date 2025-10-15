@@ -17,6 +17,7 @@ A comprehensive, type-safe Dart toolkit for the Notion API. Full endpoint covera
 - **📦 Full API Coverage**: Support for Pages, Databases, Blocks, Users, Search, and File Uploads
 - **🛡️ Error Handling**: Custom exception classes for different API error types
 - **📱 Flutter Ready**: Works seamlessly with Flutter applications
+- **🌐 Web Support**: Full support for web platforms with conditional imports
 - **🎨 Clean API**: Intuitive, service-based architecture for easy integration
 - **🔧 Configurable**: Customizable HTTP client with timeout and retry settings
 

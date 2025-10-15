@@ -8,6 +8,14 @@ issue_tracker: https://github.com/Haruki1090/notion-dart-kit/issues
 environment:
   sdk: '>=3.8.0 <4.0.0'
 
+platforms:
+  android:
+  ios:
+  linux:
+  macos:
+  web:
+  windows:
+
 dependencies:
   dio: ^5.4.0               # HTTPクライアント
   json_annotation: ^4.9.0   # JSONシリアライズ用アノテーション

@@ -1,4 +1,6 @@
-import 'package:logger/logger.dart';
+// 条件付きインポート: WebプラットフォームではWeb用のロガーを使用
+import 'package:logger/logger.dart'
+    if (dart.library.html) 'notion_logger_web.dart';
 
 /// Singleton logger for Notion API operations.
 ///
@@ -19,10 +21,7 @@ class NotionLogger {
   ///
   /// [isDebugMode] - Enable logging output (default: false)
   /// [level] - Minimum log level to display (default: Level.debug)
-  void initialize({
-    bool isDebugMode = false,
-    Level level = Level.debug,
-  }) {
+  void initialize({bool isDebugMode = false, Level level = Level.debug}) {
     _isDebugMode = isDebugMode;
 
     _logger = Logger(
