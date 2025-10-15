@@ -97,11 +97,23 @@ void main() async {
 
 ## 🧪 Explore via Examples
 
-The [`example/`](./example) directory doubles as living documentation. Start with [`basic_usage.dart`](./example/basic_usage.dart) to see service orchestration, pagination loops, and typed pattern matching end-to-end.
+The [`example/`](./example) directory doubles as living documentation. Start with [`main.dart`](./example/main.dart) for a quick overview, or [`basic_usage.dart`](./example/basic_usage.dart) for comprehensive examples showing service orchestration, pagination loops, and typed pattern matching end-to-end.
+
+### Quick Start Example
+
+Run the main example to get started:
+
+```bash
+dart run example/main.dart
+```
+
+Make sure to replace `YOUR_INTEGRATION_TOKEN` with your actual Notion integration token.
 
 ## 📚 Usage Examples
 
 For complete, runnable examples, see the [example](./example) directory:
+
+- [main.dart](./example/main.dart) - Quick start example with core features
 - [basic_usage.dart](./example/basic_usage.dart) - Getting started with all APIs
 - [property_builder_example.dart](./example/property_builder_example.dart) - Creating properties with PropertyBuilder (NEW!)
 - [rich_text_builder_example.dart](./example/rich_text_builder_example.dart) - Creating rich text with RichTextBuilder (NEW!)
@@ -299,6 +311,7 @@ await client.blocks.delete('block_id');
 ```
 
 **BlockBuilder Benefits:**
+
 - ✅ Dramatically reduced nesting
 - ✅ Fluent API with method chaining
 - ✅ Support for 31+ block types
@@ -482,6 +495,7 @@ final results = await client.databases.query(
 ```
 
 **Supported Filter Types:**
+
 - Text: `contains`, `equals`, `startsWith`, `endsWith`, `isEmpty`, `isNotEmpty`
 - Number: `equals`, `greaterThan`, `lessThan`, `greaterThanOrEqualTo`, `lessThanOrEqualTo`
 - Checkbox: `equals`, `doesNotEqual`
@@ -553,6 +567,7 @@ titleProperty?.when(
 **Supported Property Types:** Title, Rich Text, Number, Select, Multi-select, Date, People, Checkbox, URL, Email, Phone, Files, Relation, Rollup, Formula, Status, Created Time, Created By, Last Edited Time, Last Edited By, and Unique ID.
 
 **PropertyBuilder Benefits:**
+
 - ✅ Less nesting, more readable
 - ✅ Fluent API with method chaining
 - ✅ Type-safe property construction
@@ -679,7 +694,7 @@ try {
 
 ## 🏗️ Architecture
 
-```
+```text
 notion-dart-kit/
 ├── lib/
 │   ├── notion_dart_kit.dart          # Main export file
@@ -768,7 +783,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👤 Author
 
-**Haruki Inoue**
+Haruki Inoue
 
 - GitHub: [@Haruki1090](https://github.com/Haruki1090)
 
@@ -780,4 +795,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-Made with ❤️ for the Dart and Flutter community
+## Made with ❤️ for the Dart and Flutter community
