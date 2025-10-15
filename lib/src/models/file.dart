@@ -9,9 +9,7 @@ class NotionFile with _$NotionFile {
   const NotionFile._();
 
   /// External file hosted outside Notion
-  const factory NotionFile.external({
-    required String url,
-  }) = ExternalFile;
+  const factory NotionFile.external({required String url}) = ExternalFile;
 
   /// File uploaded to Notion
   const factory NotionFile.uploaded({
@@ -25,9 +23,7 @@ class NotionFile with _$NotionFile {
     switch (type) {
       case 'external':
         final external = json['external'] as Map<String, dynamic>;
-        return NotionFile.external(
-          url: external['url'] as String,
-        );
+        return NotionFile.external(url: external['url'] as String);
       case 'file':
         final file = json['file'] as Map<String, dynamic>;
         return NotionFile.uploaded(
@@ -40,26 +36,24 @@ class NotionFile with _$NotionFile {
   }
 
   Map<String, dynamic> toJson() => map(
-        external: (file) => {
-          'type': 'external',
-          'external': {'url': file.url},
-        },
-        uploaded: (file) => {
-          'type': 'file',
-          'file': {
-            'url': file.url,
-            'expiry_time': file.expiryTime.toIso8601String(),
-          },
-        },
-      );
+    external: (file) => {
+      'type': 'external',
+      'external': {'url': file.url},
+    },
+    uploaded: (file) => {
+      'type': 'file',
+      'file': {
+        'url': file.url,
+        'expiry_time': file.expiryTime.toIso8601String(),
+      },
+    },
+  );
 }
 
 /// Represents an emoji icon
 @freezed
 class EmojiIcon with _$EmojiIcon {
-  const factory EmojiIcon({
-    required String emoji,
-  }) = _EmojiIcon;
+  const factory EmojiIcon({required String emoji}) = _EmojiIcon;
 
   factory EmojiIcon.fromJson(Map<String, dynamic> json) =>
       _$EmojiIconFromJson(json);
@@ -70,13 +64,9 @@ class EmojiIcon with _$EmojiIcon {
 class PageIcon with _$PageIcon {
   const PageIcon._();
 
-  const factory PageIcon.emoji({
-    required String emoji,
-  }) = EmojiPageIcon;
+  const factory PageIcon.emoji({required String emoji}) = EmojiPageIcon;
 
-  const factory PageIcon.file({
-    required NotionFile file,
-  }) = FilePageIcon;
+  const factory PageIcon.file({required NotionFile file}) = FilePageIcon;
 
   factory PageIcon.fromJson(Map<String, dynamic> json) {
     final type = json['type'] as String;
@@ -93,10 +83,7 @@ class PageIcon with _$PageIcon {
   }
 
   Map<String, dynamic> toJson() => map(
-        emoji: (icon) => {
-          'type': 'emoji',
-          'emoji': icon.emoji,
-        },
-        file: (icon) => icon.file.toJson(),
-      );
+    emoji: (icon) => {'type': 'emoji', 'emoji': icon.emoji},
+    file: (icon) => icon.file.toJson(),
+  );
 }

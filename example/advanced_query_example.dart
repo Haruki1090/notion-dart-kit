@@ -7,9 +7,7 @@ import 'package:notion_dart_kit/notion_dart_kit.dart';
 void main() async {
   print('=== Advanced Query Example ===\n');
 
-  final client = NotionClient(
-    token: 'YOUR_INTEGRATION_TOKEN',
-  );
+  final client = NotionClient(token: 'YOUR_INTEGRATION_TOKEN');
 
   const databaseId = 'YOUR_DATABASE_ID';
 
@@ -428,7 +426,8 @@ void main() async {
     print('\n📈 11. Advanced Aggregation (Manual)\n');
 
     print(
-        'Notion API doesn\'t support aggregation, but you can do it manually:\n');
+      'Notion API doesn\'t support aggregation, but you can do it manually:\n',
+    );
     print('```dart');
     print('// Count pages by status');
     print('Future<Map<String, int>> countByStatus(String databaseId) async {');

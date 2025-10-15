@@ -14,9 +14,7 @@ import 'package:notion_dart_kit/notion_dart_kit.dart';
 void main() async {
   print('=== RichTextBuilder Example ===\n');
 
-  final client = NotionClient(
-    token: 'YOUR_INTEGRATION_TOKEN',
-  );
+  final client = NotionClient(token: 'YOUR_INTEGRATION_TOKEN');
 
   const pageId = 'YOUR_PAGE_ID';
 
@@ -44,27 +42,27 @@ void main() async {
     print('🎨 2. Text with Multiple Formatting\n');
 
     // Multiple styles
-    final styledText = RichTextBuilder.text('Styled text')
-        .bold()
-        .italic()
-        .underline()
-        .color('blue')
-        .toJson();
+    final styledText = RichTextBuilder.text(
+      'Styled text',
+    ).bold().italic().underline().color('blue').toJson();
     print('Multi-styled text created\n');
 
     // Code formatting
-    final codeText =
-        RichTextBuilder.text('console.log("Hello")').code().toJson();
+    final codeText = RichTextBuilder.text(
+      'console.log("Hello")',
+    ).code().toJson();
     print('Code formatted text created\n');
 
     // Strikethrough
-    final strikethroughText =
-        RichTextBuilder.text('Deleted text').strikethrough().toJson();
+    final strikethroughText = RichTextBuilder.text(
+      'Deleted text',
+    ).strikethrough().toJson();
     print('Strikethrough text created\n');
 
     // Colored text
-    final coloredText =
-        RichTextBuilder.text('Important').color('red_background').toJson();
+    final coloredText = RichTextBuilder.text(
+      'Important',
+    ).color('red_background').toJson();
     print('Colored text created\n');
 
     // ========================================
@@ -73,18 +71,15 @@ void main() async {
     print('🔗 3. Text with Links\n');
 
     // Simple link
-    final linkText = RichTextBuilder.text('Click here')
-        .link('https://example.com')
-        .underline()
-        .toJson();
+    final linkText = RichTextBuilder.text(
+      'Click here',
+    ).link('https://example.com').underline().toJson();
     print('Link text created\n');
 
     // Styled link
-    final styledLink = RichTextBuilder.text('Documentation')
-        .link('https://docs.example.com')
-        .bold()
-        .color('blue')
-        .toJson();
+    final styledLink = RichTextBuilder.text(
+      'Documentation',
+    ).link('https://docs.example.com').bold().color('blue').toJson();
     print('Styled link created\n');
 
     // ========================================
@@ -101,8 +96,9 @@ void main() async {
     print('Page mention created\n');
 
     // Database mention
-    final databaseMention =
-        RichTextBuilder.mentionDatabase('database_id_789').toJson();
+    final databaseMention = RichTextBuilder.mentionDatabase(
+      'database_id_789',
+    ).toJson();
     print('Database mention created\n');
 
     // Date mention
@@ -119,13 +115,15 @@ void main() async {
     print('Date range mention created\n');
 
     // Link preview mention
-    final linkPreview =
-        RichTextBuilder.mentionLinkPreview('https://example.com').toJson();
+    final linkPreview = RichTextBuilder.mentionLinkPreview(
+      'https://example.com',
+    ).toJson();
     print('Link preview mention created\n');
 
     // Styled mention
-    final styledMention =
-        RichTextBuilder.mentionUser('user_id').bold().color('blue').toJson();
+    final styledMention = RichTextBuilder.mentionUser(
+      'user_id',
+    ).bold().color('blue').toJson();
     print('Styled mention created\n');
 
     // ========================================
@@ -138,8 +136,9 @@ void main() async {
     print('Equation created\n');
 
     // Complex equation
-    final complexEquation =
-        RichTextBuilder.equation(r'\int_{0}^{\infty} x^2 dx').toJson();
+    final complexEquation = RichTextBuilder.equation(
+      r'\int_{0}^{\infty} x^2 dx',
+    ).toJson();
     print('Complex equation created\n');
 
     // ========================================
@@ -186,10 +185,9 @@ void main() async {
       'type': 'heading_1',
       'heading_1': {
         'rich_text': [
-          RichTextBuilder.text('Chapter 1: Introduction')
-              .bold()
-              .color('blue')
-              .toJson(),
+          RichTextBuilder.text(
+            'Chapter 1: Introduction',
+          ).bold().color('blue').toJson(),
         ],
       },
     };
@@ -204,16 +202,12 @@ void main() async {
         'rich_text': [
           RichTextBuilder.text('Important: ').bold().color('red').toJson(),
           RichTextBuilder.text('Read the ').toJson(),
-          RichTextBuilder.text('documentation')
-              .link('https://docs.example.com')
-              .underline()
-              .toJson(),
+          RichTextBuilder.text(
+            'documentation',
+          ).link('https://docs.example.com').underline().toJson(),
           RichTextBuilder.text(' before proceeding.').toJson(),
         ],
-        'icon': {
-          'type': 'emoji',
-          'emoji': '⚠️',
-        },
+        'icon': {'type': 'emoji', 'emoji': '⚠️'},
         'color': 'yellow_background',
       },
     };
@@ -257,8 +251,9 @@ void main() async {
         'type': 'code',
         'code': {
           'rich_text': [
-            RichTextBuilder.text('def hello():\n    print("Hello World")')
-                .toJson(),
+            RichTextBuilder.text(
+              'def hello():\n    print("Hello World")',
+            ).toJson(),
           ],
           'language': 'python',
         },

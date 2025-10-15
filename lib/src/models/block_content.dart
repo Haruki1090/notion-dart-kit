@@ -56,19 +56,19 @@ class BlockContent with _$BlockContent {
   }) = _BlockContent;
 
   factory BlockContent.fromJson(Map<String, dynamic> json) => BlockContent(
-        richText: json['rich_text'] != null
-            ? (json['rich_text'] as List)
-                .map((e) => RichText.fromJson(e as Map<String, dynamic>))
-                .toList()
-            : [],
-        color: json['color'] != null
-            ? BlockColor.values.firstWhere(
-                (e) => e.name == (json['color'] as String).replaceAll('_', ''),
-                orElse: () => BlockColor.defaultColor,
-              )
-            : BlockColor.defaultColor,
-        isToggleable: json['is_toggleable'] as bool?,
-      );
+    richText: json['rich_text'] != null
+        ? (json['rich_text'] as List)
+              .map((e) => RichText.fromJson(e as Map<String, dynamic>))
+              .toList()
+        : [],
+    color: json['color'] != null
+        ? BlockColor.values.firstWhere(
+            (e) => e.name == (json['color'] as String).replaceAll('_', ''),
+            orElse: () => BlockColor.defaultColor,
+          )
+        : BlockColor.defaultColor,
+    isToggleable: json['is_toggleable'] as bool?,
+  );
 }
 
 /// To-do block content with checked state
@@ -81,19 +81,19 @@ class ToDoContent with _$ToDoContent {
   }) = _ToDoContent;
 
   factory ToDoContent.fromJson(Map<String, dynamic> json) => ToDoContent(
-        richText: json['rich_text'] != null
-            ? (json['rich_text'] as List)
-                .map((e) => RichText.fromJson(e as Map<String, dynamic>))
-                .toList()
-            : [],
-        color: json['color'] != null
-            ? BlockColor.values.firstWhere(
-                (e) => e.name == (json['color'] as String).replaceAll('_', ''),
-                orElse: () => BlockColor.defaultColor,
-              )
-            : BlockColor.defaultColor,
-        checked: json['checked'] as bool? ?? false,
-      );
+    richText: json['rich_text'] != null
+        ? (json['rich_text'] as List)
+              .map((e) => RichText.fromJson(e as Map<String, dynamic>))
+              .toList()
+        : [],
+    color: json['color'] != null
+        ? BlockColor.values.firstWhere(
+            (e) => e.name == (json['color'] as String).replaceAll('_', ''),
+            orElse: () => BlockColor.defaultColor,
+          )
+        : BlockColor.defaultColor,
+    checked: json['checked'] as bool? ?? false,
+  );
 }
 
 /// Code block content with language
@@ -106,43 +106,43 @@ class CodeContent with _$CodeContent {
   }) = _CodeContent;
 
   factory CodeContent.fromJson(Map<String, dynamic> json) => CodeContent(
-        richText: json['rich_text'] != null
-            ? (json['rich_text'] as List)
-                .map((e) => RichText.fromJson(e as Map<String, dynamic>))
-                .toList()
-            : [],
-        caption: json['caption'] != null
-            ? (json['caption'] as List)
-                .map((e) => RichText.fromJson(e as Map<String, dynamic>))
-                .toList()
-            : [],
-        language: json['language'] as String? ?? 'plain text',
-      );
+    richText: json['rich_text'] != null
+        ? (json['rich_text'] as List)
+              .map((e) => RichText.fromJson(e as Map<String, dynamic>))
+              .toList()
+        : [],
+    caption: json['caption'] != null
+        ? (json['caption'] as List)
+              .map((e) => RichText.fromJson(e as Map<String, dynamic>))
+              .toList()
+        : [],
+    language: json['language'] as String? ?? 'plain text',
+  );
 }
 
 /// Extensions for toJson methods
 extension BlockContentExtension on BlockContent {
   Map<String, dynamic> toJson() => {
-        'rich_text': richText.map((e) => e.toJson()).toList(),
-        'color': _blockColorToString(color),
-        if (isToggleable != null) 'is_toggleable': isToggleable,
-      };
+    'rich_text': richText.map((e) => e.toJson()).toList(),
+    'color': _blockColorToString(color),
+    if (isToggleable != null) 'is_toggleable': isToggleable,
+  };
 }
 
 extension ToDoContentExtension on ToDoContent {
   Map<String, dynamic> toJson() => {
-        'rich_text': richText.map((e) => e.toJson()).toList(),
-        'color': _blockColorToString(color),
-        'checked': this.checked,
-      };
+    'rich_text': richText.map((e) => e.toJson()).toList(),
+    'color': _blockColorToString(color),
+    'checked': this.checked,
+  };
 }
 
 extension CodeContentExtension on CodeContent {
   Map<String, dynamic> toJson() => {
-        'rich_text': richText.map((e) => e.toJson()).toList(),
-        'caption': caption.map((e) => e.toJson()).toList(),
-        'language': language,
-      };
+    'rich_text': richText.map((e) => e.toJson()).toList(),
+    'caption': caption.map((e) => e.toJson()).toList(),
+    'language': language,
+  };
 }
 
 String _blockColorToString(BlockColor color) {

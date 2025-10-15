@@ -37,16 +37,18 @@ void main() {
     });
 
     test('paragraph with children', () {
-      final block = BlockBuilder.paragraph('Parent').children([
-        BlockBuilder.paragraph('Child').toJson(),
-      ]).toJson();
+      final block = BlockBuilder.paragraph(
+        'Parent',
+      ).children([BlockBuilder.paragraph('Child').toJson()]).toJson();
 
       expect(block['paragraph']['children'], hasLength(1));
     });
 
     test('paragraph without initial text', () {
-      final block =
-          BlockBuilder.paragraph().addText('Hello').addText(' World').toJson();
+      final block = BlockBuilder.paragraph()
+          .addText('Hello')
+          .addText(' World')
+          .toJson();
 
       expect(block['paragraph']['rich_text'], hasLength(2));
     });
@@ -94,10 +96,10 @@ void main() {
     });
 
     test('toggleable heading with children', () {
-      final block =
-          BlockBuilder.heading2('Toggle Heading').toggleable().children([
-        BlockBuilder.paragraph('Hidden content').toJson(),
-      ]).toJson();
+      final block = BlockBuilder.heading2('Toggle Heading')
+          .toggleable()
+          .children([BlockBuilder.paragraph('Hidden content').toJson()])
+          .toJson();
 
       expect(block['heading_2']['is_toggleable'], true);
       expect(block['heading_2']['children'], hasLength(1));
@@ -122,9 +124,9 @@ void main() {
     });
 
     test('quote with children', () {
-      final block = BlockBuilder.quote('Quote').children([
-        BlockBuilder.paragraph('Nested').toJson(),
-      ]).toJson();
+      final block = BlockBuilder.quote(
+        'Quote',
+      ).children([BlockBuilder.paragraph('Nested').toJson()]).toJson();
 
       expect(block['quote']['children'], hasLength(1));
     });
@@ -139,10 +141,7 @@ void main() {
         block['callout']['rich_text'][0]['text']['content'],
         'Important note',
       );
-      expect(block['callout']['icon'], {
-        'type': 'emoji',
-        'emoji': '💡',
-      });
+      expect(block['callout']['icon'], {'type': 'emoji', 'emoji': '💡'});
     });
 
     test('callout with custom icon', () {
@@ -152,8 +151,9 @@ void main() {
     });
 
     test('callout with color', () {
-      final block =
-          BlockBuilder.callout('Note').color('yellow_background').toJson();
+      final block = BlockBuilder.callout(
+        'Note',
+      ).color('yellow_background').toJson();
 
       expect(block['callout']['color'], 'yellow_background');
     });
@@ -162,9 +162,8 @@ void main() {
       final block = BlockBuilder.callout('Full callout')
           .icon('🔥')
           .color('red_background')
-          .children([
-        BlockBuilder.paragraph('Details').toJson(),
-      ]).toJson();
+          .children([BlockBuilder.paragraph('Details').toJson()])
+          .toJson();
 
       expect(block['callout']['icon']['emoji'], '🔥');
       expect(block['callout']['color'], 'red_background');
@@ -203,8 +202,9 @@ void main() {
     });
 
     test('list item with color', () {
-      final block =
-          BlockBuilder.bulletedListItem('Item').color('blue').toJson();
+      final block = BlockBuilder.bulletedListItem(
+        'Item',
+      ).color('blue').toJson();
 
       expect(block['bulleted_list_item']['color'], 'blue');
     });
@@ -304,11 +304,7 @@ void main() {
     test('divider generates correct JSON', () {
       final block = BlockBuilder.divider().toJson();
 
-      expect(block, {
-        'object': 'block',
-        'type': 'divider',
-        'divider': {},
-      });
+      expect(block, {'object': 'block', 'type': 'divider', 'divider': {}});
     });
 
     test('table of contents generates correct JSON', () {
@@ -337,8 +333,9 @@ void main() {
 
   group('BlockBuilder - Media', () {
     test('image block generates correct JSON', () {
-      final block =
-          BlockBuilder.image('https://example.com/image.jpg').toJson();
+      final block = BlockBuilder.image(
+        'https://example.com/image.jpg',
+      ).toJson();
 
       expect(block['type'], 'image');
       expect(block['image']['type'], 'external');
@@ -349,8 +346,9 @@ void main() {
     });
 
     test('video block generates correct JSON', () {
-      final block =
-          BlockBuilder.video('https://example.com/video.mp4').toJson();
+      final block = BlockBuilder.video(
+        'https://example.com/video.mp4',
+      ).toJson();
 
       expect(block['type'], 'video');
       expect(
@@ -367,8 +365,9 @@ void main() {
     });
 
     test('pdf block generates correct JSON', () {
-      final block =
-          BlockBuilder.pdf('https://example.com/document.pdf').toJson();
+      final block = BlockBuilder.pdf(
+        'https://example.com/document.pdf',
+      ).toJson();
 
       expect(block['type'], 'pdf');
       expect(
@@ -378,9 +377,9 @@ void main() {
     });
 
     test('media with caption', () {
-      final block = BlockBuilder.image('https://example.com/image.jpg')
-          .caption('My image')
-          .toJson();
+      final block = BlockBuilder.image(
+        'https://example.com/image.jpg',
+      ).caption('My image').toJson();
 
       expect(block['image']['caption'], isNotEmpty);
       expect(block['image']['caption'][0]['text']['content'], 'My image');
@@ -396,9 +395,9 @@ void main() {
     });
 
     test('bookmark with caption', () {
-      final block = BlockBuilder.bookmark('https://example.com')
-          .caption('Example website')
-          .toJson();
+      final block = BlockBuilder.bookmark(
+        'https://example.com',
+      ).caption('Example website').toJson();
 
       expect(block['bookmark']['caption'], isNotEmpty);
       expect(
@@ -500,24 +499,22 @@ void main() {
     test('complete page structure example', () {
       final blocks = [
         BlockBuilder.heading1('Project Documentation').toJson(),
-        BlockBuilder.paragraph('Welcome to the project documentation.')
-            .toJson(),
+        BlockBuilder.paragraph(
+          'Welcome to the project documentation.',
+        ).toJson(),
         BlockBuilder.divider().toJson(),
         BlockBuilder.heading2('Getting Started').toJson(),
         BlockBuilder.paragraph()
             .addText('Follow these steps to ')
-            .addRichText(
-              RichTextBuilder.text('install').bold().toJson(),
-            )
+            .addRichText(RichTextBuilder.text('install').bold().toJson())
             .addText(' the project:')
             .toJson(),
         BlockBuilder.numberedListItem('Clone the repository').toJson(),
         BlockBuilder.numberedListItem('Install dependencies').toJson(),
         BlockBuilder.numberedListItem('Run the project').toJson(),
-        BlockBuilder.callout('Make sure you have Node.js installed!')
-            .icon('⚠️')
-            .color('yellow_background')
-            .toJson(),
+        BlockBuilder.callout(
+          'Make sure you have Node.js installed!',
+        ).icon('⚠️').color('yellow_background').toJson(),
         BlockBuilder.heading2('Code Example').toJson(),
         BlockBuilder.code(
           'npm install\nnpm start',
@@ -555,14 +552,15 @@ void main() {
           .icon('📚')
           .color('blue_background')
           .children([
-        BlockBuilder.paragraph()
-            .addText('This is ')
-            .addRichText(RichTextBuilder.text('critical').bold().toJson())
-            .addText(' information.')
-            .toJson(),
-        BlockBuilder.bulletedListItem('Key point 1').toJson(),
-        BlockBuilder.bulletedListItem('Key point 2').toJson(),
-      ]).toJson();
+            BlockBuilder.paragraph()
+                .addText('This is ')
+                .addRichText(RichTextBuilder.text('critical').bold().toJson())
+                .addText(' information.')
+                .toJson(),
+            BlockBuilder.bulletedListItem('Key point 1').toJson(),
+            BlockBuilder.bulletedListItem('Key point 2').toJson(),
+          ])
+          .toJson();
 
       expect(block['callout']['icon']['emoji'], '📚');
       expect(block['callout']['color'], 'blue_background');

@@ -9,9 +9,7 @@ void main() async {
   print('=== notion_dart_kit 基本的な使用例 ===\n');
 
   // 統合トークンでクライアントを初期化
-  final client = NotionClient(
-    token: 'YOUR_INTEGRATION_TOKEN',
-  );
+  final client = NotionClient(token: 'YOUR_INTEGRATION_TOKEN');
 
   try {
     // ========================================
@@ -36,9 +34,7 @@ void main() async {
     // 2. Search API
     // ========================================
     print('🔍 2. ページとデータベースを検索中...');
-    final searchResults = await client.search.search(
-      pageSize: 5,
-    );
+    final searchResults = await client.search.search(pageSize: 5);
     print('✅ ${searchResults.results.length}件のアイテムが見つかりました');
     for (final result in searchResults.results) {
       result.when(

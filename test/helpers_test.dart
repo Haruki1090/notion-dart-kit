@@ -10,26 +10,26 @@ Map<String, dynamic> createPageJson(Map<String, dynamic> json) =>
 
 // Helper to create rich text object with proper structure
 Map<String, dynamic> createRichTextJson(String content) => {
-      'type': 'text',
-      'text': {'content': content},
-      'plain_text': content,
-      'annotations': {
-        'bold': false,
-        'italic': false,
-        'strikethrough': false,
-        'underline': false,
-        'code': false,
-        'color': 'default',
-      },
-      'href': null,
-    };
+  'type': 'text',
+  'text': {'content': content},
+  'plain_text': content,
+  'annotations': {
+    'bold': false,
+    'italic': false,
+    'strikethrough': false,
+    'underline': false,
+    'code': false,
+    'color': 'default',
+  },
+  'href': null,
+};
 
 // Helper to create select option with proper structure
 Map<String, dynamic> createSelectOptionJson(String name, String color) => {
-      'id': 'opt_${name.toLowerCase()}',
-      'name': name,
-      'color': color,
-    };
+  'id': 'opt_${name.toLowerCase()}',
+  'name': name,
+  'color': color,
+};
 
 void main() {
   group('PageHelper', () {
@@ -39,18 +39,9 @@ void main() {
           'id': 'page_id',
           'created_time': '2024-01-01T00:00:00Z',
           'last_edited_time': '2024-01-01T00:00:00Z',
-          'created_by': {
-            'object': 'user',
-            'id': 'user1',
-          },
-          'last_edited_by': {
-            'object': 'user',
-            'id': 'user1',
-          },
-          'parent': {
-            'type': 'workspace',
-            'workspace': true,
-          },
+          'created_by': {'object': 'user', 'id': 'user1'},
+          'last_edited_by': {'object': 'user', 'id': 'user1'},
+          'parent': {'type': 'workspace', 'workspace': true},
           'archived': false,
           'in_trash': false,
           'properties': {
@@ -74,18 +65,9 @@ void main() {
           'id': 'page_id',
           'created_time': '2024-01-01T00:00:00Z',
           'last_edited_time': '2024-01-01T00:00:00Z',
-          'created_by': {
-            'object': 'user',
-            'id': 'user1',
-          },
-          'last_edited_by': {
-            'object': 'user',
-            'id': 'user1',
-          },
-          'parent': {
-            'type': 'workspace',
-            'workspace': true,
-          },
+          'created_by': {'object': 'user', 'id': 'user1'},
+          'last_edited_by': {'object': 'user', 'id': 'user1'},
+          'parent': {'type': 'workspace', 'workspace': true},
           'archived': false,
           'in_trash': false,
           'properties': {},
@@ -103,18 +85,9 @@ void main() {
           'id': 'page_id',
           'created_time': '2024-01-01T00:00:00Z',
           'last_edited_time': '2024-01-01T00:00:00Z',
-          'created_by': {
-            'object': 'user',
-            'id': 'user1',
-          },
-          'last_edited_by': {
-            'object': 'user',
-            'id': 'user1',
-          },
-          'parent': {
-            'type': 'workspace',
-            'workspace': true,
-          },
+          'created_by': {'object': 'user', 'id': 'user1'},
+          'last_edited_by': {'object': 'user', 'id': 'user1'},
+          'parent': {'type': 'workspace', 'workspace': true},
           'archived': false,
           'in_trash': false,
           'properties': {
@@ -139,31 +112,14 @@ void main() {
           'id': 'page_id',
           'created_time': '2024-01-01T00:00:00Z',
           'last_edited_time': '2024-01-01T00:00:00Z',
-          'created_by': {
-            'object': 'user',
-            'id': 'user1',
-          },
-          'last_edited_by': {
-            'object': 'user',
-            'id': 'user1',
-          },
-          'parent': {
-            'type': 'workspace',
-            'workspace': true,
-          },
+          'created_by': {'object': 'user', 'id': 'user1'},
+          'last_edited_by': {'object': 'user', 'id': 'user1'},
+          'parent': {'type': 'workspace', 'workspace': true},
           'archived': false,
           'in_trash': false,
           'properties': {
-            'Title': {
-              'id': 'title',
-              'type': 'title',
-              'title': [],
-            },
-            'Status': {
-              'id': 'status',
-              'type': 'select',
-              'select': null,
-            },
+            'Title': {'id': 'title', 'type': 'title', 'title': []},
+            'Status': {'id': 'status', 'type': 'select', 'select': null},
           },
           'url': 'https://notion.so/page_id',
         }),
@@ -180,18 +136,9 @@ void main() {
           'id': 'page_id',
           'created_time': '2024-01-01T00:00:00Z',
           'last_edited_time': '2024-01-01T00:00:00Z',
-          'created_by': {
-            'object': 'user',
-            'id': 'user1',
-          },
-          'last_edited_by': {
-            'object': 'user',
-            'id': 'user1',
-          },
-          'parent': {
-            'type': 'workspace',
-            'workspace': true,
-          },
+          'created_by': {'object': 'user', 'id': 'user1'},
+          'last_edited_by': {'object': 'user', 'id': 'user1'},
+          'parent': {'type': 'workspace', 'workspace': true},
           'archived': true,
           'in_trash': false,
           'properties': {},
@@ -208,18 +155,9 @@ void main() {
           'id': 'page_id',
           'created_time': '2024-01-01T00:00:00Z',
           'last_edited_time': '2024-01-01T00:00:00Z',
-          'created_by': {
-            'object': 'user',
-            'id': 'user1',
-          },
-          'last_edited_by': {
-            'object': 'user',
-            'id': 'user1',
-          },
-          'parent': {
-            'type': 'workspace',
-            'workspace': true,
-          },
+          'created_by': {'object': 'user', 'id': 'user1'},
+          'last_edited_by': {'object': 'user', 'id': 'user1'},
+          'parent': {'type': 'workspace', 'workspace': true},
           'archived': false,
           'in_trash': true,
           'properties': {},
@@ -341,18 +279,9 @@ void main() {
             'id': 'page1',
             'created_time': '2024-01-01T00:00:00Z',
             'last_edited_time': '2024-01-01T00:00:00Z',
-            'created_by': {
-              'object': 'user',
-              'id': 'user1',
-            },
-            'last_edited_by': {
-              'object': 'user',
-              'id': 'user1',
-            },
-            'parent': {
-              'type': 'workspace',
-              'workspace': true,
-            },
+            'created_by': {'object': 'user', 'id': 'user1'},
+            'last_edited_by': {'object': 'user', 'id': 'user1'},
+            'parent': {'type': 'workspace', 'workspace': true},
             'archived': false,
             'in_trash': false,
             'properties': {
@@ -366,11 +295,7 @@ void main() {
                 'type': 'select',
                 'select': createSelectOptionJson('Todo', 'default'),
               },
-              'Priority': {
-                'id': 'priority',
-                'type': 'number',
-                'number': 5,
-              },
+              'Priority': {'id': 'priority', 'type': 'number', 'number': 5},
             },
             'url': 'https://notion.so/page1',
           }),
@@ -380,18 +305,9 @@ void main() {
             'id': 'page2',
             'created_time': '2024-01-02T00:00:00Z',
             'last_edited_time': '2024-01-02T00:00:00Z',
-            'created_by': {
-              'object': 'user',
-              'id': 'user1',
-            },
-            'last_edited_by': {
-              'object': 'user',
-              'id': 'user1',
-            },
-            'parent': {
-              'type': 'workspace',
-              'workspace': true,
-            },
+            'created_by': {'object': 'user', 'id': 'user1'},
+            'last_edited_by': {'object': 'user', 'id': 'user1'},
+            'parent': {'type': 'workspace', 'workspace': true},
             'archived': false,
             'in_trash': false,
             'properties': {
@@ -405,11 +321,7 @@ void main() {
                 'type': 'select',
                 'select': createSelectOptionJson('In Progress', 'blue'),
               },
-              'Priority': {
-                'id': 'priority',
-                'type': 'number',
-                'number': 3,
-              },
+              'Priority': {'id': 'priority', 'type': 'number', 'number': 3},
             },
             'url': 'https://notion.so/page2',
           }),
@@ -419,18 +331,9 @@ void main() {
             'id': 'page3',
             'created_time': '2024-01-03T00:00:00Z',
             'last_edited_time': '2024-01-03T00:00:00Z',
-            'created_by': {
-              'object': 'user',
-              'id': 'user1',
-            },
-            'last_edited_by': {
-              'object': 'user',
-              'id': 'user1',
-            },
-            'parent': {
-              'type': 'workspace',
-              'workspace': true,
-            },
+            'created_by': {'object': 'user', 'id': 'user1'},
+            'last_edited_by': {'object': 'user', 'id': 'user1'},
+            'parent': {'type': 'workspace', 'workspace': true},
             'archived': true,
             'in_trash': false,
             'properties': {
@@ -444,11 +347,7 @@ void main() {
                 'type': 'select',
                 'select': createSelectOptionJson('Done', 'green'),
               },
-              'Priority': {
-                'id': 'priority',
-                'type': 'number',
-                'number': 1,
-              },
+              'Priority': {'id': 'priority', 'type': 'number', 'number': 1},
             },
             'url': 'https://notion.so/page3',
           }),
@@ -533,19 +432,13 @@ void main() {
     });
 
     test('filterArchived includes archived pages when requested', () {
-      final filtered = BatchHelper.filterArchived(
-        pages,
-        includeArchived: true,
-      );
+      final filtered = BatchHelper.filterArchived(pages, includeArchived: true);
 
       expect(filtered, hasLength(3));
     });
 
     test('filterTrashed excludes trashed pages', () {
-      final filtered = BatchHelper.filterTrashed(
-        pages,
-        includeTrashed: false,
-      );
+      final filtered = BatchHelper.filterTrashed(pages, includeTrashed: false);
 
       expect(filtered, hasLength(3)); // None are trashed in test data
     });

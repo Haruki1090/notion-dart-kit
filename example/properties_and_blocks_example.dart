@@ -18,9 +18,7 @@ import 'package:notion_dart_kit/notion_dart_kit.dart';
 void main() async {
   print('=== Properties and Blocks Example ===\n');
 
-  final client = NotionClient(
-    token: 'YOUR_INTEGRATION_TOKEN',
-  );
+  final client = NotionClient(token: 'YOUR_INTEGRATION_TOKEN');
 
   const databaseId = 'YOUR_DATABASE_ID';
   const pageId = 'YOUR_PAGE_ID';
@@ -31,7 +29,8 @@ void main() async {
     // ========================================
     print('📝 1. Creating a Page with Various Properties\n');
     print(
-        'ℹ️  Note: Properties must be provided as Maps (not PropertyValue models)\n');
+      'ℹ️  Note: Properties must be provided as Maps (not PropertyValue models)\n',
+    );
 
     // Property creation uses raw Maps
     // (PropertyValue models are read-only and used for parsing responses)
@@ -41,28 +40,25 @@ void main() async {
         'title': [
           {
             'text': {'content': 'Project Planning Document'},
-            'annotations': {
-              'bold': true,
-              'color': 'blue',
-            },
-          }
-        ]
+            'annotations': {'bold': true, 'color': 'blue'},
+          },
+        ],
       },
 
       // Rich Text property
       'Description': {
         'rich_text': [
           {
-            'text': {'content': 'This is a '}
+            'text': {'content': 'This is a '},
           },
           {
             'text': {'content': 'detailed'},
             'annotations': {'italic': true},
           },
           {
-            'text': {'content': ' project plan.'}
+            'text': {'content': ' project plan.'},
           },
-        ]
+        ],
       },
 
       // Number property
@@ -70,7 +66,7 @@ void main() async {
 
       // Select property
       'Status': {
-        'select': {'name': 'In Progress'}
+        'select': {'name': 'In Progress'},
       },
 
       // Multi-select property
@@ -79,16 +75,17 @@ void main() async {
           {'name': 'urgent'},
           {'name': 'planning'},
           {'name': 'q1'},
-        ]
+        ],
       },
 
       // Date property (with start and end)
       'Due Date': {
         'date': {
-          'start':
-              DateTime.now().add(const Duration(days: 7)).toIso8601String(),
+          'start': DateTime.now()
+              .add(const Duration(days: 7))
+              .toIso8601String(),
           'end': DateTime.now().add(const Duration(days: 14)).toIso8601String(),
-        }
+        },
       },
 
       // Checkbox property
@@ -108,7 +105,7 @@ void main() async {
         'people': [
           {'id': 'user_id_1'},
           {'id': 'user_id_2'},
-        ]
+        ],
       },
 
       // Files property
@@ -118,8 +115,8 @@ void main() async {
             'name': 'diagram.png',
             'type': 'external',
             'external': {'url': 'https://example.com/diagram.png'},
-          }
-        ]
+          },
+        ],
       },
     };
 
@@ -153,7 +150,7 @@ void main() async {
 
     final updateProperties = {
       'Status': {
-        'select': {'name': 'Done'}
+        'select': {'name': 'Done'},
       },
       'Completed': {'checkbox': true},
       'Priority': {'number': 3},
@@ -199,11 +196,11 @@ void main() async {
           'rich_text': [
             {
               'type': 'text',
-              'text': {'content': 'Project Overview'}
-            }
+              'text': {'content': 'Project Overview'},
+            },
           ],
           'color': 'blue',
-        }
+        },
       },
 
       // Paragraph
@@ -214,10 +211,10 @@ void main() async {
           'rich_text': [
             {
               'type': 'text',
-              'text': {'content': 'This project aims to deliver...'}
-            }
-          ]
-        }
+              'text': {'content': 'This project aims to deliver...'},
+            },
+          ],
+        },
       },
 
       // Bulleted list
@@ -228,10 +225,10 @@ void main() async {
           'rich_text': [
             {
               'type': 'text',
-              'text': {'content': 'Research phase'}
-            }
-          ]
-        }
+              'text': {'content': 'Research phase'},
+            },
+          ],
+        },
       },
       {
         'object': 'block',
@@ -240,10 +237,10 @@ void main() async {
           'rich_text': [
             {
               'type': 'text',
-              'text': {'content': 'Design phase'}
-            }
-          ]
-        }
+              'text': {'content': 'Design phase'},
+            },
+          ],
+        },
       },
       {
         'object': 'block',
@@ -252,10 +249,10 @@ void main() async {
           'rich_text': [
             {
               'type': 'text',
-              'text': {'content': 'Implementation phase'}
-            }
-          ]
-        }
+              'text': {'content': 'Implementation phase'},
+            },
+          ],
+        },
       },
 
       // To-do items
@@ -266,11 +263,11 @@ void main() async {
           'rich_text': [
             {
               'type': 'text',
-              'text': {'content': 'Complete requirements gathering'}
-            }
+              'text': {'content': 'Complete requirements gathering'},
+            },
           ],
           'checked': true,
-        }
+        },
       },
       {
         'object': 'block',
@@ -279,11 +276,11 @@ void main() async {
           'rich_text': [
             {
               'type': 'text',
-              'text': {'content': 'Create wireframes'}
-            }
+              'text': {'content': 'Create wireframes'},
+            },
           ],
           'checked': false,
-        }
+        },
       },
 
       // Callout block
@@ -294,15 +291,12 @@ void main() async {
           'rich_text': [
             {
               'type': 'text',
-              'text': {'content': 'Important: Review with stakeholders'}
-            }
+              'text': {'content': 'Important: Review with stakeholders'},
+            },
           ],
-          'icon': {
-            'type': 'emoji',
-            'emoji': '⚠️',
-          },
+          'icon': {'type': 'emoji', 'emoji': '⚠️'},
           'color': 'yellow_background',
-        }
+        },
       },
 
       // Code block
@@ -313,11 +307,11 @@ void main() async {
           'rich_text': [
             {
               'type': 'text',
-              'text': {'content': 'function example() {\n  return "Hello";\n}'}
-            }
+              'text': {'content': 'function example() {\n  return "Hello";\n}'},
+            },
           ],
           'language': 'javascript',
-        }
+        },
       },
 
       // Quote
@@ -329,12 +323,12 @@ void main() async {
             {
               'type': 'text',
               'text': {
-                'content': 'Quality is not an act, it is a habit. - Aristotle'
-              }
-            }
+                'content': 'Quality is not an act, it is a habit. - Aristotle',
+              },
+            },
           ],
           'color': 'gray',
-        }
+        },
       },
 
       // Divider
@@ -348,17 +342,17 @@ void main() async {
           'rich_text': [
             {
               'type': 'text',
-              'text': {'content': 'Timeline'}
-            }
-          ]
-        }
+              'text': {'content': 'Timeline'},
+            },
+          ],
+        },
       },
 
       // Table of Contents
       {
         'object': 'block',
         'type': 'table_of_contents',
-        'table_of_contents': {'color': 'default'}
+        'table_of_contents': {'color': 'default'},
       },
     ];
 
@@ -403,10 +397,10 @@ void main() async {
           'rich_text': [
             {
               'type': 'text',
-              'text': {'content': 'Updates'}
-            }
-          ]
-        }
+              'text': {'content': 'Updates'},
+            },
+          ],
+        },
       },
       {
         'object': 'block',
@@ -415,10 +409,10 @@ void main() async {
           'rich_text': [
             {
               'type': 'text',
-              'text': {'content': 'Phase 1 completed'}
-            }
-          ]
-        }
+              'text': {'content': 'Phase 1 completed'},
+            },
+          ],
+        },
       },
       {
         'object': 'block',
@@ -427,10 +421,10 @@ void main() async {
           'rich_text': [
             {
               'type': 'text',
-              'text': {'content': 'Phase 2 in progress'}
-            }
-          ]
-        }
+              'text': {'content': 'Phase 2 in progress'},
+            },
+          ],
+        },
       },
     ];
 
@@ -501,12 +495,16 @@ void main() async {
     print('Using PropertyBuilder:');
     final builderProperties = {
       'Title': PropertyBuilder.title('Project Planning Document').toJson(),
-      'Description':
-          PropertyBuilder.richText('This is a detailed project plan.').toJson(),
+      'Description': PropertyBuilder.richText(
+        'This is a detailed project plan.',
+      ).toJson(),
       'Priority': PropertyBuilder.number(5).toJson(),
       'Status': PropertyBuilder.select('In Progress').toJson(),
-      'Tags':
-          PropertyBuilder.multiSelect(['urgent', 'planning', 'q1']).toJson(),
+      'Tags': PropertyBuilder.multiSelect([
+        'urgent',
+        'planning',
+        'q1',
+      ]).toJson(),
       'Due Date': PropertyBuilder.date(
         start: DateTime.now().add(const Duration(days: 7)),
         end: DateTime.now().add(const Duration(days: 14)),
@@ -525,17 +523,16 @@ void main() async {
       BlockBuilder.bulletedListItem('Implementation phase').toJson(),
       BlockBuilder.toDo('Complete requirements gathering').checked().toJson(),
       BlockBuilder.toDo('Create wireframes').toJson(),
-      BlockBuilder.callout('Important: Review with stakeholders')
-          .icon('⚠️')
-          .color('yellow_background')
-          .toJson(),
+      BlockBuilder.callout(
+        'Important: Review with stakeholders',
+      ).icon('⚠️').color('yellow_background').toJson(),
       BlockBuilder.code(
         'function example() {\n  return "Hello";\n}',
         language: 'javascript',
       ).toJson(),
-      BlockBuilder.quote('Quality is not an act, it is a habit. - Aristotle')
-          .color('gray')
-          .toJson(),
+      BlockBuilder.quote(
+        'Quality is not an act, it is a habit. - Aristotle',
+      ).color('gray').toJson(),
       BlockBuilder.divider().toJson(),
     ];
     print('  ✅ ${builderBlocks.length} blocks created with BlockBuilder\n');
@@ -638,7 +635,8 @@ void main() async {
     print('\n💡 Key Takeaways:');
     print('   📝 Creating (OLD): Use raw Maps');
     print(
-        '   🚀 Creating (NEW): Use Builder APIs (PropertyBuilder, BlockBuilder)');
+      '   🚀 Creating (NEW): Use Builder APIs (PropertyBuilder, BlockBuilder)',
+    );
     print('   📖 Reading: Use PropertyValue models with .when()');
     print('   ✨ Pattern matching: Type-safe property extraction');
     print('\n💡 Next steps:');

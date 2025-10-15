@@ -14,9 +14,7 @@ import 'package:notion_dart_kit/notion_dart_kit.dart';
 void main() async {
   print('=== Pattern Matching Example ===\n');
 
-  final client = NotionClient(
-    token: 'YOUR_INTEGRATION_TOKEN',
-  );
+  final client = NotionClient(token: 'YOUR_INTEGRATION_TOKEN');
 
   const pageId = 'YOUR_PAGE_ID';
 
@@ -130,7 +128,8 @@ void main() async {
     print('📂 3. Parent Pattern Matching\n');
 
     print(
-        'Parent has 5 variants: database, page, workspace, block, dataSource\n');
+      'Parent has 5 variants: database, page, workspace, block, dataSource\n',
+    );
 
     print('Example code:');
     print('```dart');
@@ -214,7 +213,8 @@ void main() async {
     print('for (final block in blocks.results) {');
     print('  block.when(');
     print(
-        '    paragraph: (id, parent, createdTime, createdBy, lastEditedTime,');
+      '    paragraph: (id, parent, createdTime, createdBy, lastEditedTime,',
+    );
     print('        lastEditedBy, hasChildren, archived, inTrash, paragraph) {');
     print('      final text = paragraph.richText');
     print('          .map((rt) => rt.plainText)');
@@ -312,7 +312,8 @@ void main() async {
     print('  // Extract assignee (first person)');
     print("  final assignee = page.properties['Assignee']?.maybeWhen(");
     print(
-        '    people: (id, users) => users.isNotEmpty ? users[0].name : null,');
+      '    people: (id, users) => users.isNotEmpty ? users[0].name : null,',
+    );
     print('    orElse: () => null,');
     print('  );');
     print('');

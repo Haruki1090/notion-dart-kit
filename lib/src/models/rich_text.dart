@@ -155,22 +155,15 @@ class EquationContent with _$EquationContent {
 class MentionContent with _$MentionContent {
   const MentionContent._();
 
-  const factory MentionContent.database({
-    required String id,
-  }) = DatabaseMention;
+  const factory MentionContent.database({required String id}) = DatabaseMention;
 
-  const factory MentionContent.date({
-    required DateTime start,
-    DateTime? end,
-  }) = DateMention;
+  const factory MentionContent.date({required DateTime start, DateTime? end}) =
+      DateMention;
 
-  const factory MentionContent.linkPreview({
-    required String url,
-  }) = LinkPreviewMention;
+  const factory MentionContent.linkPreview({required String url}) =
+      LinkPreviewMention;
 
-  const factory MentionContent.page({
-    required String id,
-  }) = PageMention;
+  const factory MentionContent.page({required String id}) = PageMention;
 
   const factory MentionContent.templateMentionDate({
     required String value, // "today" or "now"
@@ -180,9 +173,7 @@ class MentionContent with _$MentionContent {
     required String value, // "me"
   }) = TemplateMentionUser;
 
-  const factory MentionContent.user({
-    required String id,
-  }) = UserMention;
+  const factory MentionContent.user({required String id}) = UserMention;
 
   factory MentionContent.fromJson(Map<String, dynamic> json) {
     final type = json['type'] as String;
@@ -227,44 +218,44 @@ class MentionContent with _$MentionContent {
   }
 
   Map<String, dynamic> toJson() => when(
-        database: (id) => {
-          'type': 'database',
-          'database': {'id': id},
-        },
-        date: (start, end) => {
-          'type': 'date',
-          'date': {
-            'start': start.toIso8601String(),
-            if (end != null) 'end': end.toIso8601String(),
-          },
-        },
-        linkPreview: (url) => {
-          'type': 'link_preview',
-          'link_preview': {'url': url},
-        },
-        page: (id) => {
-          'type': 'page',
-          'page': {'id': id},
-        },
-        templateMentionDate: (value) => {
-          'type': 'template_mention',
-          'template_mention': {
-            'type': 'template_mention_date',
-            'template_mention_date': value,
-          },
-        },
-        templateMentionUser: (value) => {
-          'type': 'template_mention',
-          'template_mention': {
-            'type': 'template_mention_user',
-            'template_mention_user': value,
-          },
-        },
-        user: (id) => {
-          'type': 'user',
-          'user': {'id': id},
-        },
-      );
+    database: (id) => {
+      'type': 'database',
+      'database': {'id': id},
+    },
+    date: (start, end) => {
+      'type': 'date',
+      'date': {
+        'start': start.toIso8601String(),
+        if (end != null) 'end': end.toIso8601String(),
+      },
+    },
+    linkPreview: (url) => {
+      'type': 'link_preview',
+      'link_preview': {'url': url},
+    },
+    page: (id) => {
+      'type': 'page',
+      'page': {'id': id},
+    },
+    templateMentionDate: (value) => {
+      'type': 'template_mention',
+      'template_mention': {
+        'type': 'template_mention_date',
+        'template_mention_date': value,
+      },
+    },
+    templateMentionUser: (value) => {
+      'type': 'template_mention',
+      'template_mention': {
+        'type': 'template_mention_user',
+        'template_mention_user': value,
+      },
+    },
+    user: (id) => {
+      'type': 'user',
+      'user': {'id': id},
+    },
+  );
 }
 
 /// Rich text object with support for text, mentions, and equations
@@ -295,8 +286,9 @@ class RichText with _$RichText {
 
   factory RichText.fromJson(Map<String, dynamic> json) {
     final type = json['type'] as String;
-    final annotations =
-        Annotations.fromJson(json['annotations'] as Map<String, dynamic>);
+    final annotations = Annotations.fromJson(
+      json['annotations'] as Map<String, dynamic>,
+    );
     final plainText = json['plain_text'] as String;
     final href = json['href'] as String?;
 
@@ -310,8 +302,9 @@ class RichText with _$RichText {
         );
       case 'mention':
         return RichText.mention(
-          mention:
-              MentionContent.fromJson(json['mention'] as Map<String, dynamic>),
+          mention: MentionContent.fromJson(
+            json['mention'] as Map<String, dynamic>,
+          ),
           annotations: annotations,
           plainText: plainText,
           href: href,
@@ -331,26 +324,26 @@ class RichText with _$RichText {
   }
 
   Map<String, dynamic> toJson() => when(
-        text: (text, annotations, plainText, href) => {
-          'type': 'text',
-          'text': text.toJson(),
-          'annotations': annotations.toJson(),
-          'plain_text': plainText,
-          if (href != null) 'href': href,
-        },
-        mention: (mention, annotations, plainText, href) => {
-          'type': 'mention',
-          'mention': mention.toJson(),
-          'annotations': annotations.toJson(),
-          'plain_text': plainText,
-          if (href != null) 'href': href,
-        },
-        equation: (equation, annotations, plainText, href) => {
-          'type': 'equation',
-          'equation': equation.toJson(),
-          'annotations': annotations.toJson(),
-          'plain_text': plainText,
-          if (href != null) 'href': href,
-        },
-      );
+    text: (text, annotations, plainText, href) => {
+      'type': 'text',
+      'text': text.toJson(),
+      'annotations': annotations.toJson(),
+      'plain_text': plainText,
+      if (href != null) 'href': href,
+    },
+    mention: (mention, annotations, plainText, href) => {
+      'type': 'mention',
+      'mention': mention.toJson(),
+      'annotations': annotations.toJson(),
+      'plain_text': plainText,
+      if (href != null) 'href': href,
+    },
+    equation: (equation, annotations, plainText, href) => {
+      'type': 'equation',
+      'equation': equation.toJson(),
+      'annotations': annotations.toJson(),
+      'plain_text': plainText,
+      if (href != null) 'href': href,
+    },
+  );
 }

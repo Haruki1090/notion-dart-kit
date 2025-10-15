@@ -173,16 +173,18 @@ void main() {
 
     group('Future Extensions', () {
       test('mapAsync transforms future success', () async {
-        final futureResult =
-            Future.value(const Result<int, String>.success(42));
+        final futureResult = Future.value(
+          const Result<int, String>.success(42),
+        );
         final mapped = await futureResult.mapAsync((value) => value * 2);
 
         expect(mapped.getOrNull(), 84);
       });
 
       test('flatMapAsync chains async operations', () async {
-        final futureResult =
-            Future.value(const Result<int, String>.success(42));
+        final futureResult = Future.value(
+          const Result<int, String>.success(42),
+        );
         final chained = await futureResult.flatMapAsync(
           (value) async => Result<String, String>.success('Value: $value'),
         );
@@ -191,21 +193,20 @@ void main() {
       });
 
       test('getOrThrowAsync returns value on success', () async {
-        final futureResult =
-            Future.value(const Result<int, String>.success(42));
+        final futureResult = Future.value(
+          const Result<int, String>.success(42),
+        );
         final value = await futureResult.getOrThrowAsync();
 
         expect(value, 42);
       });
 
       test('getOrThrowAsync throws on failure', () async {
-        final futureResult =
-            Future.value(const Result<int, String>.failure('Error'));
-
-        expect(
-          () async => futureResult.getOrThrowAsync(),
-          throwsA('Error'),
+        final futureResult = Future.value(
+          const Result<int, String>.failure('Error'),
         );
+
+        expect(() async => futureResult.getOrThrowAsync(), throwsA('Error'));
       });
     });
   });

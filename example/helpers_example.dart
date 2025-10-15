@@ -14,8 +14,10 @@ Future<void> main() async {
   final apiKey = const String.fromEnvironment('NOTION_API_KEY');
   if (apiKey.isEmpty) {
     print('Error: NOTION_API_KEY environment variable not set');
-    print('Usage: dart run example/helpers_example.dart '
-        '--dart-define=NOTION_API_KEY=your_key_here');
+    print(
+      'Usage: dart run example/helpers_example.dart '
+      '--dart-define=NOTION_API_KEY=your_key_here',
+    );
     return;
   }
 
@@ -286,10 +288,7 @@ Future<void> main() async {
       pages,
       includeArchived: false,
     );
-    final nonTrashed = BatchHelper.filterTrashed(
-      pages,
-      includeTrashed: false,
-    );
+    final nonTrashed = BatchHelper.filterTrashed(pages, includeTrashed: false);
     print('  - Total pages: ${pages.length}');
     print('  - Active (not archived): ${activePages.length}');
     print('  - Not in trash: ${nonTrashed.length}');

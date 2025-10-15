@@ -14,9 +14,7 @@ void main() async {
   print('🚀 notion_dart_kit Example\n');
 
   // Initialize the client with your integration token
-  final client = NotionClient(
-    token: 'YOUR_INTEGRATION_TOKEN',
-  );
+  final client = NotionClient(token: 'YOUR_INTEGRATION_TOKEN');
 
   try {
     // ========================================
@@ -31,9 +29,7 @@ void main() async {
     // 2. Search for Pages and Databases
     // ========================================
     print('🔍 Searching for pages and databases...');
-    final searchResults = await client.search.search(
-      pageSize: 5,
-    );
+    final searchResults = await client.search.search(pageSize: 5);
     print('✅ Found ${searchResults.results.length} items');
 
     for (final result in searchResults.results) {
@@ -87,7 +83,8 @@ void main() async {
     print('📦 Blocks API Example:');
     print('   To get block children:');
     print(
-        "   final children = await client.blocks.retrieveChildren('block_id');");
+      "   final children = await client.blocks.retrieveChildren('block_id');",
+    );
     print('');
     print('   To append new blocks:');
     print("   await client.blocks.appendChildren('block_id', [");

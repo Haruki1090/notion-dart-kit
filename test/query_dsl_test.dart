@@ -169,10 +169,7 @@ void main() {
     test('property ascending sort generates correct JSON', () {
       final sort = 'Due Date'.ascending();
 
-      expect(sort.toJson(), {
-        'property': 'Due Date',
-        'direction': 'ascending',
-      });
+      expect(sort.toJson(), {'property': 'Due Date', 'direction': 'ascending'});
     });
 
     test('property descending sort generates correct JSON', () {
@@ -212,18 +209,9 @@ void main() {
       final sortsJson = sorts.map((s) => s.toJson()).toList();
 
       expect(sortsJson, [
-        {
-          'property': 'Status',
-          'direction': 'ascending',
-        },
-        {
-          'property': 'Priority',
-          'direction': 'descending',
-        },
-        {
-          'property': 'Due Date',
-          'direction': 'ascending',
-        },
+        {'property': 'Status', 'direction': 'ascending'},
+        {'property': 'Priority', 'direction': 'descending'},
+        {'property': 'Due Date', 'direction': 'ascending'},
       ]);
     });
   });
@@ -238,10 +226,7 @@ void main() {
         'Priority'.property.number().greaterThan(2),
       ]);
 
-      final sorts = [
-        'Priority'.descending(),
-        'Due Date'.ascending(),
-      ];
+      final sorts = ['Priority'.descending(), 'Due Date'.ascending()];
 
       final queryJson = {
         'filter': filter.toJson(),
@@ -270,14 +255,8 @@ void main() {
           ],
         },
         'sorts': [
-          {
-            'property': 'Priority',
-            'direction': 'descending',
-          },
-          {
-            'property': 'Due Date',
-            'direction': 'ascending',
-          },
+          {'property': 'Priority', 'direction': 'descending'},
+          {'property': 'Due Date', 'direction': 'ascending'},
         ],
       });
     });

@@ -7,24 +7,18 @@ part 'parent.freezed.dart';
 class Parent with _$Parent {
   const Parent._();
 
-  const factory Parent.database({
-    required String databaseId,
-  }) = DatabaseParent;
+  const factory Parent.database({required String databaseId}) = DatabaseParent;
 
   const factory Parent.dataSource({
     required String dataSourceId,
     String? databaseId,
   }) = DataSourceParent;
 
-  const factory Parent.page({
-    required String pageId,
-  }) = PageParent;
+  const factory Parent.page({required String pageId}) = PageParent;
 
   const factory Parent.workspace() = WorkspaceParent;
 
-  const factory Parent.block({
-    required String blockId,
-  }) = BlockParent;
+  const factory Parent.block({required String blockId}) = BlockParent;
 
   factory Parent.fromJson(Map<String, dynamic> json) {
     final type = json['type'] as String;
@@ -49,26 +43,17 @@ class Parent with _$Parent {
   }
 
   Map<String, dynamic> toJson() => when(
-        database: (databaseId) => {
-          'type': 'database_id',
-          'database_id': databaseId,
-        },
-        dataSource: (dataSourceId, databaseId) => {
-          'type': 'data_source_id',
-          'data_source_id': dataSourceId,
-          if (databaseId != null) 'database_id': databaseId,
-        },
-        page: (pageId) => {
-          'type': 'page_id',
-          'page_id': pageId,
-        },
-        workspace: () => {
-          'type': 'workspace',
-          'workspace': true,
-        },
-        block: (blockId) => {
-          'type': 'block_id',
-          'block_id': blockId,
-        },
-      );
+    database: (databaseId) => {
+      'type': 'database_id',
+      'database_id': databaseId,
+    },
+    dataSource: (dataSourceId, databaseId) => {
+      'type': 'data_source_id',
+      'data_source_id': dataSourceId,
+      if (databaseId != null) 'database_id': databaseId,
+    },
+    page: (pageId) => {'type': 'page_id', 'page_id': pageId},
+    workspace: () => {'type': 'workspace', 'workspace': true},
+    block: (blockId) => {'type': 'block_id', 'block_id': blockId},
+  );
 }

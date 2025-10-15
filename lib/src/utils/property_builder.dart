@@ -79,8 +79,8 @@ class PropertyBuilder {
   /// {'Status': PropertyBuilder.select('In Progress')}
   /// ```
   static Map<String, dynamic> select(String name) => {
-        'select': {'name': name},
-      };
+    'select': {'name': name},
+  };
 
   /// Creates a multi-select property
   ///
@@ -89,8 +89,8 @@ class PropertyBuilder {
   /// {'Tags': PropertyBuilder.multiSelect(['urgent', 'bug'])}
   /// ```
   static Map<String, dynamic> multiSelect(List<String> names) => {
-        'multi_select': names.map((name) => {'name': name}).toList(),
-      };
+    'multi_select': names.map((name) => {'name': name}).toList(),
+  };
 
   /// Creates a status property
   ///
@@ -99,8 +99,8 @@ class PropertyBuilder {
   /// {'Status': PropertyBuilder.status('Done')}
   /// ```
   static Map<String, dynamic> status(String name) => {
-        'status': {'name': name},
-      };
+    'status': {'name': name},
+  };
 
   /// Creates a relation property
   ///
@@ -109,8 +109,8 @@ class PropertyBuilder {
   /// {'Related Pages': PropertyBuilder.relation(['page_id_1', 'page_id_2'])}
   /// ```
   static Map<String, dynamic> relation(List<String> pageIds) => {
-        'relation': pageIds.map((id) => {'id': id}).toList(),
-      };
+    'relation': pageIds.map((id) => {'id': id}).toList(),
+  };
 
   // ========================================
   // Complex Properties (builder return)
@@ -160,10 +160,7 @@ class PropertyBuilder {
   ///   end: DateTime.now().add(Duration(days: 7)),
   /// ).toJson()}
   /// ```
-  static DatePropertyBuilder date({
-    required DateTime start,
-    DateTime? end,
-  }) =>
+  static DatePropertyBuilder date({required DateTime start, DateTime? end}) =>
       DatePropertyBuilder(start: start, end: end);
 
   /// Creates a people property
@@ -173,8 +170,8 @@ class PropertyBuilder {
   /// {'Assignees': PropertyBuilder.people(['user_id_1', 'user_id_2'])}
   /// ```
   static Map<String, dynamic> people(List<String> userIds) => {
-        'people': userIds.map((id) => {'id': id}).toList(),
-      };
+    'people': userIds.map((id) => {'id': id}).toList(),
+  };
 
   /// Creates a files property
   ///
@@ -188,8 +185,9 @@ class PropertyBuilder {
   ///   }
   /// ])}
   /// ```
-  static Map<String, dynamic> files(List<Map<String, dynamic>> fileObjects) =>
-      {'files': fileObjects};
+  static Map<String, dynamic> files(List<Map<String, dynamic>> fileObjects) => {
+    'files': fileObjects,
+  };
 }
 
 // ========================================
@@ -384,10 +382,7 @@ class RichTextPropertyBuilder {
 
 /// Builder for date properties
 class DatePropertyBuilder {
-  DatePropertyBuilder({
-    required this.start,
-    this.end,
-  });
+  DatePropertyBuilder({required this.start, this.end});
 
   final DateTime start;
   final DateTime? end;
@@ -403,10 +398,10 @@ class DatePropertyBuilder {
 
   /// Converts the builder to a JSON-compatible Map
   Map<String, dynamic> toJson() => {
-        'date': {
-          'start': start.toIso8601String(),
-          if (end != null) 'end': end!.toIso8601String(),
-          if (_timeZone != null) 'time_zone': _timeZone,
-        },
-      };
+    'date': {
+      'start': start.toIso8601String(),
+      if (end != null) 'end': end!.toIso8601String(),
+      if (_timeZone != null) 'time_zone': _timeZone,
+    },
+  };
 }

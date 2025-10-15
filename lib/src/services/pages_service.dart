@@ -46,10 +46,7 @@ class PagesService {
   ///
   /// Returns the Page object.
   /// Throws [NotionException] if the request fails.
-  Future<Page> retrieve(
-    String pageId, {
-    List<String>? filterProperties,
-  }) async {
+  Future<Page> retrieve(String pageId, {List<String>? filterProperties}) async {
     final queryParams = <String, dynamic>{};
     if (filterProperties != null && filterProperties.isNotEmpty) {
       queryParams['filter_properties'] = filterProperties.join(',');

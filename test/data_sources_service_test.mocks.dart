@@ -33,13 +33,15 @@ class MockNotionHttpClient extends _i1.Mock implements _i2.NotionHttpClient {
   }
 
   @override
-  String get token => (super.noSuchMethod(
-        Invocation.getter(#token),
-        returnValue: _i3.dummyValue<String>(
-          this,
-          Invocation.getter(#token),
-        ),
-      ) as String);
+  String get token =>
+      (super.noSuchMethod(
+            Invocation.getter(#token),
+            returnValue: _i3.dummyValue<String>(
+              this,
+              Invocation.getter(#token),
+            ),
+          )
+          as String);
 
   @override
   _i4.Future<Map<String, dynamic>> get(
@@ -47,14 +49,16 @@ class MockNotionHttpClient extends _i1.Mock implements _i2.NotionHttpClient {
     Map<String, dynamic>? queryParameters,
   }) =>
       (super.noSuchMethod(
-        Invocation.method(
-          #get,
-          [path],
-          {#queryParameters: queryParameters},
-        ),
-        returnValue:
-            _i4.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
-      ) as _i4.Future<Map<String, dynamic>>);
+            Invocation.method(
+              #get,
+              [path],
+              {#queryParameters: queryParameters},
+            ),
+            returnValue: _i4.Future<Map<String, dynamic>>.value(
+              <String, dynamic>{},
+            ),
+          )
+          as _i4.Future<Map<String, dynamic>>);
 
   @override
   _i4.Future<Map<String, dynamic>> post(
@@ -62,14 +66,12 @@ class MockNotionHttpClient extends _i1.Mock implements _i2.NotionHttpClient {
     Map<String, dynamic>? data,
   }) =>
       (super.noSuchMethod(
-        Invocation.method(
-          #post,
-          [path],
-          {#data: data},
-        ),
-        returnValue:
-            _i4.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
-      ) as _i4.Future<Map<String, dynamic>>);
+            Invocation.method(#post, [path], {#data: data}),
+            returnValue: _i4.Future<Map<String, dynamic>>.value(
+              <String, dynamic>{},
+            ),
+          )
+          as _i4.Future<Map<String, dynamic>>);
 
   @override
   _i4.Future<Map<String, dynamic>> postMultipart(
@@ -77,14 +79,12 @@ class MockNotionHttpClient extends _i1.Mock implements _i2.NotionHttpClient {
     required _i5.FormData? formData,
   }) =>
       (super.noSuchMethod(
-        Invocation.method(
-          #postMultipart,
-          [path],
-          {#formData: formData},
-        ),
-        returnValue:
-            _i4.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
-      ) as _i4.Future<Map<String, dynamic>>);
+            Invocation.method(#postMultipart, [path], {#formData: formData}),
+            returnValue: _i4.Future<Map<String, dynamic>>.value(
+              <String, dynamic>{},
+            ),
+          )
+          as _i4.Future<Map<String, dynamic>>);
 
   @override
   _i4.Future<Map<String, dynamic>> patch(
@@ -92,31 +92,26 @@ class MockNotionHttpClient extends _i1.Mock implements _i2.NotionHttpClient {
     Map<String, dynamic>? data,
   }) =>
       (super.noSuchMethod(
-        Invocation.method(
-          #patch,
-          [path],
-          {#data: data},
-        ),
-        returnValue:
-            _i4.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
-      ) as _i4.Future<Map<String, dynamic>>);
+            Invocation.method(#patch, [path], {#data: data}),
+            returnValue: _i4.Future<Map<String, dynamic>>.value(
+              <String, dynamic>{},
+            ),
+          )
+          as _i4.Future<Map<String, dynamic>>);
 
   @override
-  _i4.Future<Map<String, dynamic>> delete(String? path) => (super.noSuchMethod(
-        Invocation.method(
-          #delete,
-          [path],
-        ),
-        returnValue:
-            _i4.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
-      ) as _i4.Future<Map<String, dynamic>>);
+  _i4.Future<Map<String, dynamic>> delete(String? path) =>
+      (super.noSuchMethod(
+            Invocation.method(#delete, [path]),
+            returnValue: _i4.Future<Map<String, dynamic>>.value(
+              <String, dynamic>{},
+            ),
+          )
+          as _i4.Future<Map<String, dynamic>>);
 
   @override
   void close() => super.noSuchMethod(
-        Invocation.method(
-          #close,
-          [],
-        ),
-        returnValueForMissingStub: null,
-      );
+    Invocation.method(#close, []),
+    returnValueForMissingStub: null,
+  );
 }

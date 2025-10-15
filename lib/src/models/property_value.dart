@@ -86,10 +86,8 @@ class PropertyValue with _$PropertyValue {
   }) = PhoneNumberProperty;
 
   /// URL property - URL string
-  const factory PropertyValue.url({
-    required String id,
-    required String? url,
-  }) = UrlProperty;
+  const factory PropertyValue.url({required String id, required String? url}) =
+      UrlProperty;
 
   /// Created time property - ISO 8601 datetime (read-only)
   const factory PropertyValue.createdTime({
@@ -243,21 +241,17 @@ class DateValue with _$DateValue {
 /// Formula result value (union type)
 @freezed
 class FormulaValue with _$FormulaValue {
-  const factory FormulaValue.boolean({
-    required bool boolean,
-  }) = BooleanFormulaValue;
+  const factory FormulaValue.boolean({required bool boolean}) =
+      BooleanFormulaValue;
 
-  const factory FormulaValue.date({
-    required DateValue? date,
-  }) = DateFormulaValue;
+  const factory FormulaValue.date({required DateValue? date}) =
+      DateFormulaValue;
 
-  const factory FormulaValue.number({
-    required double? number,
-  }) = NumberFormulaValue;
+  const factory FormulaValue.number({required double? number}) =
+      NumberFormulaValue;
 
-  const factory FormulaValue.string({
-    required String? string,
-  }) = StringFormulaValue;
+  const factory FormulaValue.string({required String? string}) =
+      StringFormulaValue;
 
   factory FormulaValue.fromJson(Map<String, dynamic> json) =>
       _$FormulaValueFromJson(json);
@@ -266,9 +260,7 @@ class FormulaValue with _$FormulaValue {
 /// Relation item - reference to another page
 @freezed
 class RelationItem with _$RelationItem {
-  const factory RelationItem({
-    required String id,
-  }) = _RelationItem;
+  const factory RelationItem({required String id}) = _RelationItem;
 
   factory RelationItem.fromJson(Map<String, dynamic> json) =>
       _$RelationItemFromJson(json);
@@ -277,21 +269,16 @@ class RelationItem with _$RelationItem {
 /// Rollup calculation result (union type)
 @freezed
 class RollupValue with _$RollupValue {
-  const factory RollupValue.number({
-    required double? number,
-  }) = NumberRollupValue;
+  const factory RollupValue.number({required double? number}) =
+      NumberRollupValue;
 
-  const factory RollupValue.date({
-    required DateValue? date,
-  }) = DateRollupValue;
+  const factory RollupValue.date({required DateValue? date}) = DateRollupValue;
 
-  const factory RollupValue.array({
-    required List<PropertyValue> array,
-  }) = ArrayRollupValue;
+  const factory RollupValue.array({required List<PropertyValue> array}) =
+      ArrayRollupValue;
 
-  const factory RollupValue.unsupported({
-    required Map<String, dynamic> data,
-  }) = UnsupportedRollupValue;
+  const factory RollupValue.unsupported({required Map<String, dynamic> data}) =
+      UnsupportedRollupValue;
 
   factory RollupValue.fromJson(Map<String, dynamic> json) =>
       _$RollupValueFromJson(json);
@@ -300,10 +287,7 @@ class RollupValue with _$RollupValue {
 /// Unique ID value
 @freezed
 class UniqueId with _$UniqueId {
-  const factory UniqueId({
-    required int number,
-    String? prefix,
-  }) = _UniqueId;
+  const factory UniqueId({required int number, String? prefix}) = _UniqueId;
 
   factory UniqueId.fromJson(Map<String, dynamic> json) =>
       _$UniqueIdFromJson(json);

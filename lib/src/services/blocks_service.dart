@@ -88,10 +88,7 @@ class BlocksService {
   /// - [data]: The block type-specific data to update
   ///
   /// Note: Some properties like 'type' and 'parent' cannot be changed.
-  Future<Block> update(
-    String blockId,
-    Map<String, dynamic> data,
-  ) async {
+  Future<Block> update(String blockId, Map<String, dynamic> data) async {
     final response = await _httpClient.patch('/blocks/$blockId', data: data);
     return Block.fromJson(response);
   }
@@ -129,13 +126,13 @@ class BlockChildren {
   });
 
   factory BlockChildren.fromJson(Map<String, dynamic> json) => BlockChildren(
-        object: json['object'] as String,
-        results: (json['results'] as List)
-            .map((e) => Block.fromJson(e as Map<String, dynamic>))
-            .toList(),
-        nextCursor: json['next_cursor'] as String?,
-        hasMore: json['has_more'] as bool,
-      );
+    object: json['object'] as String,
+    results: (json['results'] as List)
+        .map((e) => Block.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    nextCursor: json['next_cursor'] as String?,
+    hasMore: json['has_more'] as bool,
+  );
 
   /// The type of object returned (always "list").
   final String object;
@@ -150,9 +147,9 @@ class BlockChildren {
   final bool hasMore;
 
   Map<String, dynamic> toJson() => {
-        'object': object,
-        'results': results.map((e) => e.toJson()).toList(),
-        if (nextCursor != null) 'next_cursor': nextCursor,
-        'has_more': hasMore,
-      };
+    'object': object,
+    'results': results.map((e) => e.toJson()).toList(),
+    if (nextCursor != null) 'next_cursor': nextCursor,
+    'has_more': hasMore,
+  };
 }

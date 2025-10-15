@@ -14,9 +14,7 @@ import 'package:notion_dart_kit/notion_dart_kit.dart';
 void main() async {
   print('=== BlockBuilder Example ===\n');
 
-  final client = NotionClient(
-    token: 'YOUR_INTEGRATION_TOKEN',
-  );
+  final client = NotionClient(token: 'YOUR_INTEGRATION_TOKEN');
 
   const pageId = 'YOUR_PAGE_ID';
 
@@ -27,19 +25,22 @@ void main() async {
     print('📝 1. Text Blocks\n');
 
     // Simple paragraph
-    final paragraph =
-        BlockBuilder.paragraph('This is a simple paragraph.').toJson();
+    final paragraph = BlockBuilder.paragraph(
+      'This is a simple paragraph.',
+    ).toJson();
     print('Paragraph block created\n');
 
     // Paragraph with color
-    final coloredParagraph =
-        BlockBuilder.paragraph('Colored paragraph').color('blue').toJson();
+    final coloredParagraph = BlockBuilder.paragraph(
+      'Colored paragraph',
+    ).color('blue').toJson();
     print('Colored paragraph created\n');
 
     // Headings
     final heading1 = BlockBuilder.heading1('Chapter 1: Introduction').toJson();
-    final heading2 =
-        BlockBuilder.heading2('Section 1.1').color('blue').toJson();
+    final heading2 = BlockBuilder.heading2(
+      'Section 1.1',
+    ).color('blue').toJson();
     final heading3 = BlockBuilder.heading3('Subsection 1.1.1').toJson();
     print('Headings created\n');
 
@@ -50,10 +51,9 @@ void main() async {
     print('Quote created\n');
 
     // Callout
-    final callout = BlockBuilder.callout('Important information!')
-        .icon('💡')
-        .color('yellow_background')
-        .toJson();
+    final callout = BlockBuilder.callout(
+      'Important information!',
+    ).icon('💡').color('yellow_background').toJson();
     print('Callout created\n');
 
     // ========================================
@@ -100,10 +100,12 @@ void main() async {
     print('Toggle with content created\n');
 
     // Toggleable heading
-    final toggleableHeading =
-        BlockBuilder.heading2('Expandable Section').toggleable().children([
-      BlockBuilder.paragraph('Hidden content goes here.').toJson(),
-    ]).toJson();
+    final toggleableHeading = BlockBuilder.heading2('Expandable Section')
+        .toggleable()
+        .children([
+          BlockBuilder.paragraph('Hidden content goes here.').toJson(),
+        ])
+        .toJson();
     print('Toggleable heading created\n');
 
     // ========================================
@@ -152,9 +154,9 @@ void main() async {
     print('Image block created\n');
 
     // Image with caption
-    final imageWithCaption = BlockBuilder.image('https://example.com/photo.jpg')
-        .caption('A beautiful photo')
-        .toJson();
+    final imageWithCaption = BlockBuilder.image(
+      'https://example.com/photo.jpg',
+    ).caption('A beautiful photo').toJson();
     print('Image with caption created\n');
 
     // Video
@@ -175,14 +177,15 @@ void main() async {
     print('🚀 7. Advanced Blocks\n');
 
     // Bookmark
-    final bookmark = BlockBuilder.bookmark('https://notion.so')
-        .caption('Notion website')
-        .toJson();
+    final bookmark = BlockBuilder.bookmark(
+      'https://notion.so',
+    ).caption('Notion website').toJson();
     print('Bookmark created\n');
 
     // Embed
-    final embed =
-        BlockBuilder.embed('https://www.youtube.com/watch?v=example').toJson();
+    final embed = BlockBuilder.embed(
+      'https://www.youtube.com/watch?v=example',
+    ).toJson();
     print('Embed created\n');
 
     // Equation
@@ -246,17 +249,17 @@ void main() async {
 
       // Section 1
       BlockBuilder.heading2('Getting Started').toJson(),
-      BlockBuilder.paragraph('Follow these steps to set up the project:')
-          .toJson(),
+      BlockBuilder.paragraph(
+        'Follow these steps to set up the project:',
+      ).toJson(),
       BlockBuilder.numberedListItem('Clone the repository').toJson(),
       BlockBuilder.numberedListItem('Install dependencies').toJson(),
       BlockBuilder.numberedListItem('Run the development server').toJson(),
 
       // Callout
-      BlockBuilder.callout('Make sure you have Node.js installed!')
-          .icon('⚠️')
-          .color('yellow_background')
-          .toJson(),
+      BlockBuilder.callout(
+        'Make sure you have Node.js installed!',
+      ).icon('⚠️').color('yellow_background').toJson(),
 
       // Section 2
       BlockBuilder.heading2('Installation').toJson(),
@@ -301,8 +304,9 @@ void main() async {
     // Prepare simple blocks to append
     final blocksToAppend = [
       BlockBuilder.heading1('New Section').toJson(),
-      BlockBuilder.paragraph('This content was added using BlockBuilder.')
-          .toJson(),
+      BlockBuilder.paragraph(
+        'This content was added using BlockBuilder.',
+      ).toJson(),
       BlockBuilder.bulletedListItem('First point').toJson(),
       BlockBuilder.bulletedListItem('Second point').toJson(),
       BlockBuilder.callout('Created with BlockBuilder!').icon('🎉').toJson(),
@@ -325,20 +329,21 @@ void main() async {
         .icon('🗓️')
         .color('blue_background')
         .children([
-      BlockBuilder.paragraph()
-          .addText('Our ')
-          .addRichText(RichTextBuilder.text('Q1 2025').bold().toJson())
-          .addText(' milestones:')
-          .toJson(),
-      BlockBuilder.toDo('Complete MVP').checked().toJson(),
-      BlockBuilder.toDo('Launch beta version').toJson(),
-      BlockBuilder.toDo('Gather user feedback').toJson(),
-      BlockBuilder.toggle('Detailed Timeline').children([
-        BlockBuilder.bulletedListItem('January: Development').toJson(),
-        BlockBuilder.bulletedListItem('February: Testing').toJson(),
-        BlockBuilder.bulletedListItem('March: Launch').toJson(),
-      ]).toJson(),
-    ]).toJson();
+          BlockBuilder.paragraph()
+              .addText('Our ')
+              .addRichText(RichTextBuilder.text('Q1 2025').bold().toJson())
+              .addText(' milestones:')
+              .toJson(),
+          BlockBuilder.toDo('Complete MVP').checked().toJson(),
+          BlockBuilder.toDo('Launch beta version').toJson(),
+          BlockBuilder.toDo('Gather user feedback').toJson(),
+          BlockBuilder.toggle('Detailed Timeline').children([
+            BlockBuilder.bulletedListItem('January: Development').toJson(),
+            BlockBuilder.bulletedListItem('February: Testing').toJson(),
+            BlockBuilder.bulletedListItem('March: Launch').toJson(),
+          ]).toJson(),
+        ])
+        .toJson();
 
     print('Complex nested structure created\n');
 

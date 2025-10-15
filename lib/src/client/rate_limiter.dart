@@ -24,9 +24,9 @@ class RateLimiter {
     this.maxRetries = 3,
     this.initialBackoffMs = 1000,
     this.maxBackoffMs = 32000,
-  })  : _bucketCapacity = maxRequestsPerSecond,
-        _availableTokens = maxRequestsPerSecond,
-        _lastRefillTime = DateTime.now();
+  }) : _bucketCapacity = maxRequestsPerSecond,
+       _availableTokens = maxRequestsPerSecond,
+       _lastRefillTime = DateTime.now();
 
   /// Maximum requests per second (Notion API limit)
   final int maxRequestsPerSecond;
@@ -140,8 +140,10 @@ class RateLimiter {
     // Refill tokens for each elapsed second
     if (elapsed.inSeconds >= 1) {
       final tokensToAdd = elapsed.inSeconds * maxRequestsPerSecond;
-      _availableTokens =
-          (_availableTokens + tokensToAdd).clamp(0, _bucketCapacity);
+      _availableTokens = (_availableTokens + tokensToAdd).clamp(
+        0,
+        _bucketCapacity,
+      );
       _lastRefillTime = now;
     }
   }

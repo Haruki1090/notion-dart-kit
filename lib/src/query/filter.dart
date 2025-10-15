@@ -91,17 +91,10 @@ sealed class Filter with _$Filter {
 
   /// Converts this filter to a JSON map for the Notion API.
   Map<String, dynamic> toJson() => when(
-        and: (filters) => {
-          'and': filters.map((f) => f.toJson()).toList(),
-        },
-        or: (filters) => {
-          'or': filters.map((f) => f.toJson()).toList(),
-        },
-        property: (name, filter) => {
-          'property': name,
-          ...filter.toJson(),
-        },
-      );
+    and: (filters) => {'and': filters.map((f) => f.toJson()).toList()},
+    or: (filters) => {'or': filters.map((f) => f.toJson()).toList()},
+    property: (name, filter) => {'property': name, ...filter.toJson()},
+  );
 }
 
 /// Type-safe property filter conditions for different property types.
@@ -333,166 +326,166 @@ sealed class PropertyFilter with _$PropertyFilter {
 
   /// Converts this property filter to a JSON map for the Notion API.
   Map<String, dynamic> toJson() => when(
-        // テキスト系
-        textEquals: (value) => {
-          'rich_text': {'equals': value},
-        },
-        textDoesNotEqual: (value) => {
-          'rich_text': {'does_not_equal': value},
-        },
-        textContains: (value) => {
-          'rich_text': {'contains': value},
-        },
-        textDoesNotContain: (value) => {
-          'rich_text': {'does_not_contain': value},
-        },
-        textStartsWith: (value) => {
-          'rich_text': {'starts_with': value},
-        },
-        textEndsWith: (value) => {
-          'rich_text': {'ends_with': value},
-        },
-        textIsEmpty: () => {
-          'rich_text': {'is_empty': true},
-        },
-        textIsNotEmpty: () => {
-          'rich_text': {'is_not_empty': true},
-        },
+    // テキスト系
+    textEquals: (value) => {
+      'rich_text': {'equals': value},
+    },
+    textDoesNotEqual: (value) => {
+      'rich_text': {'does_not_equal': value},
+    },
+    textContains: (value) => {
+      'rich_text': {'contains': value},
+    },
+    textDoesNotContain: (value) => {
+      'rich_text': {'does_not_contain': value},
+    },
+    textStartsWith: (value) => {
+      'rich_text': {'starts_with': value},
+    },
+    textEndsWith: (value) => {
+      'rich_text': {'ends_with': value},
+    },
+    textIsEmpty: () => {
+      'rich_text': {'is_empty': true},
+    },
+    textIsNotEmpty: () => {
+      'rich_text': {'is_not_empty': true},
+    },
 
-        // 数値系
-        numberEquals: (value) => {
-          'number': {'equals': value},
-        },
-        numberDoesNotEqual: (value) => {
-          'number': {'does_not_equal': value},
-        },
-        numberGreaterThan: (value) => {
-          'number': {'greater_than': value},
-        },
-        numberLessThan: (value) => {
-          'number': {'less_than': value},
-        },
-        numberGreaterThanOrEqual: (value) => {
-          'number': {'greater_than_or_equal_to': value},
-        },
-        numberLessThanOrEqual: (value) => {
-          'number': {'less_than_or_equal_to': value},
-        },
-        numberIsEmpty: () => {
-          'number': {'is_empty': true},
-        },
-        numberIsNotEmpty: () => {
-          'number': {'is_not_empty': true},
-        },
+    // 数値系
+    numberEquals: (value) => {
+      'number': {'equals': value},
+    },
+    numberDoesNotEqual: (value) => {
+      'number': {'does_not_equal': value},
+    },
+    numberGreaterThan: (value) => {
+      'number': {'greater_than': value},
+    },
+    numberLessThan: (value) => {
+      'number': {'less_than': value},
+    },
+    numberGreaterThanOrEqual: (value) => {
+      'number': {'greater_than_or_equal_to': value},
+    },
+    numberLessThanOrEqual: (value) => {
+      'number': {'less_than_or_equal_to': value},
+    },
+    numberIsEmpty: () => {
+      'number': {'is_empty': true},
+    },
+    numberIsNotEmpty: () => {
+      'number': {'is_not_empty': true},
+    },
 
-        // チェックボックス
-        checkboxEquals: (value) => {
-          'checkbox': {'equals': value},
-        },
+    // チェックボックス
+    checkboxEquals: (value) => {
+      'checkbox': {'equals': value},
+    },
 
-        // Select
-        selectEquals: (value) => {
-          'select': {'equals': value},
-        },
-        selectDoesNotEqual: (value) => {
-          'select': {'does_not_equal': value},
-        },
-        selectIsEmpty: () => {
-          'select': {'is_empty': true},
-        },
-        selectIsNotEmpty: () => {
-          'select': {'is_not_empty': true},
-        },
+    // Select
+    selectEquals: (value) => {
+      'select': {'equals': value},
+    },
+    selectDoesNotEqual: (value) => {
+      'select': {'does_not_equal': value},
+    },
+    selectIsEmpty: () => {
+      'select': {'is_empty': true},
+    },
+    selectIsNotEmpty: () => {
+      'select': {'is_not_empty': true},
+    },
 
-        // MultiSelect
-        multiSelectContains: (value) => {
-          'multi_select': {'contains': value},
-        },
-        multiSelectDoesNotContain: (value) => {
-          'multi_select': {'does_not_contain': value},
-        },
-        multiSelectIsEmpty: () => {
-          'multi_select': {'is_empty': true},
-        },
-        multiSelectIsNotEmpty: () => {
-          'multi_select': {'is_not_empty': true},
-        },
+    // MultiSelect
+    multiSelectContains: (value) => {
+      'multi_select': {'contains': value},
+    },
+    multiSelectDoesNotContain: (value) => {
+      'multi_select': {'does_not_contain': value},
+    },
+    multiSelectIsEmpty: () => {
+      'multi_select': {'is_empty': true},
+    },
+    multiSelectIsNotEmpty: () => {
+      'multi_select': {'is_not_empty': true},
+    },
 
-        // 日付
-        dateEquals: (date) => {
-          'date': {'equals': date},
-        },
-        dateBefore: (date) => {
-          'date': {'before': date},
-        },
-        dateAfter: (date) => {
-          'date': {'after': date},
-        },
-        dateOnOrBefore: (date) => {
-          'date': {'on_or_before': date},
-        },
-        dateOnOrAfter: (date) => {
-          'date': {'on_or_after': date},
-        },
-        dateIsEmpty: () => {
-          'date': {'is_empty': true},
-        },
-        dateIsNotEmpty: () => {
-          'date': {'is_not_empty': true},
-        },
-        datePastWeek: () => {
-          'date': {'past_week': {}},
-        },
-        datePastMonth: () => {
-          'date': {'past_month': {}},
-        },
-        datePastYear: () => {
-          'date': {'past_year': {}},
-        },
-        dateNextWeek: () => {
-          'date': {'next_week': {}},
-        },
-        dateNextMonth: () => {
-          'date': {'next_month': {}},
-        },
-        dateNextYear: () => {
-          'date': {'next_year': {}},
-        },
+    // 日付
+    dateEquals: (date) => {
+      'date': {'equals': date},
+    },
+    dateBefore: (date) => {
+      'date': {'before': date},
+    },
+    dateAfter: (date) => {
+      'date': {'after': date},
+    },
+    dateOnOrBefore: (date) => {
+      'date': {'on_or_before': date},
+    },
+    dateOnOrAfter: (date) => {
+      'date': {'on_or_after': date},
+    },
+    dateIsEmpty: () => {
+      'date': {'is_empty': true},
+    },
+    dateIsNotEmpty: () => {
+      'date': {'is_not_empty': true},
+    },
+    datePastWeek: () => {
+      'date': {'past_week': {}},
+    },
+    datePastMonth: () => {
+      'date': {'past_month': {}},
+    },
+    datePastYear: () => {
+      'date': {'past_year': {}},
+    },
+    dateNextWeek: () => {
+      'date': {'next_week': {}},
+    },
+    dateNextMonth: () => {
+      'date': {'next_month': {}},
+    },
+    dateNextYear: () => {
+      'date': {'next_year': {}},
+    },
 
-        // People
-        peopleContains: (userId) => {
-          'people': {'contains': userId},
-        },
-        peopleDoesNotContain: (userId) => {
-          'people': {'does_not_contain': userId},
-        },
-        peopleIsEmpty: () => {
-          'people': {'is_empty': true},
-        },
-        peopleIsNotEmpty: () => {
-          'people': {'is_not_empty': true},
-        },
+    // People
+    peopleContains: (userId) => {
+      'people': {'contains': userId},
+    },
+    peopleDoesNotContain: (userId) => {
+      'people': {'does_not_contain': userId},
+    },
+    peopleIsEmpty: () => {
+      'people': {'is_empty': true},
+    },
+    peopleIsNotEmpty: () => {
+      'people': {'is_not_empty': true},
+    },
 
-        // Files
-        filesIsEmpty: () => {
-          'files': {'is_empty': true},
-        },
-        filesIsNotEmpty: () => {
-          'files': {'is_not_empty': true},
-        },
+    // Files
+    filesIsEmpty: () => {
+      'files': {'is_empty': true},
+    },
+    filesIsNotEmpty: () => {
+      'files': {'is_not_empty': true},
+    },
 
-        // Relation
-        relationContains: (pageId) => {
-          'relation': {'contains': pageId},
-        },
-        relationDoesNotContain: (pageId) => {
-          'relation': {'does_not_contain': pageId},
-        },
-        relationIsEmpty: () => {
-          'relation': {'is_empty': true},
-        },
-        relationIsNotEmpty: () => {
-          'relation': {'is_not_empty': true},
-        },
-      );
+    // Relation
+    relationContains: (pageId) => {
+      'relation': {'contains': pageId},
+    },
+    relationDoesNotContain: (pageId) => {
+      'relation': {'does_not_contain': pageId},
+    },
+    relationIsEmpty: () => {
+      'relation': {'is_empty': true},
+    },
+    relationIsNotEmpty: () => {
+      'relation': {'is_not_empty': true},
+    },
+  );
 }

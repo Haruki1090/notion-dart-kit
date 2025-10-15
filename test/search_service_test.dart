@@ -62,9 +62,7 @@ void main() {
             plainText: 'Test DB',
           ),
         ],
-        dataSources: [
-          const DataSourceRef(id: 'ds123', name: 'Test DB'),
-        ],
+        dataSources: [const DataSourceRef(id: 'ds123', name: 'Test DB')],
         archived: false,
         inTrash: false,
         isInline: false,

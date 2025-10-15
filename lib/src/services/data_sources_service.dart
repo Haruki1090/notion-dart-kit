@@ -23,10 +23,7 @@ class DataSourcesService {
   }) async {
     final body = <String, dynamic>{
       'title': title,
-      'parent': {
-        'type': 'database_id',
-        'database_id': databaseId,
-      },
+      'parent': {'type': 'database_id', 'database_id': databaseId},
       if (properties != null) 'properties': properties,
     };
 
@@ -60,8 +57,10 @@ class DataSourcesService {
       if (archived != null) 'archived': archived,
     };
 
-    final response =
-        await _httpClient.patch('/data_sources/$dataSourceId', data: body);
+    final response = await _httpClient.patch(
+      '/data_sources/$dataSourceId',
+      data: body,
+    );
     return DataSource.fromJson(response);
   }
 

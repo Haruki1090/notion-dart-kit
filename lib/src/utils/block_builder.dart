@@ -146,10 +146,7 @@ class BlockBuilder {
   ///   language: 'python',
   /// ).toJson();
   /// ```
-  static CodeBlockBuilder code(
-    String code, {
-    String language = 'plain text',
-  }) =>
+  static CodeBlockBuilder code(String code, {String language = 'plain text'}) =>
       CodeBlockBuilder(code, language);
 
   // ========================================
@@ -267,13 +264,12 @@ class BlockBuilder {
     int? tableWidth,
     bool hasColumnHeader = false,
     bool hasRowHeader = false,
-  }) =>
-      TableBlockBuilder(
-        rows: rows,
-        tableWidth: tableWidth,
-        hasColumnHeader: hasColumnHeader,
-        hasRowHeader: hasRowHeader,
-      );
+  }) => TableBlockBuilder(
+    rows: rows,
+    tableWidth: tableWidth,
+    hasColumnHeader: hasColumnHeader,
+    hasRowHeader: hasRowHeader,
+  );
 }
 
 // ========================================
@@ -318,14 +314,14 @@ class ParagraphBlockBuilder {
 
   /// Converts the builder to a JSON-compatible Map
   Map<String, dynamic> toJson() => {
-        'object': 'block',
-        'type': 'paragraph',
-        'paragraph': {
-          'rich_text': _richText,
-          'color': _color,
-          if (_children.isNotEmpty) 'children': _children,
-        },
-      };
+    'object': 'block',
+    'type': 'paragraph',
+    'paragraph': {
+      'rich_text': _richText,
+      'color': _color,
+      if (_children.isNotEmpty) 'children': _children,
+    },
+  };
 }
 
 /// Builder for heading blocks (1, 2, 3)
@@ -363,9 +359,7 @@ class HeadingBlockBuilder {
       'object': 'block',
       'type': type,
       type: {
-        'rich_text': [
-          RichTextBuilder.text(_text).toJson(),
-        ],
+        'rich_text': [RichTextBuilder.text(_text).toJson()],
         'color': _color,
         'is_toggleable': _isToggleable,
         if (_children.isNotEmpty) 'children': _children,
@@ -396,16 +390,14 @@ class QuoteBlockBuilder {
 
   /// Converts the builder to a JSON-compatible Map
   Map<String, dynamic> toJson() => {
-        'object': 'block',
-        'type': 'quote',
-        'quote': {
-          'rich_text': [
-            RichTextBuilder.text(_text).toJson(),
-          ],
-          'color': _color,
-          if (_children.isNotEmpty) 'children': _children,
-        },
-      };
+    'object': 'block',
+    'type': 'quote',
+    'quote': {
+      'rich_text': [RichTextBuilder.text(_text).toJson()],
+      'color': _color,
+      if (_children.isNotEmpty) 'children': _children,
+    },
+  };
 }
 
 /// Builder for callout blocks
@@ -437,20 +429,15 @@ class CalloutBlockBuilder {
 
   /// Converts the builder to a JSON-compatible Map
   Map<String, dynamic> toJson() => {
-        'object': 'block',
-        'type': 'callout',
-        'callout': {
-          'rich_text': [
-            RichTextBuilder.text(_text).toJson(),
-          ],
-          'icon': {
-            'type': 'emoji',
-            'emoji': _icon ?? '💡',
-          },
-          'color': _color,
-          if (_children.isNotEmpty) 'children': _children,
-        },
-      };
+    'object': 'block',
+    'type': 'callout',
+    'callout': {
+      'rich_text': [RichTextBuilder.text(_text).toJson()],
+      'icon': {'type': 'emoji', 'emoji': _icon ?? '💡'},
+      'color': _color,
+      if (_children.isNotEmpty) 'children': _children,
+    },
+  };
 }
 
 /// Builder for list item blocks (bulleted and numbered)
@@ -476,16 +463,14 @@ class ListItemBlockBuilder {
 
   /// Converts the builder to a JSON-compatible Map
   Map<String, dynamic> toJson() => {
-        'object': 'block',
-        'type': _type,
-        _type: {
-          'rich_text': [
-            RichTextBuilder.text(_text).toJson(),
-          ],
-          'color': _color,
-          if (_children.isNotEmpty) 'children': _children,
-        },
-      };
+    'object': 'block',
+    'type': _type,
+    _type: {
+      'rich_text': [RichTextBuilder.text(_text).toJson()],
+      'color': _color,
+      if (_children.isNotEmpty) 'children': _children,
+    },
+  };
 }
 
 /// Builder for to-do blocks
@@ -517,17 +502,15 @@ class ToDoBlockBuilder {
 
   /// Converts the builder to a JSON-compatible Map
   Map<String, dynamic> toJson() => {
-        'object': 'block',
-        'type': 'to_do',
-        'to_do': {
-          'rich_text': [
-            RichTextBuilder.text(_text).toJson(),
-          ],
-          'checked': _checked,
-          'color': _color,
-          if (_children.isNotEmpty) 'children': _children,
-        },
-      };
+    'object': 'block',
+    'type': 'to_do',
+    'to_do': {
+      'rich_text': [RichTextBuilder.text(_text).toJson()],
+      'checked': _checked,
+      'color': _color,
+      if (_children.isNotEmpty) 'children': _children,
+    },
+  };
 }
 
 /// Builder for toggle blocks
@@ -552,16 +535,14 @@ class ToggleBlockBuilder {
 
   /// Converts the builder to a JSON-compatible Map
   Map<String, dynamic> toJson() => {
-        'object': 'block',
-        'type': 'toggle',
-        'toggle': {
-          'rich_text': [
-            RichTextBuilder.text(_text).toJson(),
-          ],
-          'color': _color,
-          if (_children.isNotEmpty) 'children': _children,
-        },
-      };
+    'object': 'block',
+    'type': 'toggle',
+    'toggle': {
+      'rich_text': [RichTextBuilder.text(_text).toJson()],
+      'color': _color,
+      if (_children.isNotEmpty) 'children': _children,
+    },
+  };
 }
 
 /// Builder for code blocks
@@ -580,26 +561,24 @@ class CodeBlockBuilder {
 
   /// Converts the builder to a JSON-compatible Map
   Map<String, dynamic> toJson() => {
-        'object': 'block',
-        'type': 'code',
-        'code': {
-          'rich_text': [
-            RichTextBuilder.text(_code).toJson(),
-          ],
-          'language': _language,
-          if (_caption.isNotEmpty) 'caption': _caption,
-        },
-      };
+    'object': 'block',
+    'type': 'code',
+    'code': {
+      'rich_text': [RichTextBuilder.text(_code).toJson()],
+      'language': _language,
+      if (_caption.isNotEmpty) 'caption': _caption,
+    },
+  };
 }
 
 /// Builder for divider blocks
 class DividerBlockBuilder {
   /// Converts the builder to a JSON-compatible Map
   Map<String, dynamic> toJson() => {
-        'object': 'block',
-        'type': 'divider',
-        'divider': {},
-      };
+    'object': 'block',
+    'type': 'divider',
+    'divider': {},
+  };
 }
 
 /// Builder for table of contents blocks
@@ -614,22 +593,20 @@ class TableOfContentsBlockBuilder {
 
   /// Converts the builder to a JSON-compatible Map
   Map<String, dynamic> toJson() => {
-        'object': 'block',
-        'type': 'table_of_contents',
-        'table_of_contents': {
-          'color': _color,
-        },
-      };
+    'object': 'block',
+    'type': 'table_of_contents',
+    'table_of_contents': {'color': _color},
+  };
 }
 
 /// Builder for breadcrumb blocks
 class BreadcrumbBlockBuilder {
   /// Converts the builder to a JSON-compatible Map
   Map<String, dynamic> toJson() => {
-        'object': 'block',
-        'type': 'breadcrumb',
-        'breadcrumb': {},
-      };
+    'object': 'block',
+    'type': 'breadcrumb',
+    'breadcrumb': {},
+  };
 }
 
 /// Builder for media blocks (image, video, file, pdf)
@@ -648,16 +625,14 @@ class MediaBlockBuilder {
 
   /// Converts the builder to a JSON-compatible Map
   Map<String, dynamic> toJson() => {
-        'object': 'block',
-        'type': _type,
-        _type: {
-          'type': 'external',
-          'external': {
-            'url': _url,
-          },
-          if (_caption.isNotEmpty) 'caption': _caption,
-        },
-      };
+    'object': 'block',
+    'type': _type,
+    _type: {
+      'type': 'external',
+      'external': {'url': _url},
+      if (_caption.isNotEmpty) 'caption': _caption,
+    },
+  };
 }
 
 /// Builder for bookmark blocks
@@ -675,13 +650,10 @@ class BookmarkBlockBuilder {
 
   /// Converts the builder to a JSON-compatible Map
   Map<String, dynamic> toJson() => {
-        'object': 'block',
-        'type': 'bookmark',
-        'bookmark': {
-          'url': _url,
-          if (_caption.isNotEmpty) 'caption': _caption,
-        },
-      };
+    'object': 'block',
+    'type': 'bookmark',
+    'bookmark': {'url': _url, if (_caption.isNotEmpty) 'caption': _caption},
+  };
 }
 
 /// Builder for embed blocks
@@ -692,12 +664,10 @@ class EmbedBlockBuilder {
 
   /// Converts the builder to a JSON-compatible Map
   Map<String, dynamic> toJson() => {
-        'object': 'block',
-        'type': 'embed',
-        'embed': {
-          'url': _url,
-        },
-      };
+    'object': 'block',
+    'type': 'embed',
+    'embed': {'url': _url},
+  };
 }
 
 /// Builder for equation blocks
@@ -708,12 +678,10 @@ class EquationBlockBuilder {
 
   /// Converts the builder to a JSON-compatible Map
   Map<String, dynamic> toJson() => {
-        'object': 'block',
-        'type': 'equation',
-        'equation': {
-          'expression': _expression,
-        },
-      };
+    'object': 'block',
+    'type': 'equation',
+    'equation': {'expression': _expression},
+  };
 }
 
 /// Builder for table blocks

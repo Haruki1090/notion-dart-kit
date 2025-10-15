@@ -52,15 +52,15 @@ sealed class Sort with _$Sort {
 
   /// Converts this sort to a JSON map for the Notion API.
   Map<String, dynamic> toJson() => when(
-        property: (name, direction) => {
-          'property': name,
-          'direction': direction.value,
-        },
-        timestamp: (type, direction) => {
-          'timestamp': type.value,
-          'direction': direction.value,
-        },
-      );
+    property: (name, direction) => {
+      'property': name,
+      'direction': direction.value,
+    },
+    timestamp: (type, direction) => {
+      'timestamp': type.value,
+      'direction': direction.value,
+    },
+  );
 }
 
 /// Sort direction for database queries.
@@ -104,40 +104,36 @@ enum TimestampType {
 /// ```
 class SortBuilder {
   /// Creates a sort for a property in ascending order.
-  static Sort ascending(String propertyName) => Sort.property(
-        name: propertyName,
-        direction: SortDirection.ascending,
-      );
+  static Sort ascending(String propertyName) =>
+      Sort.property(name: propertyName, direction: SortDirection.ascending);
 
   /// Creates a sort for a property in descending order.
-  static Sort descending(String propertyName) => Sort.property(
-        name: propertyName,
-        direction: SortDirection.descending,
-      );
+  static Sort descending(String propertyName) =>
+      Sort.property(name: propertyName, direction: SortDirection.descending);
 
   /// Sorts by creation time in ascending order (oldest first).
   static Sort createdTimeAscending() => const Sort.timestamp(
-        type: TimestampType.createdTime,
-        direction: SortDirection.ascending,
-      );
+    type: TimestampType.createdTime,
+    direction: SortDirection.ascending,
+  );
 
   /// Sorts by creation time in descending order (newest first).
   static Sort createdTimeDescending() => const Sort.timestamp(
-        type: TimestampType.createdTime,
-        direction: SortDirection.descending,
-      );
+    type: TimestampType.createdTime,
+    direction: SortDirection.descending,
+  );
 
   /// Sorts by last edited time in ascending order (oldest first).
   static Sort lastEditedTimeAscending() => const Sort.timestamp(
-        type: TimestampType.lastEditedTime,
-        direction: SortDirection.ascending,
-      );
+    type: TimestampType.lastEditedTime,
+    direction: SortDirection.ascending,
+  );
 
   /// Sorts by last edited time in descending order (newest first).
   static Sort lastEditedTimeDescending() => const Sort.timestamp(
-        type: TimestampType.lastEditedTime,
-        direction: SortDirection.descending,
-      );
+    type: TimestampType.lastEditedTime,
+    direction: SortDirection.descending,
+  );
 }
 
 /// Extension on [String] to create sort conditions.

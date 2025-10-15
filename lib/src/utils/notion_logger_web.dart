@@ -2,50 +2,53 @@
 ///
 /// Webプラットフォームでは`dart:io`が使用できないため、
 /// コンソール出力のみを行うシンプルなロガーを提供します。
+library;
 
 /// Web用のログレベル（元のloggerパッケージのLevelと互換性を保つ）
-class Level {
-  static const Level debug = Level._('DEBUG', 500);
-  static const Level info = Level._('INFO', 800);
-  static const Level warning = Level._('WARNING', 900);
-  static const Level error = Level._('ERROR', 1000);
+enum Level {
+  debug('DEBUG', 500),
+  info('INFO', 800),
+  warning('WARNING', 900),
+  error('ERROR', 1000);
 
-  final String name;
+  const Level(this.levelName, this.value);
+
+  final String levelName;
   final int value;
 
-  const Level._(this.name, this.value);
-
   @override
-  String toString() => name;
+  String toString() => levelName;
 }
 
 /// Web用のログフィルター
+// ignore: one_member_abstracts
 abstract class LogFilter {
   bool shouldLog(LogEvent event);
 }
 
 /// Web用のログイベント
 class LogEvent {
+  LogEvent(this.level, this.message, [this.error, this.stackTrace]);
+
   final Level level;
   final String message;
   final dynamic error;
   final StackTrace? stackTrace;
-
-  LogEvent(this.level, this.message, [this.error, this.stackTrace]);
 }
 
 /// Web用のログプリンター
+// ignore: one_member_abstracts
 abstract class LogPrinter {
   void log(LogEvent event);
 }
 
 /// Web用のロガー
 class Logger {
+  Logger({required this.filter, required this.printer, required this.level});
+
   final LogFilter filter;
   final LogPrinter printer;
   final Level level;
-
-  Logger({required this.filter, required this.printer, required this.level});
 
   void d(String message, {dynamic error, StackTrace? stackTrace}) {
     final event = LogEvent(Level.debug, message, error, stackTrace);
@@ -82,28 +85,22 @@ class ProductionFilter extends LogFilter {
   bool shouldLog(LogEvent event) => true;
 }
 
-/// Web用のログなしフィルター
-class _NoLogFilter extends LogFilter {
-  @override
-  bool shouldLog(LogEvent event) => false;
-}
-
 /// Web用のプリティプリンター
 class PrettyPrinter extends LogPrinter {
-  final int methodCount;
-  final int errorMethodCount;
-  final int lineLength;
-
   PrettyPrinter({
     this.methodCount = 0,
     this.errorMethodCount = 5,
     this.lineLength = 80,
   });
 
+  final int methodCount;
+  final int errorMethodCount;
+  final int lineLength;
+
   @override
   void log(LogEvent event) {
     final timestamp = DateTime.now().toIso8601String();
-    final levelStr = event.level.name;
+    final levelStr = event.level.levelName;
 
     // Webではconsole.logを使用
     print('[$timestamp] $levelStr: ${event.message}');

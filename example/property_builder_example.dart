@@ -14,9 +14,7 @@ import 'package:notion_dart_kit/notion_dart_kit.dart';
 void main() async {
   print('=== PropertyBuilder Example ===\n');
 
-  final client = NotionClient(
-    token: 'YOUR_INTEGRATION_TOKEN',
-  );
+  final client = NotionClient(token: 'YOUR_INTEGRATION_TOKEN');
 
   const databaseId = 'YOUR_DATABASE_ID';
 
@@ -81,15 +79,15 @@ void main() async {
     print('Bold title created\n');
 
     // Title with multiple formatting options
-    final fancyTitleProp =
-        PropertyBuilder.title('Fancy Title').bold().color('blue').toJson();
+    final fancyTitleProp = PropertyBuilder.title(
+      'Fancy Title',
+    ).bold().color('blue').toJson();
     print('Fancy title (bold + blue) created\n');
 
     // Title with link
-    final linkedTitleProp = PropertyBuilder.title('Documentation')
-        .link('https://docs.example.com')
-        .bold()
-        .toJson();
+    final linkedTitleProp = PropertyBuilder.title(
+      'Documentation',
+    ).link('https://docs.example.com').bold().toJson();
     print('Linked title created\n');
 
     // Title with all formatting
@@ -110,22 +108,21 @@ void main() async {
     print('📝 3. Rich Text Property with Formatting\n');
 
     // Simple rich text
-    final simpleRichTextProp =
-        PropertyBuilder.richText('This is a description').toJson();
+    final simpleRichTextProp = PropertyBuilder.richText(
+      'This is a description',
+    ).toJson();
     print('Simple rich text created\n');
 
     // Rich text with formatting
-    final styledRichTextProp = PropertyBuilder.richText('Important note')
-        .bold()
-        .color('yellow_background')
-        .toJson();
+    final styledRichTextProp = PropertyBuilder.richText(
+      'Important note',
+    ).bold().color('yellow_background').toJson();
     print('Styled rich text (bold + yellow background) created\n');
 
     // Rich text with link
-    final linkedRichTextProp = PropertyBuilder.richText('Click here')
-        .link('https://example.com')
-        .underline()
-        .toJson();
+    final linkedRichTextProp = PropertyBuilder.richText(
+      'Click here',
+    ).link('https://example.com').underline().toJson();
     print('Linked rich text created\n');
 
     // ========================================
@@ -179,10 +176,9 @@ void main() async {
     // Build a complete set of properties using PropertyBuilder
     final pageProperties = {
       // Title with formatting
-      'Title': PropertyBuilder.title('Q1 Planning Document')
-          .bold()
-          .color('blue')
-          .toJson(),
+      'Title': PropertyBuilder.title(
+        'Q1 Planning Document',
+      ).bold().color('blue').toJson(),
 
       // Rich text description
       'Description': PropertyBuilder.richText(
@@ -247,11 +243,9 @@ void main() async {
       'Status': PropertyBuilder.select('Done'),
       'Completed': PropertyBuilder.checkbox(true),
       'Priority': PropertyBuilder.number(3),
-      'Title': PropertyBuilder.title('Updated Title')
-          .bold()
-          .italic()
-          .color('green')
-          .toJson(),
+      'Title': PropertyBuilder.title(
+        'Updated Title',
+      ).bold().italic().color('green').toJson(),
     };
 
     print('Update properties created:');

@@ -35,10 +35,7 @@ class DatabasesService {
     final body = <String, dynamic>{
       'parent': parent.toJson(),
       'title': title.map((e) => e.toJson()).toList(),
-      if (properties != null)
-        'initial_data_source': {
-          'properties': properties,
-        },
+      if (properties != null) 'initial_data_source': {'properties': properties},
       if (description != null)
         'description': description.map((e) => e.toJson()).toList(),
       if (icon != null) 'icon': icon.toJson(),
@@ -109,8 +106,10 @@ class DatabasesService {
       body['is_locked'] = isLocked;
     }
 
-    final response =
-        await _httpClient.patch('/databases/$databaseId', data: body);
+    final response = await _httpClient.patch(
+      '/databases/$databaseId',
+      data: body,
+    );
     return Database.fromJson(response);
   }
 

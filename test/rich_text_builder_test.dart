@@ -35,8 +35,9 @@ void main() {
     });
 
     test('strikethrough text generates correct JSON', () {
-      final richText =
-          RichTextBuilder.text('Strikethrough').strikethrough().toJson();
+      final richText = RichTextBuilder.text(
+        'Strikethrough',
+      ).strikethrough().toJson();
 
       expect(richText['annotations']['strikethrough'], true);
     });
@@ -60,9 +61,9 @@ void main() {
     });
 
     test('text with link generates correct JSON', () {
-      final richText = RichTextBuilder.text('Click here')
-          .link('https://example.com')
-          .toJson();
+      final richText = RichTextBuilder.text(
+        'Click here',
+      ).link('https://example.com').toJson();
 
       expect(richText, {
         'type': 'text',
@@ -84,12 +85,9 @@ void main() {
     });
 
     test('multiple formatting options', () {
-      final richText = RichTextBuilder.text('Formatted')
-          .bold()
-          .italic()
-          .underline()
-          .color('blue')
-          .toJson();
+      final richText = RichTextBuilder.text(
+        'Formatted',
+      ).bold().italic().underline().color('blue').toJson();
 
       expect(richText['annotations'], {
         'bold': true,
@@ -156,8 +154,9 @@ void main() {
     });
 
     test('database mention generates correct JSON', () {
-      final richText =
-          RichTextBuilder.mentionDatabase('database_id_789').toJson();
+      final richText = RichTextBuilder.mentionDatabase(
+        'database_id_789',
+      ).toJson();
 
       expect(richText['mention'], {
         'type': 'database',
@@ -188,8 +187,9 @@ void main() {
     });
 
     test('link preview mention generates correct JSON', () {
-      final richText =
-          RichTextBuilder.mentionLinkPreview('https://example.com').toJson();
+      final richText = RichTextBuilder.mentionLinkPreview(
+        'https://example.com',
+      ).toJson();
 
       expect(richText['mention'], {
         'type': 'link_preview',
@@ -199,8 +199,9 @@ void main() {
     });
 
     test('mention with formatting', () {
-      final richText =
-          RichTextBuilder.mentionUser('user_id').bold().color('blue').toJson();
+      final richText = RichTextBuilder.mentionUser(
+        'user_id',
+      ).bold().color('blue').toJson();
 
       expect(richText['annotations']['bold'], true);
       expect(richText['annotations']['color'], 'blue');
@@ -213,9 +214,7 @@ void main() {
 
       expect(richText, {
         'type': 'equation',
-        'equation': {
-          'expression': 'E = mc^2',
-        },
+        'equation': {'expression': 'E = mc^2'},
         'annotations': {
           'bold': false,
           'italic': false,
@@ -229,8 +228,9 @@ void main() {
     });
 
     test('equation with formatting', () {
-      final richText =
-          RichTextBuilder.equation('x^2 + y^2 = z^2').color('blue').toJson();
+      final richText = RichTextBuilder.equation(
+        'x^2 + y^2 = z^2',
+      ).color('blue').toJson();
 
       expect(richText['equation']['expression'], 'x^2 + y^2 = z^2');
       expect(richText['annotations']['color'], 'blue');
@@ -313,10 +313,9 @@ void main() {
         'callout': {
           'rich_text': [
             RichTextBuilder.text('Important: ').bold().color('red').toJson(),
-            RichTextBuilder.text('Read the docs')
-                .link('https://docs.example.com')
-                .underline()
-                .toJson(),
+            RichTextBuilder.text(
+              'Read the docs',
+            ).link('https://docs.example.com').underline().toJson(),
             RichTextBuilder.text(' before proceeding.').toJson(),
           ],
           'icon': {'type': 'emoji', 'emoji': '⚠️'},
@@ -338,11 +337,9 @@ void main() {
     });
 
     test('fluent API chaining works correctly', () {
-      final builder = RichTextBuilder.text('Test')
-          .bold()
-          .italic()
-          .color('blue')
-          .link('https://example.com');
+      final builder = RichTextBuilder.text(
+        'Test',
+      ).bold().italic().color('blue').link('https://example.com');
 
       expect(builder, isA<TextRichTextBuilder>());
 

@@ -46,44 +46,44 @@ class TextFilterBuilder {
   final String propertyName;
 
   Filter equals(String value) => Filter.property(
-        name: propertyName,
-        filter: PropertyFilter.textEquals(value),
-      );
+    name: propertyName,
+    filter: PropertyFilter.textEquals(value),
+  );
 
   Filter doesNotEqual(String value) => Filter.property(
-        name: propertyName,
-        filter: PropertyFilter.textDoesNotEqual(value),
-      );
+    name: propertyName,
+    filter: PropertyFilter.textDoesNotEqual(value),
+  );
 
   Filter contains(String value) => Filter.property(
-        name: propertyName,
-        filter: PropertyFilter.textContains(value),
-      );
+    name: propertyName,
+    filter: PropertyFilter.textContains(value),
+  );
 
   Filter doesNotContain(String value) => Filter.property(
-        name: propertyName,
-        filter: PropertyFilter.textDoesNotContain(value),
-      );
+    name: propertyName,
+    filter: PropertyFilter.textDoesNotContain(value),
+  );
 
   Filter startsWith(String value) => Filter.property(
-        name: propertyName,
-        filter: PropertyFilter.textStartsWith(value),
-      );
+    name: propertyName,
+    filter: PropertyFilter.textStartsWith(value),
+  );
 
   Filter endsWith(String value) => Filter.property(
-        name: propertyName,
-        filter: PropertyFilter.textEndsWith(value),
-      );
+    name: propertyName,
+    filter: PropertyFilter.textEndsWith(value),
+  );
 
   Filter isEmpty() => Filter.property(
-        name: propertyName,
-        filter: const PropertyFilter.textIsEmpty(),
-      );
+    name: propertyName,
+    filter: const PropertyFilter.textIsEmpty(),
+  );
 
   Filter isNotEmpty() => Filter.property(
-        name: propertyName,
-        filter: const PropertyFilter.textIsNotEmpty(),
-      );
+    name: propertyName,
+    filter: const PropertyFilter.textIsNotEmpty(),
+  );
 }
 
 /// 数値系フィルタビルダー
@@ -92,44 +92,44 @@ class NumberFilterBuilder {
   final String propertyName;
 
   Filter equals(double value) => Filter.property(
-        name: propertyName,
-        filter: PropertyFilter.numberEquals(value),
-      );
+    name: propertyName,
+    filter: PropertyFilter.numberEquals(value),
+  );
 
   Filter doesNotEqual(double value) => Filter.property(
-        name: propertyName,
-        filter: PropertyFilter.numberDoesNotEqual(value),
-      );
+    name: propertyName,
+    filter: PropertyFilter.numberDoesNotEqual(value),
+  );
 
   Filter greaterThan(double value) => Filter.property(
-        name: propertyName,
-        filter: PropertyFilter.numberGreaterThan(value),
-      );
+    name: propertyName,
+    filter: PropertyFilter.numberGreaterThan(value),
+  );
 
   Filter lessThan(double value) => Filter.property(
-        name: propertyName,
-        filter: PropertyFilter.numberLessThan(value),
-      );
+    name: propertyName,
+    filter: PropertyFilter.numberLessThan(value),
+  );
 
   Filter greaterThanOrEqual(double value) => Filter.property(
-        name: propertyName,
-        filter: PropertyFilter.numberGreaterThanOrEqual(value),
-      );
+    name: propertyName,
+    filter: PropertyFilter.numberGreaterThanOrEqual(value),
+  );
 
   Filter lessThanOrEqual(double value) => Filter.property(
-        name: propertyName,
-        filter: PropertyFilter.numberLessThanOrEqual(value),
-      );
+    name: propertyName,
+    filter: PropertyFilter.numberLessThanOrEqual(value),
+  );
 
   Filter isEmpty() => Filter.property(
-        name: propertyName,
-        filter: const PropertyFilter.numberIsEmpty(),
-      );
+    name: propertyName,
+    filter: const PropertyFilter.numberIsEmpty(),
+  );
 
   Filter isNotEmpty() => Filter.property(
-        name: propertyName,
-        filter: const PropertyFilter.numberIsNotEmpty(),
-      );
+    name: propertyName,
+    filter: const PropertyFilter.numberIsNotEmpty(),
+  );
 }
 
 /// チェックボックスフィルタビルダー
@@ -138,9 +138,9 @@ class CheckboxFilterBuilder {
   final String propertyName;
 
   Filter equals(bool value) => Filter.property(
-        name: propertyName,
-        filter: PropertyFilter.checkboxEquals(value),
-      );
+    name: propertyName,
+    filter: PropertyFilter.checkboxEquals(value),
+  );
 }
 
 /// Selectフィルタビルダー
@@ -149,24 +149,24 @@ class SelectFilterBuilder {
   final String propertyName;
 
   Filter equals(String value) => Filter.property(
-        name: propertyName,
-        filter: PropertyFilter.selectEquals(value),
-      );
+    name: propertyName,
+    filter: PropertyFilter.selectEquals(value),
+  );
 
   Filter doesNotEqual(String value) => Filter.property(
-        name: propertyName,
-        filter: PropertyFilter.selectDoesNotEqual(value),
-      );
+    name: propertyName,
+    filter: PropertyFilter.selectDoesNotEqual(value),
+  );
 
   Filter isEmpty() => Filter.property(
-        name: propertyName,
-        filter: const PropertyFilter.selectIsEmpty(),
-      );
+    name: propertyName,
+    filter: const PropertyFilter.selectIsEmpty(),
+  );
 
   Filter isNotEmpty() => Filter.property(
-        name: propertyName,
-        filter: const PropertyFilter.selectIsNotEmpty(),
-      );
+    name: propertyName,
+    filter: const PropertyFilter.selectIsNotEmpty(),
+  );
 }
 
 /// MultiSelectフィルタビルダー
@@ -175,24 +175,24 @@ class MultiSelectFilterBuilder {
   final String propertyName;
 
   Filter contains(String value) => Filter.property(
-        name: propertyName,
-        filter: PropertyFilter.multiSelectContains(value),
-      );
+    name: propertyName,
+    filter: PropertyFilter.multiSelectContains(value),
+  );
 
   Filter doesNotContain(String value) => Filter.property(
-        name: propertyName,
-        filter: PropertyFilter.multiSelectDoesNotContain(value),
-      );
+    name: propertyName,
+    filter: PropertyFilter.multiSelectDoesNotContain(value),
+  );
 
   Filter isEmpty() => Filter.property(
-        name: propertyName,
-        filter: const PropertyFilter.multiSelectIsEmpty(),
-      );
+    name: propertyName,
+    filter: const PropertyFilter.multiSelectIsEmpty(),
+  );
 
   Filter isNotEmpty() => Filter.property(
-        name: propertyName,
-        filter: const PropertyFilter.multiSelectIsNotEmpty(),
-      );
+    name: propertyName,
+    filter: const PropertyFilter.multiSelectIsNotEmpty(),
+  );
 }
 
 /// 日付フィルタビルダー
@@ -201,69 +201,69 @@ class DateFilterBuilder {
   final String propertyName;
 
   Filter equals(String date) => Filter.property(
-        name: propertyName,
-        filter: PropertyFilter.dateEquals(date),
-      );
+    name: propertyName,
+    filter: PropertyFilter.dateEquals(date),
+  );
 
   Filter before(String date) => Filter.property(
-        name: propertyName,
-        filter: PropertyFilter.dateBefore(date),
-      );
+    name: propertyName,
+    filter: PropertyFilter.dateBefore(date),
+  );
 
   Filter after(String date) => Filter.property(
-        name: propertyName,
-        filter: PropertyFilter.dateAfter(date),
-      );
+    name: propertyName,
+    filter: PropertyFilter.dateAfter(date),
+  );
 
   Filter onOrBefore(String date) => Filter.property(
-        name: propertyName,
-        filter: PropertyFilter.dateOnOrBefore(date),
-      );
+    name: propertyName,
+    filter: PropertyFilter.dateOnOrBefore(date),
+  );
 
   Filter onOrAfter(String date) => Filter.property(
-        name: propertyName,
-        filter: PropertyFilter.dateOnOrAfter(date),
-      );
+    name: propertyName,
+    filter: PropertyFilter.dateOnOrAfter(date),
+  );
 
   Filter isEmpty() => Filter.property(
-        name: propertyName,
-        filter: const PropertyFilter.dateIsEmpty(),
-      );
+    name: propertyName,
+    filter: const PropertyFilter.dateIsEmpty(),
+  );
 
   Filter isNotEmpty() => Filter.property(
-        name: propertyName,
-        filter: const PropertyFilter.dateIsNotEmpty(),
-      );
+    name: propertyName,
+    filter: const PropertyFilter.dateIsNotEmpty(),
+  );
 
   Filter pastWeek() => Filter.property(
-        name: propertyName,
-        filter: const PropertyFilter.datePastWeek(),
-      );
+    name: propertyName,
+    filter: const PropertyFilter.datePastWeek(),
+  );
 
   Filter pastMonth() => Filter.property(
-        name: propertyName,
-        filter: const PropertyFilter.datePastMonth(),
-      );
+    name: propertyName,
+    filter: const PropertyFilter.datePastMonth(),
+  );
 
   Filter pastYear() => Filter.property(
-        name: propertyName,
-        filter: const PropertyFilter.datePastYear(),
-      );
+    name: propertyName,
+    filter: const PropertyFilter.datePastYear(),
+  );
 
   Filter nextWeek() => Filter.property(
-        name: propertyName,
-        filter: const PropertyFilter.dateNextWeek(),
-      );
+    name: propertyName,
+    filter: const PropertyFilter.dateNextWeek(),
+  );
 
   Filter nextMonth() => Filter.property(
-        name: propertyName,
-        filter: const PropertyFilter.dateNextMonth(),
-      );
+    name: propertyName,
+    filter: const PropertyFilter.dateNextMonth(),
+  );
 
   Filter nextYear() => Filter.property(
-        name: propertyName,
-        filter: const PropertyFilter.dateNextYear(),
-      );
+    name: propertyName,
+    filter: const PropertyFilter.dateNextYear(),
+  );
 }
 
 /// Peopleフィルタビルダー
@@ -272,24 +272,24 @@ class PeopleFilterBuilder {
   final String propertyName;
 
   Filter contains(String userId) => Filter.property(
-        name: propertyName,
-        filter: PropertyFilter.peopleContains(userId),
-      );
+    name: propertyName,
+    filter: PropertyFilter.peopleContains(userId),
+  );
 
   Filter doesNotContain(String userId) => Filter.property(
-        name: propertyName,
-        filter: PropertyFilter.peopleDoesNotContain(userId),
-      );
+    name: propertyName,
+    filter: PropertyFilter.peopleDoesNotContain(userId),
+  );
 
   Filter isEmpty() => Filter.property(
-        name: propertyName,
-        filter: const PropertyFilter.peopleIsEmpty(),
-      );
+    name: propertyName,
+    filter: const PropertyFilter.peopleIsEmpty(),
+  );
 
   Filter isNotEmpty() => Filter.property(
-        name: propertyName,
-        filter: const PropertyFilter.peopleIsNotEmpty(),
-      );
+    name: propertyName,
+    filter: const PropertyFilter.peopleIsNotEmpty(),
+  );
 }
 
 /// Filesフィルタビルダー
@@ -298,14 +298,14 @@ class FilesFilterBuilder {
   final String propertyName;
 
   Filter isEmpty() => Filter.property(
-        name: propertyName,
-        filter: const PropertyFilter.filesIsEmpty(),
-      );
+    name: propertyName,
+    filter: const PropertyFilter.filesIsEmpty(),
+  );
 
   Filter isNotEmpty() => Filter.property(
-        name: propertyName,
-        filter: const PropertyFilter.filesIsNotEmpty(),
-      );
+    name: propertyName,
+    filter: const PropertyFilter.filesIsNotEmpty(),
+  );
 }
 
 /// Relationフィルタビルダー
@@ -314,24 +314,24 @@ class RelationFilterBuilder {
   final String propertyName;
 
   Filter contains(String pageId) => Filter.property(
-        name: propertyName,
-        filter: PropertyFilter.relationContains(pageId),
-      );
+    name: propertyName,
+    filter: PropertyFilter.relationContains(pageId),
+  );
 
   Filter doesNotContain(String pageId) => Filter.property(
-        name: propertyName,
-        filter: PropertyFilter.relationDoesNotContain(pageId),
-      );
+    name: propertyName,
+    filter: PropertyFilter.relationDoesNotContain(pageId),
+  );
 
   Filter isEmpty() => Filter.property(
-        name: propertyName,
-        filter: const PropertyFilter.relationIsEmpty(),
-      );
+    name: propertyName,
+    filter: const PropertyFilter.relationIsEmpty(),
+  );
 
   Filter isNotEmpty() => Filter.property(
-        name: propertyName,
-        filter: const PropertyFilter.relationIsNotEmpty(),
-      );
+    name: propertyName,
+    filter: const PropertyFilter.relationIsNotEmpty(),
+  );
 }
 
 /// String拡張（フィルタ用）

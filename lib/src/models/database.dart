@@ -37,67 +37,64 @@ class Database with _$Database {
   const Database._();
 
   factory Database.fromJson(Map<String, dynamic> json) => Database(
-        id: json['id'] as String,
-        createdTime: DateTime.parse(json['created_time'] as String),
-        lastEditedTime: DateTime.parse(json['last_edited_time'] as String),
-        createdBy: User.fromJson(json['created_by'] as Map<String, dynamic>),
-        lastEditedBy:
-            User.fromJson(json['last_edited_by'] as Map<String, dynamic>),
-        parent: Parent.fromJson(json['parent'] as Map<String, dynamic>),
-        title: (json['title'] as List<dynamic>)
-            .map((e) => RichText.fromJson(e as Map<String, dynamic>))
-            .toList(),
-        dataSources: (json['data_sources'] as List<dynamic>)
-            .map((e) => DataSourceRef.fromJson(e as Map<String, dynamic>))
-            .toList(),
-        archived: json['archived'] as bool? ?? false,
-        inTrash: json['in_trash'] as bool? ?? false,
-        isInline: json['is_inline'] as bool,
-        url: json['url'] as String,
-        description: json['description'] != null
-            ? (json['description'] as List<dynamic>)
-                .map((e) => RichText.fromJson(e as Map<String, dynamic>))
-                .toList()
-            : null,
-        icon: json['icon'] != null
-            ? PageIcon.fromJson(json['icon'] as Map<String, dynamic>)
-            : null,
-        cover: json['cover'] != null
-            ? NotionFile.fromJson(json['cover'] as Map<String, dynamic>)
-            : null,
-        publicUrl: json['public_url'] as String?,
-        isLocked: json['is_locked'] as bool?,
-      );
+    id: json['id'] as String,
+    createdTime: DateTime.parse(json['created_time'] as String),
+    lastEditedTime: DateTime.parse(json['last_edited_time'] as String),
+    createdBy: User.fromJson(json['created_by'] as Map<String, dynamic>),
+    lastEditedBy: User.fromJson(json['last_edited_by'] as Map<String, dynamic>),
+    parent: Parent.fromJson(json['parent'] as Map<String, dynamic>),
+    title: (json['title'] as List<dynamic>)
+        .map((e) => RichText.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    dataSources: (json['data_sources'] as List<dynamic>)
+        .map((e) => DataSourceRef.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    archived: json['archived'] as bool? ?? false,
+    inTrash: json['in_trash'] as bool? ?? false,
+    isInline: json['is_inline'] as bool,
+    url: json['url'] as String,
+    description: json['description'] != null
+        ? (json['description'] as List<dynamic>)
+              .map((e) => RichText.fromJson(e as Map<String, dynamic>))
+              .toList()
+        : null,
+    icon: json['icon'] != null
+        ? PageIcon.fromJson(json['icon'] as Map<String, dynamic>)
+        : null,
+    cover: json['cover'] != null
+        ? NotionFile.fromJson(json['cover'] as Map<String, dynamic>)
+        : null,
+    publicUrl: json['public_url'] as String?,
+    isLocked: json['is_locked'] as bool?,
+  );
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'created_time': createdTime.toIso8601String(),
-        'last_edited_time': lastEditedTime.toIso8601String(),
-        'created_by': createdBy.toJson(),
-        'last_edited_by': lastEditedBy.toJson(),
-        'parent': parent.toJson(),
-        'title': title.map((e) => e.toJson()).toList(),
-        'data_sources': dataSources.map((e) => e.toJson()).toList(),
-        'archived': archived,
-        'in_trash': inTrash,
-        'is_inline': isInline,
-        'url': url,
-        if (description != null)
-          'description': description!.map((e) => e.toJson()).toList(),
-        if (icon != null) 'icon': icon!.toJson(),
-        if (cover != null) 'cover': cover!.toJson(),
-        if (publicUrl != null) 'public_url': publicUrl,
-        if (isLocked != null) 'is_locked': isLocked,
-      };
+    'id': id,
+    'created_time': createdTime.toIso8601String(),
+    'last_edited_time': lastEditedTime.toIso8601String(),
+    'created_by': createdBy.toJson(),
+    'last_edited_by': lastEditedBy.toJson(),
+    'parent': parent.toJson(),
+    'title': title.map((e) => e.toJson()).toList(),
+    'data_sources': dataSources.map((e) => e.toJson()).toList(),
+    'archived': archived,
+    'in_trash': inTrash,
+    'is_inline': isInline,
+    'url': url,
+    if (description != null)
+      'description': description!.map((e) => e.toJson()).toList(),
+    if (icon != null) 'icon': icon!.toJson(),
+    if (cover != null) 'cover': cover!.toJson(),
+    if (publicUrl != null) 'public_url': publicUrl,
+    if (isLocked != null) 'is_locked': isLocked,
+  };
 }
 
 /// Reference to a data source (minimal info returned with database object)
 @freezed
 class DataSourceRef with _$DataSourceRef {
-  const factory DataSourceRef({
-    required String id,
-    required String name,
-  }) = _DataSourceRef;
+  const factory DataSourceRef({required String id, required String name}) =
+      _DataSourceRef;
 
   factory DataSourceRef.fromJson(Map<String, dynamic> json) =>
       _$DataSourceRefFromJson(json);

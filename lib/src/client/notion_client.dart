@@ -20,7 +20,7 @@ import 'retry_queue.dart';
 class NotionClient {
   /// Creates a new [NotionClient] with the given [token].
   NotionClient({required String token})
-      : httpClient = NotionHttpClient(token: token) {
+    : httpClient = NotionHttpClient(token: token) {
     users = UsersService(httpClient);
     pages = PagesService(httpClient);
     databases = DatabasesService(httpClient);

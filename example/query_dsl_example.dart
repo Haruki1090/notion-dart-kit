@@ -7,9 +7,7 @@ import 'package:notion_dart_kit/notion_dart_kit.dart';
 void main() async {
   print('=== Query DSL Example ===\n');
 
-  final client = NotionClient(
-    token: 'YOUR_INTEGRATION_TOKEN',
-  );
+  final client = NotionClient(token: 'YOUR_INTEGRATION_TOKEN');
 
   const databaseId = 'YOUR_DATABASE_ID';
 
@@ -95,8 +93,10 @@ void main() async {
       'Priority'.property.number().greaterThanOrEqual(3),
       'Assignees'.property.people().isNotEmpty(),
     ]);
-    print('Filter: (Status = "Todo" OR Status = "In Progress") '
-        'AND Priority >= 3 AND Assignees not empty');
+    print(
+      'Filter: (Status = "Todo" OR Status = "In Progress") '
+      'AND Priority >= 3 AND Assignees not empty',
+    );
     print('JSON: ${nestedFilter.toJson()}\n');
 
     // ========================================
@@ -145,10 +145,7 @@ void main() async {
     ]);
 
     // Build sorts
-    final querySorts = [
-      'Priority'.descending(),
-      'Due Date'.ascending(),
-    ];
+    final querySorts = ['Priority'.descending(), 'Due Date'.ascending()];
 
     print('Filter JSON:');
     print('${queryFilter.toJson()}\n');
@@ -202,7 +199,8 @@ void main() async {
 
     print('ℹ️  Query setup complete!');
     print(
-        '   Uncomment the query execution code to run with valid credentials.\n');
+      '   Uncomment the query execution code to run with valid credentials.\n',
+    );
 
     // ========================================
     // Summary

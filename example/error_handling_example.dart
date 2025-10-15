@@ -14,9 +14,7 @@ import 'package:notion_dart_kit/notion_dart_kit.dart';
 void main() async {
   print('=== Error Handling Example ===\n');
 
-  final client = NotionClient(
-    token: 'YOUR_INTEGRATION_TOKEN',
-  );
+  final client = NotionClient(token: 'YOUR_INTEGRATION_TOKEN');
 
   try {
     // ========================================
@@ -196,7 +194,8 @@ void main() async {
     print('      if (retries < maxRetries) {');
     print('        retries++;');
     print(
-        r'        print("Retry $retries/$maxRetries after error: ${e.message}");');
+      r'        print("Retry $retries/$maxRetries after error: ${e.message}");',
+    );
     print('        await Future.delayed(');
     print('          Duration(seconds: retries * 2),');
     print('        );');
@@ -362,7 +361,8 @@ void main() async {
     print('7️⃣  Provide user-friendly error messages:');
     print('   on NotFoundException catch (e) {');
     print(
-        '     showError("Could not find that page. It may have been deleted.");');
+      '     showError("Could not find that page. It may have been deleted.");',
+    );
     print('   }');
     print('');
     print('8️⃣  Log errors for debugging but sanitize sensitive data:');

@@ -27,17 +27,11 @@ void main() {
           'type': 'person',
           'person': {'email': 'editor@example.com'},
         },
-        'parent': {
-          'type': 'workspace',
-          'workspace': true,
-        },
+        'parent': {'type': 'workspace', 'workspace': true},
         'archived': false,
         'in_trash': false,
         'properties': {
-          'Title': {
-            'id': 'title',
-            'type': 'title',
-          },
+          'Title': {'id': 'title', 'type': 'title'},
         },
         'url': 'https://notion.so/test-page',
       };
@@ -51,10 +45,7 @@ void main() {
     });
 
     test('PageIcon emoji from JSON', () {
-      final iconJson = {
-        'type': 'emoji',
-        'emoji': '🚀',
-      };
+      final iconJson = {'type': 'emoji', 'emoji': '🚀'};
 
       final icon = PageIcon.fromJson(iconJson);
       expect(icon, isA<EmojiPageIcon>());
@@ -67,9 +58,7 @@ void main() {
     test('NotionFile external from JSON', () {
       final fileJson = {
         'type': 'external',
-        'external': {
-          'url': 'https://example.com/image.png',
-        },
+        'external': {'url': 'https://example.com/image.png'},
       };
 
       final file = NotionFile.fromJson(fileJson);

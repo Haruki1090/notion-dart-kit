@@ -23,11 +23,7 @@ class _FakeBlocksService extends BlocksService {
     calls[blockId] = (calls[blockId] ?? 0) + 1;
     final results = tree[blockId] ?? <Block>[];
     // For simplicity, ignore pagination in the fake and return all.
-    return BlockChildren(
-      object: 'list',
-      results: results,
-      hasMore: false,
-    );
+    return BlockChildren(object: 'list', results: results, hasMore: false);
   }
 }
 
@@ -111,8 +107,9 @@ void main() {
       );
 
       // Depth 0: only direct children of root
-      final ids1 =
-          resultDepthDirect.map((b) => b.toJson()['id'] as String).toSet();
+      final ids1 = resultDepthDirect
+          .map((b) => b.toJson()['id'] as String)
+          .toSet();
       expect(ids1, {'A', 'B'});
 
       final resultDepth2 = await recursivelyLoadBlocksFromService(

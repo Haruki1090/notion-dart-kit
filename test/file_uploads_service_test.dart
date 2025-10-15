@@ -43,10 +43,7 @@ void main() {
       );
 
       expect(
-        () => svc.create(
-          mode: FileUploadMode.externalUrl,
-          filename: 'a.png',
-        ),
+        () => svc.create(mode: FileUploadMode.externalUrl, filename: 'a.png'),
         throwsA(isA<ValidationException>()),
       );
 

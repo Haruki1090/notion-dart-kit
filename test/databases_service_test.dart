@@ -9,14 +9,8 @@ void main() {
         'id': '248104cd-477e-80fd-b757-e945d38000bd',
         'created_time': '2025-08-07T10:11:07.504Z',
         'last_edited_time': '2025-08-10T15:53:11.386Z',
-        'created_by': {
-          'object': 'user',
-          'id': 'user123',
-        },
-        'last_edited_by': {
-          'object': 'user',
-          'id': 'user456',
-        },
+        'created_by': {'object': 'user', 'id': 'user123'},
+        'last_edited_by': {'object': 'user', 'id': 'user456'},
         'parent': {
           'type': 'page_id',
           'page_id': '255104cd-477e-808c-b279-d39ab803a7d2',
@@ -24,10 +18,7 @@ void main() {
         'title': [
           {
             'type': 'text',
-            'text': {
-              'content': 'My Task Tracker',
-              'link': null,
-            },
+            'text': {'content': 'My Task Tracker', 'link': null},
             'annotations': {
               'bold': false,
               'italic': false,
@@ -90,9 +81,7 @@ void main() {
             plainText: 'Test DB',
           ),
         ],
-        dataSources: [
-          const DataSourceRef(id: 'ds123', name: 'Test DB'),
-        ],
+        dataSources: [const DataSourceRef(id: 'ds123', name: 'Test DB')],
         archived: false,
         inTrash: false,
         isInline: true,
@@ -110,10 +99,7 @@ void main() {
     });
 
     test('DataSourceRef parses correctly', () {
-      final json = {
-        'id': 'ds123',
-        'name': 'My Data Source',
-      };
+      final json = {'id': 'ds123', 'name': 'My Data Source'};
 
       final dataSourceRef = DataSourceRef.fromJson(json);
 
@@ -142,26 +128,13 @@ void main() {
             'id': 'page123',
             'created_time': '2025-08-07T10:11:07.504Z',
             'last_edited_time': '2025-08-10T15:53:11.386Z',
-            'created_by': {
-              'object': 'user',
-              'id': 'user123',
-            },
-            'last_edited_by': {
-              'object': 'user',
-              'id': 'user456',
-            },
-            'parent': {
-              'type': 'database_id',
-              'database_id': 'db123',
-            },
+            'created_by': {'object': 'user', 'id': 'user123'},
+            'last_edited_by': {'object': 'user', 'id': 'user456'},
+            'parent': {'type': 'database_id', 'database_id': 'db123'},
             'archived': false,
             'in_trash': false,
             'properties': {
-              'Name': {
-                'id': 'title',
-                'type': 'title',
-                'title': [],
-              },
+              'Name': {'id': 'title', 'type': 'title', 'title': []},
             },
             'url': 'https://www.notion.so/page123',
           },
@@ -217,14 +190,8 @@ void main() {
 
       // Test sorts
       final sorts = [
-        {
-          'property': 'Created Time',
-          'direction': 'descending',
-        },
-        {
-          'timestamp': 'last_edited_time',
-          'direction': 'ascending',
-        },
+        {'property': 'Created Time', 'direction': 'descending'},
+        {'timestamp': 'last_edited_time', 'direction': 'ascending'},
       ];
 
       expect(sorts.length, 2);

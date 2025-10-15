@@ -4,15 +4,16 @@ import 'package:notion_dart_kit/notion_dart_kit.dart';
 import 'package:test/test.dart';
 
 RichText _rt(String s) => RichText.text(
-      text: TextContent(content: s),
-      annotations: const Annotations(),
-      plainText: s,
-    );
+  text: TextContent(content: s),
+  annotations: const Annotations(),
+  plainText: s,
+);
 
 void main() {
   final token = Platform.environment['NOTION_TOKEN'];
   final parentPageId = Platform.environment['NOTION_PARENT_PAGE_ID'];
-  final enabled = token != null &&
+  final enabled =
+      token != null &&
       token.isNotEmpty &&
       parentPageId != null &&
       parentPageId.isNotEmpty;
@@ -44,12 +45,10 @@ void main() {
                 {
                   'type': 'text',
                   'text': {'content': 'Related Item'},
-                }
+                },
               ],
             },
-            'Amount': {
-              'number': 10,
-            },
+            'Amount': {'number': 10},
           },
         );
 
@@ -103,9 +102,7 @@ void main() {
             'Edited': {'last_edited_time': {}},
             'EditedBy': {'last_edited_by': {}},
             'Unique': {
-              'unique_id': {
-                'prefix': 'ID',
-              },
+              'unique_id': {'prefix': 'ID'},
             },
             'Formula': {
               'formula': {
@@ -114,9 +111,7 @@ void main() {
               },
             },
             'Relation': {
-              'relation': {
-                'database_id': relatedDb.id,
-              },
+              'relation': {'database_id': relatedDb.id},
             },
             'Rollup': {
               'rollup': {
@@ -146,7 +141,7 @@ void main() {
                 {
                   'type': 'text',
                   'text': {'content': 'Hello'},
-                }
+                },
               ],
             },
             'Number': {'number': 5},
@@ -160,9 +155,7 @@ void main() {
               ],
             },
             'Date': {
-              'date': {
-                'start': DateTime.now().toUtc().toIso8601String(),
-              },
+              'date': {'start': DateTime.now().toUtc().toIso8601String()},
             },
             'People': {
               'people': [
@@ -179,7 +172,7 @@ void main() {
                   'type': 'external',
                   'name': 'Example',
                   'external': {'url': 'https://example.com/example.pdf'},
-                }
+                },
               ],
             },
             'Status': {
@@ -234,7 +227,7 @@ void main() {
                   {
                     'type': 'text',
                     'text': {'content': 'Item${i + 2}'},
-                  }
+                  },
                 ],
               },
               'Number': {'number': i + 1},
@@ -242,10 +235,7 @@ void main() {
           );
         }
 
-        final page1 = await client.databases.query(
-          mainDb.id,
-          pageSize: 2,
-        );
+        final page1 = await client.databases.query(mainDb.id, pageSize: 2);
         expect(page1.results.length, inInclusiveRange(1, 2));
         if (page1.hasMore && page1.nextCursor != null) {
           final page2 = await client.databases.query(

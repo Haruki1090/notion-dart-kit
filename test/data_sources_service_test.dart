@@ -41,20 +41,16 @@ void main() {
           },
         ],
         'properties': {
-          'Name': {
-            'id': 'title',
-            'name': 'Name',
-            'type': 'title',
-            'title': {},
-          },
+          'Name': {'id': 'title', 'name': 'Name', 'type': 'title', 'title': {}},
         },
         'archived': false,
         'is_inline': true,
         'url': 'https://notion.so/ds_123',
       };
 
-      when(mockHttpClient.post('/data_sources', data: anyNamed('data')))
-          .thenAnswer((_) async => mockResponse);
+      when(
+        mockHttpClient.post('/data_sources', data: anyNamed('data')),
+      ).thenAnswer((_) async => mockResponse);
 
       final result = await service.create(
         title: [
@@ -68,8 +64,9 @@ void main() {
 
       expect(result.id, 'ds_123');
       expect(result.title.first.plainText, 'Test Data Source');
-      verify(mockHttpClient.post('/data_sources', data: anyNamed('data')))
-          .called(1);
+      verify(
+        mockHttpClient.post('/data_sources', data: anyNamed('data')),
+      ).called(1);
     });
 
     test('retrieve() fetches data source', () async {
@@ -96,20 +93,16 @@ void main() {
           },
         ],
         'properties': {
-          'Name': {
-            'id': 'title',
-            'name': 'Name',
-            'type': 'title',
-            'title': {},
-          },
+          'Name': {'id': 'title', 'name': 'Name', 'type': 'title', 'title': {}},
         },
         'archived': false,
         'is_inline': true,
         'url': 'https://notion.so/ds_123',
       };
 
-      when(mockHttpClient.get('/data_sources/ds_123'))
-          .thenAnswer((_) async => mockResponse);
+      when(
+        mockHttpClient.get('/data_sources/ds_123'),
+      ).thenAnswer((_) async => mockResponse);
 
       final result = await service.retrieve('ds_123');
 
@@ -142,12 +135,7 @@ void main() {
           },
         ],
         'properties': {
-          'Name': {
-            'id': 'title',
-            'name': 'Name',
-            'type': 'title',
-            'title': {},
-          },
+          'Name': {'id': 'title', 'name': 'Name', 'type': 'title', 'title': {}},
         },
         'archived': false,
         'is_inline': true,
@@ -183,26 +171,13 @@ void main() {
             'id': 'page_123',
             'created_time': '2024-01-01T00:00:00.000Z',
             'last_edited_time': '2024-01-01T00:00:00.000Z',
-            'created_by': {
-              'object': 'user',
-              'id': 'user_123',
-            },
-            'last_edited_by': {
-              'object': 'user',
-              'id': 'user_123',
-            },
-            'parent': {
-              'type': 'database_id',
-              'database_id': 'db_456',
-            },
+            'created_by': {'object': 'user', 'id': 'user_123'},
+            'last_edited_by': {'object': 'user', 'id': 'user_123'},
+            'parent': {'type': 'database_id', 'database_id': 'db_456'},
             'archived': false,
             'in_trash': false,
             'properties': {
-              'Name': {
-                'id': 'title',
-                'type': 'title',
-                'title': [],
-              },
+              'Name': {'id': 'title', 'type': 'title', 'title': []},
             },
             'url': 'https://notion.so/page_123',
           },
@@ -282,10 +257,7 @@ void main() {
         ),
       ).thenAnswer((_) async => mockResponse);
 
-      await service.query(
-        'ds_123',
-        filterProperties: ['prop1', 'prop2'],
-      );
+      await service.query('ds_123', filterProperties: ['prop1', 'prop2']);
 
       verify(
         mockHttpClient.post(

@@ -35,14 +35,13 @@ Future<List<Block>> recursivelyLoadBlocks(
   int? maxDepth,
   int concurrency = 4,
   BlockChildrenCache? cache,
-}) async =>
-    recursivelyLoadBlocksFromService(
-      client.blocks,
-      blockId,
-      maxDepth: maxDepth,
-      concurrency: concurrency,
-      cache: cache,
-    );
+}) async => recursivelyLoadBlocksFromService(
+  client.blocks,
+  blockId,
+  maxDepth: maxDepth,
+  concurrency: concurrency,
+  cache: cache,
+);
 
 /// Variant that accepts a [BlocksService] directly (useful for testing).
 Future<List<Block>> recursivelyLoadBlocksFromService(
@@ -59,9 +58,7 @@ Future<List<Block>> recursivelyLoadBlocksFromService(
   final processedParents = <String>{};
 
   // Queue of (parentId, depth)
-  var currentLevel = <_QueueItem>[
-    _QueueItem(parentId: blockId, depth: 0),
-  ];
+  var currentLevel = <_QueueItem>[_QueueItem(parentId: blockId, depth: 0)];
 
   while (currentLevel.isNotEmpty) {
     // If maxDepth is set and the current level exceeds it, stop.
@@ -102,9 +99,7 @@ Future<List<Block>> recursivelyLoadBlocksFromService(
         if (maxDepth == null || nextDepth <= maxDepth) {
           for (final child in children) {
             if (child.hasChildren) {
-              nextLevel.add(
-                _QueueItem(parentId: child.id, depth: nextDepth),
-              );
+              nextLevel.add(_QueueItem(parentId: child.id, depth: nextDepth));
             }
           }
         }

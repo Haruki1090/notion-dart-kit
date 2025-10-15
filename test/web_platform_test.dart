@@ -1,5 +1,5 @@
-import 'package:test/test.dart';
 import 'package:notion_dart_kit/notion_dart_kit.dart';
+import 'package:test/test.dart';
 
 void main() {
   group('NotionClient Web Platform Tests', () {

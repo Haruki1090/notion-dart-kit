@@ -37,10 +37,7 @@ class UsersService {
   ///
   /// Returns a paginated list of users.
   /// Throws [NotionException] if the request fails.
-  Future<PaginatedList<User>> list({
-    String? startCursor,
-    int? pageSize,
-  }) async {
+  Future<PaginatedList<User>> list({String? startCursor, int? pageSize}) async {
     final queryParams = <String, dynamic>{};
     if (startCursor != null) {
       queryParams['start_cursor'] = startCursor;

@@ -1,11 +1,11 @@
-import 'package:test/test.dart';
 import 'package:notion_dart_kit/src/utils/notion_logger.dart';
+import 'package:test/test.dart';
 
 void main() {
   group('NotionLogger Web Tests', () {
     setUp(() {
       // テスト前にロガーをリセット
-      NotionLogger.instance.initialize(isDebugMode: false);
+      NotionLogger.instance.initialize();
     });
 
     test('should initialize logger in debug mode', () {
@@ -21,7 +21,7 @@ void main() {
     });
 
     test('should not output logs when debug mode is disabled', () {
-      NotionLogger.instance.initialize(isDebugMode: false);
+      NotionLogger.instance.initialize();
 
       // ログが出力されないことを確認（実際の出力はテストでは確認しない）
       expect(() {

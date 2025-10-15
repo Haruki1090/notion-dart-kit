@@ -196,8 +196,7 @@ class RichTextHelper {
   static String toPlainTextWithSeparator(
     List<RichText> richText,
     String separator,
-  ) =>
-      richText.map((rt) => rt.plainText).join(separator);
+  ) => richText.map((rt) => rt.plainText).join(separator);
 
   /// Checks if a rich text array is empty or contains only whitespace.
   ///
@@ -238,12 +237,9 @@ class BatchHelper {
   static List<String> extractTitles(
     List<Page> pages, {
     String defaultValue = 'Untitled',
-  }) =>
-      pages
-          .map(
-            (page) => PageHelper.extractTitle(page, defaultValue: defaultValue),
-          )
-          .toList();
+  }) => pages
+      .map((page) => PageHelper.extractTitle(page, defaultValue: defaultValue))
+      .toList();
 
   /// Filters pages by a property value.
   ///
@@ -260,12 +256,7 @@ class BatchHelper {
     List<Page> pages,
     String propertyName,
     bool Function(dynamic) predicate,
-  ) =>
-      pages
-          .where(
-            (page) => predicate(page.properties[propertyName]),
-          )
-          .toList();
+  ) => pages.where((page) => predicate(page.properties[propertyName])).toList();
 
   /// Groups pages by a property value.
   ///

@@ -72,8 +72,11 @@ void main() {
     });
 
     test('multi-select property generates correct JSON', () {
-      final property =
-          PropertyBuilder.multiSelect(['bug', 'urgent', 'frontend']);
+      final property = PropertyBuilder.multiSelect([
+        'bug',
+        'urgent',
+        'frontend',
+      ]);
 
       expect(property, {
         'multi_select': [
@@ -87,9 +90,7 @@ void main() {
     test('multi-select property with empty list', () {
       final property = PropertyBuilder.multiSelect([]);
 
-      expect(property, {
-        'multi_select': [],
-      });
+      expect(property, {'multi_select': []});
     });
 
     test('status property generates correct JSON', () {
@@ -210,8 +211,9 @@ void main() {
     });
 
     test('title with color generates correct JSON', () {
-      final property =
-          PropertyBuilder.title('Colored Title').color('blue').toJson();
+      final property = PropertyBuilder.title(
+        'Colored Title',
+      ).color('blue').toJson();
 
       expect(property, {
         'title': [
@@ -232,9 +234,9 @@ void main() {
     });
 
     test('title with link generates correct JSON', () {
-      final property = PropertyBuilder.title('Link Title')
-          .link('https://example.com')
-          .toJson();
+      final property = PropertyBuilder.title(
+        'Link Title',
+      ).link('https://example.com').toJson();
 
       expect(property, {
         'title': [
@@ -250,11 +252,9 @@ void main() {
     });
 
     test('title with multiple formatting options', () {
-      final property = PropertyBuilder.title('Formatted Title')
-          .bold()
-          .italic()
-          .color('red')
-          .toJson();
+      final property = PropertyBuilder.title(
+        'Formatted Title',
+      ).bold().italic().color('red').toJson();
 
       expect(property, {
         'title': [
@@ -343,8 +343,9 @@ void main() {
     });
 
     test('rich text with color generates correct JSON', () {
-      final property =
-          PropertyBuilder.richText('Colored text').color('orange').toJson();
+      final property = PropertyBuilder.richText(
+        'Colored text',
+      ).color('orange').toJson();
 
       expect(property, {
         'rich_text': [
@@ -365,9 +366,9 @@ void main() {
     });
 
     test('rich text with link generates correct JSON', () {
-      final property = PropertyBuilder.richText('Link text')
-          .link('https://example.com')
-          .toJson();
+      final property = PropertyBuilder.richText(
+        'Link text',
+      ).link('https://example.com').toJson();
 
       expect(property, {
         'rich_text': [
@@ -383,11 +384,9 @@ void main() {
     });
 
     test('rich text with multiple formatting', () {
-      final property = PropertyBuilder.richText('Formatted')
-          .bold()
-          .underline()
-          .color('green')
-          .toJson();
+      final property = PropertyBuilder.richText(
+        'Formatted',
+      ).bold().underline().color('green').toJson();
 
       expect(property, {
         'rich_text': [
@@ -414,9 +413,7 @@ void main() {
       final property = PropertyBuilder.date(start: startDate).toJson();
 
       expect(property, {
-        'date': {
-          'start': '2025-10-15T10:30:00.000',
-        },
+        'date': {'start': '2025-10-15T10:30:00.000'},
       });
     });
 
@@ -438,9 +435,9 @@ void main() {
 
     test('date with time zone generates correct JSON', () {
       final startDate = DateTime(2025, 10, 15);
-      final property = PropertyBuilder.date(start: startDate)
-          .timeZone('America/New_York')
-          .toJson();
+      final property = PropertyBuilder.date(
+        start: startDate,
+      ).timeZone('America/New_York').toJson();
 
       expect(property, {
         'date': {
@@ -471,10 +468,9 @@ void main() {
   group('PropertyBuilder - Integration Tests', () {
     test('complete page properties example', () {
       final properties = {
-        'Title': PropertyBuilder.title('Project Planning')
-            .bold()
-            .color('blue')
-            .toJson(),
+        'Title': PropertyBuilder.title(
+          'Project Planning',
+        ).bold().color('blue').toJson(),
         'Status': PropertyBuilder.select('In Progress'),
         'Priority': PropertyBuilder.number(5),
         'Due Date': PropertyBuilder.date(
@@ -532,11 +528,9 @@ void main() {
 
     test('fluent API chaining works correctly', () {
       // Test that chaining returns the correct type
-      final builder = PropertyBuilder.title('Test')
-          .bold()
-          .italic()
-          .color('red')
-          .link('https://example.com');
+      final builder = PropertyBuilder.title(
+        'Test',
+      ).bold().italic().color('red').link('https://example.com');
 
       expect(builder, isA<TitlePropertyBuilder>());
 

@@ -5,10 +5,7 @@ void main() {
   group('Property Value Tests', () {
     group('Basic Property Types', () {
       test('Checkbox property', () {
-        const prop = PropertyValue.checkbox(
-          id: 'test_id',
-          checkbox: true,
-        );
+        const prop = PropertyValue.checkbox(id: 'test_id', checkbox: true);
 
         expect(prop.id, 'test_id');
         prop.when(
@@ -40,10 +37,7 @@ void main() {
       });
 
       test('Number property', () {
-        const prop = PropertyValue.number(
-          id: 'num_id',
-          number: 42.5,
-        );
+        const prop = PropertyValue.number(id: 'num_id', number: 42.5);
 
         prop.when(
           number: (id, number) {
@@ -118,10 +112,7 @@ void main() {
           color: 'red',
         );
 
-        const prop = PropertyValue.select(
-          id: 'select_id',
-          select: option,
-        );
+        const prop = PropertyValue.select(id: 'select_id', select: option);
 
         prop.when(
           select: (id, select) {
@@ -204,10 +195,7 @@ void main() {
           timeZone: 'America/New_York',
         );
 
-        const prop = PropertyValue.date(
-          id: 'date_id',
-          date: dateValue,
-        );
+        const prop = PropertyValue.date(id: 'date_id', date: dateValue);
 
         prop.when(
           date: (id, date) {
@@ -280,10 +268,7 @@ void main() {
     group('Formula Properties', () {
       test('Formula with number result', () {
         const formula = FormulaValue.number(number: 42);
-        const prop = PropertyValue.formula(
-          id: 'formula_id',
-          formula: formula,
-        );
+        const prop = PropertyValue.formula(id: 'formula_id', formula: formula);
 
         prop.when(
           formula: (id, formula) {
@@ -321,10 +306,7 @@ void main() {
 
       test('Formula with boolean result', () {
         const formula = FormulaValue.boolean(boolean: true);
-        const prop = PropertyValue.formula(
-          id: 'formula_id',
-          formula: formula,
-        );
+        const prop = PropertyValue.formula(id: 'formula_id', formula: formula);
 
         prop.when(
           formula: (id, formula) {
@@ -405,10 +387,7 @@ void main() {
 
       test('Rollup with number result', () {
         const rollup = RollupValue.number(number: 100);
-        const prop = PropertyValue.rollup(
-          id: 'rollup_id',
-          rollup: rollup,
-        );
+        const prop = PropertyValue.rollup(id: 'rollup_id', rollup: rollup);
 
         prop.when(
           rollup: (id, rollup) {
@@ -448,10 +427,7 @@ void main() {
     group('Unique ID and Verification Properties', () {
       test('Unique ID property', () {
         const uniqueId = UniqueId(number: 42, prefix: 'TASK');
-        const prop = PropertyValue.uniqueId(
-          id: 'uid_id',
-          uniqueId: uniqueId,
-        );
+        const prop = PropertyValue.uniqueId(id: 'uid_id', uniqueId: uniqueId);
 
         prop.when(
           uniqueId: (id, uniqueId) {
