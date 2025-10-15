@@ -149,12 +149,29 @@ class PropertyValue with _$PropertyValue {
       _$PropertyValueFromJson(json);
 }
 
-/// Select option for select and multi-select properties
+/// Select option for select and multi-select properties.
+///
+/// Represents a single option in a select or multi-select property.
+/// Each option has an ID, name, and color.
+///
+/// Example:
+/// ```dart
+/// const option = SelectOption(
+///   id: 'option_id',
+///   name: 'High Priority',
+///   color: 'red',
+/// );
+/// ```
 @freezed
 class SelectOption with _$SelectOption {
   const factory SelectOption({
+    /// Unique identifier for the option.
     required String id,
+    
+    /// Display name of the option.
     required String name,
+    
+    /// Color of the option (e.g., 'red', 'blue', 'green').
     required String color,
   }) = _SelectOption;
 
@@ -162,12 +179,30 @@ class SelectOption with _$SelectOption {
       _$SelectOptionFromJson(json);
 }
 
-/// Status option for status properties
+/// Status option for status properties.
+///
+/// Represents a single status option in a status property.
+/// Status options are similar to select options but are specifically
+/// designed for workflow states.
+///
+/// Example:
+/// ```dart
+/// const status = StatusOption(
+///   id: 'status_id',
+///   name: 'In Progress',
+///   color: 'yellow',
+/// );
+/// ```
 @freezed
 class StatusOption with _$StatusOption {
   const factory StatusOption({
+    /// Unique identifier for the status option.
     required String id,
+    
+    /// Display name of the status option.
     required String name,
+    
+    /// Color of the status option (e.g., 'red', 'blue', 'green').
     required String color,
   }) = _StatusOption;
 
@@ -175,12 +210,29 @@ class StatusOption with _$StatusOption {
       _$StatusOptionFromJson(json);
 }
 
-/// Date value for date properties
+/// Date value for date properties.
+///
+/// Represents a date or date range with optional timezone information.
+/// Can be used for single dates or date ranges with start and end dates.
+///
+/// Example:
+/// ```dart
+/// const dateValue = DateValue(
+///   start: '2024-01-01',
+///   end: '2024-01-31',
+///   timeZone: 'America/New_York',
+/// );
+/// ```
 @freezed
 class DateValue with _$DateValue {
   const factory DateValue({
+    /// Start date in ISO 8601 format (YYYY-MM-DD or YYYY-MM-DDTHH:MM:SS).
     required String start,
+    
+    /// Optional end date for date ranges.
     String? end,
+    
+    /// Optional timezone identifier (e.g., 'America/New_York').
     String? timeZone,
   }) = _DateValue;
 

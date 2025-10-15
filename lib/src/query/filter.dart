@@ -39,6 +39,9 @@ sealed class Filter with _$Filter {
 
   /// AND condition - matches results that satisfy all filters.
   ///
+  /// Creates a filter that matches database entries where all specified
+  /// conditions are true. This is equivalent to a logical AND operation.
+  ///
   /// Example:
   /// ```dart
   /// Filter.and([
@@ -46,9 +49,14 @@ sealed class Filter with _$Filter {
   ///   Filter.property(name: 'Priority', filter: PropertyFilter.numberGreaterThan(3)),
   /// ])
   /// ```
+  ///
+  /// [filters] - List of filter conditions that must all be satisfied.
   const factory Filter.and(List<Filter> filters) = AndFilter;
 
   /// OR condition - matches results that satisfy any of the filters.
+  ///
+  /// Creates a filter that matches database entries where at least one
+  /// of the specified conditions is true. This is equivalent to a logical OR operation.
   ///
   /// Example:
   /// ```dart
@@ -57,12 +65,14 @@ sealed class Filter with _$Filter {
   ///   Filter.property(name: 'Status', filter: PropertyFilter.selectEquals('In Progress')),
   /// ])
   /// ```
+  ///
+  /// [filters] - List of filter conditions where at least one must be satisfied.
   const factory Filter.or(List<Filter> filters) = OrFilter;
 
   /// Property filter - filters based on a specific property value.
   ///
-  /// [name] - The name of the property to filter on.
-  /// [filter] - The property-specific filter condition.
+  /// Creates a filter that matches database entries based on the value
+  /// of a specific property. The filter condition is property-type specific.
   ///
   /// Example:
   /// ```dart
@@ -71,6 +81,9 @@ sealed class Filter with _$Filter {
   ///   filter: PropertyFilter.selectEquals('In Progress'),
   /// )
   /// ```
+  ///
+  /// [name] - The name of the property to filter on.
+  /// [filter] - The property-specific filter condition.
   const factory Filter.property({
     required String name,
     required PropertyFilter filter,

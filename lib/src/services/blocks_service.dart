@@ -108,7 +108,18 @@ class BlocksService {
   }
 }
 
-/// Block children response with pagination
+/// Block children response with pagination.
+///
+/// Represents the response from retrieving child blocks of a parent block.
+/// Includes the list of child blocks and pagination information.
+///
+/// Example:
+/// ```dart
+/// final children = await client.blocks.retrieveChildren('block_id');
+/// for (final block in children.results) {
+///   print(block.type);
+/// }
+/// ```
 class BlockChildren {
   const BlockChildren({
     required this.object,
@@ -125,9 +136,17 @@ class BlockChildren {
         nextCursor: json['next_cursor'] as String?,
         hasMore: json['has_more'] as bool,
       );
+      
+  /// The type of object returned (always "list").
   final String object;
+  
+  /// List of child blocks.
   final List<Block> results;
+  
+  /// Cursor for the next page of results, if available.
   final String? nextCursor;
+  
+  /// Whether there are more results available.
   final bool hasMore;
 
   Map<String, dynamic> toJson() => {

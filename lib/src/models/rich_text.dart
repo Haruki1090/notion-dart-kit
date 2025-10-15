@@ -45,15 +45,39 @@ enum RichTextColor {
   redBackground,
 }
 
-/// Annotations for styling rich text
+/// Annotations for styling rich text.
+///
+/// Defines the visual styling properties for rich text content including
+/// formatting options like bold, italic, strikethrough, underline, code,
+/// and color.
+///
+/// Example:
+/// ```dart
+/// const annotations = Annotations(
+///   bold: true,
+///   italic: false,
+///   color: RichTextColor.blue,
+/// );
+/// ```
 @freezed
 class Annotations with _$Annotations {
   const factory Annotations({
+    /// Whether the text is bold.
     @Default(false) bool bold,
+    
+    /// Whether the text is italic.
     @Default(false) bool italic,
+    
+    /// Whether the text has strikethrough.
     @Default(false) bool strikethrough,
+    
+    /// Whether the text is underlined.
     @Default(false) bool underline,
+    
+    /// Whether the text is formatted as code.
     @Default(false) bool code,
+    
+    /// The color of the text.
     @Default(RichTextColor.defaultColor) RichTextColor color,
   }) = _Annotations;
 
@@ -61,11 +85,25 @@ class Annotations with _$Annotations {
       _$AnnotationsFromJson(json);
 }
 
-/// Text content with optional link
+/// Text content with optional link.
+///
+/// Represents the actual text content in a rich text object along with
+/// an optional link that can be applied to the text.
+///
+/// Example:
+/// ```dart
+/// const textContent = TextContent(
+///   content: 'Hello World',
+///   link: TextLink(url: 'https://example.com'),
+/// );
+/// ```
 @freezed
 class TextContent with _$TextContent {
   const factory TextContent({
+    /// The actual text content.
     required String content,
+    
+    /// Optional link to apply to the text.
     TextLink? link,
   }) = _TextContent;
 
@@ -73,10 +111,18 @@ class TextContent with _$TextContent {
       _$TextContentFromJson(json);
 }
 
-/// Link object for text
+/// Link object for text.
+///
+/// Represents a URL link that can be applied to text content.
+///
+/// Example:
+/// ```dart
+/// const textLink = TextLink(url: 'https://example.com');
+/// ```
 @freezed
 class TextLink with _$TextLink {
   const factory TextLink({
+    /// The URL of the link.
     required String url,
   }) = _TextLink;
 
@@ -84,10 +130,19 @@ class TextLink with _$TextLink {
       _$TextLinkFromJson(json);
 }
 
-/// Equation expression
+/// Equation expression.
+///
+/// Represents a mathematical equation in LaTeX format that can be
+/// rendered in rich text.
+///
+/// Example:
+/// ```dart
+/// const equation = EquationContent(expression: 'E = mc^2');
+/// ```
 @freezed
 class EquationContent with _$EquationContent {
   const factory EquationContent({
+    /// The LaTeX expression for the equation.
     required String expression,
   }) = _EquationContent;
 

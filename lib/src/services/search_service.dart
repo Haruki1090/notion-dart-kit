@@ -59,16 +59,32 @@ class SearchService {
   }
 }
 
-/// Filter for search results
+/// Filter for search results.
+///
+/// Used to filter search results by object type.
 enum SearchFilter {
-  /// Filter to only pages
+  /// Filter to only pages.
   page,
 
-  /// Filter to only databases/data sources
+  /// Filter to only databases/data sources.
   dataSource,
 }
 
-/// Search results containing pages and/or databases
+/// Search results containing pages and/or databases.
+///
+/// Represents the response from a search query, containing a list of
+/// search results and pagination information.
+///
+/// Example:
+/// ```dart
+/// final results = await client.search.search(query: 'important');
+/// for (final result in results.results) {
+///   result.when(
+///     page: (page) => print('Page: ${page.id}'),
+///     database: (db) => print('Database: ${db.id}'),
+///   );
+/// }
+/// ```
 class SearchResults {
   const SearchResults({
     required this.type,
@@ -99,9 +115,17 @@ class SearchResults {
       nextCursor: json['next_cursor'] as String?,
     );
   }
+  
+  /// The type of object returned (always "list").
   final String type;
+  
+  /// List of search results (pages and/or databases).
   final List<SearchResult> results;
+  
+  /// Whether there are more results available.
   final bool hasMore;
+  
+  /// Cursor for the next page of results, if available.
   final String? nextCursor;
 
   Map<String, dynamic> toJson() => {
@@ -113,7 +137,19 @@ class SearchResults {
       };
 }
 
-/// Union type for search results (Page or Database)
+/// Union type for search results (Page or Database).
+///
+/// Represents a single search result that can be either a Page or Database.
+/// Use the [when] method for pattern matching or the [asPage]/[asDatabase]
+/// getters for direct access.
+///
+/// Example:
+/// ```dart
+/// final result = searchResult.when(
+///   page: (page) => 'Page: ${page.id}',
+///   database: (db) => 'Database: ${db.id}',
+/// );
+/// ```
 class SearchResult {
   const SearchResult.page(Page page)
       : _page = page,
@@ -125,9 +161,13 @@ class SearchResult {
   final Page? _page;
   final Database? _database;
 
+  /// Whether this search result is a page.
   bool get isPage => _page != null;
+  
+  /// Whether this search result is a database.
   bool get isDatabase => _database != null;
 
+  /// Returns the page if this result is a page, throws otherwise.
   Page get asPage {
     if (_page == null) {
       throw StateError('SearchResult is not a Page');
@@ -135,6 +175,7 @@ class SearchResult {
     return _page!;
   }
 
+  /// Returns the database if this result is a database, throws otherwise.
   Database get asDatabase {
     if (_database == null) {
       throw StateError('SearchResult is not a Database');
@@ -142,7 +183,17 @@ class SearchResult {
     return _database!;
   }
 
-  /// Pattern matching for search results
+  /// Pattern matching for search results.
+  /// 
+  /// Executes the appropriate callback based on the type of search result.
+  /// 
+  /// Example:
+  /// ```dart
+  /// final title = searchResult.when(
+  ///   page: (page) => page.properties['title']?.toString() ?? 'Untitled',
+  ///   database: (db) => db.title.map((t) => t.plainText).join(),
+  /// );
+  /// ```
   T when<T>({
     required T Function(Page page) page,
     required T Function(Database database) database,

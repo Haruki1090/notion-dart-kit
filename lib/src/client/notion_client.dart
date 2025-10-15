@@ -32,36 +32,61 @@ class NotionClient {
   }
 
   /// The HTTP client used for API requests.
+  /// 
+  /// Provides low-level access to the HTTP client for advanced use cases.
   final NotionHttpClient httpClient;
 
   /// Service for Users API endpoints.
+  /// 
+  /// Provides methods to retrieve user information, including the bot user
+  /// and workspace members.
   late final UsersService users;
 
   /// Service for Pages API endpoints.
+  /// 
+  /// Provides methods to create, retrieve, update, archive, and restore pages.
   late final PagesService pages;
 
   /// Service for Databases API endpoints.
+  /// 
+  /// Provides methods to create, retrieve, update, query, archive, and restore databases.
   late final DatabasesService databases;
 
   /// Service for Data Sources API endpoints.
+  /// 
+  /// Provides methods to work with data sources (v3 API) including creating,
+  /// retrieving, updating, and querying data sources.
   late final DataSourcesService dataSources;
 
   /// Service for Search API endpoints.
+  /// 
+  /// Provides methods to search across pages and databases in the workspace.
   late final SearchService search;
 
   /// Service for Blocks API endpoints.
+  /// 
+  /// Provides methods to retrieve, update, and manage page content blocks.
   late final BlocksService blocks;
 
   /// Service for Comments API endpoints.
+  /// 
+  /// Provides methods to create, retrieve, and manage comments on pages.
   late final CommentsService comments;
 
   /// Service for File Uploads API endpoints.
+  /// 
+  /// Provides methods to upload small files to Notion pages.
   late final FileUploadsService fileUploads;
 
   /// The Notion API integration token.
+  /// 
+  /// Returns the integration token used for authentication with the Notion API.
   String get token => httpClient.token;
 
   /// Retry queue instance for inspecting or customizing behavior.
+  /// 
+  /// Provides access to the retry queue for monitoring failed requests
+  /// and customizing retry behavior.
   RetryQueue get retryQueue => httpClient.retryQueue;
 
   /// Closes the client and releases resources.
