@@ -28,7 +28,9 @@ jobs:
         run: dart run build_runner build --delete-conflicting-outputs
 
       - name: Verify formatting
-        run: dart format --output=none --set-exit-if-changed --exclude="example/flutter_todo_app/**" .
+        run: |
+          # Format check excluding flutter_todo_app
+          dart format --output=none --set-exit-if-changed $(find . -name "*.dart" -not -path "./example/flutter_todo_app/*" -not -path "./.dart_tool/*" -not -path "./build/*")
 
       - name: Analyze code
         run: dart analyze --fatal-infos
