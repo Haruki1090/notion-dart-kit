@@ -13,8 +13,8 @@ Notion API のための包括的な型安全 Dart ツールキット。完全な
 - **🎯 型安全**: Freezed による強力な型付きモデルとイミュータブルなデータクラス
 - **🔄 自動リトライ**: ジッター付き指数バックオフによるレート制限の自動処理
 - **⚡ レート制限**: 429 エラーの自動ハンドリングと設定可能なリトライロジック
-- **🧵 リトライキュー (新機能)**: 失敗したリクエストを優先度付きで自動再試行し、`Retry-After` を尊重
-- **📦 完全な API カバレッジ**: Pages、Databases、Blocks、Users、Search、File Uploads の完全サポート
+- **🧵 リトライキュー**: 失敗したリクエストを優先度付きで自動再試行し、`Retry-After` を尊重
+- **📦 完全な API カバレッジ**: Pages、Databases、Data Sources、Blocks、Users、Search、Comments、File Uploads の完全サポート
 - **🛡️ エラーハンドリング**: 異なる API エラータイプ用のカスタム例外クラス
 - **📱 Flutter 対応**: Flutter アプリケーションでシームレスに動作
 - **🌐 Web サポート**: 条件付きインポートによる Web プラットフォームの完全サポート
@@ -27,7 +27,7 @@ Notion API のための包括的な型安全 Dart ツールキット。完全な
 
 ```yaml
 dependencies:
-  notion_dart_kit: ^0.1.0
+  notion_dart_kit: ^0.1.1
 ```
 
 次に以下を実行:
@@ -590,7 +590,7 @@ try {
 
 | 機能 | ステータス |
 |---------|--------|
-| Comments API | 🚧 予定 ([#6](https://github.com/Haruki1090/notion-dart-kit/issues/6)) |
+| Comments API | ✅ 実装済み ([#6](https://github.com/Haruki1090/notion-dart-kit/issues/6)) |
 | File Upload API | ✅ 実装済み ([#7](https://github.com/Haruki1090/notion-dart-kit/issues/7)) |
 | Webhooks サポート | 🚧 予定 |
 | Page Property Items API | 🚧 予定 |

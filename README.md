@@ -13,8 +13,8 @@ A comprehensive, type-safe Dart toolkit for the Notion API. Full endpoint covera
 - **🎯 Type-Safe**: Strongly typed models using Freezed for immutable data classes
 - **🔄 Auto-Retry**: Built-in exponential backoff with jitter for rate limit handling
 - **⚡ Rate Limiting**: Automatic 429 error handling with configurable retry logic
-- **🧵 Retry Queue (New)**: Automatically re-enqueues failed requests with priority scheduling and honors `Retry-After`
-- **📦 Full API Coverage**: Support for Pages, Databases, Blocks, Users, Search, and File Uploads
+- **🧵 Retry Queue**: Automatically re-enqueues failed requests with priority scheduling and honors `Retry-After`
+- **📦 Full API Coverage**: Support for Pages, Databases, Data Sources, Blocks, Users, Search, Comments, and File Uploads
 - **🛡️ Error Handling**: Custom exception classes for different API error types
 - **📱 Flutter Ready**: Works seamlessly with Flutter applications
 - **🌐 Web Support**: Full support for web platforms with conditional imports
@@ -27,7 +27,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  notion_dart_kit: ^0.1.0
+  notion_dart_kit: ^0.1.1
 ```
 
 Then run:
@@ -686,7 +686,7 @@ try {
 
 | Feature | Status |
 |---------|--------|
-| Comments API | 🚧 Planned ([#6](https://github.com/Haruki1090/notion-dart-kit/issues/6)) |
+| Comments API | ✅ Implemented ([#6](https://github.com/Haruki1090/notion-dart-kit/issues/6)) |
 | File Upload API | ✅ Implemented ([#7](https://github.com/Haruki1090/notion-dart-kit/issues/7)) |
 | Webhooks Support | 🚧 Planned |
 | Page Property Items API | 🚧 Planned |
