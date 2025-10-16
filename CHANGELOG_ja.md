@@ -9,6 +9,24 @@
 
 [English version](./CHANGELOG.md)
 
+## [0.1.2] - 2025-10-16
+
+### 修正
+- README ファイルのドキュメント更新
+  - インストールバージョンを ^0.1.0 から ^0.1.1 に更新
+  - 予定機能セクションで Comments API を実装済みとしてマーク
+  - Features セクションの完全な API カバレッジリストに Data Sources と Comments を追加
+  - リトライキュー機能から「(新機能)」ラベルを削除
+
+# 変更履歴（アーカイブ）
+
+このプロジェクトのすべての重要な変更は、このファイルに記録されます。
+
+フォーマットは [Keep a Changelog](https://keepachangelog.com/ja/1.0.0/) に基づいており、
+このプロジェクトは [セマンティック バージョニング](https://semver.org/lang/ja/) に準拠しています。
+
+[English version](./CHANGELOG.md)
+
 ## [0.1.1] - 2025-10-16
 
 ### 追加

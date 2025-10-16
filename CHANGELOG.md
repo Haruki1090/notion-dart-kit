@@ -7,6 +7,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.2] - 2025-10-16
+
+### Fixed
+- Documentation updates in README files
+  - Updated installation version from ^0.1.0 to ^0.1.1
+  - Marked Comments API as implemented in Planned Features section
+  - Added Data Sources and Comments to Full API Coverage list in Features section
+  - Removed '(New)' label from Retry Queue feature
+
+# Changelog (Archive)
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
 ## [0.1.1] - 2025-10-16
 
 ### Added
