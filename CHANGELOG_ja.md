@@ -1,6 +1,22 @@
 ## Unreleased
 
+# 変更履歴
+
+このプロジェクトのすべての重要な変更は、このファイルに記録されます。
+
+フォーマットは [Keep a Changelog](https://keepachangelog.com/ja/1.0.0/) に基づいており、
+このプロジェクトは [セマンティック バージョニング](https://semver.org/lang/ja/) に準拠しています。
+
+[English version](./CHANGELOG.md)
+
+## [0.1.1] - 2025-01-16
+
 ### 追加
+- **Webプラットフォームサポート**: 条件付きインポートによる完全なWebプラットフォーム対応
+  - Web互換のロガー実装 (`notion_logger_web.dart`)
+  - プラットフォーム固有のロガーパッケージの条件付きインポート
+  - Webプラットフォームテスト (`notion_logger_web_test.dart`, `web_platform_test.dart`)
+  - `pubspec.yaml` にWebプラットフォームサポートを追加
 - リトライキュー: 一時的失敗 (429/5xx/ネットワーク) をバックグラウンドで再試行
 - `NotionClient.retryQueue` を公開し、直接監視/制御が可能に
 - `NotionHttpClient` で再試行可能な失敗を自動的にエンキュー
@@ -10,12 +26,21 @@
   - `FileUpload` モデルと `FileUploadStatus` 列挙
   - 公開エクスポートと `NotionClient.fileUploads`
   - サンプル `example/file_uploads_example.dart`
- - 再帰的なブロック取得ユーティリティを追加:
-   - `recursivelyLoadBlocks`（深さ制限、キャッシュ、並列取得に対応）
-   - 子ブロック結果を再利用する `BlockChildrenCache`
-   - 公開エクスポート `src/utils/recursive_block_loader.dart`
+- 再帰的なブロック取得ユーティリティを追加:
+  - `recursivelyLoadBlocks`（深さ制限、キャッシュ、並列取得に対応）
+  - 子ブロック結果を再利用する `BlockChildrenCache`
+  - 公開エクスポート `src/utils/recursive_block_loader.dart`
 
-# 変更履歴
+### 修正
+- `notion_logger_web.dart` の静的解析エラーを修正
+  - `Level` クラスを enhanced enum に変換
+  - dangling doc comments 用のライブラリディレクティブを追加
+  - コンストラクタの順序を修正
+  - 未使用の `_NoLogFilter` クラスを削除
+- 87ファイルのコードフォーマット問題を修正
+- CI/CDのフォーマットチェックから `example/flutter_todo_app/` ディレクトリを除外
+
+# 変更履歴（アーカイブ）
 
 このプロジェクトのすべての重要な変更は、このファイルに記録されます。
 

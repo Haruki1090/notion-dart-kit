@@ -1,5 +1,14 @@
 ## Unreleased
 
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [0.1.1] - 2025-01-16
+
 ### Added
 - **Web Platform Support**: Full support for web platforms with conditional imports
   - Web-compatible logger implementation (`notion_logger_web.dart`)
@@ -12,12 +21,21 @@
   - `FileUpload` model and `FileUploadStatus` enum
   - Public exports and `NotionClient.fileUploads`
   - Example `example/file_uploads_example.dart`
- - Recursive Block Loader utility:
-   - `recursivelyLoadBlocks` with depth limit, caching, and parallel fetching
-   - `BlockChildrenCache` for reusing child block results across calls
-   - Public export `src/utils/recursive_block_loader.dart`
+- Recursive Block Loader utility:
+  - `recursivelyLoadBlocks` with depth limit, caching, and parallel fetching
+  - `BlockChildrenCache` for reusing child block results across calls
+  - Public export `src/utils/recursive_block_loader.dart`
 
-# Changelog
+### Fixed
+- Static analysis errors in `notion_logger_web.dart`
+  - Converted `Level` class to enhanced enum
+  - Added library directive for dangling doc comments
+  - Fixed constructor ordering
+  - Removed unused `_NoLogFilter` class
+- Code formatting issues across 87 files
+- CI/CD formatting check to exclude `example/flutter_todo_app/` directory
+
+# Changelog (Archive)
 
 All notable changes to this project will be documented in this file.
 
