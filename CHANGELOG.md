@@ -2,6 +2,95 @@
 
 # Changelog
 
+## [0.2.2] - 2025-01-25
+
+### Added
+- **Template API Support**: Complete implementation of Notion's Template API
+  - New `Template` model with full JSON serialization support
+  - `TemplatesService` with `listTemplates` and `retrieveTemplate` methods
+  - Pagination support for template listings with `startCursor` and `pageSize`
+  - Integration with `NotionClient` via `client.templates`
+  - Template-based page creation via optional `templateId` parameter in `PagesService.create`
+- **Enhanced Error Handling**: Template-specific exception classes
+  - `TemplateNotFoundException` for missing templates
+  - `InvalidTemplateException` for invalid template operations
+  - Proper error propagation and handling throughout the template workflow
+- **Comprehensive Test Suite**: Full test coverage for template functionality
+  - Unit tests for `Template` model serialization/deserialization
+  - Service tests for `TemplatesService` with mocked HTTP client
+  - Integration tests for template-based page creation
+  - Error handling tests for template-specific exceptions
+- **Documentation & Examples**: Complete documentation for Template API
+  - Updated README with Template API section and usage examples
+  - New `templates_example.dart` with comprehensive template workflow examples
+  - Error handling examples and pagination demonstrations
+  - Integration examples showing template-to-page creation workflow
+
+### Enhanced
+- **Backward Compatibility**: All existing functionality remains unchanged
+- **Type Safety**: Strong typing throughout the Template API implementation
+- **Performance**: Efficient pagination and caching for template operations
+
+## [0.2.1] - 2025-01-XX
+
+### Added
+- **Template API Support**: Complete implementation of Notion's Template API
+  - New `Template` model with full JSON serialization support
+  - `TemplatesService` with `listTemplates` and `retrieveTemplate` methods
+  - Pagination support for template listings with `startCursor` and `pageSize`
+  - Integration with `NotionClient` via `client.templates`
+  - Template-based page creation via optional `templateId` parameter in `PagesService.create`
+- **Enhanced Error Handling**: Template-specific exception classes
+  - `TemplateNotFoundException` for missing templates
+  - `InvalidTemplateException` for invalid template operations
+  - Proper error propagation and handling throughout the template workflow
+- **Comprehensive Test Suite**: Full test coverage for template functionality
+  - Unit tests for `Template` model serialization/deserialization
+  - Service tests for `TemplatesService` with mocked HTTP client
+  - Integration tests for template-based page creation
+  - Error handling tests for template-specific exceptions
+- **Documentation & Examples**: Complete documentation for Template API
+  - Updated README with Template API section and usage examples
+  - New `templates_example.dart` with comprehensive template workflow examples
+  - Error handling examples and pagination demonstrations
+  - Integration examples showing template-to-page creation workflow
+
+### Enhanced
+- **Backward Compatibility**: All existing functionality remains unchanged
+  - `PagesService.create` maintains existing signature with optional `templateId`
+  - No breaking changes to existing APIs or models
+  - Template functionality is additive and opt-in
+- **Type Safety**: Full type safety for template operations
+  - Strongly typed `Template` model with Freezed annotations
+  - Type-safe template service methods with proper return types
+  - Null safety compliance throughout template implementation
+- **API Coverage**: Extended API coverage to include Template endpoints
+  - GET `/data_sources/{data_source_id}/templates` - List templates
+  - GET `/data_sources/{data_source_id}/templates/{template_id}` - Retrieve template
+  - POST `/pages` with `template_id` parameter - Create page from template
+
+### Technical Improvements
+- **Service Architecture**: Consistent service pattern following existing codebase
+  - Template service follows same patterns as other services
+  - Proper HTTP client integration and error handling
+  - Consistent method signatures and return types
+- **Export Management**: Proper module exports for template functionality
+  - Template model exported in main library
+  - TemplatesService exported for direct usage
+  - Template exceptions available for error handling
+- **Code Quality**: High-quality implementation with comprehensive testing
+  - 100% test coverage for new template functionality
+  - Consistent code style and documentation
+  - Proper error handling and edge case coverage
+
+### Breaking Changes
+- None - This release maintains full backward compatibility
+
+### Migration Guide
+- No migration required - all existing code continues to work
+- Template functionality is available immediately via `client.templates`
+- Existing page creation continues to work; `templateId` parameter is optional
+
 ## [0.2.0] - 2025-10-25
 
 ### Added

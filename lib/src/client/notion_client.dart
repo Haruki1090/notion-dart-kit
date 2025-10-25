@@ -5,6 +5,7 @@ import '../services/databases_service.dart';
 import '../services/file_uploads_service.dart';
 import '../services/pages_service.dart';
 import '../services/search_service.dart';
+import '../services/templates_service.dart';
 import '../services/users_service.dart';
 import 'http_client.dart';
 import 'retry_queue.dart';
@@ -39,6 +40,7 @@ class NotionClient {
     blocks = BlocksService(httpClient);
     comments = CommentsService(httpClient);
     fileUploads = FileUploadsService(httpClient);
+    templates = TemplatesService(httpClient);
   }
 
   /// The HTTP client used for API requests.
@@ -87,6 +89,12 @@ class NotionClient {
   ///
   /// Provides methods to upload small files to Notion pages.
   late final FileUploadsService fileUploads;
+
+  /// Service for Templates API endpoints.
+  ///
+  /// Provides methods to retrieve templates from data sources and use them
+  /// for creating new pages with predefined structures.
+  late final TemplatesService templates;
 
   /// The Notion API integration token.
   ///

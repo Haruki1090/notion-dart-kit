@@ -25,6 +25,7 @@ export 'src/models/property_item.dart';
 export 'src/models/property_schema.dart';
 export 'src/models/property_value.dart';
 export 'src/models/rich_text.dart';
+export 'src/models/template.dart';
 export 'src/models/user.dart';
 // Query DSL
 export 'src/query/filter.dart';
@@ -38,6 +39,7 @@ export 'src/services/databases_service.dart';
 export 'src/services/file_uploads_service.dart';
 export 'src/services/pages_service.dart';
 export 'src/services/search_service.dart';
+export 'src/services/templates_service.dart';
 export 'src/services/users_service.dart';
 // Utilities
 export 'src/utils/api_version.dart';

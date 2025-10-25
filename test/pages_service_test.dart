@@ -1,6 +1,12 @@
+import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
 import 'package:notion_dart_kit/notion_dart_kit.dart';
+import 'package:notion_dart_kit/src/client/http_client.dart';
 import 'package:test/test.dart';
 
+import 'pages_service_test.mocks.dart';
+
+@GenerateMocks([NotionHttpClient])
 void main() {
   group('PagesService', () {
     test('NotionClient has pages service', () {
@@ -161,6 +167,221 @@ void main() {
         uniqueId: (id, uniqueId) => fail('Should be title property'),
         verification: (id, verification) => fail('Should be title property'),
       );
+    });
+
+    group('Template functionality', () {
+      late MockNotionHttpClient mockHttpClient;
+      late PagesService pagesService;
+
+      setUp(() {
+        mockHttpClient = MockNotionHttpClient();
+        pagesService = PagesService(mockHttpClient);
+      });
+
+      test('should create page with template', () async {
+        const templateId = 'template_123';
+        final mockResponse = {
+          'object': 'page',
+          'id': 'new-page-id',
+          'created_time': '2023-01-01T00:00:00.000Z',
+          'last_edited_time': '2023-01-01T00:00:00.000Z',
+          'created_by': {
+            'object': 'user',
+            'id': 'user-1',
+            'type': 'person',
+            'person': {'email': 'test@example.com'},
+          },
+          'last_edited_by': {
+            'object': 'user',
+            'id': 'user-1',
+            'type': 'person',
+            'person': {'email': 'test@example.com'},
+          },
+          'parent': {'type': 'workspace', 'workspace': true},
+          'archived': false,
+          'in_trash': false,
+          'properties': {
+            'Title': {
+              'id': 'title',
+              'type': 'title',
+              'title': [
+                {
+                  'type': 'text',
+                  'text': {'content': 'New Page from Template', 'link': null},
+                  'annotations': {
+                    'bold': false,
+                    'italic': false,
+                    'strikethrough': false,
+                    'underline': false,
+                    'code': false,
+                    'color': 'default',
+                  },
+                  'plain_text': 'New Page from Template',
+                  'href': null,
+                },
+              ],
+            },
+          },
+          'url': 'https://notion.so/new-page-id',
+        };
+
+        when(mockHttpClient.post('/pages', data: anyNamed('data')))
+            .thenAnswer((_) async => mockResponse);
+
+        final result = await pagesService.create(
+          parent: const WorkspaceParent(),
+          properties: {
+            'Title': const TitleProperty(
+              id: 'title',
+              title: [
+                RichText.text(
+                  text: TextContent(content: 'New Page from Template'),
+                  annotations: Annotations(),
+                  plainText: 'New Page from Template',
+                ),
+              ],
+            ),
+          },
+          templateId: templateId,
+        );
+
+        expect(result.id, equals('new-page-id'));
+        expect(result.url, equals('https://notion.so/new-page-id'));
+
+        // Verify that the request includes the template_id
+        final capturedRequest = verify(mockHttpClient.post('/pages', data: captureAnyNamed('data')))
+            .captured
+            .single as Map<String, dynamic>;
+        expect(capturedRequest['template_id'], equals(templateId));
+      });
+
+      test('should create page without template (backward compatibility)', () async {
+        final mockResponse = {
+          'object': 'page',
+          'id': 'new-page-id',
+          'created_time': '2023-01-01T00:00:00.000Z',
+          'last_edited_time': '2023-01-01T00:00:00.000Z',
+          'created_by': {
+            'object': 'user',
+            'id': 'user-1',
+            'type': 'person',
+            'person': {'email': 'test@example.com'},
+          },
+          'last_edited_by': {
+            'object': 'user',
+            'id': 'user-1',
+            'type': 'person',
+            'person': {'email': 'test@example.com'},
+          },
+          'parent': {'type': 'workspace', 'workspace': true},
+          'archived': false,
+          'in_trash': false,
+          'properties': {
+            'Title': {
+              'id': 'title',
+              'type': 'title',
+              'title': [
+                {
+                  'type': 'text',
+                  'text': {'content': 'Regular Page', 'link': null},
+                  'annotations': {
+                    'bold': false,
+                    'italic': false,
+                    'strikethrough': false,
+                    'underline': false,
+                    'code': false,
+                    'color': 'default',
+                  },
+                  'plain_text': 'Regular Page',
+                  'href': null,
+                },
+              ],
+            },
+          },
+          'url': 'https://notion.so/new-page-id',
+        };
+
+        when(mockHttpClient.post('/pages', data: anyNamed('data')))
+            .thenAnswer((_) async => mockResponse);
+
+        final result = await pagesService.create(
+          parent: const WorkspaceParent(),
+          properties: {
+            'Title': const TitleProperty(
+              id: 'title',
+              title: [
+                RichText.text(
+                  text: TextContent(content: 'Regular Page'),
+                  annotations: Annotations(),
+                  plainText: 'Regular Page',
+                ),
+              ],
+            ),
+          },
+        );
+
+        expect(result.id, equals('new-page-id'));
+
+        // Verify that the request does not include template_id
+        final capturedRequest = verify(mockHttpClient.post('/pages', data: captureAnyNamed('data')))
+            .captured
+            .single as Map<String, dynamic>;
+        expect(capturedRequest.containsKey('template_id'), isFalse);
+      });
+
+      test('should handle template not found error', () async {
+        const templateId = 'nonexistent_template';
+
+        when(mockHttpClient.post('/pages', data: anyNamed('data')))
+            .thenThrow(TemplateNotFoundException('Template not found'));
+
+        expect(
+          () => pagesService.create(
+            parent: const WorkspaceParent(),
+            properties: {
+              'Title': const TitleProperty(
+                id: 'title',
+                title: [
+                  RichText.text(
+                    text: TextContent(content: 'Test Page'),
+                    annotations: Annotations(),
+                    plainText: 'Test Page',
+                  ),
+                ],
+              ),
+            },
+            templateId: templateId,
+          ),
+          throwsA(isA<TemplateNotFoundException>()),
+        );
+      });
+
+      test('should handle invalid template error', () async {
+        const templateId = 'invalid_template';
+
+        when(mockHttpClient.post('/pages', data: anyNamed('data')))
+            .thenThrow(InvalidTemplateException('Invalid template'));
+
+        expect(
+          () => pagesService.create(
+            parent: const WorkspaceParent(),
+            properties: {
+              'Title': const TitleProperty(
+                id: 'title',
+                title: [
+                  RichText.text(
+                    text: TextContent(content: 'Test Page'),
+                    annotations: Annotations(),
+                    plainText: 'Test Page',
+                  ),
+                ],
+              ),
+            },
+            templateId: templateId,
+          ),
+          throwsA(isA<InvalidTemplateException>()),
+        );
+      });
     });
   });
 }

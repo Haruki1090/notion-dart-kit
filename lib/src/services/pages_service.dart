@@ -18,15 +18,28 @@ class PagesService {
   /// [children] - Optional page content as block objects.
   /// [icon] - Optional page icon (emoji or file).
   /// [cover] - Optional cover image.
+  /// [templateId] - Optional template ID to create the page from a template.
   ///
   /// Returns the created Page object.
   /// Throws [NotionException] if the request fails.
+  ///
+  /// Example with template:
+  /// ```dart
+  /// final page = await client.pages.create(
+  ///   parent: Parent.database(databaseId),
+  ///   properties: {
+  ///     'Title': PropertyValue.title([RichText.text('New Page')])
+  ///   },
+  ///   templateId: 'template_id_here',
+  /// );
+  /// ```
   Future<Page> create({
     required Parent parent,
     required Map<String, dynamic> properties,
     List<Map<String, dynamic>>? children,
     PageIcon? icon,
     NotionFile? cover,
+    String? templateId,
   }) async {
     final body = <String, dynamic>{
       'parent': parent.toJson(),
@@ -34,6 +47,7 @@ class PagesService {
       if (children != null) 'children': children,
       if (icon != null) 'icon': icon.toJson(),
       if (cover != null) 'cover': cover.toJson(),
+      if (templateId != null) 'template_id': templateId,
     };
 
     final response = await _httpClient.post('/pages', data: body);

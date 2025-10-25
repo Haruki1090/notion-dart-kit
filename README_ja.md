@@ -89,6 +89,7 @@ void main() async {
 | Users | `me`, `retrieve`, `list` | ページネーション対応のユーザーリストとボットメタデータアクセスを提供します。 |
 | Comments | `create`, `list`, `retrieve` | ページ/ブロック上のコメント作成・取得。添付や表示名の上書きも対応。 |
 | File Uploads | `create`, `sendBytes`, `sendFile`, `complete`, `retrieve`, `list` | シングル/マルチパート/外部URLのアップロードに対応。 |
+| Templates | `listTemplates`, `retrieveTemplate` | **v0.2.2の新機能**: データソースからテンプレートを一覧・取得し、テンプレートからページを作成。 |
 
 ## 🛡️ 回復力とエラーハンドリング
 
@@ -388,6 +389,85 @@ print('Upload status: ${uploaded.status}');
 // await client.fileUploads.sendFile(session.id, '/path/part2', partNumber: 2);
 // await client.fileUploads.sendFile(session.id, '/path/part3', partNumber: 3);
 // final done = await client.fileUploads.complete(session.id);
+```
+
+### テンプレートの操作 (v0.2.2の新機能)
+
+Template APIを使用して、データソースからテンプレートを一覧・取得し、テンプレートを使用してページを作成できます:
+
+```dart
+// データソースからすべてのテンプレートを一覧
+final templates = await client.templates.listTemplates('data_source_id');
+
+for (final template in templates.results) {
+  print('テンプレート: ${template.title}');
+  print('説明: ${template.description}');
+  print('作成日: ${template.createdTime}');
+  print('URL: ${template.url}');
+}
+
+// 大きなテンプレートリストのページネーション処理
+if (templates.hasMore) {
+  final nextPage = await client.templates.listTemplates(
+    'data_source_id',
+    startCursor: templates.nextCursor,
+    pageSize: 25,
+  );
+}
+
+// 特定のテンプレートを取得
+final template = await client.templates.retrieveTemplate(
+  'data_source_id',
+  'template_id',
+);
+
+print('テンプレート: ${template.title}');
+print('作成者: ${template.createdBy.name}');
+print('最終編集: ${template.lastEditedTime}');
+
+// テンプレートからページを作成
+final pageFromTemplate = await client.pages.create(
+  parent: Parent.database('database_id'),
+  properties: {
+    'Name': {
+      'title': [
+        {'text': {'content': 'テンプレートから作成されたページ'}}
+      ]
+    },
+    'Status': {
+      'select': {'name': 'ドラフト'}
+    }
+  },
+  templateId: template.id, // テンプレートを使用
+);
+
+print('作成されたページ: ${pageFromTemplate.id}');
+```
+
+**Template API機能:**
+
+- ✅ ページネーション付きでデータソースからテンプレートを一覧
+- ✅ 特定のテンプレートの詳細を取得
+- ✅ テンプレートを使用してページを作成
+- ✅ Templateモデルによる完全な型安全性
+- ✅ テンプレート操作の適切なエラーハンドリング
+- ✅ 既存のページ作成との後方互換性
+
+**エラーハンドリング:**
+
+```dart
+try {
+  final template = await client.templates.retrieveTemplate(
+    'data_source_id',
+    'nonexistent_template',
+  );
+} on TemplateNotFoundException catch (e) {
+  print('テンプレートが見つかりません: ${e.message}');
+} on InvalidTemplateException catch (e) {
+  print('無効なテンプレート: ${e.message}');
+} on NotionException catch (e) {
+  print('API エラー: ${e.message}');
+}
 ```
 
 ### クエリ DSL (型安全フィルターとソート)

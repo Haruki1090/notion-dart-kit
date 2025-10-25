@@ -1,6 +1,6 @@
 name: notion_dart_kit
 description: A comprehensive, type-safe Dart toolkit for the Notion API. Full endpoint coverage, built-in rate limiting, retry logic, and intuitive query DSL for Dart & Flutter.
-version: 0.2.0
+version: 0.2.2
 homepage: https://github.com/Haruki1090/notion-dart-kit
 repository: https://github.com/Haruki1090/notion-dart-kit
 issue_tracker: https://github.com/Haruki1090/notion-dart-kit/issues

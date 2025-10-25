@@ -44,3 +44,19 @@ class ValidationException extends NotionException {
   @override
   String toString() => 'ValidationException: $message';
 }
+
+/// Exception thrown when a template is not found.
+class TemplateNotFoundException extends NotionException {
+  TemplateNotFoundException(super.message, {super.statusCode});
+
+  @override
+  String toString() => 'TemplateNotFoundException: $message';
+}
+
+/// Exception thrown when a template is invalid or cannot be used.
+class InvalidTemplateException extends NotionException {
+  InvalidTemplateException(super.message, {super.statusCode});
+
+  @override
+  String toString() => 'InvalidTemplateException: $message';
+}

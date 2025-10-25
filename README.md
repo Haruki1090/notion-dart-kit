@@ -89,6 +89,7 @@ void main() async {
 | Users | `me`, `retrieve`, `list` | Provides pagination-ready user listings and bot metadata access. |
 | Comments | `create`, `list`, `retrieve` | Create and fetch comments for pages/blocks; supports attachments and display name overrides. |
 | File Uploads | `create`, `sendBytes`, `sendFile`, `complete`, `retrieve`, `list` | Supports single-part, multi-part, and external URL uploads. |
+| Templates | `listTemplates`, `retrieveTemplate` | **NEW in v0.2.2**: List and retrieve templates from data sources; create pages from templates. |
 
 ## 🛡️ Resilience & Error Handling
 
@@ -181,6 +182,19 @@ await client.pages.update(
 await client.pages.update(
   'page_id',
   inTrash: true, // Move to trash
+);
+
+// NEW in v0.2.2: Create page from template
+final pageFromTemplate = await client.pages.create(
+  parent: Parent.database('database_id'),
+  properties: {
+    'Name': {
+      'title': [
+        {'text': {'content': 'Page from Template'}}
+      ]
+    }
+  },
+  templateId: 'template_id', // Specify template to use
 );
 ```
 
@@ -405,6 +419,85 @@ final user = await client.users.retrieve('user_id');
 final users = await client.users.list(pageSize: 100);
 for (final user in users.results) {
   print('User: ${user.name}');
+}
+```
+
+### Working with Templates (NEW in v0.2.2)
+
+The Template API allows you to list templates from data sources and create pages using those templates:
+
+```dart
+// List all templates from a data source
+final templates = await client.templates.listTemplates('data_source_id');
+
+for (final template in templates.results) {
+  print('Template: ${template.title}');
+  print('Description: ${template.description}');
+  print('Created: ${template.createdTime}');
+  print('URL: ${template.url}');
+}
+
+// Handle pagination for large template lists
+if (templates.hasMore) {
+  final nextPage = await client.templates.listTemplates(
+    'data_source_id',
+    startCursor: templates.nextCursor,
+    pageSize: 25,
+  );
+}
+
+// Retrieve a specific template
+final template = await client.templates.retrieveTemplate(
+  'data_source_id',
+  'template_id',
+);
+
+print('Template: ${template.title}');
+print('Created by: ${template.createdBy.name}');
+print('Last edited: ${template.lastEditedTime}');
+
+// Create a page from a template
+final pageFromTemplate = await client.pages.create(
+  parent: Parent.database('database_id'),
+  properties: {
+    'Name': {
+      'title': [
+        {'text': {'content': 'New Page from Template'}}
+      ]
+    },
+    'Status': {
+      'select': {'name': 'Draft'}
+    }
+  },
+  templateId: template.id, // Use the template
+);
+
+print('Created page: ${pageFromTemplate.id}');
+```
+
+**Template API Features:**
+
+- ✅ List templates from data sources with pagination
+- ✅ Retrieve specific template details
+- ✅ Create pages using templates
+- ✅ Full type safety with Template model
+- ✅ Proper error handling for template operations
+- ✅ Backward compatibility with existing page creation
+
+**Error Handling:**
+
+```dart
+try {
+  final template = await client.templates.retrieveTemplate(
+    'data_source_id',
+    'nonexistent_template',
+  );
+} on TemplateNotFoundException catch (e) {
+  print('Template not found: ${e.message}');
+} on InvalidTemplateException catch (e) {
+  print('Invalid template: ${e.message}');
+} on NotionException catch (e) {
+  print('API error: ${e.message}');
 }
 ```
 
