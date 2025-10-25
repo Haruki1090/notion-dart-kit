@@ -35,8 +35,14 @@ void main() {
       expect(template.id, equals('template_123'));
       expect(template.title, equals('Project Template'));
       expect(template.description, equals('A template for new projects'));
-      expect(template.createdTime, equals(DateTime.parse('2023-01-01T00:00:00.000Z')));
-      expect(template.lastEditedTime, equals(DateTime.parse('2023-01-02T00:00:00.000Z')));
+      expect(
+        template.createdTime,
+        equals(DateTime.parse('2023-01-01T00:00:00.000Z')),
+      );
+      expect(
+        template.lastEditedTime,
+        equals(DateTime.parse('2023-01-02T00:00:00.000Z')),
+      );
       expect(template.createdBy.id, equals('user_123'));
       expect(template.lastEditedBy.id, equals('user_456'));
       expect(template.url, equals('https://notion.so/template_123'));
@@ -114,15 +120,15 @@ void main() {
     });
 
     test('should create template with factory constructor', () {
-      final createdBy = User.person(
+      const createdBy = User.person(
         id: 'user_123',
-        person: const PersonInfo(email: 'test@example.com'),
+        person: PersonInfo(email: 'test@example.com'),
         name: 'Test User',
       );
 
-      final lastEditedBy = User.person(
+      const lastEditedBy = User.person(
         id: 'user_456',
-        person: const PersonInfo(email: 'editor@example.com'),
+        person: PersonInfo(email: 'editor@example.com'),
         name: 'Editor User',
       );
 

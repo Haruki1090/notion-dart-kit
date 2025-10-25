@@ -61,11 +61,11 @@ void main() {
         // Verify that template-specific exceptions are properly exposed
         expect(TemplateNotFoundException, isA<Type>());
         expect(InvalidTemplateException, isA<Type>());
-        
+
         // Verify that they extend NotionException
         final templateNotFound = TemplateNotFoundException('Test');
         final invalidTemplate = InvalidTemplateException('Test');
-        
+
         expect(templateNotFound, isA<NotionException>());
         expect(invalidTemplate, isA<NotionException>());
       });
@@ -75,17 +75,14 @@ void main() {
       test('should maintain backward compatibility for page creation', () {
         // Verify that existing page creation functionality still works
         expect(client.pages.create, isA<Function>());
-        
+
         // The create method should accept the new optional templateId parameter
         // without breaking existing code that doesn't use it
         expect(() {
           // This should compile without errors (testing method signature)
-          client.pages.create(
-            parent: const WorkspaceParent(),
-            properties: {},
-          );
+          client.pages.create(parent: const WorkspaceParent(), properties: {});
         }, returnsNormally);
-        
+
         expect(() {
           // This should also compile without errors (testing with templateId)
           client.pages.create(

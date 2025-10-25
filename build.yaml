@@ -1,0 +1,18 @@
+targets:
+  $default:
+    builders:
+      freezed:
+        enabled: true
+        generate_for:
+          - lib/**
+      json_serializable:
+        enabled: true
+        generate_for:
+          - lib/**
+      mockito:
+        enabled: true
+        generate_for:
+          - test/**
+        options:
+          # Generate mocks for all classes annotated with @GenerateMocks
+          null_safety: true

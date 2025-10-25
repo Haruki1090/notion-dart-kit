@@ -79,8 +79,9 @@ void main() {
           'has_more': false,
         };
 
-        when(mockHttpClient.get('/data_sources/$dataSourceId/templates'))
-            .thenAnswer((_) async => mockResponse);
+        when(
+          mockHttpClient.get('/data_sources/$dataSourceId/templates'),
+        ).thenAnswer((_) async => mockResponse);
 
         final result = await templatesService.listTemplates(dataSourceId);
 
@@ -92,8 +93,9 @@ void main() {
         expect(result.hasMore, equals(false));
         expect(result.nextCursor, isNull);
 
-        verify(mockHttpClient.get('/data_sources/$dataSourceId/templates'))
-            .called(1);
+        verify(
+          mockHttpClient.get('/data_sources/$dataSourceId/templates'),
+        ).called(1);
       });
 
       test('should handle pagination parameters', () async {
@@ -109,9 +111,11 @@ void main() {
           'has_more': true,
         };
 
-        when(mockHttpClient.get(
-          '/data_sources/$dataSourceId/templates?start_cursor=$startCursor&page_size=$pageSize',
-        )).thenAnswer((_) async => mockResponse);
+        when(
+          mockHttpClient.get(
+            '/data_sources/$dataSourceId/templates?start_cursor=$startCursor&page_size=$pageSize',
+          ),
+        ).thenAnswer((_) async => mockResponse);
 
         final result = await templatesService.listTemplates(
           dataSourceId,
@@ -123,9 +127,11 @@ void main() {
         expect(result.hasMore, equals(true));
         expect(result.nextCursor, equals('next_cursor_456'));
 
-        verify(mockHttpClient.get(
-          '/data_sources/$dataSourceId/templates?start_cursor=$startCursor&page_size=$pageSize',
-        )).called(1);
+        verify(
+          mockHttpClient.get(
+            '/data_sources/$dataSourceId/templates?start_cursor=$startCursor&page_size=$pageSize',
+          ),
+        ).called(1);
       });
 
       test('should handle only start cursor parameter', () async {
@@ -140,18 +146,22 @@ void main() {
           'has_more': false,
         };
 
-        when(mockHttpClient.get(
-          '/data_sources/$dataSourceId/templates?start_cursor=$startCursor',
-        )).thenAnswer((_) async => mockResponse);
+        when(
+          mockHttpClient.get(
+            '/data_sources/$dataSourceId/templates?start_cursor=$startCursor',
+          ),
+        ).thenAnswer((_) async => mockResponse);
 
         await templatesService.listTemplates(
           dataSourceId,
           startCursor: startCursor,
         );
 
-        verify(mockHttpClient.get(
-          '/data_sources/$dataSourceId/templates?start_cursor=$startCursor',
-        )).called(1);
+        verify(
+          mockHttpClient.get(
+            '/data_sources/$dataSourceId/templates?start_cursor=$startCursor',
+          ),
+        ).called(1);
       });
 
       test('should handle only page size parameter', () async {
@@ -166,18 +176,19 @@ void main() {
           'has_more': false,
         };
 
-        when(mockHttpClient.get(
-          '/data_sources/$dataSourceId/templates?page_size=$pageSize',
-        )).thenAnswer((_) async => mockResponse);
+        when(
+          mockHttpClient.get(
+            '/data_sources/$dataSourceId/templates?page_size=$pageSize',
+          ),
+        ).thenAnswer((_) async => mockResponse);
 
-        await templatesService.listTemplates(
-          dataSourceId,
-          pageSize: pageSize,
-        );
+        await templatesService.listTemplates(dataSourceId, pageSize: pageSize);
 
-        verify(mockHttpClient.get(
-          '/data_sources/$dataSourceId/templates?page_size=$pageSize',
-        )).called(1);
+        verify(
+          mockHttpClient.get(
+            '/data_sources/$dataSourceId/templates?page_size=$pageSize',
+          ),
+        ).called(1);
       });
     });
 
@@ -212,18 +223,27 @@ void main() {
           'archived': false,
         };
 
-        when(mockHttpClient.get('/data_sources/$dataSourceId/templates/$templateId'))
-            .thenAnswer((_) async => mockResponse);
+        when(
+          mockHttpClient.get(
+            '/data_sources/$dataSourceId/templates/$templateId',
+          ),
+        ).thenAnswer((_) async => mockResponse);
 
-        final result = await templatesService.retrieveTemplate(dataSourceId, templateId);
+        final result = await templatesService.retrieveTemplate(
+          dataSourceId,
+          templateId,
+        );
 
         expect(result.id, equals(templateId));
         expect(result.title, equals('Specific Template'));
         expect(result.description, equals('A specific template'));
         expect(result.archived, equals(false));
 
-        verify(mockHttpClient.get('/data_sources/$dataSourceId/templates/$templateId'))
-            .called(1);
+        verify(
+          mockHttpClient.get(
+            '/data_sources/$dataSourceId/templates/$templateId',
+          ),
+        ).called(1);
       });
     });
 
@@ -231,8 +251,9 @@ void main() {
       test('should propagate HTTP client errors', () async {
         const dataSourceId = 'data_source_123';
 
-        when(mockHttpClient.get('/data_sources/$dataSourceId/templates'))
-            .thenThrow(NotionException('API Error'));
+        when(
+          mockHttpClient.get('/data_sources/$dataSourceId/templates'),
+        ).thenThrow(NotionException('API Error'));
 
         expect(
           () => templatesService.listTemplates(dataSourceId),
@@ -244,8 +265,11 @@ void main() {
         const dataSourceId = 'data_source_123';
         const templateId = 'nonexistent_template';
 
-        when(mockHttpClient.get('/data_sources/$dataSourceId/templates/$templateId'))
-            .thenThrow(TemplateNotFoundException('Template not found'));
+        when(
+          mockHttpClient.get(
+            '/data_sources/$dataSourceId/templates/$templateId',
+          ),
+        ).thenThrow(TemplateNotFoundException('Template not found'));
 
         expect(
           () => templatesService.retrieveTemplate(dataSourceId, templateId),

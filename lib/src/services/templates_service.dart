@@ -24,7 +24,7 @@ class TemplatesService {
   ///   'data_source_id',
   ///   pageSize: 50,
   /// );
-  /// 
+  ///
   /// for (final template in templates.results) {
   ///   print('Template: ${template.title}');
   /// }
@@ -35,11 +35,11 @@ class TemplatesService {
     int? pageSize,
   }) async {
     final queryParams = <String, String>{};
-    
+
     if (startCursor != null) {
       queryParams['start_cursor'] = startCursor;
     }
-    
+
     if (pageSize != null) {
       queryParams['page_size'] = pageSize.toString();
     }
@@ -79,8 +79,7 @@ class TemplatesService {
 
   String _buildQueryString(Map<String, String> params) => params.entries
       .map(
-        (e) =>
-            '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}',
+        (e) => '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}',
       )
       .join('&');
 }

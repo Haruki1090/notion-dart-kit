@@ -121,12 +121,7 @@ jobs:
       - name: Verify pub package
         run: dart pub publish --dry-run
 
-      - name: Publish to pub.dev
-        uses: dart-lang/setup-dart@v1
-        with:
-          sdk: stable
+      - name: Publish package
+        run: dart pub publish --force
         env:
           PUB_CREDENTIALS: ${{ secrets.PUB_CREDENTIALS }}
-      
-      - name: Publish package
-        run: dart pub publish --

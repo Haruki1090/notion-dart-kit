@@ -1,7 +1,7 @@
 import 'package:notion_dart_kit/notion_dart_kit.dart';
 
 /// Example demonstrating the Template API functionality (NEW in v0.2.2)
-/// 
+///
 /// This example shows how to:
 /// - List templates from a data source
 /// - Retrieve specific template details
@@ -23,7 +23,8 @@ void main() async {
 }
 
 Future<void> templatesExample(NotionClient client) async {
-  const dataSourceId = 'YOUR_DATA_SOURCE_ID'; // Replace with actual data source ID
+  const dataSourceId =
+      'YOUR_DATA_SOURCE_ID'; // Replace with actual data source ID
   const databaseId = 'YOUR_DATABASE_ID'; // Replace with actual database ID
 
   print('🔍 Template API Examples\n');
@@ -32,7 +33,7 @@ Future<void> templatesExample(NotionClient client) async {
   print('1. Listing templates from data source...');
   try {
     final templates = await client.templates.listTemplates(dataSourceId);
-    
+
     print('Found ${templates.results.length} templates:');
     for (final template in templates.results) {
       print('  📄 ${template.title}');
@@ -65,15 +66,15 @@ Future<void> templatesExample(NotionClient client) async {
   try {
     // First, get a template ID from the list
     final templates = await client.templates.listTemplates(dataSourceId);
-    
+
     if (templates.results.isNotEmpty) {
       final templateId = templates.results.first.id;
-      
+
       final template = await client.templates.retrieveTemplate(
         dataSourceId,
         templateId,
       );
-      
+
       print('📄 Template Details:');
       print('   Title: ${template.title}');
       print('   Description: ${template.description ?? 'No description'}');
@@ -97,12 +98,12 @@ Future<void> templatesExample(NotionClient client) async {
   try {
     // Get the first available template
     final templates = await client.templates.listTemplates(dataSourceId);
-    
+
     if (templates.results.isNotEmpty) {
       final template = templates.results.first;
-      
+
       print('📄 Using template: ${template.title}');
-      
+
       // Create a page from the template
       final pageFromTemplate = await client.pages.create(
         parent: Parent.database(databaseId),
@@ -111,16 +112,16 @@ Future<void> templatesExample(NotionClient client) async {
             'title': [
               {
                 'text': {
-                  'content': 'Page created from ${template.title} template'
-                }
-              }
-            ]
+                  'content': 'Page created from ${template.title} template',
+                },
+              },
+            ],
           },
           // Add other properties as needed based on your database schema
         },
         templateId: template.id, // This is the key - specify the template
       );
-      
+
       print('✅ Successfully created page from template!');
       print('   Page ID: ${pageFromTemplate.id}');
       print('   Page URL: ${pageFromTemplate.url}');
@@ -136,7 +137,7 @@ Future<void> templatesExample(NotionClient client) async {
 
   // Example 4: Error handling for template operations
   print('4. Demonstrating error handling...');
-  
+
   // Template not found error
   try {
     await client.templates.retrieveTemplate(
@@ -156,9 +157,11 @@ Future<void> templatesExample(NotionClient client) async {
       properties: {
         'Name': {
           'title': [
-            {'text': {'content': 'Test page'}}
-          ]
-        }
+            {
+              'text': {'content': 'Test page'},
+            },
+          ],
+        },
       },
       templateId: 'invalid_template_id',
     );
@@ -178,30 +181,29 @@ Future<void> templatesExample(NotionClient client) async {
     var cursor = null;
     var pageNumber = 1;
     const pageSize = 5;
-    
+
     do {
       print('📄 Loading page $pageNumber (size: $pageSize)...');
-      
+
       final templates = await client.templates.listTemplates(
         dataSourceId,
         startCursor: cursor,
         pageSize: pageSize,
       );
-      
+
       print('   Found ${templates.results.length} templates on this page');
       for (var i = 0; i < templates.results.length; i++) {
         final template = templates.results[i];
         print('   ${i + 1}. ${template.title}');
       }
-      
+
       cursor = templates.nextCursor;
       pageNumber++;
-      
+
       // Break after 3 pages to avoid infinite loop in example
       if (pageNumber > 3) break;
-      
     } while (cursor != null);
-    
+
     print('✅ Pagination example completed');
   } catch (e) {
     print('❌ Error in pagination example: $e');
@@ -211,35 +213,37 @@ Future<void> templatesExample(NotionClient client) async {
 }
 
 /// Helper function to demonstrate template filtering and searching
-Future<void> templateSearchExample(NotionClient client, String dataSourceId) async {
+Future<void> templateSearchExample(
+  NotionClient client,
+  String dataSourceId,
+) async {
   print('🔍 Template Search Example');
-  
+
   try {
     final templates = await client.templates.listTemplates(dataSourceId);
-    
+
     // Filter templates by title (client-side filtering)
     final projectTemplates = templates.results
         .where((template) => template.title.toLowerCase().contains('project'))
         .toList();
-    
+
     print('Found ${projectTemplates.length} project-related templates:');
     for (final template in projectTemplates) {
       print('  📄 ${template.title}');
     }
-    
+
     // Filter non-archived templates
     final activeTemplates = templates.results
         .where((template) => !template.archived)
         .toList();
-    
+
     print('Found ${activeTemplates.length} active templates');
-    
+
     // Sort templates by creation date (newest first)
     final sortedTemplates = List<Template>.from(templates.results)
       ..sort((a, b) => b.createdTime.compareTo(a.createdTime));
-    
+
     print('Most recent template: ${sortedTemplates.first.title}');
-    
   } catch (e) {
     print('❌ Error in template search: $e');
   }
