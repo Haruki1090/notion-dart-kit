@@ -27,12 +27,10 @@ import 'retry_queue.dart';
 /// ```
 class NotionClient {
   /// Creates a new [NotionClient] with the given [token].
-  /// 
+  ///
   /// [apiVersion] - Optional API version to use. Defaults to the latest stable version.
-  NotionClient({
-    required String token,
-    String? apiVersion,
-  }) : httpClient = NotionHttpClient(token: token, apiVersion: apiVersion) {
+  NotionClient({required String token, String? apiVersion})
+    : httpClient = NotionHttpClient(token: token, apiVersion: apiVersion) {
     users = UsersService(httpClient);
     pages = PagesService(httpClient);
     databases = DatabasesService(httpClient);
@@ -104,7 +102,7 @@ class NotionClient {
   /// Checks if a specific feature is available in the current API version.
   ///
   /// Returns `true` if the feature is supported in the current API version.
-  /// 
+  ///
   /// Example:
   /// ```dart
   /// if (client.isFeatureAvailable('page_properties_endpoint')) {

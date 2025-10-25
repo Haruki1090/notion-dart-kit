@@ -89,13 +89,13 @@ void main() {
                   'strikethrough': false,
                   'underline': false,
                   'code': false,
-                  'color': 'default'
+                  'color': 'default',
                 },
                 'plain_text': 'Test Title',
-                'href': null
-              }
-            ]
-          }
+                'href': null,
+              },
+            ],
+          },
         ],
         'property_item': {
           'id': 'title',
@@ -110,16 +110,16 @@ void main() {
                 'strikethrough': false,
                 'underline': false,
                 'code': false,
-                'color': 'default'
+                'color': 'default',
               },
               'plain_text': 'Test Title',
-              'href': null
-            }
-          ]
+              'href': null,
+            },
+          ],
         },
         'next_url': null,
         'has_more': false,
-        'next_cursor': null
+        'next_cursor': null,
       };
 
       final propertyItemList = PropertyItemList.fromJson(propertyItemListJson);
@@ -127,11 +127,11 @@ void main() {
       expect(propertyItemList.type, 'property_item');
       expect(propertyItemList.results.length, 1);
       expect(propertyItemList.hasMore, false);
-      
+
       final firstResult = propertyItemList.results[0];
       expect(firstResult.id, 'title');
       expect(firstResult.type, 'title');
-      
+
       firstResult.value.when(
         title: (id, title) {
           expect(id, 'title');
@@ -152,7 +152,8 @@ void main() {
         url: (id, url) => fail('Should be title property'),
         createdTime: (id, createdTime) => fail('Should be title property'),
         createdBy: (id, createdBy) => fail('Should be title property'),
-        lastEditedTime: (id, lastEditedTime) => fail('Should be title property'),
+        lastEditedTime: (id, lastEditedTime) =>
+            fail('Should be title property'),
         lastEditedBy: (id, lastEditedBy) => fail('Should be title property'),
         formula: (id, formula) => fail('Should be title property'),
         relation: (id, relation) => fail('Should be title property'),

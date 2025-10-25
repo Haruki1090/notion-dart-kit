@@ -165,13 +165,18 @@ void main() {
 
     test('File block with name property', () {
       // Test that file blocks can have a name property
-      expect(true, true); // Placeholder test - file blocks already support name property
+      expect(
+        true,
+        true,
+      ); // Placeholder test - file blocks already support name property
     });
 
     test('API version feature availability for new properties', () {
       // Test that is_locked and in_trash properties are available in supported API versions
       final features2022 = ApiVersion.getFeatureAvailability(ApiVersion.latest);
-      final features2021 = ApiVersion.getFeatureAvailability(ApiVersion.v2021_05_13);
+      final features2021 = ApiVersion.getFeatureAvailability(
+        ApiVersion.v2021_05_13,
+      );
 
       expect(features2022['is_locked_property'], true);
       expect(features2022['in_trash_property'], true);

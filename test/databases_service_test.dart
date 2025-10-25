@@ -250,9 +250,15 @@ void main() {
       final database = Database.fromJson(json);
 
       expect(database.dataSources.length, 2);
-      expect(database.dataSources[0].id, '248104cd-477e-80af-bc30-000bd28de8f9');
+      expect(
+        database.dataSources[0].id,
+        '248104cd-477e-80af-bc30-000bd28de8f9',
+      );
       expect(database.dataSources[0].name, 'Primary Source');
-      expect(database.dataSources[1].id, '348104cd-477e-80af-bc30-000bd28de8f9');
+      expect(
+        database.dataSources[1].id,
+        '348104cd-477e-80af-bc30-000bd28de8f9',
+      );
       expect(database.dataSources[1].name, 'Secondary Source');
     });
 
@@ -289,13 +295,13 @@ void main() {
             'type': 'text',
             'text': {'content': 'Single-source Database', 'link': null},
             'annotations': {
-               'bold': false,
-               'italic': false,
-               'strikethrough': false,
-               'underline': false,
-               'code': false,
-               'color': 'default',
-             },
+              'bold': false,
+              'italic': false,
+              'strikethrough': false,
+              'underline': false,
+              'code': false,
+              'color': 'default',
+            },
             'plain_text': 'Single-source Database',
             'href': null,
           },
@@ -317,7 +323,10 @@ void main() {
       final database = Database.fromJson(json);
 
       expect(database.dataSources.length, 1);
-      expect(database.dataSources[0].id, '248104cd-477e-80af-bc30-000bd28de8f9');
+      expect(
+        database.dataSources[0].id,
+        '248104cd-477e-80af-bc30-000bd28de8f9',
+      );
       expect(database.dataSources[0].name, 'Primary Source');
     });
   });

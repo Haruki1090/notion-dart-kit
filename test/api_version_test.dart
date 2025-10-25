@@ -89,13 +89,19 @@ void main() {
 
     test('should check feature availability', () {
       final latestClient = NotionClient(token: 'test_token');
-      expect(latestClient.isFeatureAvailable('page_properties_endpoint'), isTrue);
+      expect(
+        latestClient.isFeatureAvailable('page_properties_endpoint'),
+        isTrue,
+      );
 
       final olderClient = NotionClient(
         token: 'test_token',
         apiVersion: '2021-05-13',
       );
-      expect(olderClient.isFeatureAvailable('page_properties_endpoint'), isFalse);
+      expect(
+        olderClient.isFeatureAvailable('page_properties_endpoint'),
+        isFalse,
+      );
     });
 
     test('should check minimum version support', () {

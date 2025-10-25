@@ -18,13 +18,13 @@ void main() {
               'strikethrough': false,
               'underline': false,
               'code': false,
-              'color': 'default'
+              'color': 'default',
             },
             'plain_text': 'Test Title',
-            'href': null
-          }
+            'href': null,
+          },
         ],
-        'next_url': null
+        'next_url': null,
       };
 
       final propertyItem = PropertyItem.fromJson(json);
@@ -33,7 +33,7 @@ void main() {
       expect(propertyItem.id, 'title');
       expect(propertyItem.type, 'title');
       expect(propertyItem.nextUrl, null);
-      
+
       propertyItem.value.when(
         title: (id, title) {
           expect(id, 'title');
@@ -76,18 +76,18 @@ void main() {
             'id': 'relation_id',
             'type': 'relation',
             'relation': [
-              {'id': 'page-id-1'}
-            ]
-          }
+              {'id': 'page-id-1'},
+            ],
+          },
         ],
         'property_item': {
           'id': 'relation_id',
           'type': 'relation',
-          'relation': []
+          'relation': [],
         },
         'next_url': null,
         'has_more': false,
-        'next_cursor': null
+        'next_cursor': null,
       };
 
       final propertyItemList = PropertyItemList.fromJson(json);
@@ -98,10 +98,10 @@ void main() {
       expect(propertyItemList.hasMore, false);
       expect(propertyItemList.nextUrl, null);
       expect(propertyItemList.nextCursor, null);
-      
+
       expect(propertyItemList.results[0].id, 'relation_id');
       expect(propertyItemList.results[0].type, 'relation');
-      
+
       expect(propertyItemList.propertyItem.id, 'relation_id');
       expect(propertyItemList.propertyItem.type, 'relation');
     });

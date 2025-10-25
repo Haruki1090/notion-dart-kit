@@ -32,7 +32,7 @@ class NotionHttpClient {
         'Supported versions: ${ApiVersion.supportedVersions.join(', ')}',
       );
     }
-    
+
     _configureDio();
     _retryQueue.start();
   }

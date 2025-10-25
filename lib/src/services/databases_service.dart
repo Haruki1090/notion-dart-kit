@@ -188,7 +188,7 @@ class DatabasesService {
   ///
   /// Returns the created DataSource object.
   /// Throws [NotionException] if the request fails.
-  /// 
+  ///
   /// Note: This method requires API version 2022-06-28 or later.
   Future<dynamic> addDataSource({
     required String databaseId,
