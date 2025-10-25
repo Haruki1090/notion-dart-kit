@@ -22,6 +22,7 @@ class Page with _$Page {
     required Parent parent,
     required bool archived,
     required bool inTrash,
+    required bool isLocked,
     required Map<String, dynamic> properties,
     required String url,
     PageIcon? icon,
@@ -39,6 +40,7 @@ class Page with _$Page {
     parent: Parent.fromJson(json['parent'] as Map<String, dynamic>),
     archived: json['archived'] as bool,
     inTrash: json['in_trash'] as bool? ?? false,
+    isLocked: json['is_locked'] as bool? ?? false,
     properties: (json['properties'] as Map<String, dynamic>).map(
       (key, value) => MapEntry(key, value as Map<String, dynamic>),
     ),
@@ -61,6 +63,7 @@ class Page with _$Page {
     'parent': parent.toJson(),
     'archived': archived,
     'in_trash': inTrash,
+    'is_locked': isLocked,
     'properties': properties,
     'url': url,
     if (icon != null) 'icon': icon!.toJson(),

@@ -100,7 +100,22 @@ void main() {
         'property_item': {
           'id': 'title',
           'type': 'title',
-          'title': {}
+          'title': [
+            {
+              'type': 'text',
+              'text': {'content': 'Test Title', 'link': null},
+              'annotations': {
+                'bold': false,
+                'italic': false,
+                'strikethrough': false,
+                'underline': false,
+                'code': false,
+                'color': 'default'
+              },
+              'plain_text': 'Test Title',
+              'href': null
+            }
+          ]
         },
         'next_url': null,
         'has_more': false,
@@ -123,7 +138,27 @@ void main() {
           expect(title.length, 1);
           expect(title[0].plainText, 'Test Title');
         },
-        orElse: () => fail('Should be title property'),
+        checkbox: (id, checkbox) => fail('Should be title property'),
+        richText: (id, richText) => fail('Should be title property'),
+        number: (id, number) => fail('Should be title property'),
+        select: (id, select) => fail('Should be title property'),
+        multiSelect: (id, multiSelect) => fail('Should be title property'),
+        status: (id, status) => fail('Should be title property'),
+        date: (id, date) => fail('Should be title property'),
+        people: (id, people) => fail('Should be title property'),
+        files: (id, files) => fail('Should be title property'),
+        email: (id, email) => fail('Should be title property'),
+        phoneNumber: (id, phoneNumber) => fail('Should be title property'),
+        url: (id, url) => fail('Should be title property'),
+        createdTime: (id, createdTime) => fail('Should be title property'),
+        createdBy: (id, createdBy) => fail('Should be title property'),
+        lastEditedTime: (id, lastEditedTime) => fail('Should be title property'),
+        lastEditedBy: (id, lastEditedBy) => fail('Should be title property'),
+        formula: (id, formula) => fail('Should be title property'),
+        relation: (id, relation) => fail('Should be title property'),
+        rollup: (id, rollup) => fail('Should be title property'),
+        uniqueId: (id, uniqueId) => fail('Should be title property'),
+        verification: (id, verification) => fail('Should be title property'),
       );
     });
   });

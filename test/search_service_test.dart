@@ -30,6 +30,7 @@ void main() {
         parent: const Parent.page(pageId: 'parent123'),
         archived: false,
         inTrash: false,
+        isLocked: false,
         properties: {},
         url: 'https://notion.so/page123',
       );
@@ -92,6 +93,7 @@ void main() {
         parent: const Parent.page(pageId: 'parent123'),
         archived: false,
         inTrash: false,
+        isLocked: false,
         properties: {},
         url: 'https://notion.so/page123',
       );
@@ -122,6 +124,7 @@ void main() {
         parent: const Parent.page(pageId: 'parent123'),
         archived: false,
         inTrash: false,
+        isLocked: false,
         properties: {},
         url: 'https://notion.so/page123',
       );

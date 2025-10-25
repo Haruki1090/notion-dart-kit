@@ -68,6 +68,7 @@ class PagesService {
   /// [icon] - Optional new page icon.
   /// [cover] - Optional new cover image.
   /// [inTrash] - Set to true to move to trash, false to restore.
+  /// [isLocked] - Set to true to lock the page, false to unlock.
   ///
   /// Returns the updated Page object.
   /// Throws [NotionException] if the request fails.
@@ -77,6 +78,7 @@ class PagesService {
     PageIcon? icon,
     NotionFile? cover,
     bool? inTrash,
+    bool? isLocked,
   }) async {
     final body = <String, dynamic>{};
     if (properties != null) {
@@ -90,6 +92,9 @@ class PagesService {
     }
     if (inTrash != null) {
       body['in_trash'] = inTrash;
+    }
+    if (isLocked != null) {
+      body['is_locked'] = isLocked;
     }
 
     final response = await _httpClient.patch('/pages/$pageId', data: body);
