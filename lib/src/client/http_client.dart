@@ -1,7 +1,8 @@
 import 'package:dio/dio.dart';
+
+import '../utils/api_version.dart';
 import '../utils/exceptions.dart';
 import '../utils/notion_logger.dart';
-import '../utils/api_version.dart';
 import 'rate_limiter.dart';
 import 'retry_queue.dart';
 

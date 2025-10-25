@@ -163,6 +163,25 @@ await client.pages.archive('page_id');
 
 // Restore from trash
 await client.pages.restore('page_id');
+
+// NEW in v0.2.0: Retrieve specific page property
+final propertyData = await client.pages.retrieveProperty(
+  'page_id',
+  'property_id',
+  pageSize: 50,
+);
+
+// NEW in v0.2.0: Lock/unlock a page
+await client.pages.update(
+  'page_id',
+  isLocked: true, // Lock the page
+);
+
+// NEW in v0.2.0: Move to trash/restore
+await client.pages.update(
+  'page_id',
+  inTrash: true, // Move to trash
+);
 ```
 
 ### Working with Databases
@@ -229,6 +248,31 @@ await client.databases.update(
   'database_id',
   title: [RichText.text(content: 'Updated Database Name')],
   description: [RichText.text(content: 'New description')],
+  isLocked: false, // NEW in v0.2.0: Unlock database
+  inTrash: false,  // NEW in v0.2.0: Restore from trash
+);
+
+// NEW in v0.2.0: Multi-source Database Support
+// Check if database has multiple data sources
+final isMultiSource = await client.databases.isMultiSourceDatabase('database_id');
+
+// Get primary data source
+final primaryDataSource = await client.databases.getPrimaryDataSource('database_id');
+
+// List all data sources
+final dataSources = await client.databases.listDataSources(
+  databaseId: 'database_id',
+  pageSize: 25,
+);
+
+// Add a new data source
+final newDataSource = await client.databases.addDataSource(
+  databaseId: 'database_id',
+  title: [{'text': {'content': 'Secondary Data Source'}}],
+  properties: {
+    'Name': {'title': {}},
+    'Category': {'select': {'options': []}},
+  },
 );
 ```
 
@@ -682,14 +726,22 @@ try {
 | 21 Property Types | ✅ Implemented |
 | 31+ Block Types | ✅ Implemented |
 
-### Planned Features / New Features
+### New Features in v0.2.0
+
+| Feature | Status |
+|---------|--------|
+| Page Property Retrieval API | ✅ Implemented |
+| Multi-source Database Support | ✅ Implemented |
+| Enhanced Property Support (is_locked, in_trash) | ✅ Implemented |
+| API Version Management | ✅ Implemented |
+
+### Planned Features
 
 | Feature | Status |
 |---------|--------|
 | Comments API | ✅ Implemented ([#6](https://github.com/Haruki1090/notion-dart-kit/issues/6)) |
 | File Upload API | ✅ Implemented ([#7](https://github.com/Haruki1090/notion-dart-kit/issues/7)) |
 | Webhooks Support | 🚧 Planned |
-| Page Property Items API | 🚧 Planned |
 
 > 🗂️ Progress for these roadmap items now lives in the public GitHub Issues queue so you can follow along or subscribe for updates.
 

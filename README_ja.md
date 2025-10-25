@@ -586,14 +586,22 @@ try {
 | 21種類のプロパティタイプ | ✅ 実装済み |
 | 31種類以上のブロックタイプ | ✅ 実装済み |
 
-### 予定機能 / 新機能
+### v0.2.0の新機能
+
+| 機能 | ステータス |
+|---------|--------|
+| ページプロパティ取得API | ✅ 実装済み |
+| マルチソースデータベースサポート | ✅ 実装済み |
+| 拡張プロパティサポート (is_locked, in_trash) | ✅ 実装済み |
+| APIバージョン管理 | ✅ 実装済み |
+
+### 予定機能
 
 | 機能 | ステータス |
 |---------|--------|
 | Comments API | ✅ 実装済み ([#6](https://github.com/Haruki1090/notion-dart-kit/issues/6)) |
 | File Upload API | ✅ 実装済み ([#7](https://github.com/Haruki1090/notion-dart-kit/issues/7)) |
 | Webhooks サポート | 🚧 予定 |
-| Page Property Items API | 🚧 予定 |
 
 > 🗂️ これらのロードマップ項目の進捗状況は公開 GitHub Issues キューで確認またはフォローできます。
 
