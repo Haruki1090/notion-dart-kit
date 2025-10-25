@@ -21,6 +21,7 @@ export 'src/models/file_upload.dart';
 export 'src/models/page.dart';
 export 'src/models/pagination.dart';
 export 'src/models/parent.dart';
+export 'src/models/property_item.dart';
 export 'src/models/property_schema.dart';
 export 'src/models/property_value.dart';
 export 'src/models/rich_text.dart';

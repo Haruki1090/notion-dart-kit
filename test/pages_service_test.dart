@@ -69,5 +69,62 @@ void main() {
         uploaded: (_) => fail('Expected external file'),
       );
     });
+
+    test('PropertyItemList from JSON', () {
+      final propertyItemListJson = {
+        'object': 'list',
+        'type': 'property_item',
+        'results': [
+          {
+            'object': 'property_item',
+            'id': 'title',
+            'type': 'title',
+            'title': [
+              {
+                'type': 'text',
+                'text': {'content': 'Test Title', 'link': null},
+                'annotations': {
+                  'bold': false,
+                  'italic': false,
+                  'strikethrough': false,
+                  'underline': false,
+                  'code': false,
+                  'color': 'default'
+                },
+                'plain_text': 'Test Title',
+                'href': null
+              }
+            ]
+          }
+        ],
+        'property_item': {
+          'id': 'title',
+          'type': 'title',
+          'title': {}
+        },
+        'next_url': null,
+        'has_more': false,
+        'next_cursor': null
+      };
+
+      final propertyItemList = PropertyItemList.fromJson(propertyItemListJson);
+      expect(propertyItemList.object, 'list');
+      expect(propertyItemList.type, 'property_item');
+      expect(propertyItemList.results.length, 1);
+      expect(propertyItemList.hasMore, false);
+      
+      final firstResult = propertyItemList.results[0];
+      expect(firstResult.id, 'title');
+      expect(firstResult.type, 'title');
+      
+      firstResult.value.when(
+        title: (id, title) {
+          expect(id, 'title');
+          expect(title.length, 1);
+          expect(title[0].plainText, 'Test Title');
+        },
+        orElse: () => fail('Should be title property'),
+      );
+    });
   });
 }

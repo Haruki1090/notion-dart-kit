@@ -3,6 +3,7 @@ import '../client/http_client.dart';
 import '../models/file.dart';
 import '../models/page.dart';
 import '../models/parent.dart';
+import '../models/property_item.dart';
 import '../utils/exceptions.dart' show NotionException;
 
 /// Service for interacting with Notion Pages API
@@ -110,4 +111,35 @@ class PagesService {
   /// Returns the restored Page object.
   /// Throws [NotionException] if the request fails.
   Future<Page> restore(String pageId) async => update(pageId, inTrash: false);
+
+  /// Retrieves a specific property item from a page.
+  ///
+  /// [pageId] - The ID of the page containing the property.
+  /// [propertyId] - The ID of the property to retrieve.
+  /// [startCursor] - Optional cursor for pagination.
+  /// [pageSize] - Optional page size for pagination (max 100).
+  ///
+  /// Returns a PropertyItemList containing the property data.
+  /// Throws [NotionException] if the request fails.
+  Future<PropertyItemList> retrieveProperty(
+    String pageId,
+    String propertyId, {
+    String? startCursor,
+    int? pageSize,
+  }) async {
+    final queryParams = <String, dynamic>{};
+    if (startCursor != null) {
+      queryParams['start_cursor'] = startCursor;
+    }
+    if (pageSize != null) {
+      queryParams['page_size'] = pageSize.clamp(1, 100);
+    }
+
+    final response = await _httpClient.get(
+      '/pages/$pageId/properties/$propertyId',
+      queryParameters: queryParams.isNotEmpty ? queryParams : null,
+    );
+
+    return PropertyItemList.fromJson(response);
+  }
 }
