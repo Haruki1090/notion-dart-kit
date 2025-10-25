@@ -17,10 +17,22 @@ import 'retry_queue.dart';
 /// final botUser = await client.users.me();
 /// final page = await client.pages.retrieve('page_id');
 /// ```
+///
+/// For API version management:
+/// ```dart
+/// final client = NotionClient(
+///   token: 'your_integration_token',
+///   apiVersion: '2022-06-28', // Specify API version
+/// );
+/// ```
 class NotionClient {
   /// Creates a new [NotionClient] with the given [token].
-  NotionClient({required String token})
-    : httpClient = NotionHttpClient(token: token) {
+  /// 
+  /// [apiVersion] - Optional API version to use. Defaults to the latest stable version.
+  NotionClient({
+    required String token,
+    String? apiVersion,
+  }) : httpClient = NotionHttpClient(token: token, apiVersion: apiVersion) {
     users = UsersService(httpClient);
     pages = PagesService(httpClient);
     databases = DatabasesService(httpClient);
@@ -82,6 +94,44 @@ class NotionClient {
   ///
   /// Returns the integration token used for authentication with the Notion API.
   String get token => httpClient.token;
+
+  /// The current API version being used.
+  ///
+  /// Returns the API version string (e.g., '2022-06-28') that this client
+  /// is configured to use for all requests.
+  String get apiVersion => httpClient.currentApiVersion;
+
+  /// Checks if a specific feature is available in the current API version.
+  ///
+  /// Returns `true` if the feature is supported in the current API version.
+  /// 
+  /// Example:
+  /// ```dart
+  /// if (client.isFeatureAvailable('page_properties_endpoint')) {
+  ///   // Use the page properties endpoint
+  ///   final property = await client.pages.retrieveProperty(pageId, propertyId);
+  /// }
+  /// ```
+  bool isFeatureAvailable(String featureName) =>
+      httpClient.isFeatureAvailable(featureName);
+
+  /// Gets all available features for the current API version.
+  ///
+  /// Returns a map where keys are feature names and values indicate
+  /// whether the feature is available in the current API version.
+  Map<String, bool> get availableFeatures => httpClient.availableFeatures;
+
+  /// Checks if the current API version is the latest.
+  ///
+  /// Returns `true` if this client is using the latest API version.
+  bool get isLatestVersion => httpClient.isLatestVersion;
+
+  /// Checks if the current API version supports a minimum required version.
+  ///
+  /// Returns `true` if the current API version is equal to or newer than
+  /// the specified minimum version.
+  bool supportsMinimumVersion(String minimumVersion) =>
+      httpClient.supportsMinimumVersion(minimumVersion);
 
   /// Retry queue instance for inspecting or customizing behavior.
   ///

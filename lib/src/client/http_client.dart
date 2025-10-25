@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import '../utils/exceptions.dart';
 import '../utils/notion_logger.dart';
+import '../utils/api_version.dart';
 import 'rate_limiter.dart';
 import 'retry_queue.dart';
 
@@ -12,23 +13,34 @@ class NotionHttpClient {
   ///
   /// Optionally accepts a custom [Dio] instance for testing.
   /// [rateLimiter] - Optional custom rate limiter instance
+  /// [apiVersion] - API version to use (defaults to latest stable version)
   NotionHttpClient({
     required this.token,
+    String? apiVersion,
     Dio? dio,
     RateLimiter? rateLimiter,
     RetryQueue? retryQueue,
   }) : _dio = dio ?? Dio(),
        _rateLimiter = rateLimiter ?? RateLimiter(),
-       _retryQueue = retryQueue ?? RetryQueue() {
+       _retryQueue = retryQueue ?? RetryQueue(),
+       apiVersion = apiVersion ?? ApiVersion.defaultVersion {
+    // Validate API version
+    if (!ApiVersion.isSupported(this.apiVersion)) {
+      throw ArgumentError(
+        'Unsupported API version: ${this.apiVersion}. '
+        'Supported versions: ${ApiVersion.supportedVersions.join(', ')}',
+      );
+    }
+    
     _configureDio();
     _retryQueue.start();
   }
 
   static const String _baseUrl = 'https://api.notion.com/v1';
-  static const String _notionVersion = '2022-06-28';
 
   final Dio _dio;
   final String token;
+  final String apiVersion;
   final RateLimiter _rateLimiter;
   final RetryQueue _retryQueue;
 
@@ -37,7 +49,7 @@ class NotionHttpClient {
       baseUrl: _baseUrl,
       headers: {
         'Authorization': 'Bearer $token',
-        'Notion-Version': _notionVersion,
+        'Notion-Version': apiVersion,
         'Content-Type': 'application/json',
       },
       connectTimeout: const Duration(seconds: 30),
@@ -435,5 +447,30 @@ extension NotionHttpClientRetry on NotionHttpClient {
       default:
         return RetryPriority.normal;
     }
+  }
+
+  /// Gets the current API version being used.
+  String get currentApiVersion => apiVersion;
+
+  /// Checks if a specific feature is available in the current API version.
+  bool isFeatureAvailable(String featureName) {
+    final features = ApiVersion.getFeatureAvailability(apiVersion);
+    return features[featureName] ?? false;
+  }
+
+  /// Gets all available features for the current API version.
+  Map<String, bool> get availableFeatures =>
+      ApiVersion.getFeatureAvailability(apiVersion);
+
+  /// Checks if the current API version is the latest.
+  bool get isLatestVersion => apiVersion == ApiVersion.latest;
+
+  /// Checks if the current API version supports a minimum required version.
+  bool supportsMinimumVersion(String minimumVersion) {
+    // If the minimum version is not supported, we can't compare
+    if (!ApiVersion.isSupported(minimumVersion)) {
+      return false;
+    }
+    return ApiVersion.compare(apiVersion, minimumVersion) >= 0;
   }
 }

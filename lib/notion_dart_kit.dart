@@ -40,6 +40,7 @@ export 'src/services/pages_service.dart';
 export 'src/services/search_service.dart';
 export 'src/services/users_service.dart';
 // Utilities
+export 'src/utils/api_version.dart';
 export 'src/utils/block_builder.dart';
 // Exceptions
 export 'src/utils/exceptions.dart';
