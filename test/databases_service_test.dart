@@ -199,4 +199,126 @@ void main() {
       expect(sorts[1]['timestamp'], 'last_edited_time');
     });
   });
+
+  group('Multi-source Database Tests', () {
+    test('Database with multiple data sources', () {
+      final json = {
+        'object': 'database',
+        'id': '248104cd-477e-80fd-b757-e945d38000bd',
+        'created_time': '2025-08-07T10:11:07.504Z',
+        'last_edited_time': '2025-08-10T15:53:11.386Z',
+        'created_by': {'object': 'user', 'id': 'user123'},
+        'last_edited_by': {'object': 'user', 'id': 'user456'},
+        'parent': {
+          'type': 'page_id',
+          'page_id': '255104cd-477e-808c-b279-d39ab803a7d2',
+        },
+        'title': [
+          {
+            'type': 'text',
+            'text': {'content': 'Multi-source Database', 'link': null},
+            'annotations': {
+              'bold': false,
+              'italic': false,
+              'strikethrough': false,
+              'underline': false,
+              'code': false,
+              'color': 'default',
+            },
+            'plain_text': 'Multi-source Database',
+            'href': null,
+          },
+        ],
+        'data_sources': [
+          {
+            'id': '248104cd-477e-80af-bc30-000bd28de8f9',
+            'name': 'Primary Source',
+          },
+          {
+            'id': '348104cd-477e-80af-bc30-000bd28de8f9',
+            'name': 'Secondary Source',
+          },
+        ],
+        'is_inline': false,
+        'in_trash': false,
+        'archived': false,
+        'url': 'https://www.notion.so/248104cd477e80fdb757e945d38000bd',
+        'icon': null,
+        'cover': null,
+      };
+
+      final database = Database.fromJson(json);
+
+      expect(database.dataSources.length, 2);
+      expect(database.dataSources[0].id, '248104cd-477e-80af-bc30-000bd28de8f9');
+      expect(database.dataSources[0].name, 'Primary Source');
+      expect(database.dataSources[1].id, '348104cd-477e-80af-bc30-000bd28de8f9');
+      expect(database.dataSources[1].name, 'Secondary Source');
+    });
+
+    test('DataSourceRef model', () {
+      final json = {
+        'id': '248104cd-477e-80af-bc30-000bd28de8f9',
+        'name': 'Test Data Source',
+      };
+
+      final dataSource = DataSourceRef.fromJson(json);
+
+      expect(dataSource.id, '248104cd-477e-80af-bc30-000bd28de8f9');
+      expect(dataSource.name, 'Test Data Source');
+
+      final serialized = dataSource.toJson();
+      expect(serialized['id'], '248104cd-477e-80af-bc30-000bd28de8f9');
+      expect(serialized['name'], 'Test Data Source');
+    });
+
+    test('Database with single data source', () {
+      final json = {
+        'object': 'database',
+        'id': '248104cd-477e-80fd-b757-e945d38000bd',
+        'created_time': '2025-08-07T10:11:07.504Z',
+        'last_edited_time': '2025-08-10T15:53:11.386Z',
+        'created_by': {'object': 'user', 'id': 'user123'},
+        'last_edited_by': {'object': 'user', 'id': 'user456'},
+        'parent': {
+          'type': 'page_id',
+          'page_id': '255104cd-477e-808c-b279-d39ab803a7d2',
+        },
+        'title': [
+          {
+            'type': 'text',
+            'text': {'content': 'Single-source Database', 'link': null},
+            'annotations': {
+               'bold': false,
+               'italic': false,
+               'strikethrough': false,
+               'underline': false,
+               'code': false,
+               'color': 'default',
+             },
+            'plain_text': 'Single-source Database',
+            'href': null,
+          },
+        ],
+        'data_sources': [
+          {
+            'id': '248104cd-477e-80af-bc30-000bd28de8f9',
+            'name': 'Primary Source',
+          },
+        ],
+        'is_inline': false,
+        'in_trash': false,
+        'archived': false,
+        'url': 'https://www.notion.so/248104cd477e80fdb757e945d38000bd',
+        'icon': null,
+        'cover': null,
+      };
+
+      final database = Database.fromJson(json);
+
+      expect(database.dataSources.length, 1);
+      expect(database.dataSources[0].id, '248104cd-477e-80af-bc30-000bd28de8f9');
+      expect(database.dataSources[0].name, 'Primary Source');
+    });
+  });
 }

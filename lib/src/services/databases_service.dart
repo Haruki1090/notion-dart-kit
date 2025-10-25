@@ -180,6 +180,111 @@ class DatabasesService {
     return PaginatedList.fromJson(response, Page.fromJson);
   }
 
+  /// Adds a new data source to an existing database.
+  ///
+  /// [databaseId] - The ID of the database to add the data source to.
+  /// [title] - The title of the data source as rich text objects.
+  /// [properties] - Property schema definitions for the new data source.
+  ///
+  /// Returns the created DataSource object.
+  /// Throws [NotionException] if the request fails.
+  /// 
+  /// Note: This method requires API version 2022-06-28 or later.
+  Future<dynamic> addDataSource({
+    required String databaseId,
+    required List<Map<String, dynamic>> title,
+    required Map<String, dynamic> properties,
+  }) async {
+    // Check if the current API version supports multi-source databases
+    if (!_httpClient.isFeatureAvailable('multi_source_databases')) {
+      throw NotionException(
+        'Multi-source databases are not supported in API version ${_httpClient.currentApiVersion}. '
+        'Please upgrade to API version ${_httpClient.currentApiVersion} or later.',
+      );
+    }
+
+    final body = <String, dynamic>{
+      'parent': {'type': 'database_id', 'database_id': databaseId},
+      'title': title,
+      'properties': properties,
+    };
+
+    final response = await _httpClient.post('/data_sources', data: body);
+    return response; // Return raw response since DataSource model might not be available
+  }
+
+  /// Lists all data sources for a database.
+  ///
+  /// [databaseId] - The ID of the database to list data sources for.
+  /// [startCursor] - Optional cursor for pagination.
+  /// [pageSize] - Optional page size (max 100).
+  ///
+  /// Returns a paginated list of data source references.
+  /// Throws [NotionException] if the request fails.
+  ///
+  /// Note: This method requires API version 2022-06-28 or later.
+  Future<Map<String, dynamic>> listDataSources({
+    required String databaseId,
+    String? startCursor,
+    int? pageSize,
+  }) async {
+    // Check if the current API version supports multi-source databases
+    if (!_httpClient.isFeatureAvailable('multi_source_databases')) {
+      throw NotionException(
+        'Multi-source databases are not supported in API version ${_httpClient.currentApiVersion}. '
+        'Please upgrade to API version ${_httpClient.currentApiVersion} or later.',
+      );
+    }
+
+    final queryParams = <String, String>{};
+    if (startCursor != null) {
+      queryParams['start_cursor'] = startCursor;
+    }
+    if (pageSize != null) {
+      queryParams['page_size'] = pageSize.toString();
+    }
+
+    final path = queryParams.isEmpty
+        ? '/databases/$databaseId/data_sources'
+        : '/databases/$databaseId/data_sources?${_buildQueryString(queryParams)}';
+
+    final response = await _httpClient.get(path);
+    return response;
+  }
+
+  /// Checks if a database supports multiple data sources.
+  ///
+  /// [databaseId] - The ID of the database to check.
+  ///
+  /// Returns true if the database has multiple data sources, false otherwise.
+  /// Throws [NotionException] if the request fails.
+  Future<bool> isMultiSourceDatabase(String databaseId) async {
+    try {
+      final database = await retrieve(databaseId);
+      return database.dataSources.length > 1;
+    } catch (e) {
+      throw NotionException('Failed to check if database is multi-source: $e');
+    }
+  }
+
+  /// Gets the primary data source for a database.
+  ///
+  /// [databaseId] - The ID of the database.
+  ///
+  /// Returns the first data source reference, which is typically the primary one.
+  /// Throws [NotionException] if the request fails or no data sources exist.
+  Future<DataSourceRef> getPrimaryDataSource(String databaseId) async {
+    try {
+      final database = await retrieve(databaseId);
+      if (database.dataSources.isEmpty) {
+        throw NotionException('Database has no data sources');
+      }
+      return database.dataSources.first;
+    } catch (e) {
+      throw NotionException('Failed to get primary data source: $e');
+    }
+  }
+
   /// Helper method to build query string from parameters
   String _buildQueryString(Map<String, dynamic> params) => params.entries
       .map(
