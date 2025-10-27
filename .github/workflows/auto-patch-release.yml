@@ -1,0 +1,188 @@
+name: Auto Patch Release on Merge
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  check-and-release:
+    name: Check for Version Changes and Release
+    runs-on: ubuntu-latest
+    # Skip if commit message contains [skip-release] or is a version bump commit
+    if: "!contains(github.event.head_commit.message, '[skip-release]') && !contains(github.event.head_commit.message, 'chore: bump version')"
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Dart
+        uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Get current version
+        id: current_version
+        run: |
+          CURRENT_VERSION=$(grep '^version:' pubspec.yaml | sed 's/version: //')
+          echo "version=$CURRENT_VERSION" >> $GITHUB_OUTPUT
+          echo "Current version: $CURRENT_VERSION"
+
+      - name: Check if version tag exists
+        id: check_tag
+        run: |
+          CURRENT_VERSION="${{ steps.current_version.outputs.version }}"
+          if git rev-parse "v$CURRENT_VERSION" >/dev/null 2>&1; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+            echo "Tag v$CURRENT_VERSION already exists, will create patch release"
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+            echo "Tag v$CURRENT_VERSION does not exist, will use current version"
+          fi
+
+      - name: Calculate new version
+        id: new_version
+        run: |
+          CURRENT="${{ steps.current_version.outputs.version }}"
+          TAG_EXISTS="${{ steps.check_tag.outputs.exists }}"
+
+          if [ "$TAG_EXISTS" = "true" ]; then
+            # Tag exists, bump patch version
+            IFS='.' read -r major minor patch <<< "$CURRENT"
+            patch=$((patch + 1))
+            NEW_VERSION="${major}.${minor}.${patch}"
+            echo "needs_bump=true" >> $GITHUB_OUTPUT
+          else
+            # Tag doesn't exist, use current version
+            NEW_VERSION="$CURRENT"
+            echo "needs_bump=false" >> $GITHUB_OUTPUT
+          fi
+
+          echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
+          echo "New version: $NEW_VERSION"
+
+      - name: Update version in pubspec.yaml
+        if: steps.new_version.outputs.needs_bump == 'true'
+        run: |
+          NEW_VERSION="${{ steps.new_version.outputs.version }}"
+          sed -i "s/^version: .*/version: $NEW_VERSION/" pubspec.yaml
+          git diff pubspec.yaml
+
+      - name: Update CHANGELOG.md
+        if: steps.new_version.outputs.needs_bump == 'true'
+        run: |
+          NEW_VERSION="${{ steps.new_version.outputs.version }}"
+          TODAY=$(date +%Y-%m-%d)
+
+          # Get commit messages since last tag
+          LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+          if [ -n "$LAST_TAG" ]; then
+            COMMITS=$(git log ${LAST_TAG}..HEAD --pretty=format:"- %s" | grep -v "^- Merge pull request" || echo "- Bug fixes and improvements")
+          else
+            COMMITS="- Initial release"
+          fi
+
+          # Create temporary file with new entry
+          cat > /tmp/changelog_entry.md << EOF
+          ## [$NEW_VERSION] - $TODAY
+
+          ### Changed
+          $COMMITS
+
+          EOF
+
+          # Insert new entry after "# Changelog" line
+          sed -i "/^# Changelog$/r /tmp/changelog_entry.md" CHANGELOG.md
+
+          echo "Updated CHANGELOG.md:"
+          head -30 CHANGELOG.md
+
+      - name: Install dependencies
+        run: dart pub get
+
+      - name: Run build_runner
+        run: dart run build_runner build --delete-conflicting-outputs
+
+      - name: Run tests
+        run: dart test --reporter expanded
+
+      - name: Verify package
+        run: dart pub publish --dry-run
+
+      - name: Commit changes
+        if: steps.new_version.outputs.needs_bump == 'true'
+        run: |
+          NEW_VERSION="${{ steps.new_version.outputs.version }}"
+          git add pubspec.yaml CHANGELOG.md
+          git commit -m "chore: bump version to $NEW_VERSION [skip-release]
+
+          Automated patch version bump after merge to main.
+
+          🤖 Generated with [Claude Code](https://claude.com/claude-code)
+
+          Co-Authored-By: github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
+          git push origin main
+
+      - name: Create and push tag
+        run: |
+          NEW_VERSION="${{ steps.new_version.outputs.version }}"
+          git tag "v$NEW_VERSION"
+          git push origin "v$NEW_VERSION"
+
+      - name: Generate release notes
+        id: release_notes
+        run: |
+          NEW_VERSION="${{ steps.new_version.outputs.version }}"
+          PREV_TAG=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "")
+
+          cat > release_notes.md << EOF
+          ## What's Changed
+
+          EOF
+
+          if [ -n "$PREV_TAG" ]; then
+            echo "### Commits since $PREV_TAG" >> release_notes.md
+            echo "" >> release_notes.md
+            git log ${PREV_TAG}..HEAD --pretty=format:"- %s" --no-merges | grep -v "\[skip-release\]" >> release_notes.md || echo "- Bug fixes and improvements" >> release_notes.md
+            echo "" >> release_notes.md
+            echo "" >> release_notes.md
+            echo "**Full Changelog**: https://github.com/${{ github.repository }}/compare/${PREV_TAG}...v${NEW_VERSION}" >> release_notes.md
+          else
+            echo "First release" >> release_notes.md
+          fi
+
+          echo "" >> release_notes.md
+          echo "## Installation" >> release_notes.md
+          echo "" >> release_notes.md
+          echo "\`\`\`yaml" >> release_notes.md
+          echo "dependencies:" >> release_notes.md
+          echo "  notion_dart_kit: ^$NEW_VERSION" >> release_notes.md
+          echo "\`\`\`" >> release_notes.md
+
+          cat release_notes.md
+
+      - name: Create GitHub Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          NEW_VERSION="${{ steps.new_version.outputs.version }}"
+          gh release create "v$NEW_VERSION" \
+            --title "v$NEW_VERSION" \
+            --notes-file release_notes.md
+
+      - name: Publish to pub.dev
+        run: dart pub publish --force
+        env:
+          PUB_CREDENTIALS: ${{ secrets.PUB_CREDENTIALS }}
