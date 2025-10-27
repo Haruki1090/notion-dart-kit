@@ -2,6 +2,14 @@
 
 # Changelog
 
+## [0.2.4] - 2025-10-27
+
+### Fixed
+- **SDK Constraint**: Lowered minimum Dart SDK requirement from 3.8.0 to 3.5.0
+  - Resolves installation issues for users with Dart SDK 3.5.x - 3.7.x
+  - Ensures compatibility with Flutter 3.35.7 and similar versions
+  - Previously published versions (0.1.1 - 0.2.3) required unavailable Dart 3.8.0
+
 ## [0.2.3] - 2025-10-27
 
 ### Changed
