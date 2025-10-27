@@ -233,9 +233,8 @@ Future<void> templateSearchExample(
     }
 
     // Filter non-archived templates
-    final activeTemplates = templates.results
-        .where((template) => !template.archived)
-        .toList();
+    final activeTemplates =
+        templates.results.where((template) => !template.archived).toList();
 
     print('Found ${activeTemplates.length} active templates');
 

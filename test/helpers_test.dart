@@ -10,26 +10,26 @@ Map<String, dynamic> createPageJson(Map<String, dynamic> json) =>
 
 // Helper to create rich text object with proper structure
 Map<String, dynamic> createRichTextJson(String content) => {
-  'type': 'text',
-  'text': {'content': content},
-  'plain_text': content,
-  'annotations': {
-    'bold': false,
-    'italic': false,
-    'strikethrough': false,
-    'underline': false,
-    'code': false,
-    'color': 'default',
-  },
-  'href': null,
-};
+      'type': 'text',
+      'text': {'content': content},
+      'plain_text': content,
+      'annotations': {
+        'bold': false,
+        'italic': false,
+        'strikethrough': false,
+        'underline': false,
+        'code': false,
+        'color': 'default',
+      },
+      'href': null,
+    };
 
 // Helper to create select option with proper structure
 Map<String, dynamic> createSelectOptionJson(String name, String color) => {
-  'id': 'opt_${name.toLowerCase()}',
-  'name': name,
-  'color': color,
-};
+      'id': 'opt_${name.toLowerCase()}',
+      'name': name,
+      'color': color,
+    };
 
 void main() {
   group('PageHelper', () {

@@ -35,13 +35,14 @@ Future<List<Block>> recursivelyLoadBlocks(
   int? maxDepth,
   int concurrency = 4,
   BlockChildrenCache? cache,
-}) async => recursivelyLoadBlocksFromService(
-  client.blocks,
-  blockId,
-  maxDepth: maxDepth,
-  concurrency: concurrency,
-  cache: cache,
-);
+}) async =>
+    recursivelyLoadBlocksFromService(
+      client.blocks,
+      blockId,
+      maxDepth: maxDepth,
+      concurrency: concurrency,
+      cache: cache,
+    );
 
 /// Variant that accepts a [BlocksService] directly (useful for testing).
 Future<List<Block>> recursivelyLoadBlocksFromService(

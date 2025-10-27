@@ -36,17 +36,17 @@ class Result<T, E> with _$Result<T, E> {
   ///
   /// If this is a [Failure], returns the failure unchanged.
   Result<U, E> mapValue<U>(U Function(T value) mapper) => when(
-    success: (value) => Result.success(mapper(value)),
-    failure: Result.failure,
-  );
+        success: (value) => Result.success(mapper(value)),
+        failure: Result.failure,
+      );
 
   /// Maps the error value using the given function.
   ///
   /// If this is a [Success], returns the success unchanged.
   Result<T, F> mapError<F>(F Function(E error) mapper) => when(
-    success: Result.success,
-    failure: (error) => Result.failure(mapper(error)),
-  );
+        success: Result.success,
+        failure: (error) => Result.failure(mapper(error)),
+      );
 
   /// Applies a function that returns a Result to the success value.
   ///
@@ -61,15 +61,16 @@ class Result<T, E> with _$Result<T, E> {
   U fold<U>({
     required U Function(T value) onSuccess,
     required U Function(E error) onFailure,
-  }) => when(success: onSuccess, failure: onFailure);
+  }) =>
+      when(success: onSuccess, failure: onFailure);
 
   /// Returns the success value or throws the error.
   ///
   /// Throws [E] if this is a [Failure].
   T getOrThrow() => when(
-    success: (value) => value,
-    failure: (error) => throw error as Object,
-  );
+        success: (value) => value,
+        failure: (error) => throw error as Object,
+      );
 
   /// Returns the success value or the provided default.
   T getOrElse(T defaultValue) =>

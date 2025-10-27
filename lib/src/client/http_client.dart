@@ -21,10 +21,10 @@ class NotionHttpClient {
     Dio? dio,
     RateLimiter? rateLimiter,
     RetryQueue? retryQueue,
-  }) : _dio = dio ?? Dio(),
-       _rateLimiter = rateLimiter ?? RateLimiter(),
-       _retryQueue = retryQueue ?? RetryQueue(),
-       apiVersion = apiVersion ?? ApiVersion.defaultVersion {
+  })  : _dio = dio ?? Dio(),
+        _rateLimiter = rateLimiter ?? RateLimiter(),
+        _retryQueue = retryQueue ?? RetryQueue(),
+        apiVersion = apiVersion ?? ApiVersion.defaultVersion {
     // Validate API version
     if (!ApiVersion.isSupported(this.apiVersion)) {
       throw ArgumentError(
@@ -126,12 +126,13 @@ class NotionHttpClient {
   Future<Map<String, dynamic>> get(
     String path, {
     Map<String, dynamic>? queryParameters,
-  }) async => _rateLimiter.execute(
-    () => _executeGet(path, queryParameters: queryParameters),
-    isRateLimitError: (error) =>
-        error is DioException && error.response?.statusCode == 429,
-    getRetryAfter: _extractRetryAfter,
-  );
+  }) async =>
+      _rateLimiter.execute(
+        () => _executeGet(path, queryParameters: queryParameters),
+        isRateLimitError: (error) =>
+            error is DioException && error.response?.statusCode == 429,
+        getRetryAfter: _extractRetryAfter,
+      );
 
   /// Internal GET request execution.
   Future<Map<String, dynamic>> _executeGet(
@@ -162,12 +163,13 @@ class NotionHttpClient {
   Future<Map<String, dynamic>> post(
     String path, {
     Map<String, dynamic>? data,
-  }) async => _rateLimiter.execute(
-    () => _executePost(path, data: data),
-    isRateLimitError: (error) =>
-        error is DioException && error.response?.statusCode == 429,
-    getRetryAfter: _extractRetryAfter,
-  );
+  }) async =>
+      _rateLimiter.execute(
+        () => _executePost(path, data: data),
+        isRateLimitError: (error) =>
+            error is DioException && error.response?.statusCode == 429,
+        getRetryAfter: _extractRetryAfter,
+      );
 
   /// Internal POST request execution.
   Future<Map<String, dynamic>> _executePost(
@@ -195,12 +197,13 @@ class NotionHttpClient {
   Future<Map<String, dynamic>> postMultipart(
     String path, {
     required FormData formData,
-  }) async => _rateLimiter.execute(
-    () => _executePostMultipart(path, formData: formData),
-    isRateLimitError: (error) =>
-        error is DioException && error.response?.statusCode == 429,
-    getRetryAfter: _extractRetryAfter,
-  );
+  }) async =>
+      _rateLimiter.execute(
+        () => _executePostMultipart(path, formData: formData),
+        isRateLimitError: (error) =>
+            error is DioException && error.response?.statusCode == 429,
+        getRetryAfter: _extractRetryAfter,
+      );
 
   /// Internal multipart POST execution.
   Future<Map<String, dynamic>> _executePostMultipart(
@@ -237,12 +240,13 @@ class NotionHttpClient {
   Future<Map<String, dynamic>> patch(
     String path, {
     Map<String, dynamic>? data,
-  }) async => _rateLimiter.execute(
-    () => _executePatch(path, data: data),
-    isRateLimitError: (error) =>
-        error is DioException && error.response?.statusCode == 429,
-    getRetryAfter: _extractRetryAfter,
-  );
+  }) async =>
+      _rateLimiter.execute(
+        () => _executePatch(path, data: data),
+        isRateLimitError: (error) =>
+            error is DioException && error.response?.statusCode == 429,
+        getRetryAfter: _extractRetryAfter,
+      );
 
   /// Internal PATCH request execution.
   Future<Map<String, dynamic>> _executePatch(

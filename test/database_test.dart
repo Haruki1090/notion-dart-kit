@@ -4,16 +4,15 @@ import 'package:notion_dart_kit/notion_dart_kit.dart';
 import 'package:test/test.dart';
 
 RichText _rt(String s) => RichText.text(
-  text: TextContent(content: s),
-  annotations: const Annotations(),
-  plainText: s,
-);
+      text: TextContent(content: s),
+      annotations: const Annotations(),
+      plainText: s,
+    );
 
 void main() {
   final token = Platform.environment['NOTION_TOKEN'];
   final parentPageId = Platform.environment['NOTION_PARENT_PAGE_ID'];
-  final enabled =
-      token != null &&
+  final enabled = token != null &&
       token.isNotEmpty &&
       parentPageId != null &&
       parentPageId.isNotEmpty;

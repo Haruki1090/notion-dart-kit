@@ -100,12 +100,10 @@ void main() async {
     print('Toggle with content created\n');
 
     // Toggleable heading
-    final toggleableHeading = BlockBuilder.heading2('Expandable Section')
-        .toggleable()
-        .children([
-          BlockBuilder.paragraph('Hidden content goes here.').toJson(),
-        ])
-        .toJson();
+    final toggleableHeading =
+        BlockBuilder.heading2('Expandable Section').toggleable().children([
+      BlockBuilder.paragraph('Hidden content goes here.').toJson(),
+    ]).toJson();
     print('Toggleable heading created\n');
 
     // ========================================
@@ -329,21 +327,20 @@ void main() async {
         .icon('🗓️')
         .color('blue_background')
         .children([
-          BlockBuilder.paragraph()
-              .addText('Our ')
-              .addRichText(RichTextBuilder.text('Q1 2025').bold().toJson())
-              .addText(' milestones:')
-              .toJson(),
-          BlockBuilder.toDo('Complete MVP').checked().toJson(),
-          BlockBuilder.toDo('Launch beta version').toJson(),
-          BlockBuilder.toDo('Gather user feedback').toJson(),
-          BlockBuilder.toggle('Detailed Timeline').children([
-            BlockBuilder.bulletedListItem('January: Development').toJson(),
-            BlockBuilder.bulletedListItem('February: Testing').toJson(),
-            BlockBuilder.bulletedListItem('March: Launch').toJson(),
-          ]).toJson(),
-        ])
-        .toJson();
+      BlockBuilder.paragraph()
+          .addText('Our ')
+          .addRichText(RichTextBuilder.text('Q1 2025').bold().toJson())
+          .addText(' milestones:')
+          .toJson(),
+      BlockBuilder.toDo('Complete MVP').checked().toJson(),
+      BlockBuilder.toDo('Launch beta version').toJson(),
+      BlockBuilder.toDo('Gather user feedback').toJson(),
+      BlockBuilder.toggle('Detailed Timeline').children([
+        BlockBuilder.bulletedListItem('January: Development').toJson(),
+        BlockBuilder.bulletedListItem('February: Testing').toJson(),
+        BlockBuilder.bulletedListItem('March: Launch').toJson(),
+      ]).toJson(),
+    ]).toJson();
 
     print('Complex nested structure created\n');
 

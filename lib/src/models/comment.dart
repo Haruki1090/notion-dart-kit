@@ -38,13 +38,13 @@ class CommentDisplayName with _$CommentDisplayName {
   }
 
   Map<String, dynamic> toJson() => map(
-    integration: (v) => {
-      'type': 'integration',
-      'resolved_name': v.resolvedName,
-    },
-    user: (v) => {'type': 'user', 'resolved_name': v.resolvedName},
-    custom: (v) => {'type': 'custom', 'resolved_name': v.resolvedName},
-  );
+        integration: (v) => {
+          'type': 'integration',
+          'resolved_name': v.resolvedName,
+        },
+        user: (v) => {'type': 'user', 'resolved_name': v.resolvedName},
+        custom: (v) => {'type': 'custom', 'resolved_name': v.resolvedName},
+      );
 }
 
 /// Comment attachment entry
@@ -65,9 +65,9 @@ class CommentAttachment with _$CommentAttachment {
 
   @override
   Map<String, dynamic> toJson() => {
-    'category': category,
-    'file': file.toJson(),
-  };
+        'category': category,
+        'file': file.toJson(),
+      };
 }
 
 /// Comment object
@@ -89,40 +89,40 @@ class Comment with _$Comment {
   const Comment._();
 
   factory Comment.fromJson(Map<String, dynamic> json) => Comment(
-    object: json['object'] as String,
-    id: json['id'] as String,
-    parent: Parent.fromJson(json['parent'] as Map<String, dynamic>),
-    discussionId: json['discussion_id'] as String,
-    createdTime: DateTime.parse(json['created_time'] as String),
-    lastEditedTime: DateTime.parse(json['last_edited_time'] as String),
-    createdBy: User.fromJson(json['created_by'] as Map<String, dynamic>),
-    richText: (json['rich_text'] as List)
-        .map((e) => RichText.fromJson(e as Map<String, dynamic>))
-        .toList(),
-    attachments: (json['attachments'] as List?)
-        ?.map((e) => CommentAttachment.fromJson(e as Map<String, dynamic>))
-        .toList(),
-    displayName: json['display_name'] == null
-        ? null
-        : CommentDisplayName.fromJson(
-            json['display_name'] as Map<String, dynamic>,
-          ),
-  );
+        object: json['object'] as String,
+        id: json['id'] as String,
+        parent: Parent.fromJson(json['parent'] as Map<String, dynamic>),
+        discussionId: json['discussion_id'] as String,
+        createdTime: DateTime.parse(json['created_time'] as String),
+        lastEditedTime: DateTime.parse(json['last_edited_time'] as String),
+        createdBy: User.fromJson(json['created_by'] as Map<String, dynamic>),
+        richText: (json['rich_text'] as List)
+            .map((e) => RichText.fromJson(e as Map<String, dynamic>))
+            .toList(),
+        attachments: (json['attachments'] as List?)
+            ?.map((e) => CommentAttachment.fromJson(e as Map<String, dynamic>))
+            .toList(),
+        displayName: json['display_name'] == null
+            ? null
+            : CommentDisplayName.fromJson(
+                json['display_name'] as Map<String, dynamic>,
+              ),
+      );
 
   @override
   Map<String, dynamic> toJson() => {
-    'object': object,
-    'id': id,
-    'parent': parent.toJson(),
-    'discussion_id': discussionId,
-    'created_time': createdTime.toIso8601String(),
-    'last_edited_time': lastEditedTime.toIso8601String(),
-    'created_by': createdBy.toJson(),
-    'rich_text': richText.map((e) => e.toJson()).toList(),
-    if (attachments != null)
-      'attachments': attachments!.map((e) => e.toJson()).toList(),
-    if (displayName != null) 'display_name': displayName!.toJson(),
-  };
+        'object': object,
+        'id': id,
+        'parent': parent.toJson(),
+        'discussion_id': discussionId,
+        'created_time': createdTime.toIso8601String(),
+        'last_edited_time': lastEditedTime.toIso8601String(),
+        'created_by': createdBy.toJson(),
+        'rich_text': richText.map((e) => e.toJson()).toList(),
+        if (attachments != null)
+          'attachments': attachments!.map((e) => e.toJson()).toList(),
+        if (displayName != null) 'display_name': displayName!.toJson(),
+      };
 }
 
 /// Paginated list for comments
@@ -150,11 +150,11 @@ class PaginatedComments {
   final bool hasMore;
 
   Map<String, dynamic> toJson() => {
-    'object': object,
-    'results': results.map((e) => e.toJson()).toList(),
-    if (nextCursor != null) 'next_cursor': nextCursor,
-    'has_more': hasMore,
-    'type': 'comment',
-    'comment': <String, dynamic>{},
-  };
+        'object': object,
+        'results': results.map((e) => e.toJson()).toList(),
+        if (nextCursor != null) 'next_cursor': nextCursor,
+        'has_more': hasMore,
+        'type': 'comment',
+        'comment': <String, dynamic>{},
+      };
 }

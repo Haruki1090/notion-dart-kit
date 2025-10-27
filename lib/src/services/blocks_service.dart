@@ -126,13 +126,13 @@ class BlockChildren {
   });
 
   factory BlockChildren.fromJson(Map<String, dynamic> json) => BlockChildren(
-    object: json['object'] as String,
-    results: (json['results'] as List)
-        .map((e) => Block.fromJson(e as Map<String, dynamic>))
-        .toList(),
-    nextCursor: json['next_cursor'] as String?,
-    hasMore: json['has_more'] as bool,
-  );
+        object: json['object'] as String,
+        results: (json['results'] as List)
+            .map((e) => Block.fromJson(e as Map<String, dynamic>))
+            .toList(),
+        nextCursor: json['next_cursor'] as String?,
+        hasMore: json['has_more'] as bool,
+      );
 
   /// The type of object returned (always "list").
   final String object;
@@ -147,9 +147,9 @@ class BlockChildren {
   final bool hasMore;
 
   Map<String, dynamic> toJson() => {
-    'object': object,
-    'results': results.map((e) => e.toJson()).toList(),
-    if (nextCursor != null) 'next_cursor': nextCursor,
-    'has_more': hasMore,
-  };
+        'object': object,
+        'results': results.map((e) => e.toJson()).toList(),
+        if (nextCursor != null) 'next_cursor': nextCursor,
+        'has_more': hasMore,
+      };
 }

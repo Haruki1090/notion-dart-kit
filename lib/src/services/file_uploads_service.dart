@@ -170,8 +170,8 @@ enum FileUploadMode { singlePart, multiPart, externalUrl }
 
 extension on FileUploadMode {
   String get apiValue => switch (this) {
-    FileUploadMode.singlePart => 'single_part',
-    FileUploadMode.multiPart => 'multi_part',
-    FileUploadMode.externalUrl => 'external_url',
-  };
+        FileUploadMode.singlePart => 'single_part',
+        FileUploadMode.multiPart => 'multi_part',
+        FileUploadMode.externalUrl => 'external_url',
+      };
 }

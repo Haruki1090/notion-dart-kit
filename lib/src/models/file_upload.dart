@@ -15,20 +15,20 @@ class FileUpload {
   });
 
   factory FileUpload.fromJson(Map<String, dynamic> json) => FileUpload(
-    id: json['id'] as String,
-    object: json['object'] as String,
-    createdTime: DateTime.parse(json['created_time'] as String),
-    lastEditedTime: DateTime.parse(json['last_edited_time'] as String),
-    expiryTime: (json['expiry_time'] as String?) == null
-        ? null
-        : DateTime.parse(json['expiry_time'] as String),
-    uploadUrl: json['upload_url'] as String?,
-    archived: json['archived'] as bool,
-    status: _parseStatus(json['status'] as String?),
-    filename: json['filename'] as String,
-    contentType: json['content_type'] as String,
-    contentLength: (json['content_length'] as num).toInt(),
-  );
+        id: json['id'] as String,
+        object: json['object'] as String,
+        createdTime: DateTime.parse(json['created_time'] as String),
+        lastEditedTime: DateTime.parse(json['last_edited_time'] as String),
+        expiryTime: (json['expiry_time'] as String?) == null
+            ? null
+            : DateTime.parse(json['expiry_time'] as String),
+        uploadUrl: json['upload_url'] as String?,
+        archived: json['archived'] as bool,
+        status: _parseStatus(json['status'] as String?),
+        filename: json['filename'] as String,
+        contentType: json['content_type'] as String,
+        contentLength: (json['content_length'] as num).toInt(),
+      );
 
   final String id;
   final String object;
@@ -43,18 +43,18 @@ class FileUpload {
   final int contentLength;
 
   Map<String, dynamic> toJson() => {
-    'id': id,
-    'object': object,
-    'created_time': createdTime.toIso8601String(),
-    'last_edited_time': lastEditedTime.toIso8601String(),
-    if (expiryTime != null) 'expiry_time': expiryTime!.toIso8601String(),
-    'upload_url': uploadUrl,
-    'archived': archived,
-    'status': status.name,
-    'filename': filename,
-    'content_type': contentType,
-    'content_length': contentLength,
-  };
+        'id': id,
+        'object': object,
+        'created_time': createdTime.toIso8601String(),
+        'last_edited_time': lastEditedTime.toIso8601String(),
+        if (expiryTime != null) 'expiry_time': expiryTime!.toIso8601String(),
+        'upload_url': uploadUrl,
+        'archived': archived,
+        'status': status.name,
+        'filename': filename,
+        'content_type': contentType,
+        'content_length': contentLength,
+      };
 }
 
 /// Status of a File Upload

@@ -87,7 +87,8 @@ class RichTextBuilder {
   static MentionRichTextBuilder mentionDate({
     required DateTime start,
     DateTime? end,
-  }) => MentionRichTextBuilder.date(start: start, end: end);
+  }) =>
+      MentionRichTextBuilder.date(start: start, end: end);
 
   /// Creates a link preview mention
   ///
@@ -120,8 +121,8 @@ class RichTextBuilder {
   /// // Equivalent to: [RichTextBuilder.text('Simple text').toJson()]
   /// ```
   static List<Map<String, dynamic>> plainArray(String text) => [
-    RichTextBuilder.text(text).toJson(),
-  ];
+        RichTextBuilder.text(text).toJson(),
+      ];
 }
 
 // ========================================
@@ -190,22 +191,22 @@ class TextRichTextBuilder {
 
   /// Converts the builder to a JSON-compatible Map
   Map<String, dynamic> toJson() => {
-    'type': 'text',
-    'text': {
-      'content': _content,
-      if (_link != null) 'link': {'url': _link},
-    },
-    'annotations': {
-      'bold': _bold,
-      'italic': _italic,
-      'strikethrough': _strikethrough,
-      'underline': _underline,
-      'code': _code,
-      'color': _color,
-    },
-    'plain_text': _content,
-    if (_link != null) 'href': _link,
-  };
+        'type': 'text',
+        'text': {
+          'content': _content,
+          if (_link != null) 'link': {'url': _link},
+        },
+        'annotations': {
+          'bold': _bold,
+          'italic': _italic,
+          'strikethrough': _strikethrough,
+          'underline': _underline,
+          'code': _code,
+          'color': _color,
+        },
+        'plain_text': _content,
+        if (_link != null) 'href': _link,
+      };
 }
 
 /// Builder for mention rich text
@@ -215,15 +216,15 @@ class MentionRichTextBuilder {
   MentionRichTextBuilder.page(this._pageId) : _mentionType = _MentionType.page;
 
   MentionRichTextBuilder.database(this._databaseId)
-    : _mentionType = _MentionType.database;
+      : _mentionType = _MentionType.database;
 
   MentionRichTextBuilder.date({required DateTime start, DateTime? end})
-    : _dateStart = start,
-      _dateEnd = end,
-      _mentionType = _MentionType.date;
+      : _dateStart = start,
+        _dateEnd = end,
+        _mentionType = _MentionType.date;
 
   MentionRichTextBuilder.linkPreview(this._url)
-    : _mentionType = _MentionType.linkPreview;
+      : _mentionType = _MentionType.linkPreview;
 
   final _MentionType _mentionType;
   String? _userId;
@@ -391,16 +392,16 @@ class EquationRichTextBuilder {
 
   /// Converts the builder to a JSON-compatible Map
   Map<String, dynamic> toJson() => {
-    'type': 'equation',
-    'equation': {'expression': _expression},
-    'annotations': {
-      'bold': _bold,
-      'italic': _italic,
-      'strikethrough': _strikethrough,
-      'underline': _underline,
-      'code': _code,
-      'color': _color,
-    },
-    'plain_text': _expression,
-  };
+        'type': 'equation',
+        'equation': {'expression': _expression},
+        'annotations': {
+          'bold': _bold,
+          'italic': _italic,
+          'strikethrough': _strikethrough,
+          'underline': _underline,
+          'code': _code,
+          'color': _color,
+        },
+        'plain_text': _expression,
+      };
 }

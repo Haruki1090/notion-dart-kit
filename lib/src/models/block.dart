@@ -635,9 +635,8 @@ class Block with _$Block {
           content: BlockContent.fromJson(
             json['callout'] as Map<String, dynamic>,
           ),
-          icon:
-              (json['callout'] as Map<String, dynamic>)['icon']
-                  as Map<String, dynamic>?,
+          icon: (json['callout'] as Map<String, dynamic>)['icon']
+              as Map<String, dynamic>?,
         );
       case 'image':
         return Block.image(
@@ -680,8 +679,8 @@ class Block with _$Block {
           file: fileData,
           caption: fileData['caption'] != null
               ? (fileData['caption'] as List)
-                    .map((e) => RichText.fromJson(e as Map<String, dynamic>))
-                    .toList()
+                  .map((e) => RichText.fromJson(e as Map<String, dynamic>))
+                  .toList()
               : null,
           name: fileData['name'] as String?,
         );
@@ -700,8 +699,8 @@ class Block with _$Block {
           file: pdfData,
           caption: pdfData['caption'] != null
               ? (pdfData['caption'] as List)
-                    .map((e) => RichText.fromJson(e as Map<String, dynamic>))
-                    .toList()
+                  .map((e) => RichText.fromJson(e as Map<String, dynamic>))
+                  .toList()
               : null,
         );
       case 'bookmark':
@@ -719,8 +718,8 @@ class Block with _$Block {
           url: bookmarkData['url'] as String,
           caption: bookmarkData['caption'] != null
               ? (bookmarkData['caption'] as List)
-                    .map((e) => RichText.fromJson(e as Map<String, dynamic>))
-                    .toList()
+                  .map((e) => RichText.fromJson(e as Map<String, dynamic>))
+                  .toList()
               : null,
         );
       case 'embed':
@@ -865,7 +864,7 @@ class Block with _$Block {
           inTrash: inTrash,
           syncedFromBlockId: syncedData['synced_from'] != null
               ? (syncedData['synced_from'] as Map<String, dynamic>)['block_id']
-                    as String?
+                  as String?
               : null,
         );
       case 'template':
@@ -929,8 +928,7 @@ class Block with _$Block {
 
   /// Custom JSON serialization
   Map<String, dynamic> toJson() => when(
-    paragraph:
-        (
+        paragraph: (
           id,
           parent,
           createdTime,
@@ -941,7 +939,8 @@ class Block with _$Block {
           archived,
           inTrash,
           content,
-        ) => {
+        ) =>
+            {
           'object': 'block',
           'id': id,
           'parent': parent.toJson(),
@@ -955,8 +954,7 @@ class Block with _$Block {
           'type': 'paragraph',
           'paragraph': content.toJson(),
         },
-    heading1:
-        (
+        heading1: (
           id,
           parent,
           createdTime,
@@ -967,7 +965,8 @@ class Block with _$Block {
           archived,
           inTrash,
           content,
-        ) => {
+        ) =>
+            {
           'object': 'block',
           'id': id,
           'parent': parent.toJson(),
@@ -981,8 +980,7 @@ class Block with _$Block {
           'type': 'heading_1',
           'heading_1': content.toJson(),
         },
-    heading2:
-        (
+        heading2: (
           id,
           parent,
           createdTime,
@@ -993,7 +991,8 @@ class Block with _$Block {
           archived,
           inTrash,
           content,
-        ) => {
+        ) =>
+            {
           'object': 'block',
           'id': id,
           'parent': parent.toJson(),
@@ -1007,8 +1006,7 @@ class Block with _$Block {
           'type': 'heading_2',
           'heading_2': content.toJson(),
         },
-    heading3:
-        (
+        heading3: (
           id,
           parent,
           createdTime,
@@ -1019,7 +1017,8 @@ class Block with _$Block {
           archived,
           inTrash,
           content,
-        ) => {
+        ) =>
+            {
           'object': 'block',
           'id': id,
           'parent': parent.toJson(),
@@ -1033,8 +1032,7 @@ class Block with _$Block {
           'type': 'heading_3',
           'heading_3': content.toJson(),
         },
-    bulletedListItem:
-        (
+        bulletedListItem: (
           id,
           parent,
           createdTime,
@@ -1045,7 +1043,8 @@ class Block with _$Block {
           archived,
           inTrash,
           content,
-        ) => {
+        ) =>
+            {
           'object': 'block',
           'id': id,
           'parent': parent.toJson(),
@@ -1059,8 +1058,7 @@ class Block with _$Block {
           'type': 'bulleted_list_item',
           'bulleted_list_item': content.toJson(),
         },
-    numberedListItem:
-        (
+        numberedListItem: (
           id,
           parent,
           createdTime,
@@ -1071,7 +1069,8 @@ class Block with _$Block {
           archived,
           inTrash,
           content,
-        ) => {
+        ) =>
+            {
           'object': 'block',
           'id': id,
           'parent': parent.toJson(),
@@ -1085,8 +1084,7 @@ class Block with _$Block {
           'type': 'numbered_list_item',
           'numbered_list_item': content.toJson(),
         },
-    toDo:
-        (
+        toDo: (
           id,
           parent,
           createdTime,
@@ -1097,7 +1095,8 @@ class Block with _$Block {
           archived,
           inTrash,
           content,
-        ) => {
+        ) =>
+            {
           'object': 'block',
           'id': id,
           'parent': parent.toJson(),
@@ -1111,8 +1110,7 @@ class Block with _$Block {
           'type': 'to_do',
           'to_do': content.toJson(),
         },
-    toggle:
-        (
+        toggle: (
           id,
           parent,
           createdTime,
@@ -1123,7 +1121,8 @@ class Block with _$Block {
           archived,
           inTrash,
           content,
-        ) => {
+        ) =>
+            {
           'object': 'block',
           'id': id,
           'parent': parent.toJson(),
@@ -1137,8 +1136,7 @@ class Block with _$Block {
           'type': 'toggle',
           'toggle': content.toJson(),
         },
-    code:
-        (
+        code: (
           id,
           parent,
           createdTime,
@@ -1149,7 +1147,8 @@ class Block with _$Block {
           archived,
           inTrash,
           content,
-        ) => {
+        ) =>
+            {
           'object': 'block',
           'id': id,
           'parent': parent.toJson(),
@@ -1163,8 +1162,7 @@ class Block with _$Block {
           'type': 'code',
           'code': content.toJson(),
         },
-    quote:
-        (
+        quote: (
           id,
           parent,
           createdTime,
@@ -1175,7 +1173,8 @@ class Block with _$Block {
           archived,
           inTrash,
           content,
-        ) => {
+        ) =>
+            {
           'object': 'block',
           'id': id,
           'parent': parent.toJson(),
@@ -1189,8 +1188,7 @@ class Block with _$Block {
           'type': 'quote',
           'quote': content.toJson(),
         },
-    divider:
-        (
+        divider: (
           id,
           parent,
           createdTime,
@@ -1200,7 +1198,8 @@ class Block with _$Block {
           hasChildren,
           archived,
           inTrash,
-        ) => {
+        ) =>
+            {
           'object': 'block',
           'id': id,
           'parent': parent.toJson(),
@@ -1214,8 +1213,7 @@ class Block with _$Block {
           'type': 'divider',
           'divider': {},
         },
-    callout:
-        (
+        callout: (
           id,
           parent,
           createdTime,
@@ -1227,7 +1225,8 @@ class Block with _$Block {
           inTrash,
           content,
           icon,
-        ) => {
+        ) =>
+            {
           'object': 'block',
           'id': id,
           'parent': parent.toJson(),
@@ -1241,8 +1240,7 @@ class Block with _$Block {
           'type': 'callout',
           'callout': {...content.toJson(), if (icon != null) 'icon': icon},
         },
-    image:
-        (
+        image: (
           id,
           parent,
           createdTime,
@@ -1253,7 +1251,8 @@ class Block with _$Block {
           archived,
           inTrash,
           file,
-        ) => {
+        ) =>
+            {
           'object': 'block',
           'id': id,
           'parent': parent.toJson(),
@@ -1267,8 +1266,7 @@ class Block with _$Block {
           'type': 'image',
           'image': file,
         },
-    video:
-        (
+        video: (
           id,
           parent,
           createdTime,
@@ -1279,7 +1277,8 @@ class Block with _$Block {
           archived,
           inTrash,
           file,
-        ) => {
+        ) =>
+            {
           'object': 'block',
           'id': id,
           'parent': parent.toJson(),
@@ -1293,8 +1292,7 @@ class Block with _$Block {
           'type': 'video',
           'video': file,
         },
-    file:
-        (
+        file: (
           id,
           parent,
           createdTime,
@@ -1307,7 +1305,8 @@ class Block with _$Block {
           file,
           caption,
           name,
-        ) => {
+        ) =>
+            {
           'object': 'block',
           'id': id,
           'parent': parent.toJson(),
@@ -1326,8 +1325,7 @@ class Block with _$Block {
             if (name != null) 'name': name,
           },
         },
-    pdf:
-        (
+        pdf: (
           id,
           parent,
           createdTime,
@@ -1339,7 +1337,8 @@ class Block with _$Block {
           inTrash,
           file,
           caption,
-        ) => {
+        ) =>
+            {
           'object': 'block',
           'id': id,
           'parent': parent.toJson(),
@@ -1357,8 +1356,7 @@ class Block with _$Block {
               'caption': caption.map((e) => e.toJson()).toList(),
           },
         },
-    bookmark:
-        (
+        bookmark: (
           id,
           parent,
           createdTime,
@@ -1370,7 +1368,8 @@ class Block with _$Block {
           inTrash,
           url,
           caption,
-        ) => {
+        ) =>
+            {
           'object': 'block',
           'id': id,
           'parent': parent.toJson(),
@@ -1388,8 +1387,7 @@ class Block with _$Block {
               'caption': caption.map((e) => e.toJson()).toList(),
           },
         },
-    embed:
-        (
+        embed: (
           id,
           parent,
           createdTime,
@@ -1400,7 +1398,8 @@ class Block with _$Block {
           archived,
           inTrash,
           url,
-        ) => {
+        ) =>
+            {
           'object': 'block',
           'id': id,
           'parent': parent.toJson(),
@@ -1414,8 +1413,7 @@ class Block with _$Block {
           'type': 'embed',
           'embed': {'url': url},
         },
-    linkPreview:
-        (
+        linkPreview: (
           id,
           parent,
           createdTime,
@@ -1426,7 +1424,8 @@ class Block with _$Block {
           archived,
           inTrash,
           url,
-        ) => {
+        ) =>
+            {
           'object': 'block',
           'id': id,
           'parent': parent.toJson(),
@@ -1440,8 +1439,7 @@ class Block with _$Block {
           'type': 'link_preview',
           'link_preview': {'url': url},
         },
-    table:
-        (
+        table: (
           id,
           parent,
           createdTime,
@@ -1454,7 +1452,8 @@ class Block with _$Block {
           tableWidth,
           hasColumnHeader,
           hasRowHeader,
-        ) => {
+        ) =>
+            {
           'object': 'block',
           'id': id,
           'parent': parent.toJson(),
@@ -1472,8 +1471,7 @@ class Block with _$Block {
             'has_row_header': hasRowHeader,
           },
         },
-    tableRow:
-        (
+        tableRow: (
           id,
           parent,
           createdTime,
@@ -1484,7 +1482,8 @@ class Block with _$Block {
           archived,
           inTrash,
           cells,
-        ) => {
+        ) =>
+            {
           'object': 'block',
           'id': id,
           'parent': parent.toJson(),
@@ -1502,8 +1501,7 @@ class Block with _$Block {
                 .toList(),
           },
         },
-    tableOfContents:
-        (
+        tableOfContents: (
           id,
           parent,
           createdTime,
@@ -1514,7 +1512,8 @@ class Block with _$Block {
           archived,
           inTrash,
           color,
-        ) => {
+        ) =>
+            {
           'object': 'block',
           'id': id,
           'parent': parent.toJson(),
@@ -1528,8 +1527,7 @@ class Block with _$Block {
           'type': 'table_of_contents',
           'table_of_contents': {'color': color},
         },
-    columnList:
-        (
+        columnList: (
           id,
           parent,
           createdTime,
@@ -1539,7 +1537,8 @@ class Block with _$Block {
           hasChildren,
           archived,
           inTrash,
-        ) => {
+        ) =>
+            {
           'object': 'block',
           'id': id,
           'parent': parent.toJson(),
@@ -1553,8 +1552,7 @@ class Block with _$Block {
           'type': 'column_list',
           'column_list': {},
         },
-    column:
-        (
+        column: (
           id,
           parent,
           createdTime,
@@ -1565,7 +1563,8 @@ class Block with _$Block {
           archived,
           inTrash,
           widthRatio,
-        ) => {
+        ) =>
+            {
           'object': 'block',
           'id': id,
           'parent': parent.toJson(),
@@ -1579,8 +1578,7 @@ class Block with _$Block {
           'type': 'column',
           'column': {if (widthRatio != null) 'width_ratio': widthRatio},
         },
-    breadcrumb:
-        (
+        breadcrumb: (
           id,
           parent,
           createdTime,
@@ -1590,7 +1588,8 @@ class Block with _$Block {
           hasChildren,
           archived,
           inTrash,
-        ) => {
+        ) =>
+            {
           'object': 'block',
           'id': id,
           'parent': parent.toJson(),
@@ -1604,8 +1603,7 @@ class Block with _$Block {
           'type': 'breadcrumb',
           'breadcrumb': {},
         },
-    equation:
-        (
+        equation: (
           id,
           parent,
           createdTime,
@@ -1616,7 +1614,8 @@ class Block with _$Block {
           archived,
           inTrash,
           expression,
-        ) => {
+        ) =>
+            {
           'object': 'block',
           'id': id,
           'parent': parent.toJson(),
@@ -1630,8 +1629,7 @@ class Block with _$Block {
           'type': 'equation',
           'equation': {'expression': expression},
         },
-    syncedBlock:
-        (
+        syncedBlock: (
           id,
           parent,
           createdTime,
@@ -1642,7 +1640,8 @@ class Block with _$Block {
           archived,
           inTrash,
           syncedFromBlockId,
-        ) => {
+        ) =>
+            {
           'object': 'block',
           'id': id,
           'parent': parent.toJson(),
@@ -1659,8 +1658,7 @@ class Block with _$Block {
               'synced_from': {'block_id': syncedFromBlockId},
           },
         },
-    template:
-        (
+        template: (
           id,
           parent,
           createdTime,
@@ -1671,7 +1669,8 @@ class Block with _$Block {
           archived,
           inTrash,
           richText,
-        ) => {
+        ) =>
+            {
           'object': 'block',
           'id': id,
           'parent': parent.toJson(),
@@ -1685,8 +1684,7 @@ class Block with _$Block {
           'type': 'template',
           'template': {'rich_text': richText.map((e) => e.toJson()).toList()},
         },
-    childPage:
-        (
+        childPage: (
           id,
           parent,
           createdTime,
@@ -1697,7 +1695,8 @@ class Block with _$Block {
           archived,
           inTrash,
           title,
-        ) => {
+        ) =>
+            {
           'object': 'block',
           'id': id,
           'parent': parent.toJson(),
@@ -1711,8 +1710,7 @@ class Block with _$Block {
           'type': 'child_page',
           'child_page': {'title': title},
         },
-    childDatabase:
-        (
+        childDatabase: (
           id,
           parent,
           createdTime,
@@ -1723,7 +1721,8 @@ class Block with _$Block {
           archived,
           inTrash,
           title,
-        ) => {
+        ) =>
+            {
           'object': 'block',
           'id': id,
           'parent': parent.toJson(),
@@ -1737,8 +1736,7 @@ class Block with _$Block {
           'type': 'child_database',
           'child_database': {'title': title},
         },
-    unsupported:
-        (
+        unsupported: (
           id,
           parent,
           createdTime,
@@ -1748,7 +1746,8 @@ class Block with _$Block {
           hasChildren,
           archived,
           inTrash,
-        ) => {
+        ) =>
+            {
           'object': 'block',
           'id': id,
           'parent': parent.toJson(),
@@ -1761,5 +1760,5 @@ class Block with _$Block {
           'in_trash': inTrash,
           'type': 'unsupported',
         },
-  );
+      );
 }

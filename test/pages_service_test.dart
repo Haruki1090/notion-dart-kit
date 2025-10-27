@@ -250,11 +250,9 @@ void main() {
         expect(result.url, equals('https://notion.so/new-page-id'));
 
         // Verify that the request includes the template_id
-        final capturedRequest =
-            verify(
-                  mockHttpClient.post('/pages', data: captureAnyNamed('data')),
-                ).captured.single
-                as Map<String, dynamic>;
+        final capturedRequest = verify(
+          mockHttpClient.post('/pages', data: captureAnyNamed('data')),
+        ).captured.single as Map<String, dynamic>;
         expect(capturedRequest['template_id'], equals(templateId));
       });
 
@@ -329,14 +327,12 @@ void main() {
           expect(result.id, equals('new-page-id'));
 
           // Verify that the request does not include template_id
-          final capturedRequest =
-              verify(
-                    mockHttpClient.post(
-                      '/pages',
-                      data: captureAnyNamed('data'),
-                    ),
-                  ).captured.single
-                  as Map<String, dynamic>;
+          final capturedRequest = verify(
+            mockHttpClient.post(
+              '/pages',
+              data: captureAnyNamed('data'),
+            ),
+          ).captured.single as Map<String, dynamic>;
           expect(capturedRequest.containsKey('template_id'), isFalse);
         },
       );

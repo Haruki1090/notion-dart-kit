@@ -81,9 +81,8 @@ void main() async {
       // Date property (with start and end)
       'Due Date': {
         'date': {
-          'start': DateTime.now()
-              .add(const Duration(days: 7))
-              .toIso8601String(),
+          'start':
+              DateTime.now().add(const Duration(days: 7)).toIso8601String(),
           'end': DateTime.now().add(const Duration(days: 14)).toIso8601String(),
         },
       },

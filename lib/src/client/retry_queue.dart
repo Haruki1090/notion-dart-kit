@@ -21,9 +21,8 @@ class InMemoryRetryQueueStorage implements RetryQueueStorage {
 
   @override
   Future<void> save(List<RetryQueueEntry> entries) async {
-    _snapshot = entries
-        .map((e) => e.copyForPersistence())
-        .toList(growable: false);
+    _snapshot =
+        entries.map((e) => e.copyForPersistence()).toList(growable: false);
   }
 
   @override
@@ -73,18 +72,18 @@ class RetryQueueEntry {
   DateTime scheduledAt;
 
   RetryQueueEntry copyForPersistence() => RetryQueueEntry(
-    id: id,
-    priority: priority,
-    maxRetries: maxRetries,
-    initialBackoff: initialBackoff,
-    maxBackoff: maxBackoff,
-    isRetryable: isRetryable,
-    getRetryAfter: getRetryAfter,
-    scheduledAt: scheduledAt,
-    attempt: attempt,
-    persistKey: persistKey,
-    payload: payload == null ? null : Map<String, dynamic>.from(payload!),
-  );
+        id: id,
+        priority: priority,
+        maxRetries: maxRetries,
+        initialBackoff: initialBackoff,
+        maxBackoff: maxBackoff,
+        isRetryable: isRetryable,
+        getRetryAfter: getRetryAfter,
+        scheduledAt: scheduledAt,
+        attempt: attempt,
+        persistKey: persistKey,
+        payload: payload == null ? null : Map<String, dynamic>.from(payload!),
+      );
 }
 
 /// Retry queue with priority scheduling and exponential backoff.
@@ -245,33 +244,30 @@ class RetryQueue {
       return;
     }
     _running++;
-    entry.executor!()
-        .then((_) {
-          // Success: drop the entry
-        })
-        .catchError((Object error, StackTrace stack) {
-          if (entry.isRetryable(error) && entry.attempt < entry.maxRetries) {
-            entry.attempt += 1;
-            final backoff = _calculateBackoff(
-              attempt: entry.attempt,
-              initial: entry.initialBackoff,
-              max: entry.maxBackoff,
-            );
-            final retryAfter = entry.getRetryAfter?.call(error);
-            entry.scheduledAt = DateTime.now().add(retryAfter ?? backoff);
-            _entries.add(entry);
-            _persist();
-            _wakeup();
-          } else {
-            // Drop the entry after exhausting retries or non-retryable error
-          }
-        })
-        .whenComplete(() {
-          _running--;
-          if (_started) {
-            _wakeup();
-          }
-        });
+    entry.executor!().then((_) {
+      // Success: drop the entry
+    }).catchError((Object error, StackTrace stack) {
+      if (entry.isRetryable(error) && entry.attempt < entry.maxRetries) {
+        entry.attempt += 1;
+        final backoff = _calculateBackoff(
+          attempt: entry.attempt,
+          initial: entry.initialBackoff,
+          max: entry.maxBackoff,
+        );
+        final retryAfter = entry.getRetryAfter?.call(error);
+        entry.scheduledAt = DateTime.now().add(retryAfter ?? backoff);
+        _entries.add(entry);
+        _persist();
+        _wakeup();
+      } else {
+        // Drop the entry after exhausting retries or non-retryable error
+      }
+    }).whenComplete(() {
+      _running--;
+      if (_started) {
+        _wakeup();
+      }
+    });
   }
 
   Duration _calculateBackoff({

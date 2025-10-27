@@ -45,10 +45,8 @@ void main() {
     });
 
     test('paragraph without initial text', () {
-      final block = BlockBuilder.paragraph()
-          .addText('Hello')
-          .addText(' World')
-          .toJson();
+      final block =
+          BlockBuilder.paragraph().addText('Hello').addText(' World').toJson();
 
       expect(block['paragraph']['rich_text'], hasLength(2));
     });
@@ -98,8 +96,8 @@ void main() {
     test('toggleable heading with children', () {
       final block = BlockBuilder.heading2('Toggle Heading')
           .toggleable()
-          .children([BlockBuilder.paragraph('Hidden content').toJson()])
-          .toJson();
+          .children(
+              [BlockBuilder.paragraph('Hidden content').toJson()]).toJson();
 
       expect(block['heading_2']['is_toggleable'], true);
       expect(block['heading_2']['children'], hasLength(1));
@@ -162,8 +160,7 @@ void main() {
       final block = BlockBuilder.callout('Full callout')
           .icon('🔥')
           .color('red_background')
-          .children([BlockBuilder.paragraph('Details').toJson()])
-          .toJson();
+          .children([BlockBuilder.paragraph('Details').toJson()]).toJson();
 
       expect(block['callout']['icon']['emoji'], '🔥');
       expect(block['callout']['color'], 'red_background');
@@ -552,15 +549,14 @@ void main() {
           .icon('📚')
           .color('blue_background')
           .children([
-            BlockBuilder.paragraph()
-                .addText('This is ')
-                .addRichText(RichTextBuilder.text('critical').bold().toJson())
-                .addText(' information.')
-                .toJson(),
-            BlockBuilder.bulletedListItem('Key point 1').toJson(),
-            BlockBuilder.bulletedListItem('Key point 2').toJson(),
-          ])
-          .toJson();
+        BlockBuilder.paragraph()
+            .addText('This is ')
+            .addRichText(RichTextBuilder.text('critical').bold().toJson())
+            .addText(' information.')
+            .toJson(),
+        BlockBuilder.bulletedListItem('Key point 1').toJson(),
+        BlockBuilder.bulletedListItem('Key point 2').toJson(),
+      ]).toJson();
 
       expect(block['callout']['icon']['emoji'], '📚');
       expect(block['callout']['color'], 'blue_background');

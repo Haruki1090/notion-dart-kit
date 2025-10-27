@@ -38,26 +38,27 @@ class Template with _$Template {
   const Template._();
 
   factory Template.fromJson(Map<String, dynamic> json) => Template(
-    id: json['id'] as String,
-    title: json['title'] as String,
-    createdTime: DateTime.parse(json['created_time'] as String),
-    lastEditedTime: DateTime.parse(json['last_edited_time'] as String),
-    createdBy: User.fromJson(json['created_by'] as Map<String, dynamic>),
-    lastEditedBy: User.fromJson(json['last_edited_by'] as Map<String, dynamic>),
-    url: json['url'] as String,
-    description: json['description'] as String?,
-    archived: json['archived'] as bool? ?? false,
-  );
+        id: json['id'] as String,
+        title: json['title'] as String,
+        createdTime: DateTime.parse(json['created_time'] as String),
+        lastEditedTime: DateTime.parse(json['last_edited_time'] as String),
+        createdBy: User.fromJson(json['created_by'] as Map<String, dynamic>),
+        lastEditedBy:
+            User.fromJson(json['last_edited_by'] as Map<String, dynamic>),
+        url: json['url'] as String,
+        description: json['description'] as String?,
+        archived: json['archived'] as bool? ?? false,
+      );
 
   Map<String, dynamic> toJson() => {
-    'id': id,
-    'title': title,
-    'created_time': createdTime.toIso8601String(),
-    'last_edited_time': lastEditedTime.toIso8601String(),
-    'created_by': createdBy.toJson(),
-    'last_edited_by': lastEditedBy.toJson(),
-    'url': url,
-    if (description != null) 'description': description,
-    'archived': archived,
-  };
+        'id': id,
+        'title': title,
+        'created_time': createdTime.toIso8601String(),
+        'last_edited_time': lastEditedTime.toIso8601String(),
+        'created_by': createdBy.toJson(),
+        'last_edited_by': lastEditedBy.toJson(),
+        'url': url,
+        if (description != null) 'description': description,
+        'archived': archived,
+      };
 }

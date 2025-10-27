@@ -43,17 +43,17 @@ class Parent with _$Parent {
   }
 
   Map<String, dynamic> toJson() => when(
-    database: (databaseId) => {
-      'type': 'database_id',
-      'database_id': databaseId,
-    },
-    dataSource: (dataSourceId, databaseId) => {
-      'type': 'data_source_id',
-      'data_source_id': dataSourceId,
-      if (databaseId != null) 'database_id': databaseId,
-    },
-    page: (pageId) => {'type': 'page_id', 'page_id': pageId},
-    workspace: () => {'type': 'workspace', 'workspace': true},
-    block: (blockId) => {'type': 'block_id', 'block_id': blockId},
-  );
+        database: (databaseId) => {
+          'type': 'database_id',
+          'database_id': databaseId,
+        },
+        dataSource: (dataSourceId, databaseId) => {
+          'type': 'data_source_id',
+          'data_source_id': dataSourceId,
+          if (databaseId != null) 'database_id': databaseId,
+        },
+        page: (pageId) => {'type': 'page_id', 'page_id': pageId},
+        workspace: () => {'type': 'workspace', 'workspace': true},
+        block: (blockId) => {'type': 'block_id', 'block_id': blockId},
+      );
 }

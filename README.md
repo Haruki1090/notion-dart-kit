@@ -23,11 +23,25 @@ A comprehensive, type-safe Dart toolkit for the Notion API. Full endpoint covera
 
 ## 📦 Installation
 
+### Using Dart
+
+```bash
+dart pub add notion_dart_kit
+```
+
+### Using Flutter
+
+```bash
+flutter pub add notion_dart_kit
+```
+
+### Manual Installation
+
 Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  notion_dart_kit: ^0.1.1
+  notion_dart_kit: ^0.2.4
 ```
 
 Then run:

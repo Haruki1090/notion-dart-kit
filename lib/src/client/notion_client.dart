@@ -31,7 +31,7 @@ class NotionClient {
   ///
   /// [apiVersion] - Optional API version to use. Defaults to the latest stable version.
   NotionClient({required String token, String? apiVersion})
-    : httpClient = NotionHttpClient(token: token, apiVersion: apiVersion) {
+      : httpClient = NotionHttpClient(token: token, apiVersion: apiVersion) {
     users = UsersService(httpClient);
     pages = PagesService(httpClient);
     databases = DatabasesService(httpClient);

@@ -76,8 +76,7 @@ class PropertyItemList with _$PropertyItemList {
   }) = _PropertyItemList;
 
   factory PropertyItemList.fromJson(Map<String, dynamic> json) {
-    final results =
-        (json['results'] as List<dynamic>?)
+    final results = (json['results'] as List<dynamic>?)
             ?.map((e) => PropertyItem.fromJson(e as Map<String, dynamic>))
             .toList() ??
         [];

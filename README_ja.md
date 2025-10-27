@@ -23,11 +23,25 @@ Notion API のための包括的な型安全 Dart ツールキット。完全な
 
 ## 📦 インストール
 
+### Dart を使用する場合
+
+```bash
+dart pub add notion_dart_kit
+```
+
+### Flutter を使用する場合
+
+```bash
+flutter pub add notion_dart_kit
+```
+
+### 手動インストール
+
 `pubspec.yaml` ファイルに以下を追加してください:
 
 ```yaml
 dependencies:
-  notion_dart_kit: ^0.1.1
+  notion_dart_kit: ^0.2.4
 ```
 
 次に以下を実行:

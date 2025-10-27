@@ -179,9 +179,12 @@ void main() {
         NotionLogger.instance.initialize(isDebugMode: true);
 
         expect(
-          () => NotionLogger.instance.info('Info message', {
-            'key': 'value',
-          }, StackTrace.current),
+          () => NotionLogger.instance.info(
+              'Info message',
+              {
+                'key': 'value',
+              },
+              StackTrace.current),
           returnsNormally,
         );
       });
