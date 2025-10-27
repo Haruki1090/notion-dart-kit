@@ -42,7 +42,7 @@ class DataSource with _$DataSource {
             .toList(),
         properties: (json['properties'] as Map<String, dynamic>).map(
           (key, value) => MapEntry(
-              key, PropertySchema.fromJson(value as Map<String, dynamic>)),
+              key, PropertySchema.fromJson(value as Map<String, dynamic>),),
         ),
         archived: json['archived'] as bool? ?? false,
         isInline: json['is_inline'] as bool,

@@ -56,7 +56,7 @@ void main() {
           throw RateLimitError();
         }
         return 'success';
-      }, isRateLimitError: (error) => error is RateLimitError);
+      }, isRateLimitError: (error) => error is RateLimitError,);
 
       expect(result, equals('success'));
       expect(attemptCount, equals(3));
@@ -69,7 +69,7 @@ void main() {
         await rateLimiter.execute(() async {
           timestamps.add(DateTime.now());
           throw RateLimitError();
-        }, isRateLimitError: (error) => error is RateLimitError);
+        }, isRateLimitError: (error) => error is RateLimitError,);
       } catch (e) {
         // Expected to fail after max retries
       }
@@ -116,7 +116,7 @@ void main() {
         () => rateLimiter.execute(() async {
           attemptCount++;
           throw RateLimitError();
-        }, isRateLimitError: (error) => error is RateLimitError),
+        }, isRateLimitError: (error) => error is RateLimitError,),
         throwsA(isA<RateLimitError>()),
       );
 
@@ -132,7 +132,7 @@ void main() {
         await rateLimiter.execute(() async {
           attemptCount++;
           throw Exception('Other error');
-        }, isRateLimitError: (error) => error is RateLimitError);
+        }, isRateLimitError: (error) => error is RateLimitError,);
       } catch (e) {
         // Expected to throw
       }

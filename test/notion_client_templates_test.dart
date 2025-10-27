@@ -81,7 +81,7 @@ void main() {
         expect(() {
           // This should compile without errors (testing method signature)
           client.pages.create(parent: const WorkspaceParent(), properties: {});
-        }, returnsNormally);
+        }, returnsNormally,);
 
         expect(() {
           // This should also compile without errors (testing with templateId)
@@ -90,7 +90,7 @@ void main() {
             properties: {},
             templateId: 'template_123',
           );
-        }, returnsNormally);
+        }, returnsNormally,);
       });
     });
   });

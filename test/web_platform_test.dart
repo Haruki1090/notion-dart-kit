@@ -16,7 +16,7 @@ void main() {
       // Webプラットフォームでロガーが初期化できることを確認
       expect(() {
         NotionLogger.instance.initialize(isDebugMode: true);
-      }, returnsNormally);
+      }, returnsNormally,);
     });
 
     test('should have all required services', () {

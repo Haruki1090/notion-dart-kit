@@ -241,7 +241,7 @@ class BatchHelper {
   }) =>
       pages
           .map((page) =>
-              PageHelper.extractTitle(page, defaultValue: defaultValue))
+              PageHelper.extractTitle(page, defaultValue: defaultValue),)
           .toList();
 
   /// Filters pages by a property value.

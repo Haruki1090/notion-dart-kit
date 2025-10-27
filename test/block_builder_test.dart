@@ -97,7 +97,7 @@ void main() {
       final block = BlockBuilder.heading2('Toggle Heading')
           .toggleable()
           .children(
-              [BlockBuilder.paragraph('Hidden content').toJson()]).toJson();
+              [BlockBuilder.paragraph('Hidden content').toJson()],).toJson();
 
       expect(block['heading_2']['is_toggleable'], true);
       expect(block['heading_2']['children'], hasLength(1));

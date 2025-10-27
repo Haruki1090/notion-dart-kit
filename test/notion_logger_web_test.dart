@@ -17,7 +17,7 @@ void main() {
         NotionLogger.instance.info('Test info message');
         NotionLogger.instance.warning('Test warning message');
         NotionLogger.instance.error('Test error message');
-      }, returnsNormally);
+      }, returnsNormally,);
     });
 
     test('should not output logs when debug mode is disabled', () {
@@ -29,7 +29,7 @@ void main() {
         NotionLogger.instance.info('Test info message');
         NotionLogger.instance.warning('Test warning message');
         NotionLogger.instance.error('Test error message');
-      }, returnsNormally);
+      }, returnsNormally,);
     });
 
     test('should log HTTP request details', () {
@@ -42,7 +42,7 @@ void main() {
           headers: {'Authorization': 'Bearer test-token'},
           data: {'test': 'data'},
         );
-      }, returnsNormally);
+      }, returnsNormally,);
     });
 
     test('should log HTTP response details', () {
@@ -57,7 +57,7 @@ void main() {
           durationMs: 150,
           notionRequestId: 'test-request-id',
         );
-      }, returnsNormally);
+      }, returnsNormally,);
     });
 
     test('should log HTTP error details', () {
@@ -71,7 +71,7 @@ void main() {
           error: 'Not found',
           data: {'error': 'details'},
         );
-      }, returnsNormally);
+      }, returnsNormally,);
     });
 
     test('should sanitize authorization headers', () {
@@ -84,7 +84,7 @@ void main() {
           url: 'https://api.notion.com/v1/pages',
           headers: {'Authorization': 'Bearer secret-token'},
         );
-      }, returnsNormally);
+      }, returnsNormally,);
     });
   });
 }

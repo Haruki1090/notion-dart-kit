@@ -184,7 +184,7 @@ void main() {
               {
                 'key': 'value',
               },
-              StackTrace.current),
+              StackTrace.current,),
           returnsNormally,
         );
       });
