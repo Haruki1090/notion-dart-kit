@@ -5,8 +5,8 @@ void main() async {
   NotionLogger.instance.initialize(isDebugMode: true);
 
   // APIトークンとページID
-  final String apiToken = 'ntn_your_token_here';
-  final String pageId = 'your_page_id_here';
+  const apiToken = 'ntn_your_token_here';
+  const pageId = 'your_page_id_here';
 
   print('=== Notion API Test ===');
   print('Token prefix: ${apiToken.substring(0, 4)}...');
