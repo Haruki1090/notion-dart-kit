@@ -2,6 +2,25 @@
 
 # Changelog
 
+## [0.2.3] - 2025-10-27
+
+### Changed
+- **Documentation Improvements**: Enhanced setup guide with clearer token format explanations
+  - Added detailed token format validation examples
+  - Improved troubleshooting section with common authentication issues
+  - Added step-by-step guide for connecting integrations to pages
+
+### Added
+- **Test Utilities**: Added `test_notion_auth.dart` script for quick API authentication testing
+  - Helps developers verify their token and integration setup
+  - Provides detailed error messages for common issues
+
+### Removed
+- **Outdated Documentation**: Cleaned up obsolete technical specifications
+  - Removed implementation technical specifications
+  - Removed API gap analysis documents
+  - Removed PRD and technical spec documents for completed features
+
 ## [0.2.2] - 2025-01-25
 
 ### Added
