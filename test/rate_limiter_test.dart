@@ -50,13 +50,16 @@ void main() {
     test('retries on rate limit error', () async {
       var attemptCount = 0;
 
-      final result = await rateLimiter.execute(() async {
-        attemptCount++;
-        if (attemptCount < 3) {
-          throw RateLimitError();
-        }
-        return 'success';
-      }, isRateLimitError: (error) => error is RateLimitError,);
+      final result = await rateLimiter.execute(
+        () async {
+          attemptCount++;
+          if (attemptCount < 3) {
+            throw RateLimitError();
+          }
+          return 'success';
+        },
+        isRateLimitError: (error) => error is RateLimitError,
+      );
 
       expect(result, equals('success'));
       expect(attemptCount, equals(3));
@@ -66,10 +69,13 @@ void main() {
       final timestamps = <DateTime>[];
 
       try {
-        await rateLimiter.execute(() async {
-          timestamps.add(DateTime.now());
-          throw RateLimitError();
-        }, isRateLimitError: (error) => error is RateLimitError,);
+        await rateLimiter.execute(
+          () async {
+            timestamps.add(DateTime.now());
+            throw RateLimitError();
+          },
+          isRateLimitError: (error) => error is RateLimitError,
+        );
       } catch (e) {
         // Expected to fail after max retries
       }
@@ -113,10 +119,13 @@ void main() {
       var attemptCount = 0;
 
       expect(
-        () => rateLimiter.execute(() async {
-          attemptCount++;
-          throw RateLimitError();
-        }, isRateLimitError: (error) => error is RateLimitError,),
+        () => rateLimiter.execute(
+          () async {
+            attemptCount++;
+            throw RateLimitError();
+          },
+          isRateLimitError: (error) => error is RateLimitError,
+        ),
         throwsA(isA<RateLimitError>()),
       );
 
@@ -129,10 +138,13 @@ void main() {
       var attemptCount = 0;
 
       try {
-        await rateLimiter.execute(() async {
-          attemptCount++;
-          throw Exception('Other error');
-        }, isRateLimitError: (error) => error is RateLimitError,);
+        await rateLimiter.execute(
+          () async {
+            attemptCount++;
+            throw Exception('Other error');
+          },
+          isRateLimitError: (error) => error is RateLimitError,
+        );
       } catch (e) {
         // Expected to throw
       }

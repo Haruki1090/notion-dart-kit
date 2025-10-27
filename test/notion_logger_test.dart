@@ -180,11 +180,12 @@ void main() {
 
         expect(
           () => NotionLogger.instance.info(
-              'Info message',
-              {
-                'key': 'value',
-              },
-              StackTrace.current,),
+            'Info message',
+            {
+              'key': 'value',
+            },
+            StackTrace.current,
+          ),
           returnsNormally,
         );
       });

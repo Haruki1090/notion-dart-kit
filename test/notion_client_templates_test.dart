@@ -78,19 +78,26 @@ void main() {
 
         // The create method should accept the new optional templateId parameter
         // without breaking existing code that doesn't use it
-        expect(() {
-          // This should compile without errors (testing method signature)
-          client.pages.create(parent: const WorkspaceParent(), properties: {});
-        }, returnsNormally,);
+        expect(
+          () {
+            // This should compile without errors (testing method signature)
+            client.pages
+                .create(parent: const WorkspaceParent(), properties: {});
+          },
+          returnsNormally,
+        );
 
-        expect(() {
-          // This should also compile without errors (testing with templateId)
-          client.pages.create(
-            parent: const WorkspaceParent(),
-            properties: {},
-            templateId: 'template_123',
-          );
-        }, returnsNormally,);
+        expect(
+          () {
+            // This should also compile without errors (testing with templateId)
+            client.pages.create(
+              parent: const WorkspaceParent(),
+              properties: {},
+              templateId: 'template_123',
+            );
+          },
+          returnsNormally,
+        );
       });
     });
   });

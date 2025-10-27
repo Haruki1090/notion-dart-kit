@@ -240,8 +240,9 @@ class BatchHelper {
     String defaultValue = 'Untitled',
   }) =>
       pages
-          .map((page) =>
-              PageHelper.extractTitle(page, defaultValue: defaultValue),)
+          .map(
+            (page) => PageHelper.extractTitle(page, defaultValue: defaultValue),
+          )
           .toList();
 
   /// Filters pages by a property value.

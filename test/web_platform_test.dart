@@ -14,9 +14,12 @@ void main() {
 
     test('should initialize logger for web platform', () {
       // Webプラットフォームでロガーが初期化できることを確認
-      expect(() {
-        NotionLogger.instance.initialize(isDebugMode: true);
-      }, returnsNormally,);
+      expect(
+        () {
+          NotionLogger.instance.initialize(isDebugMode: true);
+        },
+        returnsNormally,
+      );
     });
 
     test('should have all required services', () {
