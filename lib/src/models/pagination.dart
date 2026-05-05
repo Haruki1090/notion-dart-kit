@@ -7,6 +7,7 @@ class PaginatedList<T> {
     required this.results,
     required this.hasMore,
     this.nextCursor,
+    this.requestStatus,
   });
 
   /// Creates a PaginatedList from JSON.
@@ -23,6 +24,7 @@ class PaginatedList<T> {
             .toList(),
         hasMore: json['has_more'] as bool,
         nextCursor: json['next_cursor'] as String?,
+        requestStatus: json['request_status'] as String?,
       );
 
   /// The type of objects contained in results.
@@ -38,6 +40,12 @@ class PaginatedList<T> {
   /// Used to retrieve the next page by passing as start_cursor.
   final String? nextCursor;
 
+  /// Optional status for long-running query pagination.
+  ///
+  /// Newer query endpoints can include this field when paginating deep result
+  /// sets.
+  final String? requestStatus;
+
   /// Converts this PaginatedList to JSON.
   Map<String, dynamic> toJson(Map<String, dynamic> Function(T) toJsonT) => {
         'object': 'list',
@@ -45,5 +53,6 @@ class PaginatedList<T> {
         'results': results.map(toJsonT).toList(),
         'has_more': hasMore,
         if (nextCursor != null) 'next_cursor': nextCursor,
+        if (requestStatus != null) 'request_status': requestStatus,
       };
 }

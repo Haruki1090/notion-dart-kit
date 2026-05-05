@@ -4,9 +4,16 @@
 /// and their compatibility.
 class ApiVersion {
   /// The latest stable API version.
-  static const String latest = '2022-06-28';
+  static const String latest = v2026_03_11;
+
+  /// API version with 2026 breaking changes.
+  static const String v2026_03_11 = '2026-03-11';
+
+  /// API version that introduced multi-source databases and views.
+  static const String v2025_09_03 = '2025-09-03';
 
   /// Previous stable API versions.
+  static const String v2022_06_28 = '2022-06-28';
   static const String v2022_02_22 = '2022-02-22';
   static const String v2021_08_16 = '2021-08-16';
   static const String v2021_05_13 = '2021-05-13';
@@ -14,6 +21,8 @@ class ApiVersion {
   /// All supported API versions in chronological order (newest first).
   static const List<String> supportedVersions = [
     latest,
+    v2025_09_03,
+    v2022_06_28,
     v2022_02_22,
     v2021_08_16,
     v2021_05_13,
@@ -77,10 +86,63 @@ class ApiVersion {
 
     // Features introduced in different versions
     switch (version) {
-      case latest:
+      case v2026_03_11:
         features.addAll({
           'page_properties_endpoint': true,
           'multi_source_databases': true,
+          'data_sources': true,
+          'views': true,
+          'markdown_content': true,
+          'block_position': true,
+          'in_trash_only': true,
+          'meeting_notes_blocks': true,
+          'custom_emojis': true,
+          'comments_markdown': true,
+          'comments_update_delete': true,
+          'file_block_names': true,
+          'is_locked_property': true,
+          'in_trash_property': true,
+          'rich_text_properties': true,
+          'formula_properties': true,
+          'relation_properties': true,
+          'rollup_properties': true,
+        });
+        break;
+      case v2025_09_03:
+        features.addAll({
+          'page_properties_endpoint': true,
+          'multi_source_databases': true,
+          'data_sources': true,
+          'views': true,
+          'markdown_content': false,
+          'block_position': false,
+          'in_trash_only': false,
+          'meeting_notes_blocks': false,
+          'custom_emojis': false,
+          'comments_markdown': false,
+          'comments_update_delete': false,
+          'file_block_names': true,
+          'is_locked_property': true,
+          'in_trash_property': true,
+          'rich_text_properties': true,
+          'formula_properties': true,
+          'relation_properties': true,
+          'rollup_properties': true,
+        });
+        break;
+      case v2022_06_28:
+        features.addAll({
+          'page_properties_endpoint': true,
+          'multi_source_databases': false,
+          'data_sources': false,
+          'views': false,
+          'markdown_content': false,
+          'block_position': false,
+          'in_trash_only': false,
+          'meeting_notes_blocks': false,
+          'custom_emojis': false,
+          'comments_markdown': false,
+          'comments_update_delete': false,
           'file_block_names': true,
           'is_locked_property': true,
           'in_trash_property': true,
@@ -94,6 +156,15 @@ class ApiVersion {
         features.addAll({
           'page_properties_endpoint': false,
           'multi_source_databases': false,
+          'data_sources': false,
+          'views': false,
+          'markdown_content': false,
+          'block_position': false,
+          'in_trash_only': false,
+          'meeting_notes_blocks': false,
+          'custom_emojis': false,
+          'comments_markdown': false,
+          'comments_update_delete': false,
           'file_block_names': false,
           'is_locked_property': false,
           'in_trash_property': false,
@@ -107,6 +178,15 @@ class ApiVersion {
         features.addAll({
           'page_properties_endpoint': false,
           'multi_source_databases': false,
+          'data_sources': false,
+          'views': false,
+          'markdown_content': false,
+          'block_position': false,
+          'in_trash_only': false,
+          'meeting_notes_blocks': false,
+          'custom_emojis': false,
+          'comments_markdown': false,
+          'comments_update_delete': false,
           'file_block_names': false,
           'is_locked_property': false,
           'in_trash_property': false,
@@ -120,6 +200,15 @@ class ApiVersion {
         features.addAll({
           'page_properties_endpoint': false,
           'multi_source_databases': false,
+          'data_sources': false,
+          'views': false,
+          'markdown_content': false,
+          'block_position': false,
+          'in_trash_only': false,
+          'meeting_notes_blocks': false,
+          'custom_emojis': false,
+          'comments_markdown': false,
+          'comments_update_delete': false,
           'file_block_names': false,
           'is_locked_property': false,
           'in_trash_property': false,

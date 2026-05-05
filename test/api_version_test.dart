@@ -4,11 +4,13 @@ import 'package:test/test.dart';
 void main() {
   group('ApiVersion', () {
     test('should have correct latest version', () {
-      expect(ApiVersion.latest, equals('2022-06-28'));
+      expect(ApiVersion.latest, equals('2026-03-11'));
       expect(ApiVersion.defaultVersion, equals(ApiVersion.latest));
     });
 
     test('should validate supported versions', () {
+      expect(ApiVersion.isSupported('2026-03-11'), isTrue);
+      expect(ApiVersion.isSupported('2025-09-03'), isTrue);
       expect(ApiVersion.isSupported('2022-06-28'), isTrue);
       expect(ApiVersion.isSupported('2022-02-22'), isTrue);
       expect(ApiVersion.isSupported('2021-08-16'), isTrue);
@@ -110,7 +112,7 @@ void main() {
         apiVersion: '2022-06-28',
       );
       expect(client.supportsMinimumVersion('2022-02-22'), isTrue);
-      expect(client.supportsMinimumVersion('2023-01-01'), isFalse);
+      expect(client.supportsMinimumVersion('2026-03-11'), isFalse);
     });
 
     test('should provide available features', () {

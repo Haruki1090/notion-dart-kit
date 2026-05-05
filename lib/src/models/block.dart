@@ -461,8 +461,8 @@ class Block with _$Block {
       json['last_edited_by'] as Map<String, dynamic>,
     );
     final hasChildren = json['has_children'] as bool;
-    final archived = json['archived'] as bool;
     final inTrash = json['in_trash'] as bool? ?? false;
+    final archived = json['archived'] as bool? ?? inTrash;
 
     switch (type) {
       case 'paragraph':
