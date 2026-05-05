@@ -1,10 +1,9 @@
-import '../../notion_dart_kit.dart' show NotionException;
+import '../../notion_dart_kit.dart' show NotionException, ValidationException;
 import '../client/http_client.dart';
 import '../models/file.dart';
 import '../models/page.dart';
 import '../models/parent.dart';
 import '../models/property_item.dart';
-import '../utils/exceptions.dart' show NotionException;
 
 /// Service for interacting with Notion Pages API
 class PagesService {
@@ -37,17 +36,36 @@ class PagesService {
     required Parent parent,
     required Map<String, dynamic> properties,
     List<Map<String, dynamic>>? children,
+    String? markdown,
     PageIcon? icon,
     NotionFile? cover,
     String? templateId,
+    PageTemplateApply? template,
+    Map<String, dynamic>? position,
   }) async {
+    if (children != null && markdown != null) {
+      throw ValidationException(
+        'children and markdown are mutually exclusive',
+        statusCode: 400,
+      );
+    }
+    if (templateId != null && template != null) {
+      throw ValidationException(
+        'templateId and template are mutually exclusive',
+        statusCode: 400,
+      );
+    }
+
     final body = <String, dynamic>{
       'parent': parent.toJson(),
       'properties': properties,
       if (children != null) 'children': children,
+      if (markdown != null) 'markdown': markdown,
       if (icon != null) 'icon': icon.toJson(),
       if (cover != null) 'cover': cover.toJson(),
       if (templateId != null) 'template_id': templateId,
+      if (template != null) 'template': template.toJson(),
+      if (position != null) 'position': position,
     };
 
     final response = await _httpClient.post('/pages', data: body);
@@ -93,6 +111,8 @@ class PagesService {
     NotionFile? cover,
     bool? inTrash,
     bool? isLocked,
+    PageTemplateApply? template,
+    bool? eraseContent,
   }) async {
     final body = <String, dynamic>{};
     if (properties != null) {
@@ -110,10 +130,25 @@ class PagesService {
     if (isLocked != null) {
       body['is_locked'] = isLocked;
     }
+    if (template != null) {
+      body['template'] = template.toJson();
+    }
+    if (eraseContent != null) {
+      body['erase_content'] = eraseContent;
+    }
 
     final response = await _httpClient.patch('/pages/$pageId', data: body);
     return Page.fromJson(response);
   }
+
+  /// Moves a page to a new parent.
+  ///
+  /// The parent must be a page or data source parent in current Notion API.
+  Future<Map<String, dynamic>> move(String pageId, {required Parent parent}) =>
+      _httpClient.post(
+        '/pages/$pageId/move',
+        data: {'parent': parent.toJson()},
+      );
 
   /// Archives a page by moving it to trash.
   ///
@@ -160,5 +195,31 @@ class PagesService {
     );
 
     return PropertyItemList.fromJson(response);
+  }
+
+  /// Retrieves page content rendered as enhanced markdown.
+  Future<PageMarkdown> retrieveMarkdown(
+    String pageId, {
+    bool? includeTranscript,
+  }) async {
+    final response = await _httpClient.get(
+      '/pages/$pageId/markdown',
+      queryParameters: includeTranscript == null
+          ? null
+          : {'include_transcript': includeTranscript},
+    );
+    return PageMarkdown.fromJson(response);
+  }
+
+  /// Updates page content using enhanced markdown commands.
+  Future<PageMarkdown> updateMarkdown(
+    String pageId,
+    MarkdownUpdateCommand command,
+  ) async {
+    final response = await _httpClient.patch(
+      '/pages/$pageId/markdown',
+      data: command.toJson(),
+    );
+    return PageMarkdown.fromJson(response);
   }
 }

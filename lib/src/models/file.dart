@@ -68,6 +68,17 @@ class PageIcon with _$PageIcon {
 
   const factory PageIcon.file({required NotionFile file}) = FilePageIcon;
 
+  const factory PageIcon.customEmoji({
+    required String id,
+    required String name,
+    required String url,
+  }) = CustomEmojiPageIcon;
+
+  const factory PageIcon.notionIcon({
+    required String name,
+    String? color,
+  }) = NotionNativePageIcon;
+
   factory PageIcon.fromJson(Map<String, dynamic> json) {
     final type = json['type'] as String;
 
@@ -77,6 +88,19 @@ class PageIcon with _$PageIcon {
       case 'external':
       case 'file':
         return PageIcon.file(file: NotionFile.fromJson(json));
+      case 'custom_emoji':
+        final customEmoji = json['custom_emoji'] as Map<String, dynamic>;
+        return PageIcon.customEmoji(
+          id: customEmoji['id'] as String,
+          name: customEmoji['name'] as String,
+          url: customEmoji['url'] as String,
+        );
+      case 'icon':
+        final icon = json['icon'] as Map<String, dynamic>;
+        return PageIcon.notionIcon(
+          name: icon['name'] as String,
+          color: icon['color'] as String?,
+        );
       default:
         throw ArgumentError('Unknown icon type: $type');
     }
@@ -85,5 +109,20 @@ class PageIcon with _$PageIcon {
   Map<String, dynamic> toJson() => map(
         emoji: (icon) => {'type': 'emoji', 'emoji': icon.emoji},
         file: (icon) => icon.file.toJson(),
+        customEmoji: (icon) => {
+          'type': 'custom_emoji',
+          'custom_emoji': {
+            'id': icon.id,
+            'name': icon.name,
+            'url': icon.url,
+          },
+        },
+        notionIcon: (icon) => {
+          'type': 'icon',
+          'icon': {
+            'name': icon.name,
+            if (icon.color != null) 'color': icon.color,
+          },
+        },
       );
 }

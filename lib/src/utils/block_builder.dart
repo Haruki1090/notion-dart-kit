@@ -72,6 +72,10 @@ class BlockBuilder {
   static HeadingBlockBuilder heading3(String text) =>
       HeadingBlockBuilder._(text, 3);
 
+  /// Creates a heading 4 block.
+  static HeadingBlockBuilder heading4(String text) =>
+      HeadingBlockBuilder._(text, 4);
+
   /// Creates a quote block
   ///
   /// Example:
@@ -271,6 +275,12 @@ class BlockBuilder {
         hasColumnHeader: hasColumnHeader,
         hasRowHeader: hasRowHeader,
       );
+
+  /// Creates a tab block.
+  static TabBlockBuilder tab({
+    List<Map<String, dynamic>> children = const [],
+  }) =>
+      TabBlockBuilder(children);
 }
 
 // ========================================
@@ -607,6 +617,21 @@ class BreadcrumbBlockBuilder {
         'object': 'block',
         'type': 'breadcrumb',
         'breadcrumb': {},
+      };
+}
+
+/// Builder for tab blocks.
+class TabBlockBuilder {
+  TabBlockBuilder(this._children);
+
+  final List<Map<String, dynamic>> _children;
+
+  Map<String, dynamic> toJson() => {
+        'object': 'block',
+        'type': 'tab',
+        'tab': {
+          if (_children.isNotEmpty) 'children': _children,
+        },
       };
 }
 

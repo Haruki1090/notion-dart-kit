@@ -58,6 +58,8 @@ void main() {
       icon.map(
         emoji: (emojiIcon) => expect(emojiIcon.emoji, '🚀'),
         file: (_) => fail('Expected emoji icon'),
+        customEmoji: (_) => fail('Expected emoji icon'),
+        notionIcon: (_) => fail('Expected emoji icon'),
       );
     });
 
