@@ -69,11 +69,15 @@ class BlocksService {
   /// Note: You can pass up to 100 children at a time.
   Future<BlockChildren> appendChildren(
     String blockId,
-    List<Map<String, dynamic>> children,
-  ) async {
+    List<Map<String, dynamic>> children, {
+    BlockPosition? position,
+  }) async {
     final response = await _httpClient.patch(
       '/blocks/$blockId/children',
-      data: {'children': children},
+      data: {
+        'children': children,
+        if (position != null) 'position': position.toJson(),
+      },
     );
 
     return BlockChildren.fromJson(response);
@@ -95,14 +99,44 @@ class BlocksService {
 
   /// Deletes a block
   ///
-  /// Sets a Block object, including page blocks, to archived: true using
-  /// the ID specified. Archived blocks will not appear in the UI.
+  /// Moves a block to trash using the ID specified.
   ///
-  /// Note: This sets archived to true, it doesn't permanently delete the block.
+  /// Note: This doesn't permanently delete the block.
   Future<Block> delete(String blockId) async {
     final response = await _httpClient.delete('/blocks/$blockId');
     return Block.fromJson(response);
   }
+}
+
+/// Position used when appending children in API version 2026-03-11 or newer.
+class BlockPosition {
+  const BlockPosition._(this._json);
+
+  factory BlockPosition.afterBlock(String blockId) => BlockPosition._({
+        'type': 'after_block',
+        'after_block': {'block_id': blockId},
+      });
+
+  const factory BlockPosition.start() = _StartBlockPosition;
+  const factory BlockPosition.end() = _EndBlockPosition;
+
+  final Map<String, dynamic> _json;
+
+  Map<String, dynamic> toJson() => Map<String, dynamic>.from(_json);
+}
+
+class _StartBlockPosition extends BlockPosition {
+  const _StartBlockPosition() : super._(const {});
+
+  @override
+  Map<String, dynamic> toJson() => {'type': 'start', 'start': {}};
+}
+
+class _EndBlockPosition extends BlockPosition {
+  const _EndBlockPosition() : super._(const {});
+
+  @override
+  Map<String, dynamic> toJson() => {'type': 'end', 'end': {}};
 }
 
 /// Block children response with pagination.

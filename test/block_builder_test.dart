@@ -93,6 +93,13 @@ void main() {
       expect(block['heading_3']['is_toggleable'], true);
     });
 
+    test('heading 4 generates correct JSON', () {
+      final block = BlockBuilder.heading4('Detail').toJson();
+
+      expect(block['type'], 'heading_4');
+      expect(block['heading_4']['rich_text'][0]['text']['content'], 'Detail');
+    });
+
     test('toggleable heading with children', () {
       final block =
           BlockBuilder.heading2('Toggle Heading').toggleable().children(
@@ -101,6 +108,17 @@ void main() {
 
       expect(block['heading_2']['is_toggleable'], true);
       expect(block['heading_2']['children'], hasLength(1));
+    });
+  });
+
+  group('BlockBuilder - Tabs', () {
+    test('tab generates correct JSON', () {
+      final block = BlockBuilder.tab(
+        children: [BlockBuilder.paragraph('Tab content').toJson()],
+      ).toJson();
+
+      expect(block['type'], 'tab');
+      expect(block['tab']['children'], hasLength(1));
     });
   });
 
