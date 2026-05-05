@@ -14,6 +14,7 @@ export 'src/client/retry_queue.dart';
 export 'src/models/block.dart';
 export 'src/models/block_content.dart';
 export 'src/models/comment.dart';
+export 'src/models/custom_emoji.dart';
 export 'src/models/data_source.dart';
 export 'src/models/database.dart';
 export 'src/models/file.dart';
@@ -27,6 +28,7 @@ export 'src/models/property_value.dart';
 export 'src/models/rich_text.dart';
 export 'src/models/template.dart';
 export 'src/models/user.dart';
+export 'src/models/view.dart';
 // Query DSL
 export 'src/query/filter.dart';
 export 'src/query/filter_builder.dart';
@@ -34,6 +36,7 @@ export 'src/query/sort.dart';
 // Services
 export 'src/services/blocks_service.dart';
 export 'src/services/comments_service.dart';
+export 'src/services/custom_emojis_service.dart';
 export 'src/services/data_sources_service.dart';
 export 'src/services/databases_service.dart';
 export 'src/services/file_uploads_service.dart';
@@ -41,6 +44,7 @@ export 'src/services/pages_service.dart';
 export 'src/services/search_service.dart';
 export 'src/services/templates_service.dart';
 export 'src/services/users_service.dart';
+export 'src/services/views_service.dart';
 // Utilities
 export 'src/utils/api_version.dart';
 export 'src/utils/block_builder.dart';
