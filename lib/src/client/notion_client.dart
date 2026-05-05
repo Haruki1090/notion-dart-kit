@@ -1,5 +1,6 @@
 import '../services/blocks_service.dart';
 import '../services/comments_service.dart';
+import '../services/custom_emojis_service.dart';
 import '../services/data_sources_service.dart';
 import '../services/databases_service.dart';
 import '../services/file_uploads_service.dart';
@@ -7,6 +8,7 @@ import '../services/pages_service.dart';
 import '../services/search_service.dart';
 import '../services/templates_service.dart';
 import '../services/users_service.dart';
+import '../services/views_service.dart';
 import 'http_client.dart';
 import 'retry_queue.dart';
 
@@ -41,6 +43,8 @@ class NotionClient {
     comments = CommentsService(httpClient);
     fileUploads = FileUploadsService(httpClient);
     templates = TemplatesService(httpClient);
+    views = ViewsService(httpClient);
+    customEmojis = CustomEmojisService(httpClient);
   }
 
   /// The HTTP client used for API requests.
@@ -95,6 +99,12 @@ class NotionClient {
   /// Provides methods to retrieve templates from data sources and use them
   /// for creating new pages with predefined structures.
   late final TemplatesService templates;
+
+  /// Service for Views API endpoints.
+  late final ViewsService views;
+
+  /// Service for Custom Emojis API endpoints.
+  late final CustomEmojisService customEmojis;
 
   /// The Notion API integration token.
   ///
