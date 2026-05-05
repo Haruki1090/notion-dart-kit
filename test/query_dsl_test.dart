@@ -39,6 +39,28 @@ void main() {
       });
     });
 
+    test('multi-value select and status filters generate correct JSON', () {
+      final selectFilter = 'Priority'.property.select().equalsAny([
+        'Low',
+        'Medium',
+      ]);
+      final statusFilter = 'Status'.property.status().doesNotEqualAny(['Done']);
+
+      expect(selectFilter.toJson(), {
+        'property': 'Priority',
+        'select': {
+          'equals': ['Low', 'Medium'],
+        },
+      });
+
+      expect(statusFilter.toJson(), {
+        'property': 'Status',
+        'status': {
+          'does_not_equal': ['Done'],
+        },
+      });
+    });
+
     test('date filter generates correct JSON', () {
       final filter = 'Due Date'.property.date().after('2025-10-05');
 
@@ -128,12 +150,35 @@ void main() {
       });
     });
 
+    test('multi-value multi-select filter', () {
+      final filter = 'Tags'.property.multiSelect().containsAny([
+        'Important',
+        'Urgent',
+      ]);
+
+      expect(filter.toJson(), {
+        'property': 'Tags',
+        'multi_select': {
+          'contains': ['Important', 'Urgent'],
+        },
+      });
+    });
+
     test('people filter', () {
       final filter = 'Assignee'.property.people().contains('user-id-123');
 
       expect(filter.toJson(), {
         'property': 'Assignee',
         'people': {'contains': 'user-id-123'},
+      });
+    });
+
+    test('people me filter', () {
+      final filter = 'Assignee'.property.people().containsMe();
+
+      expect(filter.toJson(), {
+        'property': 'Assignee',
+        'people': {'contains': 'me'},
       });
     });
 
@@ -161,6 +206,15 @@ void main() {
       expect(filter.toJson(), {
         'property': 'Created',
         'date': {'past_week': {}},
+      });
+    });
+
+    test('relative date value filter', () {
+      final filter = 'Due Date'.property.date().oneWeekFromNow();
+
+      expect(filter.toJson(), {
+        'property': 'Due Date',
+        'date': {'equals': 'one_week_from_now'},
       });
     });
   });

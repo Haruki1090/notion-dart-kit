@@ -24,8 +24,8 @@ class PropertyFilterBuilder {
   MultiSelectFilterBuilder multiSelect() =>
       MultiSelectFilterBuilder(propertyName);
 
-  /// Statusフィルタビルダー（selectと同じ）
-  SelectFilterBuilder status() => SelectFilterBuilder(propertyName);
+  /// Statusフィルタビルダー
+  StatusFilterBuilder status() => StatusFilterBuilder(propertyName);
 
   /// 日付フィルタビルダー
   DateFilterBuilder date() => DateFilterBuilder(propertyName);
@@ -153,9 +153,19 @@ class SelectFilterBuilder {
         filter: PropertyFilter.selectEquals(value),
       );
 
+  Filter equalsAny(List<String> values) => Filter.property(
+        name: propertyName,
+        filter: PropertyFilter.selectEqualsAny(values),
+      );
+
   Filter doesNotEqual(String value) => Filter.property(
         name: propertyName,
         filter: PropertyFilter.selectDoesNotEqual(value),
+      );
+
+  Filter doesNotEqualAny(List<String> values) => Filter.property(
+        name: propertyName,
+        filter: PropertyFilter.selectDoesNotEqualAny(values),
       );
 
   Filter isEmpty() => Filter.property(
@@ -169,6 +179,42 @@ class SelectFilterBuilder {
       );
 }
 
+/// Statusフィルタビルダー
+class StatusFilterBuilder {
+  const StatusFilterBuilder(this.propertyName);
+  final String propertyName;
+
+  Filter equals(String value) => Filter.property(
+        name: propertyName,
+        filter: PropertyFilter.statusEquals(value),
+      );
+
+  Filter equalsAny(List<String> values) => Filter.property(
+        name: propertyName,
+        filter: PropertyFilter.statusEqualsAny(values),
+      );
+
+  Filter doesNotEqual(String value) => Filter.property(
+        name: propertyName,
+        filter: PropertyFilter.statusDoesNotEqual(value),
+      );
+
+  Filter doesNotEqualAny(List<String> values) => Filter.property(
+        name: propertyName,
+        filter: PropertyFilter.statusDoesNotEqualAny(values),
+      );
+
+  Filter isEmpty() => Filter.property(
+        name: propertyName,
+        filter: const PropertyFilter.statusIsEmpty(),
+      );
+
+  Filter isNotEmpty() => Filter.property(
+        name: propertyName,
+        filter: const PropertyFilter.statusIsNotEmpty(),
+      );
+}
+
 /// MultiSelectフィルタビルダー
 class MultiSelectFilterBuilder {
   const MultiSelectFilterBuilder(this.propertyName);
@@ -179,9 +225,19 @@ class MultiSelectFilterBuilder {
         filter: PropertyFilter.multiSelectContains(value),
       );
 
+  Filter containsAny(List<String> values) => Filter.property(
+        name: propertyName,
+        filter: PropertyFilter.multiSelectContainsAny(values),
+      );
+
   Filter doesNotContain(String value) => Filter.property(
         name: propertyName,
         filter: PropertyFilter.multiSelectDoesNotContain(value),
+      );
+
+  Filter doesNotContainAny(List<String> values) => Filter.property(
+        name: propertyName,
+        filter: PropertyFilter.multiSelectDoesNotContainAny(values),
       );
 
   Filter isEmpty() => Filter.property(
@@ -264,6 +320,20 @@ class DateFilterBuilder {
         name: propertyName,
         filter: const PropertyFilter.dateNextYear(),
       );
+
+  Filter today() => equals('today');
+
+  Filter tomorrow() => equals('tomorrow');
+
+  Filter yesterday() => equals('yesterday');
+
+  Filter oneWeekAgo() => equals('one_week_ago');
+
+  Filter oneWeekFromNow() => equals('one_week_from_now');
+
+  Filter oneMonthAgo() => equals('one_month_ago');
+
+  Filter oneMonthFromNow() => equals('one_month_from_now');
 }
 
 /// Peopleフィルタビルダー
@@ -276,10 +346,14 @@ class PeopleFilterBuilder {
         filter: PropertyFilter.peopleContains(userId),
       );
 
+  Filter containsMe() => contains('me');
+
   Filter doesNotContain(String userId) => Filter.property(
         name: propertyName,
         filter: PropertyFilter.peopleDoesNotContain(userId),
       );
+
+  Filter doesNotContainMe() => doesNotContain('me');
 
   Filter isEmpty() => Filter.property(
         name: propertyName,

@@ -203,15 +203,48 @@ sealed class PropertyFilter with _$PropertyFilter {
   /// Select equals - matches the exact option name.
   const factory PropertyFilter.selectEquals(String value) = SelectEqualsFilter;
 
+  /// Select equals any of the option names.
+  const factory PropertyFilter.selectEqualsAny(List<String> values) =
+      SelectEqualsAnyFilter;
+
   /// Select does not equal - does not match the option name.
   const factory PropertyFilter.selectDoesNotEqual(String value) =
       SelectDoesNotEqualFilter;
+
+  /// Select does not equal any of the option names.
+  const factory PropertyFilter.selectDoesNotEqualAny(List<String> values) =
+      SelectDoesNotEqualAnyFilter;
 
   /// Select is empty - has no selected option.
   const factory PropertyFilter.selectIsEmpty() = SelectIsEmptyFilter;
 
   /// Select is not empty - has any selected option.
   const factory PropertyFilter.selectIsNotEmpty() = SelectIsNotEmptyFilter;
+
+  // ============================================
+  // Status filters
+  // ============================================
+
+  /// Status equals - matches the exact option name.
+  const factory PropertyFilter.statusEquals(String value) = StatusEqualsFilter;
+
+  /// Status equals any of the option names.
+  const factory PropertyFilter.statusEqualsAny(List<String> values) =
+      StatusEqualsAnyFilter;
+
+  /// Status does not equal - does not match the option name.
+  const factory PropertyFilter.statusDoesNotEqual(String value) =
+      StatusDoesNotEqualFilter;
+
+  /// Status does not equal any of the option names.
+  const factory PropertyFilter.statusDoesNotEqualAny(List<String> values) =
+      StatusDoesNotEqualAnyFilter;
+
+  /// Status is empty - has no selected option.
+  const factory PropertyFilter.statusIsEmpty() = StatusIsEmptyFilter;
+
+  /// Status is not empty - has any selected option.
+  const factory PropertyFilter.statusIsNotEmpty() = StatusIsNotEmptyFilter;
 
   // ============================================
   // Multi-select filters
@@ -221,9 +254,18 @@ sealed class PropertyFilter with _$PropertyFilter {
   const factory PropertyFilter.multiSelectContains(String value) =
       MultiSelectContainsFilter;
 
+  /// Multi-select contains any of the specified options.
+  const factory PropertyFilter.multiSelectContainsAny(List<String> values) =
+      MultiSelectContainsAnyFilter;
+
   /// Multi-select does not contain - does not include the specified option.
   const factory PropertyFilter.multiSelectDoesNotContain(String value) =
       MultiSelectDoesNotContainFilter;
+
+  /// Multi-select does not contain any of the specified options.
+  const factory PropertyFilter.multiSelectDoesNotContainAny(
+    List<String> values,
+  ) = MultiSelectDoesNotContainAnyFilter;
 
   /// Multi-select is empty - has no selected options.
   const factory PropertyFilter.multiSelectIsEmpty() = MultiSelectIsEmptyFilter;
@@ -387,8 +429,14 @@ sealed class PropertyFilter with _$PropertyFilter {
         selectEquals: (value) => {
           'select': {'equals': value},
         },
+        selectEqualsAny: (values) => {
+          'select': {'equals': values},
+        },
         selectDoesNotEqual: (value) => {
           'select': {'does_not_equal': value},
+        },
+        selectDoesNotEqualAny: (values) => {
+          'select': {'does_not_equal': values},
         },
         selectIsEmpty: () => {
           'select': {'is_empty': true},
@@ -397,12 +445,38 @@ sealed class PropertyFilter with _$PropertyFilter {
           'select': {'is_not_empty': true},
         },
 
+        // Status
+        statusEquals: (value) => {
+          'status': {'equals': value},
+        },
+        statusEqualsAny: (values) => {
+          'status': {'equals': values},
+        },
+        statusDoesNotEqual: (value) => {
+          'status': {'does_not_equal': value},
+        },
+        statusDoesNotEqualAny: (values) => {
+          'status': {'does_not_equal': values},
+        },
+        statusIsEmpty: () => {
+          'status': {'is_empty': true},
+        },
+        statusIsNotEmpty: () => {
+          'status': {'is_not_empty': true},
+        },
+
         // MultiSelect
         multiSelectContains: (value) => {
           'multi_select': {'contains': value},
         },
+        multiSelectContainsAny: (values) => {
+          'multi_select': {'contains': values},
+        },
         multiSelectDoesNotContain: (value) => {
           'multi_select': {'does_not_contain': value},
+        },
+        multiSelectDoesNotContainAny: (values) => {
+          'multi_select': {'does_not_contain': values},
         },
         multiSelectIsEmpty: () => {
           'multi_select': {'is_empty': true},
