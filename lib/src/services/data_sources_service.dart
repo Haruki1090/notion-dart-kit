@@ -44,17 +44,21 @@ class DataSourcesService {
   /// [dataSourceId] - The ID of the data source to update
   /// [title] - Optional new title
   /// [properties] - Optional property schema updates
-  /// [archived] - Optional archived status
+  /// [inTrash] - Optional trash status for current API versions.
+  /// [archived] - Deprecated alias for older API versions.
   Future<DataSource> update(
     String dataSourceId, {
     List<Map<String, dynamic>>? title,
     Map<String, dynamic>? properties,
+    bool? inTrash,
+    @Deprecated('Use inTrash. archived was removed in API version 2026-03-11.')
     bool? archived,
   }) async {
     final body = <String, dynamic>{
       if (title != null) 'title': title,
       if (properties != null) 'properties': properties,
-      if (archived != null) 'archived': archived,
+      if (inTrash != null) 'in_trash': inTrash,
+      if (inTrash == null && archived != null) 'archived': archived,
     };
 
     final response = await _httpClient.patch(

@@ -283,7 +283,7 @@ class NotionHttpClient {
   Future<Map<String, dynamic>> _executeDelete(String path) async {
     try {
       final response = await _dio.delete<Map<String, dynamic>>(path);
-      return response.data!;
+      return response.data ?? <String, dynamic>{};
     } on DioException catch (e) {
       _maybeEnqueueRetry(
         method: 'DELETE',

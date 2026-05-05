@@ -24,6 +24,7 @@ class DataSource with _$DataSource {
     required bool archived,
     required bool isInline,
     required String url,
+    @Default(false) bool inTrash,
     PageIcon? icon,
     NotionFile? cover,
   }) = _DataSource;
@@ -46,7 +47,9 @@ class DataSource with _$DataSource {
             PropertySchema.fromJson(value as Map<String, dynamic>),
           ),
         ),
-        archived: json['archived'] as bool? ?? false,
+        archived:
+            json['archived'] as bool? ?? json['in_trash'] as bool? ?? false,
+        inTrash: json['in_trash'] as bool? ?? false,
         isInline: json['is_inline'] as bool,
         url: json['url'] as String,
         icon: json['icon'] != null
@@ -67,6 +70,7 @@ class DataSource with _$DataSource {
         'properties':
             properties.map((key, value) => MapEntry(key, value.toJson())),
         'archived': archived,
+        'in_trash': inTrash,
         'is_inline': isInline,
         'url': url,
         if (icon != null) 'icon': icon!.toJson(),
