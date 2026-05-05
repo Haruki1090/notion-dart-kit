@@ -118,9 +118,6 @@ jobs:
       - name: Run tests
         run: dart test --reporter expanded
 
-      - name: Verify package
-        run: dart pub publish --dry-run
-
       - name: Commit changes
         if: steps.new_version.outputs.needs_bump == 'true'
         run: |
@@ -134,6 +131,9 @@ jobs:
 
           Co-Authored-By: github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
           git push origin main
+
+      - name: Verify package
+        run: dart pub publish --dry-run
 
       - name: Create and push tag
         run: |
