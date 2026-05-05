@@ -1,6 +1,11 @@
 ## Unreleased
 
 # Changelog
+## [1.0.1] - 2026-05-05
+
+### Changed
+- fix: move Verify package step after Commit changes in release workflow
+
 
 ## [1.0.0] - 2026-05-05
 
