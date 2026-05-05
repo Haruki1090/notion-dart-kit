@@ -2,6 +2,39 @@
 
 # Changelog
 
+## [1.0.0] - 2026-05-05
+
+### Added
+- **Notion API 2026-03-11 Support**: Updated the default API version to `2026-03-11` and added version constants for `2025-09-03` and `2026-03-11`.
+- **Views API**: Added `ViewsService`, `View`, and `ViewQuery` for listing, retrieving, creating, updating, deleting, and querying views.
+- **Custom Emoji API**: Added `CustomEmojisService` and `CustomEmoji` for retrieving and listing workspace custom emojis.
+- **Markdown Page APIs**: Added page markdown retrieval and update support, plus markdown-based page creation.
+- **Template Page APIs**: Added structured template application support for page creation and updates.
+- **Page Move API**: Added page move support with typed parent payloads.
+- **Block Placement APIs**: Added block append positioning for `afterBlock`, `start`, and `end`.
+- **Comments API Enhancements**: Added markdown comment creation and comment update/delete support.
+- **Query DSL Enhancements**: Added multi-value filters for select, status, and multi-select properties; relative date filters; and people `me` filters.
+- **New Block Builders**: Added `heading4` and `tab` block builders.
+- **New Icon Types**: Added support for `custom_emoji` and `notion_icon` page icons.
+
+### Changed
+- **Breaking**: `ApiVersion.latest` now resolves to `2026-03-11`.
+- **Trash Semantics**: Updated newer object parsing and update payloads to prefer `in_trash` while keeping compatibility with older `archived` payloads where possible.
+- **Pagination Metadata**: Added `requestStatus` support to paginated responses.
+- **HTTP DELETE Handling**: DELETE responses with an empty body now resolve to `{}` instead of failing JSON handling.
+
+### Fixed
+- Page, block, and data source parsing now tolerates latest API responses where `archived` is absent.
+- Data source update now supports `in_trash` directly and keeps `archived` as a deprecated compatibility alias.
+
+### Notes
+- View configuration is currently exposed as raw JSON maps to avoid overfitting to a still-expanding API surface.
+- New block response types such as `heading_4` and `tab` can be authored through builders; first-class parsed block variants remain a follow-up item.
+
+### Verification
+- `dart analyze`
+- `dart test`
+
 ## [0.2.4] - 2025-10-27
 
 ### Fixed

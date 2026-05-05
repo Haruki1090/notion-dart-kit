@@ -2,6 +2,39 @@
 
 # 変更履歴
 
+## [1.0.0] - 2026-05-05
+
+### 追加
+- **Notion API 2026-03-11対応**: 既定のAPIバージョンを`2026-03-11`へ更新し、`2025-09-03`と`2026-03-11`のバージョン定数を追加しました。
+- **Views API**: viewの一覧・取得・作成・更新・削除・クエリを扱う`ViewsService`、`View`、`ViewQuery`を追加しました。
+- **Custom Emoji API**: ワークスペースのカスタム絵文字を取得・一覧する`CustomEmojisService`と`CustomEmoji`を追加しました。
+- **Markdown Page APIs**: ページのMarkdown取得・更新、およびMarkdownベースのページ作成を追加しました。
+- **Template Page APIs**: ページ作成・更新時の構造化テンプレート適用を追加しました。
+- **Page Move API**: 型付きの親ペイロードでページ移動を行うAPIを追加しました。
+- **Block Placement APIs**: `afterBlock`、`start`、`end`を指定したブロック追加位置制御を追加しました。
+- **Comments API拡張**: Markdownコメント作成、およびコメントの更新・削除を追加しました。
+- **Query DSL拡張**: select、status、multi_selectの複数値フィルター、相対日付フィルター、peopleの`me`フィルターを追加しました。
+- **新しいBlock Builder**: `heading4`と`tab`を追加しました。
+- **新しいIcon型**: `custom_emoji`と`notion_icon`のページアイコンに対応しました。
+
+### 変更
+- **破壊的変更**: `ApiVersion.latest`は`2026-03-11`を返すようになりました。
+- **Trash semantics**: 新しいAPIレスポンスでは`in_trash`を優先し、古い`archived`ペイロードも可能な範囲で互換的に扱います。
+- **ページネーションメタデータ**: ページ分割レスポンスで`requestStatus`を扱えるようにしました。
+- **HTTP DELETE処理**: 空ボディのDELETEレスポンスを`{}`として扱い、JSON処理で失敗しないようにしました。
+
+### 修正
+- 最新APIレスポンスで`archived`が存在しない場合でも、Page、Block、DataSourceのパースが失敗しないようにしました。
+- DataSource更新で`in_trash`を直接指定できるようにし、`archived`は非推奨の互換エイリアスとして残しました。
+
+### 注記
+- View設定は、拡張中のAPI面に過剰適合しないよう、現時点ではraw JSON mapとして公開しています。
+- `heading_4`や`tab`などの新しいブロックはBuilderで作成できますが、レスポンスモデルのfirst-class variant化は後続課題です。
+
+### 検証
+- `dart analyze`
+- `dart test`
+
 ## [0.2.2] - 2025-01-25
 
 ### 追加
