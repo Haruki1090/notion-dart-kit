@@ -180,8 +180,7 @@ class NotionHttpClient {
   /// Extracts the Notion request id from the `x-notion-request-id` header,
   /// falling back to a `request_id` field in the response body.
   String? _extractRequestId(DioException error) {
-    final header =
-        error.response?.headers['x-notion-request-id']?.firstOrNull;
+    final header = error.response?.headers['x-notion-request-id']?.firstOrNull;
     if (header != null) {
       return header;
     }
