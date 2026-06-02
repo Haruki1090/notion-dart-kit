@@ -349,10 +349,8 @@ void main() {
           .property
           .rollup()
           .every(const PropertyFilter.numberGreaterThan(3));
-      final noneFilter = 'Scores'
-          .property
-          .rollup()
-          .none(const PropertyFilter.numberEquals(0));
+      final noneFilter =
+          'Scores'.property.rollup().none(const PropertyFilter.numberEquals(0));
 
       expect(anyFilter.toJson(), {
         'property': 'Related tasks',
@@ -418,8 +416,7 @@ void main() {
     });
 
     test('timestamp filters omit the property name', () {
-      final created =
-          TimestampFilter.createdTime.onOrBefore('2022-10-13');
+      final created = TimestampFilter.createdTime.onOrBefore('2022-10-13');
       final edited = TimestampFilter.lastEditedTime.pastWeek();
 
       expect(created.toJson(), {

@@ -447,16 +447,14 @@ sealed class PropertyFilter with _$PropertyFilter {
   // ============================================
 
   /// Verification status filter. Valid statuses: `verified`, `expired`, `none`.
-  const factory PropertyFilter.verification(String status) =
-      VerificationFilter;
+  const factory PropertyFilter.verification(String status) = VerificationFilter;
 
   // ============================================
   // Unique ID filters
   // ============================================
 
   /// Unique ID equals.
-  const factory PropertyFilter.uniqueIdEquals(int value) =
-      UniqueIdEqualsFilter;
+  const factory PropertyFilter.uniqueIdEquals(int value) = UniqueIdEqualsFilter;
 
   /// Unique ID does not equal.
   const factory PropertyFilter.uniqueIdDoesNotEqual(int value) =
