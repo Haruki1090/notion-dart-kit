@@ -12,6 +12,8 @@ class FileUpload {
     required this.contentLength,
     this.expiryTime,
     this.uploadUrl,
+    this.completeUrl,
+    this.fileImportResult,
   });
 
   factory FileUpload.fromJson(Map<String, dynamic> json) => FileUpload(
@@ -23,6 +25,8 @@ class FileUpload {
             ? null
             : DateTime.parse(json['expiry_time'] as String),
         uploadUrl: json['upload_url'] as String?,
+        completeUrl: json['complete_url'] as String?,
+        fileImportResult: json['file_import_result'] as Map<String, dynamic>?,
         archived: json['archived'] as bool,
         status: _parseStatus(json['status'] as String?),
         filename: json['filename'] as String,
@@ -36,6 +40,16 @@ class FileUpload {
   final DateTime lastEditedTime;
   final DateTime? expiryTime;
   final String? uploadUrl;
+
+  /// URL to complete a multi-part file upload. Only present for multi-part
+  /// uploads.
+  final String? completeUrl;
+
+  /// Details on the success or failure of importing a file from an external
+  /// URL. Only present for `external_url` uploads with a `failed` or
+  /// `uploaded` status.
+  final Map<String, dynamic>? fileImportResult;
+
   final bool archived;
   final FileUploadStatus status;
   final String filename;
@@ -49,6 +63,8 @@ class FileUpload {
         'last_edited_time': lastEditedTime.toIso8601String(),
         if (expiryTime != null) 'expiry_time': expiryTime!.toIso8601String(),
         'upload_url': uploadUrl,
+        if (completeUrl != null) 'complete_url': completeUrl,
+        if (fileImportResult != null) 'file_import_result': fileImportResult,
         'archived': archived,
         'status': status.name,
         'filename': filename,
