@@ -68,40 +68,15 @@ class NotionHttpClient {
   void _handleError(DioException error, ErrorInterceptorHandler handler) {
     final statusCode = error.response?.statusCode;
     final message = _extractErrorMessage(error);
+    final code = _extractErrorCode(error);
+    final requestId = _extractRequestId(error);
 
-    NotionException exception;
-
-    switch (statusCode) {
-      case 400:
-        exception = ValidationException(
-          message ?? 'Invalid request',
-          statusCode: statusCode,
-        );
-        break;
-      case 401:
-        exception = AuthenticationException(
-          message ?? 'Authentication failed',
-          statusCode: statusCode,
-        );
-        break;
-      case 404:
-        exception = NotFoundException(
-          message ?? 'Resource not found',
-          statusCode: statusCode,
-        );
-        break;
-      case 429:
-        exception = RateLimitException(
-          message ?? 'Rate limit exceeded',
-          statusCode: statusCode,
-        );
-        break;
-      default:
-        exception = NotionException(
-          message ?? 'An error occurred',
-          statusCode: statusCode,
-        );
-    }
+    final exception = _buildException(
+      statusCode: statusCode,
+      message: message,
+      code: code,
+      requestId: requestId,
+    );
 
     handler.reject(
       DioException(
@@ -113,6 +88,77 @@ class NotionHttpClient {
     );
   }
 
+  /// Maps an HTTP [statusCode] to the most specific [NotionException] subtype,
+  /// propagating the Notion error [code] and [requestId].
+  NotionException _buildException({
+    int? statusCode,
+    String? message,
+    String? code,
+    String? requestId,
+  }) {
+    switch (statusCode) {
+      case 400:
+        return ValidationException(
+          message ?? 'Invalid request',
+          statusCode: statusCode,
+          code: code,
+          requestId: requestId,
+        );
+      case 401:
+        return AuthenticationException(
+          message ?? 'Authentication failed',
+          statusCode: statusCode,
+          code: code,
+          requestId: requestId,
+        );
+      case 403:
+        return RestrictedResourceException(
+          message ?? 'Restricted resource',
+          statusCode: statusCode,
+          code: code,
+          requestId: requestId,
+        );
+      case 404:
+        return NotFoundException(
+          message ?? 'Resource not found',
+          statusCode: statusCode,
+          code: code,
+          requestId: requestId,
+        );
+      case 409:
+        return ConflictException(
+          message ?? 'Conflict error',
+          statusCode: statusCode,
+          code: code,
+          requestId: requestId,
+        );
+      case 429:
+        return RateLimitException(
+          message ?? 'Rate limit exceeded',
+          statusCode: statusCode,
+          code: code,
+          requestId: requestId,
+        );
+      case 500:
+      case 502:
+      case 503:
+      case 504:
+        return ServerException(
+          message ?? 'Server error',
+          statusCode: statusCode,
+          code: code,
+          requestId: requestId,
+        );
+      default:
+        return NotionException(
+          message ?? 'An error occurred',
+          statusCode: statusCode,
+          code: code,
+          requestId: requestId,
+        );
+    }
+  }
+
   String? _extractErrorMessage(DioException error) {
     final response = error.response;
     if (response?.data is Map) {
@@ -120,6 +166,29 @@ class NotionHttpClient {
       return data['message'] as String?;
     }
     return error.message;
+  }
+
+  /// Extracts the machine-readable Notion error code from the response body.
+  String? _extractErrorCode(DioException error) {
+    final data = error.response?.data;
+    if (data is Map && data['code'] is String) {
+      return data['code'] as String;
+    }
+    return null;
+  }
+
+  /// Extracts the Notion request id from the `x-notion-request-id` header,
+  /// falling back to a `request_id` field in the response body.
+  String? _extractRequestId(DioException error) {
+    final header = error.response?.headers['x-notion-request-id']?.firstOrNull;
+    if (header != null) {
+      return header;
+    }
+    final data = error.response?.data;
+    if (data is Map && data['request_id'] is String) {
+      return data['request_id'] as String;
+    }
+    return null;
   }
 
   /// Makes a GET request to the given [path] with rate limiting.
