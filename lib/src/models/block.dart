@@ -68,6 +68,20 @@ class Block with _$Block {
     required BlockContent content,
   }) = _Heading3Block;
 
+  /// Heading 4 block
+  const factory Block.heading4({
+    required String id,
+    required Parent parent,
+    required DateTime createdTime,
+    required DateTime lastEditedTime,
+    required User createdBy,
+    required User lastEditedBy,
+    required bool hasChildren,
+    required bool archived,
+    required bool inTrash,
+    required BlockContent content,
+  }) = _Heading4Block;
+
   /// Bulleted list item block
   const factory Block.bulletedListItem({
     required String id,
@@ -436,6 +450,53 @@ class Block with _$Block {
     required String title,
   }) = _ChildDatabaseBlock;
 
+  /// Audio block
+  const factory Block.audio({
+    required String id,
+    required Parent parent,
+    required DateTime createdTime,
+    required DateTime lastEditedTime,
+    required User createdBy,
+    required User lastEditedBy,
+    required bool hasChildren,
+    required bool archived,
+    required bool inTrash,
+    required Map<String, dynamic> file,
+  }) = _AudioBlock;
+
+  /// Meeting notes block (renamed from `transcription` in API 2026-03-11).
+  ///
+  /// The payload schema is large and evolving, so it is preserved as a raw
+  /// map under [data].
+  const factory Block.meetingNotes({
+    required String id,
+    required Parent parent,
+    required DateTime createdTime,
+    required DateTime lastEditedTime,
+    required User createdBy,
+    required User lastEditedBy,
+    required bool hasChildren,
+    required bool archived,
+    required bool inTrash,
+    required Map<String, dynamic> data,
+  }) = _MeetingNotesBlock;
+
+  /// Tab block (API 2026-03-11).
+  ///
+  /// The payload schema is preserved as a raw map under [data].
+  const factory Block.tab({
+    required String id,
+    required Parent parent,
+    required DateTime createdTime,
+    required DateTime lastEditedTime,
+    required User createdBy,
+    required User lastEditedBy,
+    required bool hasChildren,
+    required bool archived,
+    required bool inTrash,
+    required Map<String, dynamic> data,
+  }) = _TabBlock;
+
   /// Unsupported block type
   const factory Block.unsupported({
     required String id,
@@ -523,6 +584,21 @@ class Block with _$Block {
           inTrash: inTrash,
           content: BlockContent.fromJson(
             json['heading_3'] as Map<String, dynamic>,
+          ),
+        );
+      case 'heading_4':
+        return Block.heading4(
+          id: id,
+          parent: parent,
+          createdTime: createdTime,
+          lastEditedTime: lastEditedTime,
+          createdBy: createdBy,
+          lastEditedBy: lastEditedBy,
+          hasChildren: hasChildren,
+          archived: archived,
+          inTrash: inTrash,
+          content: BlockContent.fromJson(
+            json['heading_4'] as Map<String, dynamic>,
           ),
         );
       case 'bulleted_list_item':
@@ -911,6 +987,49 @@ class Block with _$Block {
           inTrash: inTrash,
           title: childDbData['title'] as String,
         );
+      case 'audio':
+        return Block.audio(
+          id: id,
+          parent: parent,
+          createdTime: createdTime,
+          lastEditedTime: lastEditedTime,
+          createdBy: createdBy,
+          lastEditedBy: lastEditedBy,
+          hasChildren: hasChildren,
+          archived: archived,
+          inTrash: inTrash,
+          file: json['audio'] as Map<String, dynamic>,
+        );
+      // `transcription` was renamed to `meeting_notes` in API 2026-03-11.
+      // Accept both for backwards compatibility when reading responses.
+      case 'meeting_notes':
+      case 'transcription':
+        return Block.meetingNotes(
+          id: id,
+          parent: parent,
+          createdTime: createdTime,
+          lastEditedTime: lastEditedTime,
+          createdBy: createdBy,
+          lastEditedBy: lastEditedBy,
+          hasChildren: hasChildren,
+          archived: archived,
+          inTrash: inTrash,
+          data: (json['meeting_notes'] ?? json['transcription'])
+              as Map<String, dynamic>,
+        );
+      case 'tab':
+        return Block.tab(
+          id: id,
+          parent: parent,
+          createdTime: createdTime,
+          lastEditedTime: lastEditedTime,
+          createdBy: createdBy,
+          lastEditedBy: lastEditedBy,
+          hasChildren: hasChildren,
+          archived: archived,
+          inTrash: inTrash,
+          data: json['tab'] as Map<String, dynamic>,
+        );
       default:
         return Block.unsupported(
           id: id,
@@ -1031,6 +1150,32 @@ class Block with _$Block {
           'in_trash': inTrash,
           'type': 'heading_3',
           'heading_3': content.toJson(),
+        },
+        heading4: (
+          id,
+          parent,
+          createdTime,
+          lastEditedTime,
+          createdBy,
+          lastEditedBy,
+          hasChildren,
+          archived,
+          inTrash,
+          content,
+        ) =>
+            {
+          'object': 'block',
+          'id': id,
+          'parent': parent.toJson(),
+          'created_time': createdTime.toIso8601String(),
+          'last_edited_time': lastEditedTime.toIso8601String(),
+          'created_by': createdBy.toJson(),
+          'last_edited_by': lastEditedBy.toJson(),
+          'has_children': hasChildren,
+          'archived': archived,
+          'in_trash': inTrash,
+          'type': 'heading_4',
+          'heading_4': content.toJson(),
         },
         bulletedListItem: (
           id,
@@ -1735,6 +1880,84 @@ class Block with _$Block {
           'in_trash': inTrash,
           'type': 'child_database',
           'child_database': {'title': title},
+        },
+        audio: (
+          id,
+          parent,
+          createdTime,
+          lastEditedTime,
+          createdBy,
+          lastEditedBy,
+          hasChildren,
+          archived,
+          inTrash,
+          file,
+        ) =>
+            {
+          'object': 'block',
+          'id': id,
+          'parent': parent.toJson(),
+          'created_time': createdTime.toIso8601String(),
+          'last_edited_time': lastEditedTime.toIso8601String(),
+          'created_by': createdBy.toJson(),
+          'last_edited_by': lastEditedBy.toJson(),
+          'has_children': hasChildren,
+          'archived': archived,
+          'in_trash': inTrash,
+          'type': 'audio',
+          'audio': file,
+        },
+        meetingNotes: (
+          id,
+          parent,
+          createdTime,
+          lastEditedTime,
+          createdBy,
+          lastEditedBy,
+          hasChildren,
+          archived,
+          inTrash,
+          data,
+        ) =>
+            {
+          'object': 'block',
+          'id': id,
+          'parent': parent.toJson(),
+          'created_time': createdTime.toIso8601String(),
+          'last_edited_time': lastEditedTime.toIso8601String(),
+          'created_by': createdBy.toJson(),
+          'last_edited_by': lastEditedBy.toJson(),
+          'has_children': hasChildren,
+          'archived': archived,
+          'in_trash': inTrash,
+          'type': 'meeting_notes',
+          'meeting_notes': data,
+        },
+        tab: (
+          id,
+          parent,
+          createdTime,
+          lastEditedTime,
+          createdBy,
+          lastEditedBy,
+          hasChildren,
+          archived,
+          inTrash,
+          data,
+        ) =>
+            {
+          'object': 'block',
+          'id': id,
+          'parent': parent.toJson(),
+          'created_time': createdTime.toIso8601String(),
+          'last_edited_time': lastEditedTime.toIso8601String(),
+          'created_by': createdBy.toJson(),
+          'last_edited_by': lastEditedBy.toJson(),
+          'has_children': hasChildren,
+          'archived': archived,
+          'in_trash': inTrash,
+          'type': 'tab',
+          'tab': data,
         },
         unsupported: (
           id,
