@@ -315,4 +315,138 @@ void main() {
       });
     });
   });
+
+  group('Filter DSL - additional filter types', () {
+    test('checkbox does_not_equal generates correct JSON', () {
+      final filter = 'Done'.property.checkbox().doesNotEqual(true);
+
+      expect(filter.toJson(), {
+        'property': 'Done',
+        'checkbox': {'does_not_equal': true},
+      });
+    });
+
+    test('formula filter wraps the result-type condition', () {
+      final filter = 'One month deadline'
+          .property
+          .formula()
+          .matches(const PropertyFilter.dateAfter('2021-05-10'));
+
+      expect(filter.toJson(), {
+        'property': 'One month deadline',
+        'formula': {
+          'date': {'after': '2021-05-10'},
+        },
+      });
+    });
+
+    test('rollup any/every/none generate correct JSON', () {
+      final anyFilter = 'Related tasks'
+          .property
+          .rollup()
+          .any(const PropertyFilter.textContains('Migrate data source'));
+      final everyFilter = 'Scores'
+          .property
+          .rollup()
+          .every(const PropertyFilter.numberGreaterThan(3));
+      final noneFilter =
+          'Scores'.property.rollup().none(const PropertyFilter.numberEquals(0));
+
+      expect(anyFilter.toJson(), {
+        'property': 'Related tasks',
+        'rollup': {
+          'any': {
+            'rich_text': {'contains': 'Migrate data source'},
+          },
+        },
+      });
+      expect(everyFilter.toJson(), {
+        'property': 'Scores',
+        'rollup': {
+          'every': {
+            'number': {'greater_than': 3.0},
+          },
+        },
+      });
+      expect(noneFilter.toJson(), {
+        'property': 'Scores',
+        'rollup': {
+          'none': {
+            'number': {'equals': 0.0},
+          },
+        },
+      });
+    });
+
+    test('rollup direct number/date condition generates correct JSON', () {
+      final filter = 'Total estimated working days'
+          .property
+          .rollup()
+          .matches(const PropertyFilter.numberDoesNotEqual(42));
+
+      expect(filter.toJson(), {
+        'property': 'Total estimated working days',
+        'rollup': {
+          'number': {'does_not_equal': 42.0},
+        },
+      });
+    });
+
+    test('verification filter generates correct JSON', () {
+      final filter = 'verification'.property.verification().verified();
+
+      expect(filter.toJson(), {
+        'property': 'verification',
+        'verification': {'status': 'verified'},
+      });
+    });
+
+    test('unique_id filters generate correct JSON', () {
+      final equalsFilter = 'ID'.property.uniqueId().equals(42);
+      final rangeFilter = 'ID'.property.uniqueId().greaterThanOrEqual(1);
+
+      expect(equalsFilter.toJson(), {
+        'property': 'ID',
+        'unique_id': {'equals': 42},
+      });
+      expect(rangeFilter.toJson(), {
+        'property': 'ID',
+        'unique_id': {'greater_than_or_equal_to': 1},
+      });
+    });
+
+    test('timestamp filters omit the property name', () {
+      final created = TimestampFilter.createdTime.onOrBefore('2022-10-13');
+      final edited = TimestampFilter.lastEditedTime.pastWeek();
+
+      expect(created.toJson(), {
+        'timestamp': 'created_time',
+        'created_time': {'on_or_before': '2022-10-13'},
+      });
+      expect(edited.toJson(), {
+        'timestamp': 'last_edited_time',
+        'last_edited_time': {'past_week': <String, dynamic>{}},
+      });
+    });
+
+    test('timestamp filter can be combined inside compound filters', () {
+      final filter = Filter.and([
+        TimestampFilter.createdTime.after('2022-01-01'),
+        'ID'.property.uniqueId().lessThan(100),
+      ]);
+
+      expect(filter.toJson(), {
+        'and': [
+          {
+            'timestamp': 'created_time',
+            'created_time': {'after': '2022-01-01'},
+          },
+          {
+            'property': 'ID',
+            'unique_id': {'less_than': 100},
+          },
+        ],
+      });
+    });
+  });
 }

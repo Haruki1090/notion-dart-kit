@@ -38,6 +38,19 @@ class PropertyFilterBuilder {
 
   /// Relationフィルタビルダー
   RelationFilterBuilder relation() => RelationFilterBuilder(propertyName);
+
+  /// Unique IDフィルタビルダー
+  UniqueIdFilterBuilder uniqueId() => UniqueIdFilterBuilder(propertyName);
+
+  /// Verificationフィルタビルダー
+  VerificationFilterBuilder verification() =>
+      VerificationFilterBuilder(propertyName);
+
+  /// Formulaフィルタビルダー
+  FormulaFilterBuilder formula() => FormulaFilterBuilder(propertyName);
+
+  /// Rollupフィルタビルダー
+  RollupFilterBuilder rollup() => RollupFilterBuilder(propertyName);
 }
 
 /// テキスト系フィルタビルダー
@@ -140,6 +153,11 @@ class CheckboxFilterBuilder {
   Filter equals(bool value) => Filter.property(
         name: propertyName,
         filter: PropertyFilter.checkboxEquals(value),
+      );
+
+  Filter doesNotEqual(bool value) => Filter.property(
+        name: propertyName,
+        filter: PropertyFilter.checkboxDoesNotEqual(value),
       );
 }
 
@@ -406,6 +424,145 @@ class RelationFilterBuilder {
         name: propertyName,
         filter: const PropertyFilter.relationIsNotEmpty(),
       );
+}
+
+/// Unique IDフィルタビルダー
+class UniqueIdFilterBuilder {
+  const UniqueIdFilterBuilder(this.propertyName);
+  final String propertyName;
+
+  Filter equals(int value) => Filter.property(
+        name: propertyName,
+        filter: PropertyFilter.uniqueIdEquals(value),
+      );
+
+  Filter doesNotEqual(int value) => Filter.property(
+        name: propertyName,
+        filter: PropertyFilter.uniqueIdDoesNotEqual(value),
+      );
+
+  Filter greaterThan(int value) => Filter.property(
+        name: propertyName,
+        filter: PropertyFilter.uniqueIdGreaterThan(value),
+      );
+
+  Filter lessThan(int value) => Filter.property(
+        name: propertyName,
+        filter: PropertyFilter.uniqueIdLessThan(value),
+      );
+
+  Filter greaterThanOrEqual(int value) => Filter.property(
+        name: propertyName,
+        filter: PropertyFilter.uniqueIdGreaterThanOrEqual(value),
+      );
+
+  Filter lessThanOrEqual(int value) => Filter.property(
+        name: propertyName,
+        filter: PropertyFilter.uniqueIdLessThanOrEqual(value),
+      );
+}
+
+/// Verificationフィルタビルダー
+class VerificationFilterBuilder {
+  const VerificationFilterBuilder(this.propertyName);
+  final String propertyName;
+
+  Filter status(String status) => Filter.property(
+        name: propertyName,
+        filter: PropertyFilter.verification(status),
+      );
+
+  Filter verified() => status('verified');
+
+  Filter expired() => status('expired');
+
+  Filter none() => status('none');
+}
+
+/// Formulaフィルタビルダー
+///
+/// フォーミュラの計算結果型に対応する内側の条件を指定する。
+class FormulaFilterBuilder {
+  const FormulaFilterBuilder(this.propertyName);
+  final String propertyName;
+
+  /// 任意の結果型条件（[condition]）でフォーミュラ結果を絞り込む。
+  Filter matches(PropertyFilter condition) => Filter.property(
+        name: propertyName,
+        filter: PropertyFilter.formula(condition),
+      );
+}
+
+/// Rollupフィルタビルダー
+class RollupFilterBuilder {
+  const RollupFilterBuilder(this.propertyName);
+  final String propertyName;
+
+  /// number/date ロールアップ値への直接条件。
+  Filter matches(PropertyFilter condition) => Filter.property(
+        name: propertyName,
+        filter: PropertyFilter.rollup(condition),
+      );
+
+  /// 少なくとも1つのロールアップ値が [condition] に一致。
+  Filter any(PropertyFilter condition) => Filter.property(
+        name: propertyName,
+        filter: PropertyFilter.rollupAny(condition),
+      );
+
+  /// すべてのロールアップ値が [condition] に一致。
+  Filter every(PropertyFilter condition) => Filter.property(
+        name: propertyName,
+        filter: PropertyFilter.rollupEvery(condition),
+      );
+
+  /// どのロールアップ値も [condition] に一致しない。
+  Filter none(PropertyFilter condition) => Filter.property(
+        name: propertyName,
+        filter: PropertyFilter.rollupNone(condition),
+      );
+}
+
+/// タイムスタンプフィルタビルダー（`created_time` / `last_edited_time`）。
+///
+/// タイムスタンプフィルタはプロパティ名を取らない。日付条件を渡す。
+///
+/// 例:
+/// ```dart
+/// TimestampFilter.createdTime.onOrBefore('2022-10-13');
+/// ```
+enum TimestampFilter {
+  /// `created_time` を対象とするタイムスタンプフィルタ。
+  createdTime,
+
+  /// `last_edited_time` を対象とするタイムスタンプフィルタ。
+  lastEditedTime;
+
+  Filter _wrap(PropertyFilter date) => this == TimestampFilter.createdTime
+      ? Filter.createdTime(date)
+      : Filter.lastEditedTime(date);
+
+  Filter equals(String date) => _wrap(PropertyFilter.dateEquals(date));
+
+  Filter before(String date) => _wrap(PropertyFilter.dateBefore(date));
+
+  Filter after(String date) => _wrap(PropertyFilter.dateAfter(date));
+
+  Filter onOrBefore(String date) => _wrap(PropertyFilter.dateOnOrBefore(date));
+
+  Filter onOrAfter(String date) => _wrap(PropertyFilter.dateOnOrAfter(date));
+
+  Filter pastWeek() => _wrap(const PropertyFilter.datePastWeek());
+
+  Filter pastMonth() => _wrap(const PropertyFilter.datePastMonth());
+
+  Filter pastYear() => _wrap(const PropertyFilter.datePastYear());
+
+  Filter nextWeek() => _wrap(const PropertyFilter.dateNextWeek());
+
+  Filter nextMonth() => _wrap(const PropertyFilter.dateNextMonth());
+
+  Filter nextYear() => _wrap(const PropertyFilter.dateNextYear());
 }
 
 /// String拡張（フィルタ用）

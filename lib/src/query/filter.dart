@@ -89,11 +89,43 @@ sealed class Filter with _$Filter {
     required PropertyFilter filter,
   }) = PropertyFilterCondition;
 
+  /// Timestamp filter on the entry's `created_time`.
+  ///
+  /// Timestamp filters do not take a property name. Pass a date condition
+  /// such as [PropertyFilter.dateOnOrBefore] or [PropertyFilter.datePastWeek].
+  ///
+  /// Example:
+  /// ```dart
+  /// Filter.createdTime(PropertyFilter.dateOnOrBefore('2022-10-13'))
+  /// ```
+  const factory Filter.createdTime(PropertyFilter date) = CreatedTimeFilter;
+
+  /// Timestamp filter on the entry's `last_edited_time`.
+  ///
+  /// Timestamp filters do not take a property name. Pass a date condition
+  /// such as [PropertyFilter.dateAfter] or [PropertyFilter.dateIsNotEmpty].
+  const factory Filter.lastEditedTime(PropertyFilter date) =
+      LastEditedTimeFilter;
+
   /// Converts this filter to a JSON map for the Notion API.
   Map<String, dynamic> toJson() => when(
         and: (filters) => {'and': filters.map((f) => f.toJson()).toList()},
         or: (filters) => {'or': filters.map((f) => f.toJson()).toList()},
         property: (name, filter) => {'property': name, ...filter.toJson()},
+        createdTime: (date) {
+          final inner = date.toJson();
+          return {
+            'timestamp': 'created_time',
+            'created_time': inner['date'] ?? inner,
+          };
+        },
+        lastEditedTime: (date) {
+          final inner = date.toJson();
+          return {
+            'timestamp': 'last_edited_time',
+            'last_edited_time': inner['date'] ?? inner,
+          };
+        },
       );
 }
 
@@ -366,6 +398,84 @@ sealed class PropertyFilter with _$PropertyFilter {
   /// Relation is not empty - has any related pages.
   const factory PropertyFilter.relationIsNotEmpty() = RelationIsNotEmptyFilter;
 
+  // ============================================
+  // Checkbox (additional)
+  // ============================================
+
+  /// Checkbox does not equal - differs from the boolean value.
+  const factory PropertyFilter.checkboxDoesNotEqual(bool value) =
+      CheckboxDoesNotEqualFilter;
+
+  // ============================================
+  // Formula filters
+  // ============================================
+
+  /// Formula filter - applies a [condition] matching the formula's result type
+  /// (checkbox, date, number, or rich text).
+  ///
+  /// Example:
+  /// ```dart
+  /// PropertyFilter.formula(PropertyFilter.dateAfter('2021-05-10'))
+  /// ```
+  const factory PropertyFilter.formula(PropertyFilter condition) =
+      FormulaFilter;
+
+  // ============================================
+  // Rollup filters
+  // ============================================
+
+  /// Rollup filter against a number or date rollup value.
+  ///
+  /// Pass a number or date [condition], e.g.
+  /// `PropertyFilter.rollup(PropertyFilter.numberDoesNotEqual(42))`.
+  const factory PropertyFilter.rollup(PropertyFilter condition) = RollupFilter;
+
+  /// Rollup `any` - at least one rollup value matches [condition].
+  const factory PropertyFilter.rollupAny(PropertyFilter condition) =
+      RollupAnyFilter;
+
+  /// Rollup `every` - all rollup values match [condition].
+  const factory PropertyFilter.rollupEvery(PropertyFilter condition) =
+      RollupEveryFilter;
+
+  /// Rollup `none` - no rollup value matches [condition].
+  const factory PropertyFilter.rollupNone(PropertyFilter condition) =
+      RollupNoneFilter;
+
+  // ============================================
+  // Verification filters
+  // ============================================
+
+  /// Verification status filter. Valid statuses: `verified`, `expired`, `none`.
+  const factory PropertyFilter.verification(String status) = VerificationFilter;
+
+  // ============================================
+  // Unique ID filters
+  // ============================================
+
+  /// Unique ID equals.
+  const factory PropertyFilter.uniqueIdEquals(int value) = UniqueIdEqualsFilter;
+
+  /// Unique ID does not equal.
+  const factory PropertyFilter.uniqueIdDoesNotEqual(int value) =
+      UniqueIdDoesNotEqualFilter;
+
+  /// Unique ID greater than.
+  const factory PropertyFilter.uniqueIdGreaterThan(int value) =
+      UniqueIdGreaterThanFilter;
+
+  /// Unique ID less than.
+  const factory PropertyFilter.uniqueIdLessThan(int value) =
+      UniqueIdLessThanFilter;
+
+  /// Unique ID greater than or equal to.
+  const factory PropertyFilter.uniqueIdGreaterThanOrEqual(int value) =
+      UniqueIdGreaterThanOrEqualFilter;
+
+  /// Unique ID less than or equal to.
+  const factory PropertyFilter.uniqueIdLessThanOrEqual(int value) =
+      UniqueIdLessThanOrEqualFilter;
+
   /// Converts this property filter to a JSON map for the Notion API.
   Map<String, dynamic> toJson() => when(
         // テキスト系
@@ -560,6 +670,51 @@ sealed class PropertyFilter with _$PropertyFilter {
         },
         relationIsNotEmpty: () => {
           'relation': {'is_not_empty': true},
+        },
+
+        // チェックボックス（追加）
+        checkboxDoesNotEqual: (value) => {
+          'checkbox': {'does_not_equal': value},
+        },
+
+        // Formula
+        formula: (condition) => {'formula': condition.toJson()},
+
+        // Rollup
+        rollup: (condition) => {'rollup': condition.toJson()},
+        rollupAny: (condition) => {
+          'rollup': {'any': condition.toJson()},
+        },
+        rollupEvery: (condition) => {
+          'rollup': {'every': condition.toJson()},
+        },
+        rollupNone: (condition) => {
+          'rollup': {'none': condition.toJson()},
+        },
+
+        // Verification
+        verification: (status) => {
+          'verification': {'status': status},
+        },
+
+        // Unique ID
+        uniqueIdEquals: (value) => {
+          'unique_id': {'equals': value},
+        },
+        uniqueIdDoesNotEqual: (value) => {
+          'unique_id': {'does_not_equal': value},
+        },
+        uniqueIdGreaterThan: (value) => {
+          'unique_id': {'greater_than': value},
+        },
+        uniqueIdLessThan: (value) => {
+          'unique_id': {'less_than': value},
+        },
+        uniqueIdGreaterThanOrEqual: (value) => {
+          'unique_id': {'greater_than_or_equal_to': value},
+        },
+        uniqueIdLessThanOrEqual: (value) => {
+          'unique_id': {'less_than_or_equal_to': value},
         },
       );
 }
