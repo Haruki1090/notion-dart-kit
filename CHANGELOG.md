@@ -1,6 +1,14 @@
 ## Unreleased
 
 # Changelog
+## [1.0.2] - 2026-06-02
+
+### Changed
+- feat(models): add FileUpload complete_url and file_import_result fields (#45)
+- feat(blocks): parse heading_4, audio, meeting_notes, tab block types (#44)
+- feat(errors): surface Notion error code and request_id; map more status codes (#43)
+- feat(query): add formula, rollup, timestamp, verification, unique_id filters (#42)
+
 ## [1.0.1] - 2026-05-05
 
 ### Changed
