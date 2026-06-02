@@ -411,6 +411,58 @@ void main() {
           __________,
         ) =>
             fail('Should be paragraph'),
+        heading4: (
+          _,
+          __,
+          ___,
+          ____,
+          _____,
+          ______,
+          _______,
+          ________,
+          _________,
+          __________,
+        ) =>
+            fail('Should be paragraph'),
+        audio: (
+          _,
+          __,
+          ___,
+          ____,
+          _____,
+          ______,
+          _______,
+          ________,
+          _________,
+          __________,
+        ) =>
+            fail('Should be paragraph'),
+        meetingNotes: (
+          _,
+          __,
+          ___,
+          ____,
+          _____,
+          ______,
+          _______,
+          ________,
+          _________,
+          __________,
+        ) =>
+            fail('Should be paragraph'),
+        tab: (
+          _,
+          __,
+          ___,
+          ____,
+          _____,
+          ______,
+          _______,
+          ________,
+          _________,
+          __________,
+        ) =>
+            fail('Should be paragraph'),
         unsupported:
             (_, __, ___, ____, _____, ______, _______, ________, _________) =>
                 fail('Should be paragraph'),
@@ -892,6 +944,58 @@ void main() {
             __________,
           ) =>
               false,
+          heading4: (
+            _,
+            __,
+            ___,
+            ____,
+            _____,
+            ______,
+            _______,
+            ________,
+            _________,
+            __________,
+          ) =>
+              false,
+          audio: (
+            _,
+            __,
+            ___,
+            ____,
+            _____,
+            ______,
+            _______,
+            ________,
+            _________,
+            __________,
+          ) =>
+              false,
+          meetingNotes: (
+            _,
+            __,
+            ___,
+            ____,
+            _____,
+            ______,
+            _______,
+            ________,
+            _________,
+            __________,
+          ) =>
+              false,
+          tab: (
+            _,
+            __,
+            ___,
+            ____,
+            _____,
+            ______,
+            _______,
+            ________,
+            _________,
+            __________,
+          ) =>
+              false,
           unsupported:
               (_, __, ___, ____, _____, ______, _______, ________, _________) =>
                   false,
@@ -1290,10 +1394,169 @@ void main() {
           __________,
         ) =>
             fail('Should be todo'),
+        heading4: (
+          _,
+          __,
+          ___,
+          ____,
+          _____,
+          ______,
+          _______,
+          ________,
+          _________,
+          __________,
+        ) =>
+            fail('Should be todo'),
+        audio: (
+          _,
+          __,
+          ___,
+          ____,
+          _____,
+          ______,
+          _______,
+          ________,
+          _________,
+          __________,
+        ) =>
+            fail('Should be todo'),
+        meetingNotes: (
+          _,
+          __,
+          ___,
+          ____,
+          _____,
+          ______,
+          _______,
+          ________,
+          _________,
+          __________,
+        ) =>
+            fail('Should be todo'),
+        tab: (
+          _,
+          __,
+          ___,
+          ____,
+          _____,
+          ______,
+          _______,
+          ________,
+          _________,
+          __________,
+        ) =>
+            fail('Should be todo'),
         unsupported:
             (_, __, ___, ____, _____, ______, _______, ________, _________) =>
                 fail('Should be todo'),
       );
+    });
+  });
+
+  group('Block Types added in API 2026-03-11', () {
+    Map<String, dynamic> base(String type, Map<String, dynamic> payload) => {
+          'object': 'block',
+          'id': 'b-$type',
+          'parent': {'type': 'page_id', 'page_id': 'page'},
+          'created_time': '2025-10-05T10:00:00.000Z',
+          'last_edited_time': '2025-10-05T10:00:00.000Z',
+          'created_by': {'object': 'user', 'id': 'user'},
+          'last_edited_by': {'object': 'user', 'id': 'user'},
+          'has_children': false,
+          'archived': false,
+          'in_trash': false,
+          'type': type,
+          type: payload,
+        };
+
+    test('heading_4 parses and round-trips', () {
+      final json = base('heading_4', {
+        'rich_text': [
+          {
+            'type': 'text',
+            'text': {'content': 'Section'},
+            'annotations': <String, dynamic>{},
+            'plain_text': 'Section',
+          },
+        ],
+        'color': 'default',
+        'is_toggleable': true,
+      });
+
+      final block = Block.fromJson(json);
+      // Parsed as a dedicated heading4 variant (not the unsupported fallback).
+      final isHeading4 = block.maybeWhen(
+        heading4: (
+          _,
+          __,
+          ___,
+          ____,
+          _____,
+          ______,
+          _______,
+          ________,
+          _________,
+          content,
+        ) =>
+            (content.isToggleable ?? false) && content.richText.length == 1,
+        orElse: () => false,
+      );
+      expect(isHeading4, true);
+
+      final out = block.toJson();
+      expect(out['type'], 'heading_4');
+      expect(out['heading_4'], isA<Map<String, dynamic>>());
+    });
+
+    test('audio parses and round-trips', () {
+      final json = base('audio', {
+        'type': 'external',
+        'external': {'url': 'https://example.com/a.mp3'},
+      });
+
+      final block = Block.fromJson(json);
+      final out = block.toJson();
+      expect(out['type'], 'audio');
+      expect(
+        ((out['audio'] as Map<String, dynamic>)['external']
+            as Map<String, dynamic>)['url'],
+        'https://example.com/a.mp3',
+      );
+    });
+
+    test('meeting_notes parses and round-trips', () {
+      final json = base('meeting_notes', {
+        'name': 'Standup',
+        'attendees': <String>[],
+      });
+
+      final block = Block.fromJson(json);
+      final out = block.toJson();
+      expect(out['type'], 'meeting_notes');
+      expect((out['meeting_notes'] as Map<String, dynamic>)['name'], 'Standup');
+    });
+
+    test('legacy transcription block is read as meeting_notes', () {
+      // Only the legacy `transcription` payload is present (no meeting_notes).
+      final json = base('transcription', {'name': 'Old transcript'});
+
+      final block = Block.fromJson(json);
+      final out = block.toJson();
+      // Always serialized using the new key.
+      expect(out['type'], 'meeting_notes');
+      expect(
+        (out['meeting_notes'] as Map<String, dynamic>)['name'],
+        'Old transcript',
+      );
+    });
+
+    test('tab parses and round-trips', () {
+      final json = base('tab', {'title': 'Overview'});
+
+      final block = Block.fromJson(json);
+      final out = block.toJson();
+      expect(out['type'], 'tab');
+      expect((out['tab'] as Map<String, dynamic>)['title'], 'Overview');
     });
   });
 }
