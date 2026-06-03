@@ -1,6 +1,11 @@
 ## Unreleased
 
 # Changelog
+## [1.0.4] - 2026-06-03
+
+### Changed
+- ci(release): fix non-fast-forward race in auto-patch-release workflow (#50)
+
 ## [1.0.3] - 2026-06-03
 
 ### Changed
