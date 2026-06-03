@@ -9,6 +9,13 @@ on:
 permissions:
   contents: write
 
+# Serialize release runs so concurrent merges don't race on the version bump
+# push (which previously failed with non-fast-forward errors). Queued runs are
+# not cancelled so every merged change still gets its own patch release.
+concurrency:
+  group: auto-patch-release
+  cancel-in-progress: false
+
 jobs:
   check-and-release:
     name: Check for Version Changes and Release
@@ -32,6 +39,14 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Sync to latest main
+        # actions/checkout pins the triggering commit. When several merges land
+        # close together, the version must be computed from (and pushed onto)
+        # the newest main, otherwise `git push` is rejected as non-fast-forward.
+        run: |
+          git fetch origin main
+          git checkout -B main origin/main
 
       - name: Get current version
         id: current_version
