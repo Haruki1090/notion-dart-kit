@@ -103,7 +103,7 @@ void main() async {
 | Users | `me`, `retrieve`, `list` | ページネーション対応のユーザーリストとボットメタデータアクセスを提供します。 |
 | Comments | `create`, `list`, `retrieve` | ページ/ブロック上のコメント作成・取得。添付や表示名の上書きも対応。 |
 | File Uploads | `create`, `sendBytes`, `sendFile`, `complete`, `retrieve`, `list` | シングル/マルチパート/外部URLのアップロードに対応。 |
-| Templates | `listTemplates`, `retrieveTemplate` | **v0.2.2の新機能**: データソースからテンプレートを一覧・取得し、テンプレートからページを作成。 |
+| Templates | `listTemplates` | データソースのテンプレート(`id`、`name`、`isDefault`)を一覧し、`templateId` でページを作成。 |
 
 ## 🛡️ 回復力とエラーハンドリング
 
@@ -405,19 +405,18 @@ print('Upload status: ${uploaded.status}');
 // final done = await client.fileUploads.complete(session.id);
 ```
 
-### テンプレートの操作 (v0.2.2の新機能)
+### テンプレートの操作
 
-Template APIを使用して、データソースからテンプレートを一覧・取得し、テンプレートを使用してページを作成できます:
+Template APIを使用して、データソースのテンプレートを一覧し、テンプレートからページを作成できます。Notion APIのテンプレートは最小限の形状(`id`、`name`、`isDefault`)で返されます。
 
 ```dart
 // データソースからすべてのテンプレートを一覧
 final templates = await client.templates.listTemplates('data_source_id');
 
 for (final template in templates.results) {
-  print('テンプレート: ${template.title}');
-  print('説明: ${template.description}');
-  print('作成日: ${template.createdTime}');
-  print('URL: ${template.url}');
+  print('テンプレート: ${template.name}');
+  print('ID: ${template.id}');
+  print('デフォルト: ${template.isDefault}');
 }
 
 // 大きなテンプレートリストのページネーション処理
@@ -429,19 +428,13 @@ if (templates.hasMore) {
   );
 }
 
-// 特定のテンプレートを取得
-final template = await client.templates.retrieveTemplate(
-  'data_source_id',
-  'template_id',
-);
-
-print('テンプレート: ${template.title}');
-print('作成者: ${template.createdBy.name}');
-print('最終編集: ${template.lastEditedTime}');
+// デフォルトテンプレートを探す
+final defaultTemplate =
+    templates.results.where((t) => t.isDefault).toList();
 
 // テンプレートからページを作成
 final pageFromTemplate = await client.pages.create(
-  parent: Parent.database('database_id'),
+  parent: const Parent.database(databaseId: 'database_id'),
   properties: {
     'Name': {
       'title': [
@@ -452,37 +445,19 @@ final pageFromTemplate = await client.pages.create(
       'select': {'name': 'ドラフト'}
     }
   },
-  templateId: template.id, // テンプレートを使用
+  templateId: templates.results.first.id, // テンプレートを使用
 );
 
 print('作成されたページ: ${pageFromTemplate.id}');
 ```
 
+> 注: Notion APIには単一テンプレートをIDで取得する公開エンドポイントはありません。`listTemplates` で取得して絞り込んでください。
+
 **Template API機能:**
 
-- ✅ ページネーション付きでデータソースからテンプレートを一覧
-- ✅ 特定のテンプレートの詳細を取得
+- ✅ ページネーション付きでデータソースのテンプレートを一覧
 - ✅ テンプレートを使用してページを作成
-- ✅ Templateモデルによる完全な型安全性
-- ✅ テンプレート操作の適切なエラーハンドリング
-- ✅ 既存のページ作成との後方互換性
-
-**エラーハンドリング:**
-
-```dart
-try {
-  final template = await client.templates.retrieveTemplate(
-    'data_source_id',
-    'nonexistent_template',
-  );
-} on TemplateNotFoundException catch (e) {
-  print('テンプレートが見つかりません: ${e.message}');
-} on InvalidTemplateException catch (e) {
-  print('無効なテンプレート: ${e.message}');
-} on NotionException catch (e) {
-  print('API エラー: ${e.message}');
-}
-```
+- ✅ `Template` モデル(`id`、`name`、`isDefault`)による型安全性
 
 ### クエリ DSL (型安全フィルターとソート)
 
