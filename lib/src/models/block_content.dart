@@ -47,7 +47,11 @@ enum BlockColor {
 }
 
 /// Standard block content (paragraph, headings, lists, etc.)
-@freezed
+///
+/// `toJson` is intentionally disabled on the generated class so that the
+/// snake_case [BlockContentExtension.toJson] (matching the Notion API) is used
+/// instead of the json_serializable default, which would emit camelCase keys.
+@Freezed(toJson: false)
 class BlockContent with _$BlockContent {
   const factory BlockContent({
     @Default([]) List<RichText> richText,
@@ -72,7 +76,7 @@ class BlockContent with _$BlockContent {
 }
 
 /// To-do block content with checked state
-@freezed
+@Freezed(toJson: false)
 class ToDoContent with _$ToDoContent {
   const factory ToDoContent({
     @Default([]) List<RichText> richText,
@@ -97,7 +101,7 @@ class ToDoContent with _$ToDoContent {
 }
 
 /// Code block content with language
-@freezed
+@Freezed(toJson: false)
 class CodeContent with _$CodeContent {
   const factory CodeContent({
     @Default([]) List<RichText> richText,
