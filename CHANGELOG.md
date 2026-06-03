@@ -1,6 +1,13 @@
 ## Unreleased
 
 # Changelog
+## [1.0.3] - 2026-06-03
+
+### Changed
+- test(views): pin ViewsService endpoint shapes; document verified spec (#49)
+- fix(templates): align Template model with the official API shape; deprecate retrieveTemplate (#48)
+- fix(blocks): serialize block content with snake_case Notion keys (#47)
+
 ## [1.0.2] - 2026-06-02
 
 ### Changed
