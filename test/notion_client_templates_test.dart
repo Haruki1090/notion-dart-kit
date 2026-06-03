@@ -43,15 +43,13 @@ void main() {
     });
 
     group('Template API workflow', () {
-      test('should support complete template workflow', () {
-        // This test verifies that the client supports the complete template workflow:
+      test('should support template workflow', () {
+        // This test verifies that the client supports the template workflow:
         // 1. List templates from a data source
-        // 2. Retrieve a specific template
-        // 3. Create a page using a template
+        // 2. Create a page using a template
 
         // Verify that the necessary methods exist
         expect(client.templates.listTemplates, isA<Function>());
-        expect(client.templates.retrieveTemplate, isA<Function>());
         expect(client.pages.create, isA<Function>());
       });
     });

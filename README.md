@@ -103,7 +103,7 @@ void main() async {
 | Users | `me`, `retrieve`, `list` | Provides pagination-ready user listings and bot metadata access. |
 | Comments | `create`, `list`, `retrieve` | Create and fetch comments for pages/blocks; supports attachments and display name overrides. |
 | File Uploads | `create`, `sendBytes`, `sendFile`, `complete`, `retrieve`, `list` | Supports single-part, multi-part, and external URL uploads. |
-| Templates | `listTemplates`, `retrieveTemplate` | **NEW in v0.2.2**: List and retrieve templates from data sources; create pages from templates. |
+| Templates | `listTemplates` | List a data source's templates (`id`, `name`, `isDefault`); create pages from templates via `templateId`. |
 
 ## 🛡️ Resilience & Error Handling
 
@@ -436,19 +436,20 @@ for (final user in users.results) {
 }
 ```
 
-### Working with Templates (NEW in v0.2.2)
+### Working with Templates
 
-The Template API allows you to list templates from data sources and create pages using those templates:
+The Template API lets you list a data source's templates and create pages from
+them. The Notion API exposes templates with a minimal shape: `id`, `name`, and
+`isDefault`.
 
 ```dart
 // List all templates from a data source
 final templates = await client.templates.listTemplates('data_source_id');
 
 for (final template in templates.results) {
-  print('Template: ${template.title}');
-  print('Description: ${template.description}');
-  print('Created: ${template.createdTime}');
-  print('URL: ${template.url}');
+  print('Template: ${template.name}');
+  print('Id: ${template.id}');
+  print('Default: ${template.isDefault}');
 }
 
 // Handle pagination for large template lists
@@ -460,19 +461,13 @@ if (templates.hasMore) {
   );
 }
 
-// Retrieve a specific template
-final template = await client.templates.retrieveTemplate(
-  'data_source_id',
-  'template_id',
-);
-
-print('Template: ${template.title}');
-print('Created by: ${template.createdBy.name}');
-print('Last edited: ${template.lastEditedTime}');
+// Find the default template
+final defaultTemplate =
+    templates.results.where((t) => t.isDefault).toList();
 
 // Create a page from a template
 final pageFromTemplate = await client.pages.create(
-  parent: Parent.database('database_id'),
+  parent: const Parent.database(databaseId: 'database_id'),
   properties: {
     'Name': {
       'title': [
@@ -483,37 +478,20 @@ final pageFromTemplate = await client.pages.create(
       'select': {'name': 'Draft'}
     }
   },
-  templateId: template.id, // Use the template
+  templateId: templates.results.first.id, // Use the template
 );
 
 print('Created page: ${pageFromTemplate.id}');
 ```
 
+> Note: The Notion API does not provide a public endpoint to retrieve a single
+> template by id. Use `listTemplates` and filter the results.
+
 **Template API Features:**
 
 - ✅ List templates from data sources with pagination
-- ✅ Retrieve specific template details
 - ✅ Create pages using templates
-- ✅ Full type safety with Template model
-- ✅ Proper error handling for template operations
-- ✅ Backward compatibility with existing page creation
-
-**Error Handling:**
-
-```dart
-try {
-  final template = await client.templates.retrieveTemplate(
-    'data_source_id',
-    'nonexistent_template',
-  );
-} on TemplateNotFoundException catch (e) {
-  print('Template not found: ${e.message}');
-} on InvalidTemplateException catch (e) {
-  print('Invalid template: ${e.message}');
-} on NotionException catch (e) {
-  print('API error: ${e.message}');
-}
-```
+- ✅ Full type safety with the `Template` model (`id`, `name`, `isDefault`)
 
 ### Comments
 

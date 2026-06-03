@@ -24,56 +24,8 @@ void main() {
           'object': 'list',
           'type': 'template',
           'results': [
-            {
-              'id': 'template_1',
-              'title': 'Template 1',
-              'description': 'First template',
-              'created_time': '2023-01-01T00:00:00.000Z',
-              'last_edited_time': '2023-01-02T00:00:00.000Z',
-              'created_by': {
-                'object': 'user',
-                'id': 'user_123',
-                'type': 'person',
-                'person': {'email': 'test@example.com'},
-                'name': 'Test User',
-                'avatar_url': null,
-              },
-              'last_edited_by': {
-                'object': 'user',
-                'id': 'user_456',
-                'type': 'person',
-                'person': {'email': 'editor@example.com'},
-                'name': 'Editor User',
-                'avatar_url': null,
-              },
-              'url': 'https://notion.so/template_1',
-              'archived': false,
-            },
-            {
-              'id': 'template_2',
-              'title': 'Template 2',
-              'description': 'Second template',
-              'created_time': '2023-01-01T00:00:00.000Z',
-              'last_edited_time': '2023-01-02T00:00:00.000Z',
-              'created_by': {
-                'object': 'user',
-                'id': 'user_123',
-                'type': 'person',
-                'person': {'email': 'test@example.com'},
-                'name': 'Test User',
-                'avatar_url': null,
-              },
-              'last_edited_by': {
-                'object': 'user',
-                'id': 'user_456',
-                'type': 'person',
-                'person': {'email': 'editor@example.com'},
-                'name': 'Editor User',
-                'avatar_url': null,
-              },
-              'url': 'https://notion.so/template_2',
-              'archived': false,
-            },
+            {'id': 'template_1', 'name': 'Template 1', 'is_default': true},
+            {'id': 'template_2', 'name': 'Template 2', 'is_default': false},
           ],
           'next_cursor': null,
           'has_more': false,
@@ -87,9 +39,10 @@ void main() {
 
         expect(result.results, hasLength(2));
         expect(result.results[0].id, equals('template_1'));
-        expect(result.results[0].title, equals('Template 1'));
+        expect(result.results[0].name, equals('Template 1'));
+        expect(result.results[0].isDefault, isTrue);
         expect(result.results[1].id, equals('template_2'));
-        expect(result.results[1].title, equals('Template 2'));
+        expect(result.results[1].isDefault, isFalse);
         expect(result.hasMore, equals(false));
         expect(result.nextCursor, isNull);
 
@@ -192,61 +145,6 @@ void main() {
       });
     });
 
-    group('retrieveTemplate', () {
-      test('should return specific template', () async {
-        const dataSourceId = 'data_source_123';
-        const templateId = 'template_456';
-
-        final mockResponse = {
-          'id': templateId,
-          'title': 'Specific Template',
-          'description': 'A specific template',
-          'created_time': '2023-01-01T00:00:00.000Z',
-          'last_edited_time': '2023-01-02T00:00:00.000Z',
-          'created_by': {
-            'object': 'user',
-            'id': 'user_123',
-            'type': 'person',
-            'person': {'email': 'test@example.com'},
-            'name': 'Test User',
-            'avatar_url': null,
-          },
-          'last_edited_by': {
-            'object': 'user',
-            'id': 'user_456',
-            'type': 'person',
-            'person': {'email': 'editor@example.com'},
-            'name': 'Editor User',
-            'avatar_url': null,
-          },
-          'url': 'https://notion.so/$templateId',
-          'archived': false,
-        };
-
-        when(
-          mockHttpClient.get(
-            '/data_sources/$dataSourceId/templates/$templateId',
-          ),
-        ).thenAnswer((_) async => mockResponse);
-
-        final result = await templatesService.retrieveTemplate(
-          dataSourceId,
-          templateId,
-        );
-
-        expect(result.id, equals(templateId));
-        expect(result.title, equals('Specific Template'));
-        expect(result.description, equals('A specific template'));
-        expect(result.archived, equals(false));
-
-        verify(
-          mockHttpClient.get(
-            '/data_sources/$dataSourceId/templates/$templateId',
-          ),
-        ).called(1);
-      });
-    });
-
     group('error handling', () {
       test('should propagate HTTP client errors', () async {
         const dataSourceId = 'data_source_123';
@@ -258,22 +156,6 @@ void main() {
         expect(
           () => templatesService.listTemplates(dataSourceId),
           throwsA(isA<NotionException>()),
-        );
-      });
-
-      test('should propagate template not found errors', () async {
-        const dataSourceId = 'data_source_123';
-        const templateId = 'nonexistent_template';
-
-        when(
-          mockHttpClient.get(
-            '/data_sources/$dataSourceId/templates/$templateId',
-          ),
-        ).thenThrow(TemplateNotFoundException('Template not found'));
-
-        expect(
-          () => templatesService.retrieveTemplate(dataSourceId, templateId),
-          throwsA(isA<TemplateNotFoundException>()),
         );
       });
     });

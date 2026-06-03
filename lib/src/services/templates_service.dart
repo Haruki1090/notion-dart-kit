@@ -2,10 +2,12 @@ import '../client/http_client.dart';
 import '../models/pagination.dart';
 import '../models/template.dart';
 
-/// Service for interacting with Notion Templates API
+/// Service for interacting with the Notion data source templates API.
 ///
-/// Provides methods to retrieve templates from data sources.
-/// Templates are predefined page structures that can be used to create new pages.
+/// Provides access to the
+/// [List data source templates](https://developers.notion.com/reference/list-data-source-templates)
+/// endpoint. Templates are predefined page structures that can be used to
+/// create new pages within a data source.
 class TemplatesService {
   TemplatesService(this._httpClient);
   final NotionHttpClient _httpClient;
@@ -52,21 +54,18 @@ class TemplatesService {
     return PaginatedList.fromJson(response, Template.fromJson);
   }
 
-  /// Retrieves a specific template by ID from a data source
+  /// Retrieves a specific template by ID from a data source.
   ///
-  /// [dataSourceId] - The ID of the data source
-  /// [templateId] - The ID of the template to retrieve
-  ///
-  /// Returns a [Template] object
-  ///
-  /// Example:
-  /// ```dart
-  /// final template = await client.templates.retrieveTemplate(
-  ///   'data_source_id',
-  ///   'template_id',
-  /// );
-  /// print('Template title: ${template.title}');
-  /// ```
+  /// **Deprecated:** The Notion API does not expose a public endpoint to
+  /// retrieve a single template by id (only [listTemplates] exists). This
+  /// method calls `GET /data_sources/{id}/templates/{template_id}`, which is
+  /// not part of the documented API and will fail at runtime. It is kept for
+  /// backwards compatibility and will be removed in a future major version.
+  /// Use [listTemplates] and filter the results instead.
+  @Deprecated(
+    'No public Notion endpoint exists for retrieving a single template by id. '
+    'Use listTemplates instead. This will be removed in a future major version.',
+  )
   Future<Template> retrieveTemplate(
     String dataSourceId,
     String templateId,
